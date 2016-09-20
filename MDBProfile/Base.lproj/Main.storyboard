@@ -84,21 +84,33 @@
                                 <frame key="frameInset" minX="164" minY="472" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="g5H-E2-GJl"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whC-hd-dKW">
                                 <frame key="frameInset" minX="164" minY="404" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="dmN-AM-n5j"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mk-4F-tkb">
                                 <frame key="frameInset" minX="164" minY="332" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="zYO-5I-P4h"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sq-0X-IMc">
                                 <frame key="frameInset" minX="164" minY="565" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="wKp-Qa-za8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNk-xY-3uh">
                                 <frame key="frameInset" minX="164" minY="71" width="46" height="30"/>
@@ -109,7 +121,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="button0" destination="0Mk-4F-tkb" id="YKD-eP-anK"/>
+                        <outlet property="button1" destination="whC-hd-dKW" id="UJd-ia-tqA"/>
+                        <outlet property="button2" destination="bXM-Ue-ShP" id="bgS-qr-gKb"/>
+                        <outlet property="button3" destination="8sq-0X-IMc" id="ZuD-gm-kX3"/>
                         <outlet property="picture" destination="6CC-mx-nxM" id="JwP-v2-vYi"/>
+                        <outlet property="startStop" destination="VNk-xY-3uh" id="kvd-Wc-Dc7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JaI-UY-Kzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
