@@ -29,6 +29,9 @@ class TriviaViewController: UIViewController {
     @IBOutlet weak var button3: UIButton!
     
     @IBAction func next(_ sender: UIButton) {
+        if guysImages.count + girlsImages.count == 59 {
+            performSegue(withIdentifier: "toEnd", sender: sender)
+        }
         clicked = sender
         if sender.currentTitle! == name {
             sender.tintColor = UIColor.green
