@@ -108,6 +108,7 @@ class TriviaViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        picture.contentMode = .scaleAspectFit
         pickImage()
         makeButtons()
     }
