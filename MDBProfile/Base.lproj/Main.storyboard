@@ -81,35 +81,39 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXM-Ue-ShP">
-                                <frame key="frameInset" minX="164" minY="472" width="46" height="30"/>
+                                <frame key="frameInset" minX="164" minY="472" width="159" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="g5H-E2-GJl"/>
+                                    <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="ueZ-A5-IaO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whC-hd-dKW">
-                                <frame key="frameInset" minX="164" minY="404" width="46" height="30"/>
+                                <frame key="frameInset" minX="164" minY="404" width="127" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="dmN-AM-n5j"/>
+                                    <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="h2B-en-uHk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mk-4F-tkb">
-                                <frame key="frameInset" minX="164" minY="332" width="46" height="30"/>
+                                <frame key="frameInset" minX="164" minY="332" width="101" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="zYO-5I-P4h"/>
+                                    <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="YWC-F1-DSY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sq-0X-IMc">
-                                <frame key="frameInset" minX="164" minY="565" width="46" height="30"/>
+                                <frame key="frameInset" minX="164" minY="565" width="178" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="wKp-Qa-za8"/>
+                                    <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="fp6-VB-WmK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNk-xY-3uh">
@@ -131,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JaI-UY-Kzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="919" y="118"/>
+            <point key="canvasLocation" x="917.60000000000002" y="117.39130434782609"/>
         </scene>
     </scenes>
     <resources>
