@@ -16,7 +16,7 @@ class TriviaViewController: UIViewController {
     var guysImages: [String] = []
     var gender = arc4random_uniform(2)
     var clicked: UIButton!
-    let guyNames = ["Aayush Tyagi", "Abhinav Koppu", "Abhishek Mangla", "Akkshay Khoslaa", "Ali Shelton", "Andy Wang", "Aneesh Jindal", "Ankur Mahesh", "Ashwin Vaidyanathan", "Ben Goldberg", "Billy Lu", "Cody Hsieh", "Connor Killion", "Edward Liu", "Eliot Han", "Emaan Hariri", "Jared Gutierrez", "Jeffrey Zhang", "Justin Kim", "Kedar Thakkar", "Kenneth Steele", "Kevin Jiang", "Krishnan Rajiyah", "Leon Kwak", "Mohit Katyal", "Mudit Mittal", "Peter Schafhalter", "Richard Chen", "Richard Hu", "Riley Edmunds", "Rohan Narayan", "Sahil Lamba", "Sameer Suresh", "Sayan Paul", "Shaan Appel", "Shubham Goenka", "Sirjan Kafle", "Tarun Khasnavis", "Victor Sun", "Virindh Borra", "Wilbur Shi", "Young Lin"]
+    let guyNames = ["Aayush Tyagi", "Abhinav Koppu", "Abhishek Mangla", "Akkshay Khoslaa", "Ali Shelton", "Andy Wang", "Aneesh Jindal", "Ankur Mahesh", "Ashwin Vaidyanathan", "Ben Goldberg", "Billy Lu", "Cody Hsieh", "Connor Killion", "Edward Liu", "Eliot Han", "Emaan Hariri", "Jared Gutierrez", "Jeffrey Zhang", "Justin Kim", "Kedar Thakkar", "Kenneth Steele", "Kevin Jiang", "Krishnan Rajiyah", "Leon Kwak", "Mohit Katyal", "Mudit Mittal", "Peter Schafhalter", "Richard Hu", "Riley Edmunds", "Rohan Narayan", "Sahil Lamba", "Sameer Suresh", "Sayan Paul", "Shaan Appel", "Shubham Goenka", "Sirjan Kafle", "Tarun Khasnavis", "Victor Sun", "Virindh Borra", "Wilbur Shi", "Young Lin"]
     
     let girlNames = ["Alice Wang", "Ally Koo", "Anisha Salunkhe", "Aparna Krishnan", "Candice Ye", "Christine Munar", "Jessica Chen", "Jessica Cherny", "Jessica Ji", "Katharine Jiang", "Kristin Ho", "Lisa Lee", "Mansi Shah", "Rochelle Shen", "Sharie Wang", "Shreya Reddy", "Sona Jeswani", "Vidya Ravikumar"]
 
@@ -47,13 +47,13 @@ class TriviaViewController: UIViewController {
     func pickImage() {
         if girlsImages.count == 18 {
             gender = 1
-        } else if guysImages.count == 42 {
+        } else if guysImages.count == 41 {
             gender = 0
         }
         if gender == 1 {
-            name = guyNames[Int(arc4random_uniform(42))]
+            name = guyNames[Int(arc4random_uniform(41))]
             while guysImages.contains(name) {
-                name = guyNames[Int(arc4random_uniform(42))]
+                name = guyNames[Int(arc4random_uniform(41))]
             }
             guysImages += [name]
             let imageName = String(name.characters.filter {$0 != " "})
@@ -90,9 +90,9 @@ class TriviaViewController: UIViewController {
         var randomName = ""
         for button in buttonArray {
             if gender == 1 {
-                randomName = guyNames[Int(arc4random_uniform(42))]
+                randomName = guyNames[Int(arc4random_uniform(41))]
                 while randomName == name || picked.contains(randomName) {
-                    randomName = guyNames[Int(arc4random_uniform(42))]
+                    randomName = guyNames[Int(arc4random_uniform(41))]
                 }
             } else {
                 randomName = girlNames[Int(arc4random_uniform(18))]
