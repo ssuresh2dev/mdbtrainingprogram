@@ -85,7 +85,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="g5H-E2-GJl"/>
                                     <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="ueZ-A5-IaO"/>
                                 </connections>
                             </button>
@@ -94,7 +93,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="dmN-AM-n5j"/>
                                     <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="h2B-en-uHk"/>
                                 </connections>
                             </button>
@@ -103,7 +101,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="zYO-5I-P4h"/>
                                     <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="YWC-F1-DSY"/>
                                 </connections>
                             </button>
@@ -112,7 +109,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="answerChosen:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="wKp-Qa-za8"/>
                                     <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="fp6-VB-WmK"/>
                                 </connections>
                             </button>

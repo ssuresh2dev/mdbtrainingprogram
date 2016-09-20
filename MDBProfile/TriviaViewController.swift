@@ -12,7 +12,8 @@ class TriviaViewController: UIViewController {
     
     var name = ""
     var picked: [String] = []
-    var images: [String] = []
+    var girlsImages: [String] = []
+    var guysImages: [String] = []
     var gender = arc4random_uniform(2)
     let guyNames = ["Aayush Tyagi", "Abhinav Koppu", "Abhishek Mangla", "Akkshay Khoslaa", "Ali Shelton", "Andy Wang", "Aneesh Jindal", "Ankur Mahesh", "Ashwin Vaidyanathan", "Ben Goldberg", "Billy Lu", "Cody Hsieh", "Connor Killion", "Edward Liu", "Eliot Han", "Emaan Hariri", "Jared Guiterrez", "Jeffrey Zhang", "Justin Kim", "Kedar Thakkar", "Kenneth Steele", "Kevin Jiang", "Krishnan Rajiyah", "Leon Kwak", "Mohit Katyal", "Mudit Mittal", "Peter Schafhalter", "Richard Chen", "Richard Hu", "Riley Edmunds", "Rohan Narayan", "Sahil Lamba", "Sameer Suresh", "Sayan Paul", "Shaan Appel", "Shubham Goenka", "Sirjan Kafle", "Tarun Khasnavis", "Victor Sun", "Virindh Borra", "Wilbur Shi", "Young Lin"]
     
@@ -32,20 +33,25 @@ class TriviaViewController: UIViewController {
     }
     
     func pickImage() {
+        if girlsImages.count == 18 {
+            gender = 1
+        } else if guysImages.count == 42 {
+            gender = 0
+        }
         if gender == 1 {
             name = guyNames[Int(arc4random_uniform(42))]
-            while images.contains(name) {
+            while guysImages.contains(name) {
                 name = guyNames[Int(arc4random_uniform(42))]
             }
-            images += [name]
+            guysImages += [name]
             let imageName = String(name.characters.filter {$0 != " "})
             picture.image = UIImage(named: imageName)
         } else {
             name = girlNames[Int(arc4random_uniform(18))]
-            while images.contains(name) {
+            while girlsImages.contains(name) {
                 name = girlNames[Int(arc4random_uniform(18))]
             }
-            images += [name]
+            girlsImages += [name]
             let imageName = String(name.characters.filter {$0 != " "})
             picture.image = UIImage(named: imageName)
         }
@@ -86,6 +92,7 @@ class TriviaViewController: UIViewController {
             button!.setTitle(randomName, for: .normal)
         }
         gender = arc4random_uniform(2)
+        picked = []
     }
 
     override func viewDidLoad() {
