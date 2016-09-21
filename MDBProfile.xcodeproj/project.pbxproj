@@ -202,7 +202,7 @@
 				TargetAttributes = {
 					8B56054C1D90B98C00742A6B = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7KA28NZ292;
+						DevelopmentTeam = TMP75YC8SE;
 						ProvisioningStyle = Automatic;
 					};
 					8B5605631D90B98C00742A6B = {
@@ -427,7 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7KA28NZ292;
+				DEVELOPMENT_TEAM = TMP75YC8SE;
 				INFOPLIST_FILE = MDBProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rochelle.MDBProfile;
@@ -440,7 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7KA28NZ292;
+				DEVELOPMENT_TEAM = TMP75YC8SE;
 				INFOPLIST_FILE = MDBProfile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rochelle.MDBProfile;
