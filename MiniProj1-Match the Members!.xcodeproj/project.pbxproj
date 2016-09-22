@@ -15,6 +15,8 @@
 		1453EF7E1D91E7A700C41599 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1453EF7C1D91E7A700C41599 /* LaunchScreen.storyboard */; };
 		1453EF891D91E7A700C41599 /* MiniProj1_Match_the_Members_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1453EF881D91E7A700C41599 /* MiniProj1_Match_the_Members_Tests.swift */; };
 		1453EF941D91E7A700C41599 /* MiniProj1_Match_the_Members_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1453EF931D91E7A700C41599 /* MiniProj1_Match_the_Members_UITests.swift */; };
+		149F67841D937BAF00ECAF2F /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149F67831D937BAF00ECAF2F /* ThirdViewController.swift */; };
+		EF86654E1D935F5E00571A2A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF86654D1D935F5E00571A2A /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		1453EF8F1D91E7A700C41599 /* MiniProj1-Match the Members!UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MiniProj1-Match the Members!UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1453EF931D91E7A700C41599 /* MiniProj1_Match_the_Members_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniProj1_Match_the_Members_UITests.swift; sourceTree = "<group>"; };
 		1453EF951D91E7A700C41599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		149F67831D937BAF00ECAF2F /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		EF86654D1D935F5E00571A2A /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				1453EF701D91E7A700C41599 /* AppDelegate.swift */,
 				1453EF721D91E7A700C41599 /* ViewController.swift */,
 				1453EF741D91E7A700C41599 /* Main.storyboard */,
+				149F67831D937BAF00ECAF2F /* ThirdViewController.swift */,
+				EF86654D1D935F5E00571A2A /* SecondViewController.swift */,
 				1453EF7A1D91E7A700C41599 /* Assets.xcassets */,
 				1453EF7C1D91E7A700C41599 /* LaunchScreen.storyboard */,
 				1453EF7F1D91E7A700C41599 /* Info.plist */,
@@ -262,7 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF86654E1D935F5E00571A2A /* SecondViewController.swift in Sources */,
 				1453EF731D91E7A700C41599 /* ViewController.swift in Sources */,
+				149F67841D937BAF00ECAF2F /* ThirdViewController.swift in Sources */,
 				1453EF791D91E7A700C41599 /* MiniProj1_Match_the_Members_.xcdatamodeld in Sources */,
 				1453EF711D91E7A700C41599 /* AppDelegate.swift in Sources */,
 			);
@@ -337,6 +345,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -387,6 +396,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -509,6 +519,7 @@
 				1453EF9A1D91E7A700C41599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1453EF9B1D91E7A700C41599 /* Build configuration list for PBXNativeTarget "MiniProj1-Match the Members!Tests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +528,7 @@
 				1453EF9D1D91E7A700C41599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1453EF9E1D91E7A700C41599 /* Build configuration list for PBXNativeTarget "MiniProj1-Match the Members!UITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +537,7 @@
 				1453EFA01D91E7A700C41599 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
