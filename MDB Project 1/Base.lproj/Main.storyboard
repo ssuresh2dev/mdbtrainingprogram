@@ -85,7 +85,7 @@
                         </textField>
                         <barButtonItem key="rightBarButtonItem" image="trophy" id="gfh-uN-ejE">
                             <connections>
-                                <segue destination="Px1-8d-Fke" kind="show" id="vt8-cr-cVo"/>
+                                <segue destination="Px1-8d-Fke" kind="show" identifier="" id="vt8-cr-cVo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

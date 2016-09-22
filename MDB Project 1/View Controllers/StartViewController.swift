@@ -9,7 +9,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-    
+    //hello
     @IBOutlet weak var startButton: UIButton!
     var g = 1
     //g keeps track of button
@@ -242,7 +242,6 @@ class StartViewController: UIViewController {
             }
 
         }
-
     //delay function 
     func delay(_ delay:Double, closure:@escaping ()->()) {
         let when = DispatchTime.now() + delay
