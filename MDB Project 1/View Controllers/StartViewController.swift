@@ -25,6 +25,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var score: UITextField!
     var scoreInt = 0
     @IBOutlet weak var image: UIImageView!
+    //Creates buttons, timer, score, and image placeholder
     
     let names: [String] = ["JessicaCherny", "MansiShah", "AliceWang", "JessicaJi", "KevinJiang", "JaredGutierrez", "KristinHo", "ChristineMunar", "MuditMittal", "AliShelton", "RichardHu", "ShaanAppel", "AnkurMahesh", "EdwardLiu", "WilburShi", "YoungLin", "AbhinavKoppu", "AbhishekMangla",  "AkkshayKhoslaa", "AllyKoo", "AndyWang", "AneeshJindal", "AnishaSalunkhe", "AparnaKrishnan", "AshwinVaidyanathan", "CodyHsieh", "ConnorKillion", "JeffreyZhang", "JustinKim", "KennethSteele", "KrishnanRajiyah", "LisaLee", "PeterSchafhalter", "RileyEdmunds", "RohanNarayan", "SahilLamba", "SameerSuresh", "SonaJeswani", "SirjanKafle", "TarunKhasnavis", "VirindhBorra", "BillyLu", "AayushTyagi", "BenGoldberg", "CandiceYe", "EliotHan", "EmaanHariri", "JessicaChen", "KatharineJiang", "KedarThakkar", "LeonKwak", "MohitKatyal", "RochelleShen", "SayanPaul", "SharieWang", "ShreyaReddy", "ShubhamGoenka", "VictorSun", "VidyaRavikumar"]
     
@@ -41,9 +42,10 @@ class StartViewController: UIViewController {
         
         self.image.image = UIImage(named: "press start")
 
+    //Creates load screen
 
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -73,6 +75,7 @@ class StartViewController: UIViewController {
             self.viewDidLoad()
         }
     }
+    //Creates original gameplay screen
     func setup(){
         self.image.isHidden = false
         choice1.isHidden = false
@@ -93,6 +96,7 @@ class StartViewController: UIViewController {
         self.choice4.isUserInteractionEnabled = true
 
     }
+    
     func timeEnded(){
         self.timer.invalidate()
         if self.isPlaying{
@@ -127,11 +131,13 @@ class StartViewController: UIViewController {
             choice4.setTitle(chosenName,for: UIControlState.normal)
         }
         
+        //creates titles
         let title1 = generateButtonTitle(button: choice1)
         let title2 = generateButtonTitle(button: choice2)
         let title3 = generateButtonTitle(button: choice3)
         let title4 = generateButtonTitle(button: choice4)
         
+        //sets titles
         if title1 != nil && choice1.currentTitle == "Button"{
             choice1.setTitle(title1, for: UIControlState.normal)
         }
@@ -148,6 +154,7 @@ class StartViewController: UIViewController {
 
 
     }
+    //Sets the other buttons random names that aren't correct
     func generateButtonTitle(button: UIButton) -> String?{
         var buttonName: String?
         if button.currentTitle == "Button"{
@@ -161,6 +168,7 @@ class StartViewController: UIViewController {
         }
     }
     
+    //Sets button to green if correct and increases score, red if incorrect, resets button
     
     @IBAction func chose1(_ sender: AnyObject) {
         self.choice2.isUserInteractionEnabled = false
