@@ -121,6 +121,27 @@
                                 <frame key="frameInset" minX="274" minY="20" width="117" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCORE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwQ-a1-j8u">
+                                <frame key="frameInset" minX="8" minY="29" width="119" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeI-hY-lM7">
+                                <frame key="frameInset" minX="84" minY="29" width="47" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0k-Vf-vQH">
+                                <frame key="frameInset" minX="323" minY="36" width="22" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -130,13 +151,15 @@
                         <outlet property="button2" destination="bXM-Ue-ShP" id="bgS-qr-gKb"/>
                         <outlet property="button3" destination="8sq-0X-IMc" id="ZuD-gm-kX3"/>
                         <outlet property="picture" destination="6CC-mx-nxM" id="JwP-v2-vYi"/>
+                        <outlet property="scoreTracker" destination="qeI-hY-lM7" id="eP2-BJ-Ovo"/>
                         <outlet property="startStop" destination="VNk-xY-3uh" id="kvd-Wc-Dc7"/>
+                        <outlet property="timeSeconds" destination="t0k-Vf-vQH" id="1iB-eP-Uku"/>
                         <segue destination="8Lt-ni-DTC" kind="show" identifier="toEnd" id="3OY-FK-bNi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JaI-UY-Kzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1023" y="139"/>
+            <point key="canvasLocation" x="1021.6" y="138.98050974512745"/>
         </scene>
         <!--Win View Controller-->
         <scene sceneID="3rd-UN-XBU">
@@ -158,6 +181,9 @@
                                 <frame key="frameInset" minX="104" minY="434" width="166" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="playagain"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="0Nb-c2-mRE"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="winning text" translatesAutoresizingMaskIntoConstraints="NO" id="kwZ-IA-qWd">
                                 <frame key="frameInset" minX="25" minY="102" width="324" height="184"/>
@@ -190,4 +216,7 @@
         <image name="time" width="44" height="42"/>
         <image name="winning text" width="329" height="179"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="dWJ-hG-i3h"/>
+    </inferredMetricsTieBreakers>
 </document>
