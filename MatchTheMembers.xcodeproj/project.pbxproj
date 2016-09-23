@@ -14,6 +14,9 @@
 		A9E33CAF1D90B356007B4A8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E33CAD1D90B356007B4A8D /* LaunchScreen.storyboard */; };
 		A9E33CBA1D90B357007B4A8D /* MatchTheMembersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E33CB91D90B357007B4A8D /* MatchTheMembersTests.swift */; };
 		A9E33CC51D90B357007B4A8D /* MatchTheMembersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E33CC41D90B357007B4A8D /* MatchTheMembersUITests.swift */; };
+		A9E33CD31D937338007B4A8D /* StatisticsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E33CD21D937338007B4A8D /* StatisticsPageViewController.swift */; };
+		A9E33CD51D94E413007B4A8D /* Corki-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A9E33CD41D94E413007B4A8D /* Corki-Regular.otf */; };
+		A9E33CD71D94F5DD007B4A8D /* howToPlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E33CD61D94F5DD007B4A8D /* howToPlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		A9E33CC01D90B357007B4A8D /* MatchTheMembersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatchTheMembersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9E33CC41D90B357007B4A8D /* MatchTheMembersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTheMembersUITests.swift; sourceTree = "<group>"; };
 		A9E33CC61D90B357007B4A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9E33CD21D937338007B4A8D /* StatisticsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsPageViewController.swift; sourceTree = "<group>"; };
+		A9E33CD41D94E413007B4A8D /* Corki-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Corki-Regular.otf"; path = "../../Downloads/Corki-Free-Font/Corki-Regular.otf"; sourceTree = "<group>"; };
+		A9E33CD61D94F5DD007B4A8D /* howToPlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = howToPlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,7 @@
 		A9E33C981D90B356007B4A8D = {
 			isa = PBXGroup;
 			children = (
+				A9E33CD41D94E413007B4A8D /* Corki-Regular.otf */,
 				A9E33CA31D90B356007B4A8D /* MatchTheMembers */,
 				A9E33CB81D90B357007B4A8D /* MatchTheMembersTests */,
 				A9E33CC31D90B357007B4A8D /* MatchTheMembersUITests */,
@@ -99,10 +106,12 @@
 			children = (
 				A9E33CA41D90B356007B4A8D /* AppDelegate.swift */,
 				A9E33CA61D90B356007B4A8D /* ViewController.swift */,
+				A9E33CD21D937338007B4A8D /* StatisticsPageViewController.swift */,
 				A9E33CA81D90B356007B4A8D /* Main.storyboard */,
 				A9E33CAB1D90B356007B4A8D /* Assets.xcassets */,
 				A9E33CAD1D90B356007B4A8D /* LaunchScreen.storyboard */,
 				A9E33CB01D90B356007B4A8D /* Info.plist */,
+				A9E33CD61D94F5DD007B4A8D /* howToPlay.swift */,
 			);
 			path = MatchTheMembers;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 				A9E33CAF1D90B356007B4A8D /* LaunchScreen.storyboard in Resources */,
 				A9E33CAC1D90B356007B4A8D /* Assets.xcassets in Resources */,
 				A9E33CAA1D90B356007B4A8D /* Main.storyboard in Resources */,
+				A9E33CD51D94E413007B4A8D /* Corki-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9E33CA71D90B356007B4A8D /* ViewController.swift in Sources */,
+				A9E33CD71D94F5DD007B4A8D /* howToPlay.swift in Sources */,
 				A9E33CA51D90B356007B4A8D /* AppDelegate.swift in Sources */,
+				A9E33CD31D937338007B4A8D /* StatisticsPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +526,7 @@
 				A9E33CCB1D90B357007B4A8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9E33CCC1D90B357007B4A8D /* Build configuration list for PBXNativeTarget "MatchTheMembersTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +535,7 @@
 				A9E33CCE1D90B357007B4A8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9E33CCF1D90B357007B4A8D /* Build configuration list for PBXNativeTarget "MatchTheMembersUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +544,7 @@
 				A9E33CD11D90B357007B4A8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

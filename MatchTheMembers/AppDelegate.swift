@@ -39,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        let vc = ViewController()
+        vc.isStart = true
+        vc.startStop.backgroundColor = UIColor.green
+        vc.startStop.setTitle("Start", for: .normal)
+        vc.answerTimer.invalidate()
     }
 
 
