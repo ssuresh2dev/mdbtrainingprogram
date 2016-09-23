@@ -16,17 +16,16 @@ class TriviaViewController: UIViewController {
     var guysImages: [String] = []
     var gender = arc4random_uniform(2)
     var clicked: UIButton!
-    var seconds = 0
     var score = 0
-    var happy:String = ""
-    
+    var seconds = 5
+    var timer = Timer()
     
     
     let guyNames = ["Aayush Tyagi", "Abhinav Koppu", "Abhishek Mangla", "Akkshay Khoslaa", "Ali Shelton", "Andy Wang", "Aneesh Jindal", "Ankur Mahesh", "Ashwin Vaidyanathan", "Ben Goldberg", "Billy Lu", "Cody Hsieh", "Connor Killion", "Edward Liu", "Eliot Han", "Emaan Hariri", "Jared Gutierrez", "Jeffrey Zhang", "Justin Kim", "Kedar Thakkar", "Kenneth Steele", "Kevin Jiang", "Krishnan Rajiyah", "Leon Kwak", "Mohit Katyal", "Mudit Mittal", "Peter Schafhalter", "Richard Hu", "Riley Edmunds", "Rohan Narayan", "Sahil Lamba", "Sameer Suresh", "Sayan Paul", "Shaan Appel", "Shubham Goenka", "Sirjan Kafle", "Tarun Khasnavis", "Victor Sun", "Virindh Borra", "Wilbur Shi", "Young Lin"]
     
     let girlNames = ["Alice Wang", "Ally Koo", "Anisha Salunkhe", "Aparna Krishnan", "Candice Ye", "Christine Munar", "Jessica Chen", "Jessica Cherny", "Jessica Ji", "Katharine Jiang", "Kristin Ho", "Lisa Lee", "Mansi Shah", "Rochelle Shen", "Sharie Wang", "Shreya Reddy", "Sona Jeswani", "Vidya Ravikumar"]
-
-
+    
+    
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var startStop: UIButton!
     @IBOutlet weak var button0: UIButton!
@@ -40,6 +39,7 @@ class TriviaViewController: UIViewController {
     //ok.___ = variable
     
     @IBAction func next(_ sender: UIButton) {
+        timer.invalidate()
         clicked = sender
         if sender.currentTitle! == name {
             sender.tintColor = UIColor.green
@@ -49,10 +49,6 @@ class TriviaViewController: UIViewController {
             sender.tintColor = UIColor.red
         }
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: delay)
-        if guysImages.count + girlsImages.count == 5 {
-            performSegue(withIdentifier: "toEnd", sender: sender)
-        }
-
     }
     
     func delay(timer: Timer) {
@@ -62,15 +58,24 @@ class TriviaViewController: UIViewController {
     }
     
     func updateTimer(timer: Timer) {
-        seconds += 1
-        if seconds == 6 {
+        if seconds == 1 {
             timer.invalidate()
+            seconds = 6
+            pickImage()
+            makeButtons()
+        } else {
+            seconds -= 1
+            timeSeconds.text = "\(seconds)"
         }
-        timeSeconds.text = String(seconds)
-    
     }
     
     func pickImage() {
+        if guysImages.count + girlsImages.count == 5 {
+            performSegue(withIdentifier: "toEnd", sender: nil)
+        }
+        timeSeconds.text = "5"
+        seconds = 5
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: updateTimer)
         if girlsImages.count == 18 {
             gender = 1
         } else if guysImages.count == 41 {
@@ -132,7 +137,7 @@ class TriviaViewController: UIViewController {
         gender = arc4random_uniform(2)
         picked = []
     }
-
+    
     override func viewDidLoad() {
         picture.contentMode = .scaleAspectFit
         pickImage()
