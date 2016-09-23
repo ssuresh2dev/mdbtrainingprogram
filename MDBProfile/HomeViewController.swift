@@ -9,17 +9,14 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    var topStreak = 0
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if topStreak != 0 {
+            let passTrivia = segue.destination as! TriviaViewController
+            passTrivia.topStreak = topStreak
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

@@ -183,7 +183,7 @@ class TriviaViewController: UIViewController {
         if segue.identifier == "toEnd" {
             let passScore = segue.destination as! WinViewController
             passScore.score = score
-        } else {
+        } else if segue.identifier == "toStat"{
             let passStats = segue.destination as! StatisticViewController
             passStats.buttonNames = buttonNames
             passStats.topStreak = topStreak
@@ -196,6 +196,9 @@ class TriviaViewController: UIViewController {
             passStats.gender = gender
             passStats.seconds = seconds
             passStats.imageName = imageName
+        } else if segue.identifier == "toHome"{
+            let passHome = segue.destination as! HomeViewController
+            passHome.topStreak = topStreak
         }
     }
 }
