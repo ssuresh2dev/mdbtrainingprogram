@@ -215,10 +215,10 @@
             </objects>
             <point key="canvasLocation" x="277.60000000000002" y="946.77661169415296"/>
         </scene>
-        <!--Stats View Controller-->
+        <!--Statistic View Controller-->
         <scene sceneID="SZ6-sC-Cui">
             <objects>
-                <viewController id="7fc-tf-Hhi" customClass="StatsViewController" customModule="MDBProfile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7fc-tf-Hhi" customClass="StatisticViewController" customModule="MDBProfile" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="h7U-Vi-NtV"/>
                         <viewControllerLayoutGuide type="bottom" id="mAs-3M-rED"/>
