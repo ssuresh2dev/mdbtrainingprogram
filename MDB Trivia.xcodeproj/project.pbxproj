@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		516795D81D8F16DB0033EB25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516795D71D8F16DB0033EB25 /* AppDelegate.swift */; };
-		516795DA1D8F16DB0033EB25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516795D91D8F16DB0033EB25 /* ViewController.swift */; };
+		516795DA1D8F16DB0033EB25 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516795D91D8F16DB0033EB25 /* StartViewController.swift */; };
 		516795DD1D8F16DB0033EB25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 516795DB1D8F16DB0033EB25 /* Main.storyboard */; };
 		516795DF1D8F16DB0033EB25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 516795DE1D8F16DB0033EB25 /* Assets.xcassets */; };
 		516795E21D8F16DB0033EB25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 516795E01D8F16DB0033EB25 /* LaunchScreen.storyboard */; };
 		516795ED1D8F16DB0033EB25 /* MDB_TriviaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516795EC1D8F16DB0033EB25 /* MDB_TriviaTests.swift */; };
 		516795F81D8F16DC0033EB25 /* MDB_TriviaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516795F71D8F16DC0033EB25 /* MDB_TriviaUITests.swift */; };
+		516796061D9234250033EB25 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516796051D9234250033EB25 /* GameViewController.swift */; };
+		516796081D94CAC80033EB25 /* StopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516796071D94CAC80033EB25 /* StopViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,7 @@
 /* Begin PBXFileReference section */
 		516795D41D8F16DB0033EB25 /* MDB Trivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MDB Trivia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		516795D71D8F16DB0033EB25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		516795D91D8F16DB0033EB25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		516795D91D8F16DB0033EB25 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		516795DC1D8F16DB0033EB25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		516795DE1D8F16DB0033EB25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		516795E11D8F16DB0033EB25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +49,8 @@
 		516795F31D8F16DC0033EB25 /* MDB TriviaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MDB TriviaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		516795F71D8F16DC0033EB25 /* MDB_TriviaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDB_TriviaUITests.swift; sourceTree = "<group>"; };
 		516795F91D8F16DC0033EB25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		516796051D9234250033EB25 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		516796071D94CAC80033EB25 /* StopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				516795D71D8F16DB0033EB25 /* AppDelegate.swift */,
-				516795D91D8F16DB0033EB25 /* ViewController.swift */,
+				516795D91D8F16DB0033EB25 /* StartViewController.swift */,
 				516795DB1D8F16DB0033EB25 /* Main.storyboard */,
+				516796071D94CAC80033EB25 /* StopViewController.swift */,
+				516796051D9234250033EB25 /* GameViewController.swift */,
 				516795DE1D8F16DB0033EB25 /* Assets.xcassets */,
 				516795E01D8F16DB0033EB25 /* LaunchScreen.storyboard */,
 				516795E31D8F16DB0033EB25 /* Info.plist */,
@@ -262,7 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				516795DA1D8F16DB0033EB25 /* ViewController.swift in Sources */,
+				516796081D94CAC80033EB25 /* StopViewController.swift in Sources */,
+				516795DA1D8F16DB0033EB25 /* StartViewController.swift in Sources */,
+				516796061D9234250033EB25 /* GameViewController.swift in Sources */,
 				516795D81D8F16DB0033EB25 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +522,7 @@
 				516795FE1D8F16DC0033EB25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		516795FF1D8F16DC0033EB25 /* Build configuration list for PBXNativeTarget "MDB TriviaTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +531,7 @@
 				516796011D8F16DC0033EB25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		516796021D8F16DC0033EB25 /* Build configuration list for PBXNativeTarget "MDB TriviaUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +540,7 @@
 				516796041D8F16DC0033EB25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
