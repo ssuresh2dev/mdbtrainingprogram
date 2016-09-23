@@ -10,7 +10,7 @@ import UIKit
 
 class StatisticViewController: UIViewController {
     
-    var topScore = 0
+    var topStreak: Int!
     var mostRecent: [String]!
     var score: Int!
     var name: String!
@@ -22,7 +22,7 @@ class StatisticViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let trivia = segue.destination as! TriviaViewController
-        trivia.topScore = topScore
+        trivia.topStreak = topStreak
         trivia.score = score
         trivia.mostRecent = mostRecent
         trivia.name = name
@@ -31,11 +31,6 @@ class StatisticViewController: UIViewController {
         trivia.guysImages = guysImages
         trivia.gender = gender
         trivia.seconds = seconds
-    }
-    
-    override func viewDidLoad() {
-        if score > topScore {
-            topScore = score
-        }
+        trivia.back = true
     }
 }
