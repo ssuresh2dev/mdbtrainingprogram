@@ -10,7 +10,6 @@ package com.memberquiz.mdb.mdbmemberquiz;
         import android.os.Bundle;
         import android.view.View;
         import android.widget.Button;
-        import android.widget.ImageButton;
         import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -18,11 +17,12 @@ package com.memberquiz.mdb.mdbmemberquiz;
         import java.util.*;
 
 public class QuestionActivity extends AppCompatActivity {
-
+    //TODO make array and pretty much all strings as xml resources
+    //TODO fewer toasts, more other ui stuff, flash the screen red??
     private String[] members = {"Jessica Cherny", "Mansi Shah", "Alice Wang", "Jessica Ji",
             "Kevin Jiang", "Jared Gutierrez", "Kristin Ho", "Christine Munar", "Mudit Mittal",
             "Ali Shelton", "Richard Hu", "Shaan Appel", "Ankur Mahesh", "Edward Liu", "Wilbur Shi",
-            "Young Lin", "Abhinav Koppu", "Abhishek Mangla",  "Akkshay Khoslaa", "Ally Koo", "Andy Wang",
+            "Young Lin", "Abhinav Koppu", "Abhishek Mangla", "Akkshay Khoslaa", "Ally Koo", "Andy Wang",
             "Aneesh Jindal", "Anisha Salunkhe", "Aparna Krishnan", "Ashwin Vaidyanathan",
             "Cody Hsieh", "Connor Killion", "Jeffrey Zhang", "Justin Kim", "Kenneth Steele",
             "Krishnan Rajiyah", "Lisa Lee", "Peter Schafhalter", "Riley Edmunds", "Rohan Narayan",
@@ -32,7 +32,7 @@ public class QuestionActivity extends AppCompatActivity {
             "Mohit Katyal", "Rochelle Shen", "Sayan Paul", "Sharie Wang", "Shreya Reddy",
             "Shubham Goenka", "Victor Sun", "Vidya Ravikumar"};
 
-    private final boolean DEBUG = true;
+    private final boolean DEBUG = false;
 
     private int score;
     private CountDownTimer timer;
@@ -42,7 +42,7 @@ public class QuestionActivity extends AppCompatActivity {
     private TextView scoreView, countdownView, endbutton;
     private Button[] buttons = new Button[4];
     private ImageView memberPhoto;
-    private int timelimit = 30;
+    private int timelimit = 5;
     private int indexOfCorrectMember, indexOfCorrectButton;
 
     @Override
@@ -90,7 +90,7 @@ public class QuestionActivity extends AppCompatActivity {
         memberList = Arrays.asList(members);
         Collections.shuffle(memberList);
         score = 0;
-        timer = new CountDownTimer(timelimit*1000, 1000) {
+        timer = new CountDownTimer((timelimit+1)*1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 countdownView.setText("Time remaining: " + String.format("%d", millisUntilFinished / 1000));
@@ -99,7 +99,9 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 countdownView.setText("Time remaining: " + String.format("%d", 0));
-                toast("Out of time!");
+                toast("Out of time! 1 point deducted!");
+                updateScore(score-1);
+                setButtons();
             }
         };
         for (int i = 0; i < 4; i++) {
@@ -112,7 +114,7 @@ public class QuestionActivity extends AppCompatActivity {
                         setButtons();
                     }
                     else{
-                        toast("ur so dum -1 4 u");
+                        //toast("ur so dum -1 4 u");
                         updateScore(score-1);
                     }
                 }
@@ -120,6 +122,12 @@ public class QuestionActivity extends AppCompatActivity {
         }
 
         setButtons();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timer.cancel();
     }
 
     protected void setButtons() {
