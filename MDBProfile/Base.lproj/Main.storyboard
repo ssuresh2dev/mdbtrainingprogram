@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -66,15 +66,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6CC-mx-nxM">
-                                <frame key="frameInset" minX="57" minY="139" width="259" height="195"/>
+                                <frame key="frameInset" minX="59" minY="101" width="259" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="choices" translatesAutoresizingMaskIntoConstraints="NO" id="TXA-6d-wWP">
-                                <frame key="frameInset" minX="25" minY="338" width="334" height="309"/>
+                                <frame key="frameInset" minX="25" minY="313" width="334" height="309"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXM-Ue-ShP">
-                                <frame key="frameInset" minX="58" minY="512" width="291" height="30"/>
+                                <frame key="frameInset" minX="57" minY="486" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whC-hd-dKW">
-                                <frame key="frameInset" minX="57" minY="443" width="291" height="30"/>
+                                <frame key="frameInset" minX="57" minY="418" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -90,27 +90,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mk-4F-tkb">
-                                <frame key="frameInset" minX="57" minY="375" width="291" height="30"/>
+                                <frame key="frameInset" minX="57" minY="351" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="YWC-F1-DSY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sq-0X-IMc">
-                                <frame key="frameInset" minX="59" minY="581" width="291" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="fp6-VB-WmK"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="score underlay" translatesAutoresizingMaskIntoConstraints="NO" id="jWC-Yw-ULX">
                                 <frame key="frameInset" minX="-10" width="151" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="wpX-Tw-zEI">
-                                <frame key="frameInset" minX="274" minY="20" width="117" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCORE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwQ-a1-j8u">
@@ -127,19 +115,31 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="STOP-1" translatesAutoresizingMaskIntoConstraints="NO" id="Aea-Ld-2Fn">
+                                <frame key="frameInset" minX="237" minY="19" width="67" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="STATS" translatesAutoresizingMaskIntoConstraints="NO" id="C8j-Cl-DKs">
+                                <frame key="frameInset" minX="171" minY="20" width="67" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TIMER" translatesAutoresizingMaskIntoConstraints="NO" id="ecZ-8K-CEF">
+                                <frame key="frameInset" minX="303" minY="19" width="67" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0k-Vf-vQH">
-                                <frame key="frameInset" minX="324" minY="30" width="22" height="35"/>
+                                <frame key="frameInset" minX="328" minY="29" width="22" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNk-xY-3uh">
-                                <frame key="frameInset" minX="121" minY="74" width="133" height="53"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sq-0X-IMc">
+                                <frame key="frameInset" minX="57" minY="555" width="291" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="stop"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="dWJ-hG-i3h"/>
+                                    <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="fp6-VB-WmK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -152,7 +152,6 @@
                         <outlet property="button3" destination="8sq-0X-IMc" id="ZuD-gm-kX3"/>
                         <outlet property="picture" destination="6CC-mx-nxM" id="JwP-v2-vYi"/>
                         <outlet property="scoreTracker" destination="qeI-hY-lM7" id="eP2-BJ-Ovo"/>
-                        <outlet property="startStop" destination="VNk-xY-3uh" id="kvd-Wc-Dc7"/>
                         <outlet property="timeSeconds" destination="t0k-Vf-vQH" id="1iB-eP-Uku"/>
                         <segue destination="8Lt-ni-DTC" kind="show" identifier="toEnd" id="3OY-FK-bNi"/>
                     </connections>
@@ -216,23 +215,106 @@
             </objects>
             <point key="canvasLocation" x="277.60000000000002" y="946.77661169415296"/>
         </scene>
+        <!--Stats View Controller-->
+        <scene sceneID="SZ6-sC-Cui">
+            <objects>
+                <viewController id="7fc-tf-Hhi" customClass="StatsViewController" customModule="MDBProfile" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h7U-Vi-NtV"/>
+                        <viewControllerLayoutGuide type="bottom" id="mAs-3M-rED"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bat-qA-V9h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="statsbg" translatesAutoresizingMaskIntoConstraints="NO" id="YNm-Cd-4Vx">
+                                <frame key="frameInset" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Statistics" translatesAutoresizingMaskIntoConstraints="NO" id="bkh-qD-B7t">
+                                <frame key="frameInset" minX="21" minY="44" width="333" height="209"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Streak" translatesAutoresizingMaskIntoConstraints="NO" id="9Ox-g4-Rwx">
+                                <frame key="frameInset" minX="-3" minY="148" width="378" height="171"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Last3" translatesAutoresizingMaskIntoConstraints="NO" id="9kn-FS-oq5">
+                                <frame key="frameInset" minY="288" width="375" height="233"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMG-8v-csB">
+                                <frame key="frameInset" minX="67" minY="554" width="239" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="resume"/>
+                                <connections>
+                                    <segue destination="PDq-pZ-5bc" kind="show" id="BmE-hn-q8f"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fs1-1I-w1A">
+                                <frame key="frameInset" minX="21" minY="352" width="101" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o75-Of-DoL">
+                                <frame key="frameInset" minX="137" minY="352" width="101" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iKd-b3-30L">
+                                <frame key="frameInset" minX="257" minY="352" width="101" height="101"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agD-4B-bLs">
+                                <frame key="frameInset" minX="21" minY="461" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-VS-B38">
+                                <frame key="frameInset" minX="137" minY="460" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MT-hx-bcZ">
+                                <frame key="frameInset" minX="257" minY="459" width="101" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iCw-La-jec" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1133.5999999999999" y="946.77661169415296"/>
+        </scene>
     </scenes>
     <resources>
         <image name="FINAL SCORE: " width="233" height="28"/>
+        <image name="Last3" width="375" height="213"/>
         <image name="MDBackground" width="375" height="667"/>
         <image name="Name" width="327" height="118"/>
+        <image name="STATS" width="44" height="42"/>
+        <image name="STOP-1" width="44" height="42"/>
         <image name="Start" width="286" height="53"/>
+        <image name="Statistics" width="311" height="59"/>
+        <image name="Streak" width="375" height="39"/>
+        <image name="TIMER" width="44" height="42"/>
         <image name="airplanewhite" width="375" height="667"/>
         <image name="bg" width="375" height="667"/>
         <image name="choices" width="304" height="227"/>
         <image name="playagain" width="166" height="34"/>
+        <image name="resume" width="232" height="34"/>
         <image name="score underlay" width="124" height="28"/>
         <image name="score underlay-1" width="375" height="60"/>
-        <image name="stop" width="131" height="42"/>
-        <image name="time" width="44" height="42"/>
+        <image name="statsbg" width="375" height="667"/>
         <image name="winning text" width="329" height="179"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dWJ-hG-i3h"/>
+        <segue reference="BmE-hn-q8f"/>
     </inferredMetricsTieBreakers>
 </document>
