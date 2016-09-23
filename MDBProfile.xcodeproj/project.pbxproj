@@ -15,7 +15,6 @@
 		8B5605691D90B98D00742A6B /* MDBProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5605681D90B98D00742A6B /* MDBProfileTests.swift */; };
 		8B5605741D90B98D00742A6B /* MDBProfileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5605731D90B98D00742A6B /* MDBProfileUITests.swift */; };
 		8B5605821D90C06300742A6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5605811D90C06300742A6B /* Assets.xcassets */; };
-		8B85AE291D94D8E600FCBB09 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85AE281D94D8E600FCBB09 /* StatsViewController.swift */; };
 		8B85AE2B1D94DB8C00FCBB09 /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85AE2A1D94DB8C00FCBB09 /* StatisticViewController.swift */; };
 		B66137761D90D5EB00FD23BF /* TriviaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66137751D90D5EB00FD23BF /* TriviaViewController.swift */; };
 		B6A695911D91EA6F00BE686D /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A695901D91EA6F00BE686D /* WinViewController.swift */; };
@@ -53,7 +52,6 @@
 		8B5605731D90B98D00742A6B /* MDBProfileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDBProfileUITests.swift; sourceTree = "<group>"; };
 		8B5605751D90B98D00742A6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B5605811D90C06300742A6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8B85AE281D94D8E600FCBB09 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		8B85AE2A1D94DB8C00FCBB09 /* StatisticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		B66137751D90D5EB00FD23BF /* TriviaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaViewController.swift; sourceTree = "<group>"; };
 		B6A695901D91EA6F00BE686D /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
 		8B5605441D90B98C00742A6B = {
 			isa = PBXGroup;
 			children = (
-				8B85AE281D94D8E600FCBB09 /* StatsViewController.swift */,
 				8B56054F1D90B98C00742A6B /* MDBProfile */,
 				8B5605671D90B98C00742A6B /* MDBProfileTests */,
 				8B5605721D90B98D00742A6B /* MDBProfileUITests */,
@@ -282,7 +279,6 @@
 				8B5605511D90B98C00742A6B /* AppDelegate.swift in Sources */,
 				B6A695911D91EA6F00BE686D /* WinViewController.swift in Sources */,
 				8B5605591D90B98C00742A6B /* MDBProfile.xcdatamodeld in Sources */,
-				8B85AE291D94D8E600FCBB09 /* StatsViewController.swift in Sources */,
 				B66137761D90D5EB00FD23BF /* TriviaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
