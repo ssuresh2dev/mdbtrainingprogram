@@ -32,15 +32,32 @@ class StatisticViewController: UIViewController {
     @IBOutlet weak var name3: UILabel!
     
     override func viewDidLoad() {
-        if recentNames[2] != "" {
+        var newNames = ["", "", "", ""]
+        for name in recentNames {
+            var add = ""
+            for char in name.characters {
+                if char != " " {
+                    add += String(char)
+                } else {
+                    break
+                }
+            }
+            for i in 0...3 {
+                if newNames[i] == "" {
+                    newNames[i] = add
+                    break
+                }
+            }
+        }
+        if newNames[2] != "" {
             image1.image = UIImage(named: mostRecent[2])
-            name1.text = recentNames[2]
-            if recentNames[1] != "" {
+            name1.text = newNames[2]
+            if newNames[1] != "" {
                 image2.image = UIImage(named: mostRecent[1])
-                name2.text = recentNames[1]
-                if recentNames[0] != "" {
+                name2.text = newNames[1]
+                if newNames[0] != "" {
                     image3.image = UIImage(named: mostRecent[0])
-                    name3.text = recentNames[0]
+                    name3.text = newNames[0]
                 }
             }
         }
