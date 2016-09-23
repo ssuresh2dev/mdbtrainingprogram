@@ -136,16 +136,22 @@ class TriviaViewController: UIViewController {
                 while randomName == name || picked.contains(randomName) {
                     randomName = guyNames[Int(arc4random_uniform(41))]
                 }
+                for i in 0...3 {
+                    if buttonNames[i] == "" {
+                        buttonNames[i] = randomName
+                        break
+                    }
+                }
             } else {
                 randomName = girlNames[Int(arc4random_uniform(18))]
                 while randomName == name || picked.contains(randomName) {
                     randomName = girlNames[Int(arc4random_uniform(18))]
                 }
-            }
-            for i in 0...3 {
-                if buttonNames[i] == "" {
-                    buttonNames[i] = randomName
-                    break
+                for i in 0...3 {
+                    if buttonNames[i] == "" {
+                        buttonNames[i] = randomName
+                        break
+                    }
                 }
             }
             picked += [randomName]
@@ -165,7 +171,7 @@ class TriviaViewController: UIViewController {
             button1.setTitle(buttonNames[1], for: .normal)
             button2.setTitle(buttonNames[2], for: .normal)
             button3.setTitle(buttonNames[3], for: .normal)
-            
+            buttonNames = ["", "", "", ""]
             back = false
         } else {
             pickImage()
