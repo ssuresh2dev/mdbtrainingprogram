@@ -22,6 +22,10 @@ class StatisticViewController: UIViewController {
     var buttonNames: [String]!
     var imageName: String!
     
+    @IBOutlet weak var streakNum: UILabel!
+    override func viewDidLoad() {
+        streakNum.text = String(topStreak)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let trivia = segue.destination as! TriviaViewController
         trivia.topStreak = topStreak
