@@ -21,10 +21,11 @@ class TriviaViewController: UIViewController {
     var topStreak = 0
     var seconds = 5
     var timer = Timer()
-    var mostRecent = ["", "", ""]
+    var mostRecent = ["", "", "", ""]
     var back = false
     var imageName = ""
     var buttonNames = ["", "", "", ""]
+    var recentNames = ["", "", "", ""]
     
     let guyNames = ["Aayush Tyagi", "Abhinav Koppu", "Abhishek Mangla", "Akkshay Khoslaa", "Ali Shelton", "Andy Wang", "Aneesh Jindal", "Ankur Mahesh", "Ashwin Vaidyanathan", "Ben Goldberg", "Billy Lu", "Cody Hsieh", "Connor Killion", "Edward Liu", "Eliot Han", "Emaan Hariri", "Jared Gutierrez", "Jeffrey Zhang", "Justin Kim", "Kedar Thakkar", "Kenneth Steele", "Kevin Jiang", "Krishnan Rajiyah", "Leon Kwak", "Mohit Katyal", "Mudit Mittal", "Peter Schafhalter", "Richard Hu", "Riley Edmunds", "Rohan Narayan", "Sahil Lamba", "Sameer Suresh", "Sayan Paul", "Shaan Appel", "Shubham Goenka", "Sirjan Kafle", "Tarun Khasnavis", "Victor Sun", "Virindh Borra", "Wilbur Shi", "Young Lin"]
     
@@ -104,10 +105,11 @@ class TriviaViewController: UIViewController {
             }
             girlsImages += [name]
         }
+        recentNames = recentNames[1...3] + [name]
         let image = String(name.characters.filter {$0 != " "})
         imageName = image
         picture.image = UIImage(named: image)
-        mostRecent = mostRecent[1...2] + [image]
+        mostRecent = mostRecent[1...3] + [image]
     }
     
     func makeButtons() {
@@ -165,6 +167,7 @@ class TriviaViewController: UIViewController {
     override func viewDidLoad() {
         picture.contentMode = .scaleAspectFit
         if back {
+            scoreTracker.text = String(score)
             picture.image = UIImage(named: imageName)
             timeSeconds.text = "\(seconds)"
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: updateTimer)
@@ -197,6 +200,7 @@ class TriviaViewController: UIViewController {
             passStats.gender = gender
             passStats.seconds = seconds
             passStats.imageName = imageName
+            passStats.recentNames = recentNames
         } else if segue.identifier == "toHome"{
             let passHome = segue.destination as! HomeViewController
             passHome.topStreak = topStreak
