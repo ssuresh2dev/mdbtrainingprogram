@@ -34,6 +34,7 @@ class TriviaViewController: UIViewController {
     @IBOutlet weak var button3: UIButton!
     @IBOutlet weak var scoreTracker: UILabel!
     @IBOutlet weak var timeSeconds: UILabel!
+    @IBOutlet weak var statsButton: UIButton!
     
     //let ok = segue.destination as! (nameofviewcontroller)
     //ok.___ = variable
@@ -140,6 +141,7 @@ class TriviaViewController: UIViewController {
     
     override func viewDidLoad() {
         picture.contentMode = .scaleAspectFit
+        statsButton.contentMode = .scaleAspectFit
         pickImage()
         makeButtons()
     }

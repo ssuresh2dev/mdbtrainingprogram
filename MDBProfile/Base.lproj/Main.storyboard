@@ -119,8 +119,8 @@
                                 <frame key="frameInset" minX="237" minY="19" width="67" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="STATS" translatesAutoresizingMaskIntoConstraints="NO" id="C8j-Cl-DKs">
-                                <frame key="frameInset" minX="171" minY="20" width="67" height="55"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="STATS" translatesAutoresizingMaskIntoConstraints="NO" id="4Vb-P5-Lhi">
+                                <frame key="frameInset" minX="169" minY="19" width="67" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TIMER" translatesAutoresizingMaskIntoConstraints="NO" id="ecZ-8K-CEF">
@@ -140,6 +140,20 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="next:" destination="PDq-pZ-5bc" eventType="touchUpInside" id="fp6-VB-WmK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIn-yy-uJp">
+                                <frame key="frameInset" minX="179" minY="18" width="46" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="7fc-tf-Hhi" kind="show" id="o0W-K7-zhA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihX-Ar-Cdb">
+                                <frame key="frameInset" minX="249" minY="18" width="46" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="QbE-o6-it8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -316,5 +330,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BmE-hn-q8f"/>
+        <segue reference="QbE-o6-it8"/>
     </inferredMetricsTieBreakers>
 </document>
