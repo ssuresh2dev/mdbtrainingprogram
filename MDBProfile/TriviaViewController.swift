@@ -36,10 +36,10 @@ class TriviaViewController: UIViewController {
     @IBOutlet weak var scoreTracker: UILabel!
     @IBOutlet weak var timeSeconds: UILabel!
     
+    //let ok = segue.destination as! (nameofviewcontroller)
+    //ok.___ = variable
+    
     @IBAction func next(_ sender: UIButton) {
-        if guysImages.count + girlsImages.count == 59 {
-            performSegue(withIdentifier: "toEnd", sender: sender)
-        }
         clicked = sender
         if sender.currentTitle! == name {
             sender.tintColor = UIColor.green
@@ -49,6 +49,10 @@ class TriviaViewController: UIViewController {
             sender.tintColor = UIColor.red
         }
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: delay)
+        if guysImages.count + girlsImages.count == 5 {
+            performSegue(withIdentifier: "toEnd", sender: sender)
+        }
+
     }
     
     func delay(timer: Timer) {
@@ -133,5 +137,12 @@ class TriviaViewController: UIViewController {
         picture.contentMode = .scaleAspectFit
         pickImage()
         makeButtons()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if girlsImages.count + guysImages.count == 5 {
+            let passScore = segue.destination as! WinViewController
+            passScore.score = score
+        }
     }
 }
