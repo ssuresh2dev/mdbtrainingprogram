@@ -24,7 +24,7 @@ class TriviaViewController: UIViewController {
     var mostRecent = ["", "", ""]
     var back = false
     var imageName = ""
-    
+    var buttonNames = ["", "", "", ""]
     
     let guyNames = ["Aayush Tyagi", "Abhinav Koppu", "Abhishek Mangla", "Akkshay Khoslaa", "Ali Shelton", "Andy Wang", "Aneesh Jindal", "Ankur Mahesh", "Ashwin Vaidyanathan", "Ben Goldberg", "Billy Lu", "Cody Hsieh", "Connor Killion", "Edward Liu", "Eliot Han", "Emaan Hariri", "Jared Gutierrez", "Jeffrey Zhang", "Justin Kim", "Kedar Thakkar", "Kenneth Steele", "Kevin Jiang", "Krishnan Rajiyah", "Leon Kwak", "Mohit Katyal", "Mudit Mittal", "Peter Schafhalter", "Richard Hu", "Riley Edmunds", "Rohan Narayan", "Sahil Lamba", "Sameer Suresh", "Sayan Paul", "Shaan Appel", "Shubham Goenka", "Sirjan Kafle", "Tarun Khasnavis", "Victor Sun", "Virindh Borra", "Wilbur Shi", "Young Lin"]
     
@@ -80,9 +80,6 @@ class TriviaViewController: UIViewController {
     }
     
     func pickImage() {
-        if back {
-            picture.image = UIImage(named: imageName)
-        }
         if guysImages.count + girlsImages.count == 5 {
             performSegue(withIdentifier: "toEnd", sender: nil)
         }
@@ -108,6 +105,7 @@ class TriviaViewController: UIViewController {
             girlsImages += [name]
         }
         let image = String(name.characters.filter {$0 != " "})
+        imageName = image
         picture.image = UIImage(named: image)
         mostRecent = mostRecent[1...2] + [image]
     }
@@ -115,6 +113,7 @@ class TriviaViewController: UIViewController {
     func makeButtons() {
         var buttonArray = [button0, button1, button2, button3]
         let correctButtonIndex = Int(arc4random_uniform(4))
+        buttonNames[correctButtonIndex] = name
         buttonArray.remove(at: correctButtonIndex)
         
         switch correctButtonIndex {
@@ -143,6 +142,12 @@ class TriviaViewController: UIViewController {
                     randomName = girlNames[Int(arc4random_uniform(18))]
                 }
             }
+            for i in 0...3 {
+                if buttonNames[i] == "" {
+                    buttonNames[i] = randomName
+                    break
+                }
+            }
             picked += [randomName]
             button!.setTitle(randomName, for: .normal)
         }
@@ -152,9 +157,20 @@ class TriviaViewController: UIViewController {
     
     override func viewDidLoad() {
         picture.contentMode = .scaleAspectFit
-        
-        pickImage()
-        makeButtons()
+        if back {
+            picture.image = UIImage(named: imageName)
+            timeSeconds.text = "\(seconds)"
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: updateTimer)
+            button0.setTitle(buttonNames[0], for: .normal)
+            button1.setTitle(buttonNames[1], for: .normal)
+            button2.setTitle(buttonNames[2], for: .normal)
+            button3.setTitle(buttonNames[3], for: .normal)
+            
+            back = false
+        } else {
+            pickImage()
+            makeButtons()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -163,6 +179,7 @@ class TriviaViewController: UIViewController {
             passScore.score = score
         } else {
             let passStats = segue.destination as! StatisticViewController
+            passStats.buttonNames = buttonNames
             passStats.topStreak = topStreak
             passStats.score = score
             passStats.mostRecent = mostRecent
@@ -172,6 +189,7 @@ class TriviaViewController: UIViewController {
             passStats.guysImages = guysImages
             passStats.gender = gender
             passStats.seconds = seconds
+            passStats.imageName = imageName
         }
     }
 }

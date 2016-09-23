@@ -19,6 +19,8 @@ class StatisticViewController: UIViewController {
     var guysImages: [String]!
     var gender: UInt32!
     var seconds: Int!
+    var buttonNames: [String]!
+    var imageName: String!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let trivia = segue.destination as! TriviaViewController
@@ -32,5 +34,7 @@ class StatisticViewController: UIViewController {
         trivia.gender = gender
         trivia.seconds = seconds
         trivia.back = true
+        trivia.buttonNames = buttonNames
+        trivia.imageName = imageName
     }
 }
