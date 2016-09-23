@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Match the Members</string>
+    <string name="start_button">START</string>
+    <string name="image_description">Member photos</string>
+    <string name="end_game">END GAME</string>
+</resources>
