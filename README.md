@@ -1,5 +1,3 @@
-# mdbtrainingprogram
-
 Repository for MDB Training Program Mini-Project Submissions
 
 Finalized mini-projects should be stored in personal portfolios, but this repository will be used for providing feedback on code quality using the GitHub code review features.
