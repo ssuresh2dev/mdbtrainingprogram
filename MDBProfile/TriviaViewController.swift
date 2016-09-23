@@ -80,7 +80,7 @@ class TriviaViewController: UIViewController {
     }
     
     func pickImage() {
-        if guysImages.count + girlsImages.count == 5 {
+        if guysImages.count + girlsImages.count == 59 {
             performSegue(withIdentifier: "toEnd", sender: nil)
         }
         timeSeconds.text = "5"
@@ -113,6 +113,7 @@ class TriviaViewController: UIViewController {
     func makeButtons() {
         var buttonArray = [button0, button1, button2, button3]
         let correctButtonIndex = Int(arc4random_uniform(4))
+        buttonNames = ["", "", "", ""]
         buttonNames[correctButtonIndex] = name
         buttonArray.remove(at: correctButtonIndex)
         

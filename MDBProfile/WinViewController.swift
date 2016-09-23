@@ -17,7 +17,7 @@ class WinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if score == 5 {
+        if score == 59 {
             winOrLose.image = UIImage(named: "winning text")
         } else {
             winOrLose.image = UIImage(named: "lose text")
