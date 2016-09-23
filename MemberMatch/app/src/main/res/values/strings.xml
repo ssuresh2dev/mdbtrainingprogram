@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MemberMatch</string>
+    <string name="end_game_button">END GAME</string>
+    <string name="end_game_text">Are you sure you want to end game?</string>
+    <string name="quit">Quit</string>
+    <string name="cancel">Cancel</string>
+</resources>
