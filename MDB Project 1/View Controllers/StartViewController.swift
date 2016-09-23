@@ -13,7 +13,7 @@ class StartViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     var g = 1
     //g keeps track of button
-    
+    var streak = 0
     var isPlaying = false
     //isPlaying keeps track of delay function: whether or not user is playing or not
     
@@ -102,7 +102,9 @@ class StartViewController: UIViewController {
         if self.isPlaying{
             self.play()
         }
+        
     }
+    
     func play(){
         setup()
         //timer
@@ -119,7 +121,6 @@ class StartViewController: UIViewController {
         self.image.image = UIImage(named: chosenName)
         
         //random answer choices
-        
         let random = Int(arc4random_uniform(UInt32(4)))
         if random == 1{
             choice1.setTitle(chosenName,for: UIControlState.normal)
@@ -179,8 +180,11 @@ class StartViewController: UIViewController {
             self.choice1.backgroundColor = UIColor.green
             self.scoreInt += 1
             self.score.text = "Score: \(scoreInt)"
+            streak += 1
+
         }else{
             self.choice1.backgroundColor = UIColor.red
+            streak = 0
         }
         delay(1){
         self.choice1.backgroundColor = UIColor.clear
@@ -198,8 +202,12 @@ class StartViewController: UIViewController {
             self.choice2.backgroundColor = UIColor.green
             self.scoreInt += 1
             self.score.text = "Score: \(scoreInt)"
+            streak += 1
+
         }else{
             self.choice2.backgroundColor = UIColor.red
+            streak = 0
+
         }
         delay(1){
             self.choice2.backgroundColor = UIColor.clear
@@ -215,8 +223,11 @@ class StartViewController: UIViewController {
             self.choice3.backgroundColor = UIColor.green
             self.scoreInt += 1
             self.score.text = "Score: \(scoreInt)"
+            streak += 1
         }else{
             self.choice3.backgroundColor = UIColor.red
+            streak = 0
+
         }
         delay(1){
             self.choice3.backgroundColor = UIColor.clear
@@ -233,8 +244,12 @@ class StartViewController: UIViewController {
             self.choice4.backgroundColor = UIColor.green
             self.scoreInt += 1
             self.score.text = "Score: \(scoreInt)"
+            streak += 1
+
         }else{
             self.choice4.backgroundColor = UIColor.red
+            streak = 0
+
         }
         delay(1){
             self.choice4.backgroundColor = UIColor.clear
@@ -247,5 +262,10 @@ class StartViewController: UIViewController {
         let when = DispatchTime.now() + delay
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var DestViewController: StatisticsViewController = segue.destination as! StatisticsViewController
+        DestViewController.streakNum = streak
+    }
+  
 }
 

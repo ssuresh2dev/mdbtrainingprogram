@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nGe-7I-XkX">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nGe-7I-XkX">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -115,22 +115,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pm-xu-AdP">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ztp-ve-xcZ">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgS-rj-4Pb">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJZ-Oy-BQh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ys1-ta-3NT">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -139,19 +129,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ztp-ve-xcZ" firstAttribute="centerX" secondItem="JzP-eF-fpw" secondAttribute="centerX" id="AC9-M4-bbn"/>
-                            <constraint firstItem="0Pm-xu-AdP" firstAttribute="top" secondItem="hUI-kU-odE" secondAttribute="bottom" constant="50" id="GPJ-2W-OtB"/>
-                            <constraint firstItem="oJZ-Oy-BQh" firstAttribute="top" secondItem="VgS-rj-4Pb" secondAttribute="bottom" constant="20" id="Hgh-wi-qgN"/>
-                            <constraint firstItem="0Pm-xu-AdP" firstAttribute="centerX" secondItem="JzP-eF-fpw" secondAttribute="centerX" id="Y5M-Zc-3qq"/>
-                            <constraint firstItem="VgS-rj-4Pb" firstAttribute="centerX" secondItem="JzP-eF-fpw" secondAttribute="centerX" id="dcP-Oz-x6v"/>
-                            <constraint firstItem="oJZ-Oy-BQh" firstAttribute="centerX" secondItem="JzP-eF-fpw" secondAttribute="centerX" id="gz0-Ki-PNo"/>
-                            <constraint firstItem="VgS-rj-4Pb" firstAttribute="top" secondItem="Ztp-ve-xcZ" secondAttribute="bottom" constant="20" id="iHq-dm-YNn"/>
-                            <constraint firstItem="Ztp-ve-xcZ" firstAttribute="top" secondItem="0Pm-xu-AdP" secondAttribute="bottom" constant="60" id="v1z-b0-xni"/>
+                            <constraint firstItem="Ztp-ve-xcZ" firstAttribute="top" secondItem="Ys1-ta-3NT" secondAttribute="bottom" constant="60" id="FxV-LG-6cq"/>
+                            <constraint firstItem="Ys1-ta-3NT" firstAttribute="centerX" secondItem="JzP-eF-fpw" secondAttribute="centerX" id="f4r-ag-rMl"/>
+                            <constraint firstItem="Ys1-ta-3NT" firstAttribute="top" secondItem="hUI-kU-odE" secondAttribute="bottom" constant="20" id="gWw-FA-GJK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="streakLabel" destination="Ztp-ve-xcZ" id="uZK-Mk-klD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dz6-6b-rhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1650" y="-559"/>
+            <point key="canvasLocation" x="1648.8" y="-559.07046476761627"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="o7R-P5-nma">

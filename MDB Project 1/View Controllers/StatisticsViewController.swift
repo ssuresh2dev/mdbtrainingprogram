@@ -9,10 +9,12 @@
 import UIKit
 
 class StatisticsViewController: UIViewController{
-
+    var streakNum = 0
+    @IBOutlet weak var streakLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        streakLabel.text = "Streak: \(streakNum)"
         
         
         // Do any additional setup after loading the view.
