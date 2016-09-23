@@ -39,8 +39,8 @@ class StatisticViewController: UIViewController {
                 image2.image = UIImage(named: mostRecent[1])
                 name2.text = recentNames[1]
                 if recentNames[0] != "" {
-                    image1.image = UIImage(named: mostRecent[0])
-                    name1.text = recentNames[0]
+                    image3.image = UIImage(named: mostRecent[0])
+                    name3.text = recentNames[0]
                 }
             }
         }
@@ -61,5 +61,6 @@ class StatisticViewController: UIViewController {
         trivia.back = true
         trivia.buttonNames = buttonNames
         trivia.imageName = imageName
+        trivia.recentNames = recentNames
     }
 }
