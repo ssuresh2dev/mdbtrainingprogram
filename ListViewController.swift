@@ -15,14 +15,15 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var sc: UISegmentedControl!
     
-    var tableView = UITableView()
-    
-    
+    var tableView: UITableView! = UITableView()
+    var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSC()
         setupTableView()
+        setupCollectionView()
+        collectionView?.isHidden = true
 
     }
     
@@ -35,8 +36,12 @@ class ListViewController: UIViewController {
     @IBAction func changeSegment(_ sender: AnyObject) {
         if sc.selectedSegmentIndex == 0{
             tableView.isHidden = false
+            collectionView?.isHidden = true
+            setupTableView()
         }else{
             tableView.isHidden = true
+            collectionView?.isHidden = false
+            setupCollectionView()
         }
     }
     
@@ -68,7 +73,21 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.white
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: "pokemonCell")
-        view.addSubview(tableView)
+        view.addSubview(tableView!)
+    }
+    
+    func setupCollectionView(){
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing =  0
+        layout.minimumInteritemSpacing = 0
+        let frame = CGRect(x: 0, y: self.navigationController!.navigationBar.frame.height + 60, width: view.frame.width, height: view.frame.height)
+        collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: "pokemonCell")
+        collectionView.backgroundColor = UIColor.white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        view.addSubview(collectionView)
+        
     }
 
     //handles changes in Segmented Control Value
@@ -95,7 +114,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonCell", for: indexPath) as! PokemonTableViewCell
         cell.awakeFromNib()
-        self.tableView.rowHeight = 80
+        self.tableView?.rowHeight = 80
         return cell
     }
     
@@ -109,5 +128,38 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-    
 }
+
+extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokemonCell", for: indexPath) as! PokemonCollectionViewCell
+        cell.awakeFromNib()
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let pokemonCell = cell as! PokemonCollectionViewCell
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width:(view.frame.width)/2, height: 200)
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
