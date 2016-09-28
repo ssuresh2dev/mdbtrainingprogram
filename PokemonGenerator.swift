@@ -10,7 +10,7 @@ import Foundation
 
 class PokemonGenerator {
     
-    static func getPokemonArray() {
+    static func getPokemonArray() -> [Pokemon] {
         var pokemonArray: [Pokemon] = []
         if let path = Bundle.main.path(forResource: "pokeData", ofType: "json")
         {
@@ -37,6 +37,7 @@ class PokemonGenerator {
                 
             }
         }
+        return pokemonArray
     }
     
     

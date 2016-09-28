@@ -18,18 +18,16 @@ class PokemonTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        pokemonImageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 40, height: 40))
+        pokemonImageView = UIImageView(frame: CGRect(x: 15, y: 10, width: 50, height: 50))
         contentView.addSubview(pokemonImageView)
         
         
-        pokemonNameLabel = UILabel(frame: CGRect(x: frame.width - 100, y: frame.height/2 - 15, width: 60, height: 20))
-        pokemonNameLabel.text = "hey"
+        pokemonNameLabel = UILabel(frame: CGRect(x: frame.width - 100, y: frame.height/2 - 17, width: 200, height: 20))
         pokemonNameLabel.font = UIFont(name: "SFUIText-Bold", size: 14.0)
         contentView.addSubview(pokemonNameLabel)
         
         
-        pokemonNumberLabel = UILabel(frame: CGRect(x: frame.width - 100, y: frame.height/2 + 15, width: 60, height: 20))
-        pokemonNumberLabel.text = "9000"
+        pokemonNumberLabel = UILabel(frame: CGRect(x: frame.width - 100, y: frame.height/2 + 17, width: 60, height: 20))
         pokemonNumberLabel.font = UIFont(name: "SFUIText-Bold", size: 14.0)
         contentView.addSubview(pokemonNumberLabel)
         
