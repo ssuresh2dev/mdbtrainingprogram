@@ -10,6 +10,11 @@ import UIKit
 
 class ListGridViewController: UIViewController {
     
+    // Static Variables
+    var grid: UICollectionView!
+    var amountPokemon: Int!
+    
+    
     override func loadView() {
         super.loadView()
         self.view.backgroundColor = UIColor.white
@@ -19,10 +24,10 @@ class ListGridViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.insertSegment(withTitle: "List", at: 0, animated: true)
         segmentedControl.insertSegment(withTitle: "Grid", at: 1, animated: true)
-        
+        segmentedControl.addTarget(self, action: Selector(("segment:")), for: .touchUpInside)
         
         // Setting up a frame and Segmented Control
-        segmentedControl.frame = CGRect(x: UIScreen.main.bounds.width/4, y: UIScreen.main.bounds.height/10, width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height/20)
+        segmentedControl.frame = CGRect(x: UIScreen.main.bounds.width/4, y: UIScreen.main.bounds.height/9, width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height/20)
         
         // Editing the Segmented Control
         segmentedControl.layer.cornerRadius = 5.0
@@ -44,7 +49,32 @@ class ListGridViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+    // Collection View / Grid
+    func setUpGrid() {
+        let layout: UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        grid = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        grid.register(
+    }
+     */
+    
+    
+    
+    
+    // Functions
+    func selectSegment(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            print("List View has been selected.")
+        }
+        else if sender.selectedSegmentIndex == 1 {
+            print("Grid View has been selected.")
+        }
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 
