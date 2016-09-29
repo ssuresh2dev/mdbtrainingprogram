@@ -190,6 +190,17 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="mgy-Ck-R2K"/>
+                    <connections>
+                        <outlet property="HP" destination="4a2-IX-awy" id="euX-JH-BJj"/>
+                        <outlet property="attack" destination="9lf-uB-8Oz" id="1DR-rf-vPG"/>
+                        <outlet property="defense" destination="N4h-zZ-Sot" id="Hdi-xO-TyZ"/>
+                        <outlet property="nameField" destination="uNF-Iy-obr" id="rDZ-wh-Hfh"/>
+                        <outlet property="numberField" destination="dqO-H9-ICW" id="uFQ-3N-jly"/>
+                        <outlet property="searchName" destination="8lL-0m-whQ" id="3We-Hw-ba3"/>
+                        <outlet property="searchNumber" destination="iNG-3Z-ayS" id="H6X-qx-1fm"/>
+                        <outlet property="statLabel" destination="hBz-NS-CDT" id="jQs-6k-9fT"/>
+                        <outlet property="typeText" destination="1vf-Gb-J0O" id="g7b-2C-JC6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
