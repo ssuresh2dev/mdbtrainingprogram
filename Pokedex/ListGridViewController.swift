@@ -17,6 +17,8 @@ class ListGridViewController: UIViewController {
         // Initializing
         let segmentedControl = UISegmentedControl()
         segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.insertSegment(withTitle: "List", at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: "Grid", at: 1, animated: true)
         
         
         // Setting up a frame and Segmented Control
@@ -25,6 +27,7 @@ class ListGridViewController: UIViewController {
         // Editing the Segmented Control
         segmentedControl.layer.cornerRadius = 5.0
         segmentedControl.backgroundColor = UIColor.gray
+        segmentedControl.tintColor = UIColor.black
         /*
         segmentedControl.setTitle("List", forSegmentAt: 0)
         segmentedControl.setTitle("Grid", forSegmentAt: 1)
