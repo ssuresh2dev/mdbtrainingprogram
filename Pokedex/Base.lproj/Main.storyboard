@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GRU-5v-TBx">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item 2-->
+        <scene sceneID="pPE-dT-dNj">
+            <objects>
+                <viewController id="AFX-UZ-9Dw" customClass="StatisticsViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyX-5H-BJN"/>
+                        <viewControllerLayoutGuide type="bottom" id="MK1-a2-b5C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Ar-Nw-bM2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="921-Ju-6aq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNx-HY-l7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1769" y="479"/>
+        </scene>
+        <!--Pokedex-->
+        <scene sceneID="lg1-eA-grK">
+            <objects>
+                <viewController id="aXc-GK-PXL" customClass="ListViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v9R-aD-AVo"/>
+                        <viewControllerLayoutGuide type="bottom" id="TCx-x9-Q1K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dai-BT-eLQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ogy-zm-zES">
+                                <frame key="frameInset" minX="127" minY="72" width="121" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="List"/>
+                                    <segment title="Collection"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeSegment:" destination="aXc-GK-PXL" eventType="valueChanged" id="7k4-9g-KXb"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Pokedex" id="l3F-nj-0Vt"/>
+                    <connections>
+                        <outlet property="sc" destination="Ogy-zm-zES" id="P75-mr-AUz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vSN-iu-MMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2708" y="-290.10494752623691"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="az3-Go-Fuw">
+            <objects>
+                <tabBarController id="GRU-5v-TBx" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="CMV-Z7-9d8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="289-gB-ATZ" kind="relationship" relationship="viewControllers" id="ArB-E8-byO"/>
+                        <segue destination="AFX-UZ-9Dw" kind="relationship" relationship="viewControllers" id="OXl-bW-8pt"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jmy-Xt-8sZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="818" y="37"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="Z2z-IM-wWG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="289-gB-ATZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 1" id="bCV-gs-Lv5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FmS-QS-ySs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aXc-GK-PXL" kind="relationship" relationship="rootViewController" id="UVL-LM-p1K"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1d-he-Rys" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768.8" y="-290.10494752623691"/>
+        </scene>
+    </scenes>
+</document>
