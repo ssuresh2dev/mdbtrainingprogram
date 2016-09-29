@@ -49,17 +49,18 @@ class ListViewController: UIViewController {
     }
     //randomly pick 20 pokemon from the array
     func getRandomPokemon(){
-        for i in 1...20{
+        for _ in 1...20{
             let random = Int(arc4random_uniform(UInt32(pokemonArray.count)))
             randomPokemon.append(pokemonArray[random])
-
         }
-      
+        
     }
     
     func setupSC(){
         sc.selectedSegmentIndex = 0
-        sc.frame = CGRect(x: 0, y: self.navigationController!.navigationBar.frame.height + 20, width: view.frame.width, height: 40)
+        let height = UIApplication.shared.statusBarFrame.height +
+            self.navigationController!.navigationBar.frame.height
+        sc.frame = CGRect(x: 0, y: height, width: view.frame.width, height: 40)
         sc.layer.cornerRadius = 5.0 //Don't let background bleed
         
     }
@@ -78,8 +79,11 @@ class ListViewController: UIViewController {
 //    }
     
     func setupTableView(){
-        tableView.frame = CGRect(x: 0, y: self.navigationController!.navigationBar.frame.height + 60, width: view.frame.width, height: view.frame.height)
+        tableView.frame = CGRect(x: 0, y: sc.frame.height + UIApplication.shared.statusBarFrame.height +
+            self.navigationController!.navigationBar.frame.height + 1, width: view.frame.width, height: view.frame.height) //height of navigation bar + statusbar
         tableView = UITableView(frame: tableView.frame)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, self.bottomLayoutGuide.length + 150, 0)  //this is to prevent tab bar from hiding last cell
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.white
@@ -89,10 +93,12 @@ class ListViewController: UIViewController {
     
     func setupCollectionView(){
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing =  0
-        layout.minimumInteritemSpacing = 0
-        let frame = CGRect(x: 0, y: self.navigationController!.navigationBar.frame.height + 60, width: view.frame.width, height: view.frame.height)
+        layout.minimumLineSpacing =  4
+        layout.minimumInteritemSpacing = 2
+        let frame = CGRect(x: 0, y: sc.frame.height + UIApplication.shared.statusBarFrame.height +
+            self.navigationController!.navigationBar.frame.height + 1, width: view.frame.width, height: view.frame.height)
         collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        collectionView.contentInset = UIEdgeInsetsMake(0, 0, self.bottomLayoutGuide.length + 120, 0)  //this is to prevent tab bar from hiding last cell
         collectionView.register(PokemonCollectionViewCell.self, forCellWithReuseIdentifier: "pokemonCell")
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
@@ -151,13 +157,12 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonCell", for: indexPath) as! PokemonTableViewCell
+        for subview in cell.contentView.subviews{
+            subview.removeFromSuperview()
+        }
         cell.awakeFromNib()
         self.tableView?.rowHeight = 80
         
-        //for labels
-        let pokemonDisplayed = randomPokemon[indexPath.row]
-        cell.pokemonNameLabel.text = pokemonDisplayed.name
-        cell.pokemonNumberLabel.text = String(pokemonDisplayed.number)
         return cell
     }
     
@@ -165,22 +170,43 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let pokemonCell = cell as! PokemonTableViewCell
         
-        //for image
+        //for labels
         let pokemonDisplayed = randomPokemon[indexPath.row]
-        let imgURL = Foundation.URL(string: pokemonDisplayed.imageUrl)
+        var name:String? = pokemonDisplayed.name
+            //this makes the cells look nicer as it cuts out the pokemon's nickname if it has one
+        if pokemonDisplayed.name.contains("("){
+            let index = name!.index(of: "(")
+            name = name?.substring(to: index!)
+            
+        }
+        pokemonCell.pokemonNameLabel.text = name!
+        pokemonCell.pokemonNumberLabel.text = String(pokemonDisplayed.number)
         
-        //This is to check and see if downloading the image from the url returns an image or nil
-        let placeholderImageView: UIImageView? = UIImageView()
-        placeholderImageView?.downloadedFrom(url: imgURL!)
-        
-        if placeholderImageView != nil{
-            pokemonCell.pokemonImageView?.downloadedFrom(url: imgURL!)
+        //for image
+        //checks if imageurl is nil
+        var imgURL: URL
+        if let _ = Foundation.URL(string: pokemonDisplayed.imageUrl){
+            imgURL = Foundation.URL(string: pokemonDisplayed.imageUrl)!
+            
+            //This is to check if the url actually downloads an image (checks for nil)
+            let placeholderImageView: UIImageView? = UIImageView()
+            placeholderImageView?.downloadedFrom(url: imgURL)
+            
+            if placeholderImageView != nil{
+                pokemonCell.pokemonImageView?.downloadedFrom(url: imgURL)
+            }else{
+                let imageName = "noimage"
+                let image = UIImage(named: imageName)
+                pokemonCell.pokemonImageView? = UIImageView(image: image!)
+
+            }
+            
             
         }else{
-            pokemonCell.pokemonImageView? = UIImageView(image: #imageLiteral(resourceName: "no image found"))
-
+            let imageName = "noimage"
+            let image = UIImage(named: imageName)
+            pokemonCell.pokemonImageView? = UIImageView(image: image!)
         }
-
         
         
     }
@@ -191,6 +217,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+   
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -201,15 +228,62 @@ extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pokemonCell", for: indexPath) as! PokemonCollectionViewCell
+        for subview in cell.contentView.subviews{
+            subview.removeFromSuperview()
+        }
         cell.awakeFromNib()
         return cell
+
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let pokemonCell = cell as! PokemonCollectionViewCell
+        let pokemonDisplayed = randomPokemon[indexPath.row]
+        
+        //for label
+        pokemonCell.pokemonNameLabel.text = pokemonDisplayed.name
+        var name:String? = pokemonDisplayed.name
+            //this makes the cells look nicer as it cuts out the pokemon's nickname if it has one
+        if pokemonDisplayed.name.contains("("){
+            let index = name!.index(of: "(")
+            name = name?.substring(to: index!)
+            
+        }
+        pokemonCell.pokemonNameLabel.text = name!
+
+        
+        //for image
+        //checks if imageurl is nil
+        var imgURL: URL
+        if let _ = Foundation.URL(string: pokemonDisplayed.imageUrl){
+            imgURL = Foundation.URL(string: pokemonDisplayed.imageUrl)!
+            
+            //This is to check if the url actually downloads an image (checks for nil)
+            let placeholderImageView: UIImageView? = UIImageView()
+            placeholderImageView?.downloadedFrom(url: imgURL)
+            
+            if placeholderImageView != nil{
+                pokemonCell.pokemonImageView?.downloadedFrom(url: imgURL)
+            }else{
+                let imageName = "noimage"
+                let image = UIImage(named: imageName)
+                pokemonCell.pokemonImageView? = UIImageView(image: image!)
+                
+            }
+            
+            
+        }else{
+            let imageName = "noimage"
+            let image = UIImage(named: imageName)
+            pokemonCell.pokemonImageView? = UIImageView(image: image!)
+        }
+        
+      
+
+        
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:(view.frame.width)/2, height: 200)
+        return CGSize(width:((view.frame.width)/2) - 2, height: 200)
     }
 
 }
@@ -233,3 +307,13 @@ extension UIImageView {
         downloadedFrom(url: url, contentMode: mode)
     }
 }
+
+//http://stackoverflow.com/questions/32305891/index-of-a-substring-in-a-string-with-swift-2
+extension String {
+    func index(of string: String) -> String.Index? {
+        return range(of: string)?.lowerBound
+    }
+}
+//example:
+//var str = "Hello, playground"
+//str.index(of: "play")    // 7
