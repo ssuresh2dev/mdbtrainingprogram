@@ -22,7 +22,7 @@ class ListGridViewController: UIViewController {
         
         
         // Setting up a frame and Segmented Control
-        segmentedControl.frame = CGRect(x: UIScreen.main.bounds.width/4, y: UIScreen.main.bounds.height/12, width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height/16)
+        segmentedControl.frame = CGRect(x: UIScreen.main.bounds.width/4, y: UIScreen.main.bounds.height/10, width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height/20)
         
         // Editing the Segmented Control
         segmentedControl.layer.cornerRadius = 5.0
