@@ -192,13 +192,17 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
             let placeholderImageView: UIImageView? = UIImageView()
             placeholderImageView?.downloadedFrom(url: imgURL)
             
+            
             if placeholderImageView != nil{
                 pokemonCell.pokemonImageView?.downloadedFrom(url: imgURL)
             }else{
-                let imageName = "noimage"
-                let image = UIImage(named: imageName)
-                pokemonCell.pokemonImageView? = UIImageView(image: image!)
-
+                //let imageName = "noimage"
+                //let image = UIImage(#imageLiteral(resourceName: "noimage"))
+                
+                pokemonCell.pokemonImageView?.image = UIImage(named: "noimage")
+                
+                
+                
             }
             
             
@@ -314,6 +318,6 @@ extension String {
         return range(of: string)?.lowerBound
     }
 }
-//example:
-//var str = "Hello, playground"
-//str.index(of: "play")    // 7
+
+
+

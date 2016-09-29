@@ -20,7 +20,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         
         
         pokemonNameLabel = UILabel(frame: CGRect(x: frame.width - 100, y: frame.height - 28, width: 200, height: 30))
-        pokemonNameLabel.font = UIFont(name: "SFUIText-Bold", size: 12.0)
+        pokemonNameLabel.font = UIFont(name: "SFUIText-Bold", size: 11.5)
         pokemonNameLabel.textColor = UIColor.blue
         contentView.addSubview(pokemonNameLabel)
         

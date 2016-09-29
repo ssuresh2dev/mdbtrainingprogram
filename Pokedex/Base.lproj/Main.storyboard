@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Statistics View Controller-->
         <scene sceneID="pPE-dT-dNj">
             <objects>
                 <viewController id="AFX-UZ-9Dw" customClass="StatisticsViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="921-Ju-6aq"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="921-Ju-6aq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNx-HY-l7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,11 +78,11 @@
             </objects>
             <point key="canvasLocation" x="818" y="37"/>
         </scene>
-        <!--Item 1-->
+        <!--Navigation Controller-->
         <scene sceneID="Z2z-IM-wWG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="289-gB-ATZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="bCV-gs-Lv5"/>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="noimage" systemItem="search" id="bCV-gs-Lv5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FmS-QS-ySs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -98,4 +98,7 @@
             <point key="canvasLocation" x="1768.8" y="-290.10494752623691"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="noimage" width="275" height="275"/>
+    </resources>
 </document>
