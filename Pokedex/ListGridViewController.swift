@@ -25,9 +25,10 @@ class ListGridViewController: UIViewController {
         // Editing the Segmented Control
         segmentedControl.layer.cornerRadius = 5.0
         segmentedControl.backgroundColor = UIColor.gray
-        //segmentedControl.segm
+        /*
         segmentedControl.setTitle("List", forSegmentAt: 0)
         segmentedControl.setTitle("Grid", forSegmentAt: 1)
+         */
 
         
         // Add this custom Segmented Control to our view
