@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List Grid View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ListGridViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -224,11 +224,11 @@
             </objects>
             <point key="canvasLocation" x="2070" y="139"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="qhc-TZ-2x7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jfz-bH-RgG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="hcP-sR-tge"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="hcP-sR-tge"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ob0-XK-5kf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -243,7 +243,7 @@
             </objects>
             <point key="canvasLocation" x="1097" y="-694"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="ReR-I2-CtZ">
             <objects>
                 <viewController id="hMt-c3-M0Q" sceneMemberID="viewController">
@@ -256,14 +256,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eFQ-Vo-Xj7">
-                                <frame key="frameInset" minY="28" width="375" height="590"/>
+                                <frame key="frameInset" minY="72" width="375" height="546"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="6bv-3P-Sx0"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="6bv-3P-Sx0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="brE-Zl-if7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
