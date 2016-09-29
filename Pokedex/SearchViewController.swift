@@ -10,6 +10,18 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var searchName: UILabel!
+    @IBOutlet weak var searchNumber: UILabel!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var numberField: UITextField!
+    
+    @IBOutlet weak var statLabel: UILabel!
+    @IBOutlet weak var HP: UITextField!
+    @IBOutlet weak var attack: UITextField!
+    @IBOutlet weak var defense: UITextField!
+    
+    @IBOutlet weak var typeText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
