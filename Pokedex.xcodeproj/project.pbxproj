@@ -12,6 +12,8 @@
 		15B036F91D9D9BA400E9AD1E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B036F81D9D9BA400E9AD1E /* SearchViewController.swift */; };
 		15B4AC2A1D9A406100E8A9DD /* PokemonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B4AC291D9A406100E8A9DD /* PokemonTableViewCell.swift */; };
 		15B4AC2C1D9B200E00E8A9DD /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B4AC2B1D9B200E00E8A9DD /* PokemonCollectionViewCell.swift */; };
+		15FC1B881D9E4E4700D04FE8 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC1B871D9E4E4700D04FE8 /* CategoryTableViewCell.swift */; };
+		15FC1B8C1D9ED7DE00D04FE8 /* PokemonTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC1B8B1D9ED7DE00D04FE8 /* PokemonTypeViewController.swift */; };
 		3CFC6F0F1D98716000B4EBB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC6F0E1D98716000B4EBB5 /* AppDelegate.swift */; };
 		3CFC6F111D98716000B4EBB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC6F101D98716000B4EBB5 /* ViewController.swift */; };
 		3CFC6F141D98716000B4EBB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CFC6F121D98716000B4EBB5 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		15B036F81D9D9BA400E9AD1E /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		15B4AC291D9A406100E8A9DD /* PokemonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonTableViewCell.swift; sourceTree = "<group>"; };
 		15B4AC2B1D9B200E00E8A9DD /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
+		15FC1B871D9E4E4700D04FE8 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		15FC1B8B1D9ED7DE00D04FE8 /* PokemonTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonTypeViewController.swift; sourceTree = "<group>"; };
 		3CFC6F0B1D98716000B4EBB5 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFC6F0E1D98716000B4EBB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CFC6F101D98716000B4EBB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				150B46D41D98E627002B0F54 /* ListViewController.swift */,
 				15B4AC2B1D9B200E00E8A9DD /* PokemonCollectionViewCell.swift */,
 				15B036F81D9D9BA400E9AD1E /* SearchViewController.swift */,
+				15FC1B871D9E4E4700D04FE8 /* CategoryTableViewCell.swift */,
+				15FC1B8B1D9ED7DE00D04FE8 /* PokemonTypeViewController.swift */,
 				15B036F21D9D978700E9AD1E /* SavedPokemonViewController.swift */,
 				15B4AC291D9A406100E8A9DD /* PokemonTableViewCell.swift */,
 			);
@@ -289,10 +295,12 @@
 				15B4AC2C1D9B200E00E8A9DD /* PokemonCollectionViewCell.swift in Sources */,
 				15B036F91D9D9BA400E9AD1E /* SearchViewController.swift in Sources */,
 				3CFC6F411D9871FC00B4EBB5 /* PokemonGenerator.swift in Sources */,
+				15FC1B881D9E4E4700D04FE8 /* CategoryTableViewCell.swift in Sources */,
 				3CFC6F0F1D98716000B4EBB5 /* AppDelegate.swift in Sources */,
 				150B46D51D98E627002B0F54 /* ListViewController.swift in Sources */,
 				15B036F31D9D978700E9AD1E /* SavedPokemonViewController.swift in Sources */,
 				3CFC6F3F1D9871F100B4EBB5 /* Pokemon.swift in Sources */,
+				15FC1B8C1D9ED7DE00D04FE8 /* PokemonTypeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

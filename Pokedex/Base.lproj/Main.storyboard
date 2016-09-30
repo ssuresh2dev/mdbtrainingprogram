@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="2708" y="478.11094452773619"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Search-->
         <scene sceneID="fCI-Yo-NRm">
             <objects>
                 <viewController id="l95-mK-YuH" customClass="SearchViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,11 +38,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="oy8-vF-TRT"/>
+                    <navigationItem key="navigationItem" title="Search" id="oy8-vF-TRT"/>
+                    <connections>
+                        <segue destination="eeF-nR-tl2" kind="show" identifier="showPokemonTypeVC" id="7Rb-Wk-GuQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeF-p3-gXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2708" y="1120.3898050974515"/>
+        </scene>
+        <!--Pokemon Type View Controller-->
+        <scene sceneID="Ap5-wd-uNq">
+            <objects>
+                <viewController id="eeF-nR-tl2" customClass="PokemonTypeViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xid-bf-ibr"/>
+                        <viewControllerLayoutGuide type="bottom" id="PiG-4g-snK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Zt-H2-XeB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1tM-od-DnR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2681" y="1800"/>
         </scene>
         <!--Pokedex-->
         <scene sceneID="lg1-eA-grK">
