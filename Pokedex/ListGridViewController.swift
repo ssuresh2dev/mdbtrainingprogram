@@ -19,7 +19,7 @@ class ListGridViewController: UIViewController, UITableViewDelegate, UITableView
     var amountPokemon: Int!
     var pokemonArray = PokemonGenerator.getPokemonArray()
     // var myPokemon: UIImageView! Abhi's suggestion
-    var pokemonImages = [UIImage(named: "pikachu"), UIImage(named: "piplup")]
+    //var pokemonImages = [UIImage(named: "pikachu"), UIImage(named: "piplup")]
     
     
     override func loadView() {
@@ -52,7 +52,8 @@ class ListGridViewController: UIViewController, UITableViewDelegate, UITableView
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.register(UITableView.self, forCellReuseIdentifier: "pokeList")
+        tableView.register(PokemonListTableViewCell.self, forCellReuseIdentifier: "pokeList")
+        
         // Do any additional setup after loading the view.
         
         /*  Abhi's suggestion
@@ -80,13 +81,14 @@ class ListGridViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as! PokemonListTableViewCell
-        cell.pokeLabel.text = pokemonArray[indexPath.item].name
-        if let url = NSURL(string: pokemonArray[indexPath.item].imageUrl) {
+        cell.pokeLabel.text = pokemonArray[indexPath.row].name
+        if let url = NSURL(string: pokemonArray[indexPath.row].imageUrl) {
             if let data = NSData(contentsOf: url as URL) {
                 cell.eachPokeImage.image = UIImage(data: data as Data)
             }        
         }
-        cell.pokemonNum.text = String(pokemonArray[indexPath.item].number)
+        cell.eachPokeImage.contentMode = UIViewContentMode.scaleAspectFit
+        cell.pokemonNum.text = String(pokemonArray[indexPath.row].number)
     }
     
     // Functions
