@@ -98,6 +98,10 @@
                                                     <state key="normal" title="Button">
                                                         <color key="titleColor" red="0.13273719606689338" green="1" blue="0.73823994840690532" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="temporarySegueToDetailsPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xaI-zk-ro6"/>
+                                                        <segue destination="BLp-ga-sHe" kind="show" id="LIO-Jz-FQ9"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </view>
@@ -220,10 +224,10 @@
             </objects>
             <point key="canvasLocation" x="1101.5999999999999" y="941.37931034482767"/>
         </scene>
-        <!--View Controller-->
+        <!--Details View Controller-->
         <scene sceneID="la3-Tb-6rG">
             <objects>
-                <viewController id="BLp-ga-sHe" sceneMemberID="viewController">
+                <viewController id="BLp-ga-sHe" customClass="DetailsViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="506-fI-xhI"/>
                         <viewControllerLayoutGuide type="bottom" id="GT4-nt-yZD"/>
