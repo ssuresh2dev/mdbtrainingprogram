@@ -16,9 +16,11 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var typesCollectionView: UICollectionView!
 
     @IBOutlet weak var randomizer: UIButton!
-    @IBAction func randomizeAction(_ sender: AnyObject) {
-        
-    }
+
+    // Actions
+    @IBOutlet weak var hpTextField: UITextField!
+    @IBOutlet weak var attackTextField: UITextField!
+    @IBOutlet weak var defenseTextField: UITextField!
     
     var pokemonArray = PokemonGenerator.getPokemonArray()
 
@@ -64,8 +66,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func temporarySegueToDetailsPage(_ sender: AnyObject) {
-    }
     
 
     /*

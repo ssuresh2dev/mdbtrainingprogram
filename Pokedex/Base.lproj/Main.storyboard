@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYn-jk-9fs">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QYn-jk-9fs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -56,21 +56,21 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4a2-IX-awy">
                                 <frame key="frameInset" minX="26" minY="203" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Attack" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lf-uB-8Oz">
                                 <frame key="frameInset" minX="120" minY="203" width="88" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Defense" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N4h-zZ-Sot">
                                 <frame key="frameInset" minX="226" minY="203" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -99,7 +99,6 @@
                                                         <color key="titleColor" red="0.13273719606689338" green="1" blue="0.73823994840690532" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="temporarySegueToDetailsPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xaI-zk-ro6"/>
                                                         <segue destination="BLp-ga-sHe" kind="show" id="LIO-Jz-FQ9"/>
                                                     </connections>
                                                 </button>
@@ -122,20 +121,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecb-6v-0zS">
-                                <frame key="frameInset" minX="141" minY="230" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="vnk-ph-Gsc" kind="show" id="Tv1-Gz-arV"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjx-1m-gsm">
                                 <frame key="frameInset" minX="38" minY="551" width="298" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <connections>
-                                    <action selector="randomizeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bN8-BD-C4H"/>
                                     <segue destination="vnk-ph-Gsc" kind="show" id="AwC-kg-lt3"/>
                                 </connections>
                             </button>
@@ -144,6 +134,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="mgy-Ck-R2K"/>
                     <connections>
+                        <outlet property="attackTextField" destination="9lf-uB-8Oz" id="gyh-Tz-YaK"/>
+                        <outlet property="defenseTextField" destination="N4h-zZ-Sot" id="0DB-Nn-pN4"/>
+                        <outlet property="hpTextField" destination="4a2-IX-awy" id="GKH-5m-ChR"/>
                         <outlet property="randomizer" destination="Vjx-1m-gsm" id="p4V-rA-1Jt"/>
                         <outlet property="searchDisplayController" destination="sGE-gt-fda" id="Jpz-dC-4K3"/>
                         <outlet property="topNav" destination="mgy-Ck-R2K" id="SIR-Kt-fKI"/>
@@ -336,6 +329,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Tv1-Gz-arV"/>
+        <segue reference="AwC-kg-lt3"/>
     </inferredMetricsTieBreakers>
 </document>
