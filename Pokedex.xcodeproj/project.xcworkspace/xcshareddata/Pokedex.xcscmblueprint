@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "87F9B5ED5F6D8DB37C32CA85E90ED698B27CAACE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "87F9B5ED5F6D8DB37C32CA85E90ED698B27CAACE" : 9223372036854775807,
+    "751350E81720E8C02FDC31BF15A008DDB6916954" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DE1978F1-CECC-4491-8378-4A4F79B338CE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "87F9B5ED5F6D8DB37C32CA85E90ED698B27CAACE" : "Pokedex\/",
+    "751350E81720E8C02FDC31BF15A008DDB6916954" : "Pokedex\/Pokedex\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Pokedex",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Pokedex.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eliot1019\/Pokedex.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "751350E81720E8C02FDC31BF15A008DDB6916954"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/eliot1019\/Pokedex.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "87F9B5ED5F6D8DB37C32CA85E90ED698B27CAACE"
+    }
+  ]
+}
