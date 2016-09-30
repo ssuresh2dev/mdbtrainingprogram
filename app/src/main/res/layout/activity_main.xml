@@ -11,14 +11,56 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mdb.project2.pokedex.MainActivity">
 
+    <Button
+        android:id="@+id/low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/low"
+        android:onClick="filterLow"
+        android:text="@string/low"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/medium"
+        android:text="@string/medium"
+        app:layout_constraintBottom_toBottomOf="@id/low"
+        app:layout_constraintLeft_toRightOf="@id/low"
+        app:layout_constraintTop_toTopOf="@id/low" />
+
+    <Button
+        android:id="@+id/high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/high"
+        android:text="@string/high"
+        app:layout_constraintBottom_toBottomOf="@id/medium"
+        app:layout_constraintLeft_toRightOf="@id/medium"
+        app:layout_constraintTop_toTopOf="@id/medium" />
+
+    <Button
+        android:id="@+id/change_layout_manager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="switchLayoutManager"
+        android:text="@string/linear"
+        app:layout_constraintBottom_toBottomOf="@id/high"
+        app:layout_constraintLeft_toRightOf="@id/high"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/high" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pokemon_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/low" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -28,9 +70,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:clickable="true"
+        android:onClick="startSearch"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_search_white_24dp"
-        android:onClick="startSearch"/>
+        app:srcCompat="@drawable/ic_search_white_24dp" />
 </android.support.constraint.ConstraintLayout>

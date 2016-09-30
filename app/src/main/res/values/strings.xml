@@ -9,4 +9,9 @@
     <string name="hp">HP</string>
     <string name="species">Species</string>
     <string name="search_hint">Search Pokémon or type</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="linear">Linear</string>
+    <string name="grid">Grid</string>
 </resources>
