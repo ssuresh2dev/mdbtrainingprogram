@@ -14,13 +14,8 @@ class ListGridViewController: UIViewController {
     var grid: UICollectionView!
     var amountPokemon: Int!
     var pokemonArray = PokemonGenerator.getPokemonArray()
+    // var myPokemon: UIImageView! Abhi's suggestion
     var pokemonImages = [UIImage]()
-    
-    /*
-    let url = NSURL(string: image.url)
-    let data = NSData(contentsOfURL: url!)
-    imageView.image = UIImage(data: data!)
-    */
     
     
     override func loadView() {
@@ -50,6 +45,13 @@ class ListGridViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        /*  Abhi's suggestion
+        let url = NSURL(string: pokemonArray[0].imageUrl)
+        let data = NSData(contentsOfURL: url!)
+        myPokemon.image = UIImage(data: data!)
+         */
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,13 +71,13 @@ class ListGridViewController: UIViewController {
     }
     
     // Append Pokemon Images to Array pokemonImages
-    /*
+
     func appendPokemonImageToArray() {
         for pokemonIndex in 0...pokemonArray.count {
-            pokemonImages.append(pokemonArray[pokemonIndex])
+            pokemonImages.append(pokemonArray[pokemonIndex].imageUrl)
         }
     }
-     */
+
  
     /*
     // MARK: - Navigation
@@ -88,7 +90,8 @@ class ListGridViewController: UIViewController {
     */
 
 }
-/*
+
+/* Aakshay's
 extension ListGridViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -98,11 +101,5 @@ extension ListGridViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // return.images.count
     }
- 
-    
-    
-    
 }
 */
-
-
