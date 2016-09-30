@@ -16,6 +16,7 @@ class ListGridViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     //var tableView: UITableView!
     
+    var randomInt: [Int] = []
     var amountPokemon: Int!
     var pokemonArray = PokemonGenerator.getPokemonArray()
     // var myPokemon: UIImageView! Abhi's suggestion
@@ -56,6 +57,11 @@ class ListGridViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Do any additional setup after loading the view.
         
+        for _ in 0...19 {
+            let randomNum = arc4random_uniform(UInt32(pokemonArray.count))
+            randomInt.append(Int(randomNum))
+        }
+        
         /*  Abhi's suggestion
         let url = NSURL(string: pokemonArray[0].imageUrl)
         let data = NSData(contentsOfURL: url!)
@@ -76,19 +82,20 @@ class ListGridViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemonArray.count
+        //return pokemonArray.count
+        return 20
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as! PokemonListTableViewCell
-        cell.pokeLabel.text = pokemonArray[indexPath.row].name
-        if let url = NSURL(string: pokemonArray[indexPath.row].imageUrl) {
+        cell.pokeLabel.text = pokemonArray[randomInt[indexPath.item]].name
+        if let url = NSURL(string: pokemonArray[randomInt[indexPath.item]].imageUrl) {
             if let data = NSData(contentsOf: url as URL) {
                 cell.eachPokeImage.image = UIImage(data: data as Data)
             }        
         }
         cell.eachPokeImage.contentMode = UIViewContentMode.scaleAspectFit
-        cell.pokemonNum.text = String(pokemonArray[indexPath.row].number)
+        cell.pokemonNum.text = String(pokemonArray[randomInt[indexPath.item]].number)
     }
     
     // Functions
