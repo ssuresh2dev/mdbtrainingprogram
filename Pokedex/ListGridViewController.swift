@@ -13,6 +13,14 @@ class ListGridViewController: UIViewController {
     // Static Variables
     var grid: UICollectionView!
     var amountPokemon: Int!
+    var pokemonArray = PokemonGenerator.getPokemonArray()
+    var pokemonImages = [UIImage]()
+    
+    /*
+    let url = NSURL(string: image.url)
+    let data = NSData(contentsOfURL: url!)
+    imageView.image = UIImage(data: data!)
+    */
     
     
     override func loadView() {
@@ -48,20 +56,7 @@ class ListGridViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // Collection View / Grid
-    func setUpGrid() {
-        let layout: UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        grid = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        grid.register(
-    }
-     */
-    
-    
-    
+
     
     // Functions
     func selectSegment(sender: UISegmentedControl) {
@@ -72,9 +67,16 @@ class ListGridViewController: UIViewController {
             print("Grid View has been selected.")
         }
     }
-
     
-    
+    // Append Pokemon Images to Array pokemonImages
+    /*
+    func appendPokemonImageToArray() {
+        for pokemonIndex in 0...pokemonArray.count {
+            pokemonImages.append(pokemonArray[pokemonIndex])
+        }
+    }
+     */
+ 
     /*
     // MARK: - Navigation
 
@@ -86,3 +88,21 @@ class ListGridViewController: UIViewController {
     */
 
 }
+/*
+extension ListGridViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // return.images.count
+    }
+ 
+    
+    
+    
+}
+*/
+
+
