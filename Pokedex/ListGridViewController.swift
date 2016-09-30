@@ -71,7 +71,6 @@ class ListGridViewController: UIViewController {
     }
     
     // Append Pokemon Images to Array pokemonImages
-
     /*
     func appendPokemonImageToArray() {
         for pokemonIndex in 0...pokemonArray.count {
@@ -79,6 +78,7 @@ class ListGridViewController: UIViewController {
         }
     }
     */
+    
  
     /*
     // MARK: - Navigation
@@ -91,8 +91,7 @@ class ListGridViewController: UIViewController {
     */
 
 }
-
-/* Aakshay's
+/*
 extension ListGridViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -100,7 +99,10 @@ extension ListGridViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // return.images.count
+        return.pokemonImages.count
     }
+    
+    
 }
-*/
+ */
+
