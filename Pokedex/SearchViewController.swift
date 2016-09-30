@@ -10,18 +10,10 @@ import UIKit
 
 class SearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var searchName: UILabel!
-    @IBOutlet weak var searchNumber: UILabel!
-    @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var numberField: UITextField!
-    
-    @IBOutlet weak var statLabel: UILabel!
-    @IBOutlet weak var HP: UITextField!
-    @IBOutlet weak var attack: UITextField!
-    @IBOutlet weak var defense: UITextField!
     
     @IBOutlet weak var typesCollectionView: UICollectionView!
-    @IBOutlet weak var typeText: UILabel!
+    
+    
     
     @IBOutlet weak var randomizePoke: UIButton!
     
@@ -30,6 +22,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     var allElements: [elements] = []
     
+    var imageElements: [UIImage] = [#imageLiteral(resourceName: "bug"), #imageLiteral(resourceName: "dark"), #imageLiteral(resourceName: "dragon"), #imageLiteral(resourceName: "electric"), #imageLiteral(resourceName: "fairy"), #imageLiteral(resourceName: "fighting"), #imageLiteral(resourceName: "fire"), #imageLiteral(resourceName: "flying"), #imageLiteral(resourceName: "ghost"), #imageLiteral(resourceName: "grass"), #imageLiteral(resourceName: "ground"), #imageLiteral(resourceName: "ice"), #imageLiteral(resourceName: "normal"), #imageLiteral(resourceName: "poison"), #imageLiteral(resourceName: "psychic"), #imageLiteral(resourceName: "rock"), #imageLiteral(resourceName: "steel"), #imageLiteral(resourceName: "water")]
     var diffElements: [String] = ["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Posion", "Psychic", "Rock", "Steel", "Water"]
     
     override func viewDidLoad() {
@@ -52,6 +45,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let eachCell = collectionView.dequeueReusableCell(withReuseIdentifier: "eachButton", for: indexPath) as! TypesButtonCollectionViewCell
         eachCell.backgroundColor = UIColor.blue
+        eachCell.element.setBackgroundImage(imageElements[indexPath.item], for: .normal)
+        //eachCell.element.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControlState#>)
+        eachCell.element.setTitle(diffElements[indexPath.item], for: .normal)
         return eachCell
         
     }

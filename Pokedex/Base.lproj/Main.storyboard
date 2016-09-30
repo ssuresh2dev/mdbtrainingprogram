@@ -9,15 +9,6 @@
         <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <searchDisplayController id="sGE-gt-fda">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="nD5-07-paI"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="SD1-HE-qn0"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="5rc-YD-dtg"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="azt-BM-I9F"/>
-                    </connections>
-                </searchDisplayController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -91,7 +82,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DdY-bL-Y9e">
-                                <frame key="frameInset" minX="21" minY="320" width="333" height="265"/>
+                                <frame key="frameInset" minX="40" minY="320" width="298" height="265"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="omE-qd-aFT">
@@ -107,8 +98,23 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="82" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7XE-xj-QZn">
+                                                    <frame key="frameInset" width="82" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" red="0.13273719606689338" green="1" blue="0.73823994840690532" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
                                         </view>
                                         <size key="customSize" width="82" height="30"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="element" destination="7XE-xj-QZn" id="EBz-pP-kYu"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -120,33 +126,29 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjx-1m-gsm">
-                                <frame key="frameInset" minX="71" minY="576" width="232" height="34"/>
+                                <frame key="frameInset" minX="71" minY="560" width="232" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Randomize 20 Pokemon"/>
-                                <connections>
-                                    <segue destination="vnk-ph-Gsc" kind="show" id="jPF-Fh-lcT"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="mgy-Ck-R2K"/>
                     <connections>
-                        <outlet property="HP" destination="4a2-IX-awy" id="euX-JH-BJj"/>
-                        <outlet property="attack" destination="9lf-uB-8Oz" id="1DR-rf-vPG"/>
-                        <outlet property="defense" destination="N4h-zZ-Sot" id="Hdi-xO-TyZ"/>
-                        <outlet property="nameField" destination="uNF-Iy-obr" id="rDZ-wh-Hfh"/>
-                        <outlet property="numberField" destination="dqO-H9-ICW" id="uFQ-3N-jly"/>
-                        <outlet property="randomizePoke" destination="Vjx-1m-gsm" id="Zdf-NT-cGE"/>
                         <outlet property="searchDisplayController" destination="sGE-gt-fda" id="Jpz-dC-4K3"/>
-                        <outlet property="searchName" destination="8lL-0m-whQ" id="3We-Hw-ba3"/>
-                        <outlet property="searchNumber" destination="iNG-3Z-ayS" id="H6X-qx-1fm"/>
-                        <outlet property="statLabel" destination="hBz-NS-CDT" id="jQs-6k-9fT"/>
-                        <outlet property="typeText" destination="1vf-Gb-J0O" id="g7b-2C-JC6"/>
                         <outlet property="typesCollectionView" destination="DdY-bL-Y9e" id="7TH-Lu-eLZ"/>
                     </connections>
                 </viewController>
+                <searchDisplayController id="sGE-gt-fda">
+                    <connections>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="nD5-07-paI"/>
+                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="SD1-HE-qn0"/>
+                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="5rc-YD-dtg"/>
+                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="azt-BM-I9F"/>
+                    </connections>
+                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1096.8" y="138.98050974512745"/>
         </scene>
@@ -331,7 +333,4 @@
             <point key="canvasLocation" x="2071" y="-694"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="jPF-Fh-lcT"/>
-    </inferredMetricsTieBreakers>
 </document>

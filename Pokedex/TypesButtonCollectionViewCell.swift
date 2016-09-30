@@ -10,5 +10,5 @@ import UIKit
 
 class TypesButtonCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var eachType: UILabel!
+    @IBOutlet weak var element: UIButton!
 }
