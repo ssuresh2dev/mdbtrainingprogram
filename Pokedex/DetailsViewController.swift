@@ -38,7 +38,7 @@ class DetailsViewController: UIViewController {
         // Profile Name
         let pokemonProfileName = UILabel()
         pokemonProfileName.frame = CGRect(x: UIScreen.main.bounds.width/6, y: UIScreen.main.bounds.height/2.1, width: 450, height: 80)
-        pokemonProfileName.text = "\(selectedPokemon.name)".replacingOccurrences(of: "Optional(\"", with: "")
+        pokemonProfileName.text = "\(selectedPokemon.name!)"
         pokemonProfileName.textColor = UIColor.black
         pokemonProfileName.font = pokemonProfileName.font.withSize(22)
         self.view.addSubview(pokemonProfileName)
@@ -47,7 +47,7 @@ class DetailsViewController: UIViewController {
         // Pokemon Description (Other info)
         let pokemonDescription = UILabel()
         pokemonDescription.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.9, width: 450, height: 80)
-        pokemonDescription.text = "#\(selectedPokemon.number) | \(selectedPokemon.species) | \(selectedPokemon.total)".replacingOccurrences(of: "Optional(", with: "")
+        pokemonDescription.text = "#\(selectedPokemon.number!) | \(selectedPokemon.species!) | \(selectedPokemon.total!)"
         pokemonDescription.textColor = UIColor.gray
         pokemonDescription.font = pokemonDescription.font.withSize(13)
         pokemonDescription.textRect(forBounds: UIScreen.main.bounds, limitedToNumberOfLines: 3)
@@ -57,7 +57,7 @@ class DetailsViewController: UIViewController {
         let pokemonType = UILabel()
         pokemonType.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.8, width: 450, height: 80)
         
-        pokemonType.text = "Type: \(selectedPokemon.types)".replacingOccurrences(of: "[\"", with: "")
+        pokemonType.text = "Type: \(selectedPokemon.types)".replacingOccurrences(of: "\"", with: " ")
         pokemonType.textColor = UIColor.gray
         pokemonType.font = pokemonType.font.withSize(13)
         self.view.addSubview(pokemonType)
@@ -65,7 +65,7 @@ class DetailsViewController: UIViewController {
         // HP Stats
         let pokemonHP = UILabel()
         pokemonHP.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.6, width: 300, height: 80)
-        pokemonHP.text = "HP: \(selectedPokemon.health) | Speed: \(selectedPokemon.speed)".replacingOccurrences(of: "Optional(", with: "")
+        pokemonHP.text = "HP: \(selectedPokemon.health!) | Speed: \(selectedPokemon.speed!)"
         pokemonHP.textColor = UIColor.gray
         pokemonHP.font = pokemonHP.font.withSize(13)
         self.view.addSubview(pokemonHP)
@@ -73,7 +73,7 @@ class DetailsViewController: UIViewController {
         // Attack Stats
         let pokemonAttack = UILabel()
         pokemonAttack.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.5, width: 300, height: 80)
-        pokemonAttack.text = "Attack: \(selectedPokemon.attack) | Special Attack: \(selectedPokemon.specialAttack)".replacingOccurrences(of: "Optional(", with: "")
+        pokemonAttack.text = "Attack: \(selectedPokemon.attack!) | Special Attack: \(selectedPokemon.specialAttack!)"
         pokemonAttack.textColor = UIColor.gray
         pokemonAttack.font = pokemonAttack.font.withSize(13)
         self.view.addSubview(pokemonAttack)
@@ -82,7 +82,7 @@ class DetailsViewController: UIViewController {
         // Defense Stats
         let pokemonDefense = UILabel()
         pokemonDefense.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.4, width: 300, height: 80)
-        pokemonDefense.text = "Defense: \(selectedPokemon.defense) | Special Defense: \(selectedPokemon.specialDefense)".replacingOccurrences(of: "Optional(", with: "")
+        pokemonDefense.text = "Defense: \(selectedPokemon.defense!) | Special Defense: \(selectedPokemon.specialDefense!)"
         pokemonDefense.textColor = UIColor.gray
         pokemonDefense.font = pokemonDefense.font.withSize(13)
         self.view.addSubview(pokemonDefense)
