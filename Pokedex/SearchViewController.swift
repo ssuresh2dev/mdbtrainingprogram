@@ -11,6 +11,7 @@ import UIKit
 class SearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var topNav: UINavigationItem!
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "Pokedex"))
     
     @IBOutlet weak var typesCollectionView: UICollectionView!
     
@@ -33,7 +34,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         typesCollectionView.dataSource = self
         
         randomizer.setBackgroundImage(#imageLiteral(resourceName: "Randomizeme"), for: .normal)
-        
+        topNav.titleView = imageView
     }
     
     //number of rows
