@@ -40,7 +40,7 @@ class DetailsViewController: UIViewController {
         pokemonProfileName.frame = CGRect(x: UIScreen.main.bounds.width/6, y: UIScreen.main.bounds.height/2.1, width: 450, height: 80)
         pokemonProfileName.text = "\(selectedPokemon.name)"
         pokemonProfileName.textColor = UIColor.black
-        pokemonProfileName.font = pokemonProfileName.font.withSize(25)
+        pokemonProfileName.font = pokemonProfileName.font.withSize(22)
         self.view.addSubview(pokemonProfileName)
         
         
@@ -49,41 +49,42 @@ class DetailsViewController: UIViewController {
         pokemonDescription.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.9, width: 450, height: 80)
         pokemonDescription.text = "\(selectedPokemon.number) | \(selectedPokemon.species) | \(selectedPokemon.total)"
         pokemonDescription.textColor = UIColor.gray
-        pokemonDescription.font = pokemonDescription.font.withSize(14)
+        pokemonDescription.font = pokemonDescription.font.withSize(13)
         pokemonDescription.textRect(forBounds: UIScreen.main.bounds, limitedToNumberOfLines: 3)
         self.view.addSubview(pokemonDescription)
         
         // Pokemon Type
         let pokemonType = UILabel()
         pokemonType.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.8, width: 450, height: 80)
+        
         pokemonType.text = "\(selectedPokemon.types)"
         pokemonType.textColor = UIColor.gray
-        pokemonType.font = pokemonType.font.withSize(14)
+        pokemonType.font = pokemonType.font.withSize(13)
         self.view.addSubview(pokemonType)
         
         // HP Stats
         let pokemonHP = UILabel()
-        pokemonHP.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.6, width: 120, height: 80)
+        pokemonHP.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.6, width: 300, height: 80)
         pokemonHP.text = "HP: \(selectedPokemon.health) | Speed: \(selectedPokemon.speed)"
         pokemonHP.textColor = UIColor.gray
-        pokemonHP.font = pokemonHP.font.withSize(14)
+        pokemonHP.font = pokemonHP.font.withSize(13)
         self.view.addSubview(pokemonHP)
         
         // Attack Stats
         let pokemonAttack = UILabel()
-        pokemonAttack.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.5, width: 120, height: 80)
+        pokemonAttack.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.5, width: 300, height: 80)
         pokemonAttack.text = "Attack: \(selectedPokemon.attack) | Special Attack: \(selectedPokemon.specialAttack)"
         pokemonAttack.textColor = UIColor.gray
-        pokemonAttack.font = pokemonAttack.font.withSize(14)
+        pokemonAttack.font = pokemonAttack.font.withSize(13)
         self.view.addSubview(pokemonAttack)
         
         
         // Defense Stats
         let pokemonDefense = UILabel()
-        pokemonDefense.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.4, width: 120, height: 80)
+        pokemonDefense.frame = CGRect(x: UIScreen.main.bounds.width/5.5, y: UIScreen.main.bounds.height/1.4, width: 300, height: 80)
         pokemonDefense.text = "Defense: \(selectedPokemon.defense) | Special Defense: \(selectedPokemon.specialDefense)"
         pokemonDefense.textColor = UIColor.gray
-        pokemonDefense.font = pokemonDefense.font.withSize(14)
+        pokemonDefense.font = pokemonDefense.font.withSize(13)
         self.view.addSubview(pokemonDefense)
         
         
