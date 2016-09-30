@@ -147,8 +147,7 @@ class ListViewController: UIViewController {
 
 
 
-
-extension ListViewController: UITableViewDelegate, UITableViewDataSource{
+extension ListViewController: UITableViewDataSource,UITableViewDelegate{
     //Specify number of cells in tableview
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -215,9 +214,10 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//    }
+    
 }
 
 extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{

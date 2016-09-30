@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Statistics View Controller-->
+        <!--Saved Pokemon View Controller-->
         <scene sceneID="pPE-dT-dNj">
             <objects>
-                <viewController id="AFX-UZ-9Dw" customClass="StatisticsViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AFX-UZ-9Dw" customClass="SavedPokemonViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyX-5H-BJN"/>
                         <viewControllerLayoutGuide type="bottom" id="MK1-a2-b5C"/>
@@ -19,11 +19,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="921-Ju-6aq"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="downloads" id="921-Ju-6aq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNx-HY-l7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="479"/>
+            <point key="canvasLocation" x="2708" y="478.11094452773619"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="fCI-Yo-NRm">
+            <objects>
+                <viewController id="l95-mK-YuH" customClass="SearchViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mnW-Fb-7Kg"/>
+                        <viewControllerLayoutGuide type="bottom" id="KHh-qv-TCD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BXm-ED-hT3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oy8-vF-TRT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yeF-p3-gXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2708" y="1120.3898050974515"/>
         </scene>
         <!--Pokedex-->
         <scene sceneID="lg1-eA-grK">
@@ -71,6 +90,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="289-gB-ATZ" kind="relationship" relationship="viewControllers" id="ArB-E8-byO"/>
+                        <segue destination="1Ns-Uv-xAM" kind="relationship" relationship="viewControllers" id="coY-00-k5G"/>
                         <segue destination="AFX-UZ-9Dw" kind="relationship" relationship="viewControllers" id="OXl-bW-8pt"/>
                     </connections>
                 </tabBarController>
@@ -82,7 +102,7 @@
         <scene sceneID="Z2z-IM-wWG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="289-gB-ATZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" selectedImage="noimage" systemItem="search" id="bCV-gs-Lv5"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="featured" id="bCV-gs-Lv5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FmS-QS-ySs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -97,8 +117,24 @@
             </objects>
             <point key="canvasLocation" x="1768.8" y="-290.10494752623691"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="L63-iG-1w3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Ns-Uv-xAM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="TnX-Rg-mab"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Scq-Hc-bKQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="l95-mK-YuH" kind="relationship" relationship="rootViewController" id="7Fy-ZV-zVR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7nu-Kw-6oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768.8" y="1120.3898050974515"/>
+        </scene>
     </scenes>
-    <resources>
-        <image name="noimage" width="275" height="275"/>
-    </resources>
 </document>

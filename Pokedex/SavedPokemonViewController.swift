@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatisticsViewController: UIViewController {
+class SavedPokemonViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
