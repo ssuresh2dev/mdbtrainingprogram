@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.pokedex.mdb.pokedex.ListActivity">
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="200"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:icon="?android:attr/actionModeWebSearchDrawable"
+        app:showAsAction="ifRoom|collapseActionView"/>
+    <item
+        android:id="@+id/action_switch_layout"
+        android:orderInCategory="200"
+        android:title="Switch Layout"
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:onClick="switchLayout"
+        app:showAsAction="always"/>
+    <group android:checkableBehavior="all">
+        <item
+            android:id="@+id/filterLow"
+            android:orderInCategory="1"
+            android:title="low"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/filterMed"
+            android:orderInCategory="2"
+            android:title="medium"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/filterHigh"
+            android:orderInCategory="3"
+            android:title="high"
+            app:showAsAction="never"/>
+    </group>
+</menu>
