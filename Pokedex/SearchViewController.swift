@@ -14,9 +14,8 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     let imageView = UIImageView(image: #imageLiteral(resourceName: "Pokedex"))
     
     @IBOutlet weak var typesCollectionView: UICollectionView!
-    
-    @IBOutlet weak var randomizer: UIButton!
 
+    @IBOutlet weak var randomizer: UIButton!
     
     struct elements {
         var elementType: String
