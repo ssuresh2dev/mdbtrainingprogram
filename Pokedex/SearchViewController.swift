@@ -10,26 +10,30 @@ import UIKit
 
 class SearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var topNav: UINavigationItem!
     
     @IBOutlet weak var typesCollectionView: UICollectionView!
     
-    
-    
-    @IBOutlet weak var randomizePoke: UIButton!
+    @IBOutlet weak var randomizer: UIButton!
+
     
     struct elements {
         var elementType: String
     }
     var allElements: [elements] = []
     
+    var fontElements: [UIColor] = [UIColor.white, UIColor.white, UIColor.white, UIColor.black, UIColor.white, UIColor.white, UIColor.white, UIColor.black, UIColor.white, UIColor.white, UIColor.black, UIColor.white, UIColor.white, UIColor.white, UIColor.white, UIColor.white, UIColor.white, UIColor.white]
     var imageElements: [UIImage] = [#imageLiteral(resourceName: "bug"), #imageLiteral(resourceName: "dark"), #imageLiteral(resourceName: "dragon"), #imageLiteral(resourceName: "electric"), #imageLiteral(resourceName: "fairy"), #imageLiteral(resourceName: "fighting"), #imageLiteral(resourceName: "fire"), #imageLiteral(resourceName: "flying"), #imageLiteral(resourceName: "ghost"), #imageLiteral(resourceName: "grass"), #imageLiteral(resourceName: "ground"), #imageLiteral(resourceName: "ice"), #imageLiteral(resourceName: "normal"), #imageLiteral(resourceName: "poison"), #imageLiteral(resourceName: "psychic"), #imageLiteral(resourceName: "rock"), #imageLiteral(resourceName: "steel"), #imageLiteral(resourceName: "water")]
-    var diffElements: [String] = ["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Posion", "Psychic", "Rock", "Steel", "Water"]
+    var diffElements: [String] = ["Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         typesCollectionView.delegate = self
         typesCollectionView.dataSource = self
+        
+        randomizer.setBackgroundImage(#imageLiteral(resourceName: "Randomizeme"), for: .normal)
+        
     }
     
     //number of rows
@@ -37,17 +41,12 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         return diffElements.count
     }
     
-    //number of columns
-    /*func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
-    }*/
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let eachCell = collectionView.dequeueReusableCell(withReuseIdentifier: "eachButton", for: indexPath) as! TypesButtonCollectionViewCell
         eachCell.backgroundColor = UIColor.blue
         eachCell.element.setBackgroundImage(imageElements[indexPath.item], for: .normal)
-        //eachCell.element.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControlState#>)
         eachCell.element.setTitle(diffElements[indexPath.item], for: .normal)
+        eachCell.element.setTitleColor(fontElements[indexPath.item], for: .normal)
         return eachCell
         
     }
