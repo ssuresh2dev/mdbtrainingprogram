@@ -15,7 +15,7 @@ class ListGridViewController: UIViewController {
     var amountPokemon: Int!
     var pokemonArray = PokemonGenerator.getPokemonArray()
     // var myPokemon: UIImageView! Abhi's suggestion
-    var pokemonImages = [UIImage]()
+    var pokemonImages = [UIImage(named: "pikachu"), UIImage(named: "piplup")]
     
     
     override func loadView() {
