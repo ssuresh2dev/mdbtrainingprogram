@@ -19,7 +19,8 @@ class ListViewController: UIViewController {
     var collectionView: UICollectionView!
     let pokemonArray:[Pokemon] = PokemonGenerator.getPokemonArray()
     var randomPokemon: [Pokemon] = []
-    
+    var selectedPokemon: Pokemon?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getRandomPokemon()
@@ -214,9 +215,19 @@ extension ListViewController: UITableViewDataSource,UITableViewDelegate{
         
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPokemon = randomPokemon[indexPath.row]
+        performSegue(withIdentifier: "showProfileVC2", sender: self)
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showProfileVC2"{
+            let vc = segue.destination as? ProfileViewController
+            vc?.passedPokemon = selectedPokemon
+        }
+    }
     
 }
 
@@ -289,6 +300,12 @@ extension ListViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width:((view.frame.width)/2) - 2, height: 200)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedPokemon = randomPokemon[indexPath.row]
+        performSegue(withIdentifier: "showProfileVC2", sender: self)
+    }
+    
 
 }
 extension UIImageView {

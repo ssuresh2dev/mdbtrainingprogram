@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
     var searchController: UISearchController!
     var shouldShowSearchResults: Bool = false
     var textFieldPlaceholder:String = "lol"
+    var selectedPokemon: Pokemon?
     
     var searchCategories: [String] = ["Type", "Attack","Defense","Health","Special Attack", "Special Defense", "Species", "Speed"]
     
@@ -212,7 +213,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         if shouldShowSearchResults{
             //enter into profileviewcontroller
             print("Entering profile view controller")
-            
+            selectedPokemon = filteredPokemon[indexPath.row]
+            performSegue(withIdentifier: "showProfileVC", sender: self)
             
             
             
@@ -241,7 +243,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         if segue.identifier == "showTextFieldVC"{
             let vc = segue.destination as? TextFieldViewController
             vc?.navigationItem.title = textFieldPlaceholder
+        }else if segue.identifier == "showProfileVC"{
+            let vc = segue.destination as? ProfileViewController
+                vc?.passedPokemon = selectedPokemon
+            
         }
+        
     }
     
 }

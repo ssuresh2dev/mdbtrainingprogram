@@ -42,6 +42,7 @@
                     <connections>
                         <segue destination="eeF-nR-tl2" kind="show" identifier="showPokemonTypeVC" id="7Rb-Wk-GuQ"/>
                         <segue destination="GJf-0L-ZsX" kind="show" identifier="showTextFieldVC" id="Qg6-R4-Idt"/>
+                        <segue destination="51T-ty-Nbp" kind="show" identifier="showProfileVC" id="TYB-fs-PrD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeF-p3-gXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -113,6 +114,7 @@
                     <navigationItem key="navigationItem" title="Pokedex" id="l3F-nj-0Vt"/>
                     <connections>
                         <outlet property="sc" destination="Ogy-zm-zES" id="P75-mr-AUz"/>
+                        <segue destination="51T-ty-Nbp" kind="show" identifier="showProfileVC2" id="iLT-E7-k0V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSN-iu-MMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -137,6 +139,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jmy-Xt-8sZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="818" y="37"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="MCo-l4-aJa">
+            <objects>
+                <viewController id="51T-ty-Nbp" customClass="ProfileViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sap-g9-ufI"/>
+                        <viewControllerLayoutGuide type="bottom" id="mz9-vM-Yca"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kfa-Kf-xvm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXM-7f-xsh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="425" y="796"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z2z-IM-wWG">
@@ -177,4 +197,7 @@
             <point key="canvasLocation" x="1768.8" y="1120.3898050974515"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="iLT-E7-k0V"/>
+    </inferredMetricsTieBreakers>
 </document>
