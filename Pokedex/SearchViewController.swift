@@ -21,7 +21,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var defense: UITextField!
     
     @IBOutlet weak var typesCollectionView: UICollectionView!
-    @IBOutlet weak var pokemonType: UILabel!
     @IBOutlet weak var typeText: UILabel!
     
     @IBOutlet weak var randomizePoke: UIButton!
@@ -42,24 +41,25 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //number of rows
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return diffElements.count
     }
     
     //number of columns
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    /*func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
-    }
+    }*/
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let eachCell = collectionView.dequeueReusableCell(withReuseIdentifier: "eachButton", for: indexPath) as! TypesButtonCollectionViewCell
+        eachCell.backgroundColor = UIColor.blue
         return eachCell
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let cl = cell as! TypesButtonCollectionViewCell
+    /*func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        //let cl = cell as! TypesButtonCollectionViewCell
         //cl.eachType.text = diffElements[indexPath]
-    }
+    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
