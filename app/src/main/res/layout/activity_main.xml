@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="mdb.project2.pokedex.MainActivity">
+
+    <Button
+        android:id="@+id/low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/low"
+        android:onClick="toggleLow"
+        android:text="@string/low"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/medium"
+        android:onClick="toggleMedium"
+        android:text="@string/medium"
+        app:layout_constraintBottom_toBottomOf="@id/low"
+        app:layout_constraintLeft_toRightOf="@id/low"
+        app:layout_constraintTop_toTopOf="@id/low" />
+
+    <Button
+        android:id="@+id/high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/high"
+        android:onClick="toggleHigh"
+        android:text="@string/high"
+        app:layout_constraintBottom_toBottomOf="@id/medium"
+        app:layout_constraintLeft_toRightOf="@id/medium"
+        app:layout_constraintTop_toTopOf="@id/medium" />
+
+    <Button
+        android:id="@+id/change_layout_manager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/layout_button_color"
+        android:onClick="switchLayoutManager"
+        android:text="@string/linear"
+        app:layout_constraintBottom_toBottomOf="@id/high"
+        app:layout_constraintLeft_toRightOf="@id/high"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/high" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pokemon_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scrollbars="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/low" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:onClick="startSearch"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_search_white_24dp" />
+</android.support.constraint.ConstraintLayout>
