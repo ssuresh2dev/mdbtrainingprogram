@@ -52,7 +52,7 @@ class ListGridViewController: UIViewController, UITableViewDelegate, UITableView
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(PokemonListTableViewCell.self, forCellReuseIdentifier: "pokeList")
+        //tableView.register(PokemonListTableViewCell.self, forCellReuseIdentifier: "pokeList")
         
         // Do any additional setup after loading the view.
         
