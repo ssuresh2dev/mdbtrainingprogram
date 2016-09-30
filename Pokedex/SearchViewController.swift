@@ -40,15 +40,25 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         typesCollectionView.dataSource = self
     }
     
+    //number of rows
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return diffElements.count
+        return 6
+    }
+    
+    //number of columns
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let eachCell = collectionView.dequeueReusableCell(withReuseIdentifier: "eachButton", for: indexPath) as! TypesButtonCollectionViewCell
-        eachCell.eachType.text = diffElements[indexPath.item]
         return eachCell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cl = cell as! TypesButtonCollectionViewCell
+        //cl.eachType.text = diffElements[indexPath]
     }
     
     override func didReceiveMemoryWarning() {
