@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class SearchViewController: UIViewController {
     
@@ -15,9 +16,9 @@ class SearchViewController: UIViewController {
     var filteredPokemon = [Pokemon]()
     var searchController: UISearchController!
     var shouldShowSearchResults: Bool = false
+    var textFieldPlaceholder:String = "lol"
     
-    
-    var searchCategories: [String] = ["Type","Number", "Attack","Defense","Health","Special Attack", "Special Defense", "Species", "Speed"]
+    var searchCategories: [String] = ["Type", "Attack","Defense","Health","Special Attack", "Special Defense", "Species", "Speed"]
     
     
     //categories for searching
@@ -211,6 +212,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
         if shouldShowSearchResults{
             //enter into profileviewcontroller
             print("Entering profile view controller")
+            
+            
+            
+            
         }else{
             print("shouldshowsearchresults is false")
             if indexPath.row == 0{
@@ -222,12 +227,23 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
                 
             }else{
                 //enter into text field view controller
+                
+                textFieldPlaceholder = searchCategories[indexPath.row]
+                print(textFieldPlaceholder)
+                performSegue(withIdentifier: "showTextFieldVC", sender: self)
+                
             }
             
         }
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTextFieldVC"{
+            let vc = segue.destination as? TextFieldViewController
+            vc?.navigationItem.title = textFieldPlaceholder
+        }
+    }
+    
 }
 
 
@@ -273,12 +289,38 @@ extension SearchViewController: UISearchResultsUpdating {
        
         
         // Filter the data array and get only those pokemon that match the search text.
-        filteredPokemon = pokemon.filter({ (pokemon) -> Bool in
-            let pokemonNameString: NSString = pokemon.name as NSString
-            return (pokemonNameString.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
-        })
+        //check for letters
+        let letters = NSCharacterSet.letters
+        let range = searchString?.rangeOfCharacter(from: letters)
+        
+        // range will be nil if no letters is found
+        if let test = range {
+            //println("letters found")
+            filteredPokemon = pokemon.filter({ (pokemon) -> Bool in
+                let pokemonNameString: NSString = pokemon.name as NSString
+                return (pokemonNameString.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+            })
+            
+            
+            
+
+        }
+        else {
+            //println("letters not found")
+            filteredPokemon = pokemon.filter({ (pokemon) -> Bool in
+                let pokemonNumberString = String(pokemon.number)
+                let pokemonNumber = pokemonNumberString as NSString
+                return (pokemonNumber.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+            })
+            
+
+        }
+        
         
         tableView.reloadData()
+        
+        
+ 
     }
     
     

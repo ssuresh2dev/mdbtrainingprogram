@@ -13,6 +13,7 @@ class PokemonTypeViewController: UIViewController {
     var tableView: UITableView! = UITableView()
     let pokemonTypes: [String] = ["Bug","Grass","Dark","Ground","Dragon","Ice","Electric","Normal","Fairy","Poison", "Fighting","Psychic","Fire","Rock","Flying","Steel","Ghost","Water"]
     
+    var selectedTypes: [String?] = [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,8 @@ class PokemonTypeViewController: UIViewController {
         tableView = UITableView(frame: tableView.frame)
         tableView.contentInset = UIEdgeInsetsMake(0, 0, self.bottomLayoutGuide.length + 150, 0)  //this is to prevent tab bar from hiding last cell
         
+        
+        tableView.allowsMultipleSelection = true
         tableView.rowHeight = 80
         tableView.backgroundColor = UIColor.white
         tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "categoryCell")
@@ -66,8 +69,20 @@ extension PokemonTypeViewController: UITableViewDelegate, UITableViewDataSource{
         //for labels
         
     }
+    func tableView(tableView: UITableView,didSelectRowAtIndexPath indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+            cell.accessoryType = .checkmark
+            selectedTypes[indexPath.row] = pokemonTypes[indexPath.row]
+        }
+    }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
+            selectedTypes[indexPath.row] = pokemonTypes[indexPath.row]
 
+        }
+    }
     
     
     

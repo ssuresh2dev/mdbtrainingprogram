@@ -41,11 +41,30 @@
                     <navigationItem key="navigationItem" title="Search" id="oy8-vF-TRT"/>
                     <connections>
                         <segue destination="eeF-nR-tl2" kind="show" identifier="showPokemonTypeVC" id="7Rb-Wk-GuQ"/>
+                        <segue destination="GJf-0L-ZsX" kind="show" identifier="showTextFieldVC" id="Qg6-R4-Idt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeF-p3-gXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2708" y="1120.3898050974515"/>
+        </scene>
+        <!--Text Field View Controller-->
+        <scene sceneID="n0m-Ml-7vf">
+            <objects>
+                <viewController id="GJf-0L-ZsX" customClass="TextFieldViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="25H-O9-3MT"/>
+                        <viewControllerLayoutGuide type="bottom" id="GUf-ft-2X5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jw8-W4-fzf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lUX-HL-yaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1513" y="1871"/>
         </scene>
         <!--Pokemon Type View Controller-->
         <scene sceneID="Ap5-wd-uNq">
