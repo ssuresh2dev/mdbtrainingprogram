@@ -8,10 +8,14 @@
 
 import UIKit
 
-class ListGridViewController: UIViewController {
+class ListGridViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Static Variables
     var grid: UICollectionView!
+    
+    @IBOutlet weak var tableView: UITableView!
+    //var tableView: UITableView!
+    
     var amountPokemon: Int!
     var pokemonArray = PokemonGenerator.getPokemonArray()
     // var myPokemon: UIImageView! Abhi's suggestion
@@ -39,11 +43,16 @@ class ListGridViewController: UIViewController {
 
         
         // Add this custom Segmented Control to our view
-        self.view.addSubview(segmentedControl)
+        view.addSubview(segmentedControl)
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        //tableView.register(UITableView.self, forCellReuseIdentifier: "pokeList")
         // Do any additional setup after loading the view.
         
         /*  Abhi's suggestion
@@ -59,6 +68,26 @@ class ListGridViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "pokeList", for: indexPath) as! PokemonListTableViewCell
+        cell.awakeFromNib()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pokemonArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = cell as! PokemonListTableViewCell
+        cell.pokeLabel.text = pokemonArray[indexPath.item].name
+        if let url = NSURL(string: pokemonArray[indexPath.item].imageUrl) {
+            if let data = NSData(contentsOf: url as URL) {
+                cell.eachPokeImage.image = UIImage(data: data as Data)
+            }        
+        }
+        cell.pokemonNum.text = String(pokemonArray[indexPath.item].number)
+    }
     
     // Functions
     func selectSegment(sender: UISegmentedControl) {
