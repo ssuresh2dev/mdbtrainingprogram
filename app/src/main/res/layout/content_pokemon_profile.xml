@@ -1,17 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="mdb.project2.pokedex.PokemonProfile"
     tools:showIn="@layout/activity_pokemon_profile">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:cardBackgroundColor="#FFFFFFFF"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="2dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:contentPadding="16dp">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/pokemon_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#2C3E50"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pokemon_profile_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textColor="#992C3E50"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/pokemon_profile_name"
+                app:layout_constraintLeft_toRightOf="@+id/pokemon_profile_name"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/attack_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/attack"
+                android:textColor="#992C3E50"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pokemon_profile_name" />
+
+            <TextView
+                android:id="@+id/pokemon_profile_attack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:textColor="#2C3E50"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/attack_label"
+                app:layout_constraintLeft_toRightOf="@+id/attack_label" />
+
+            <TextView
+                android:id="@+id/defense_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/defense"
+                android:textColor="#992C3E50"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/attack_label" />
+
+            <TextView
+                android:id="@+id/pokemon_profile_defense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="#2C3E50"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/defense_label"
+                app:layout_constraintLeft_toRightOf="@+id/defense_label"
+                app:layout_constraintTop_toTopOf="@+id/defense_label" />
+
+            <TextView
+                android:id="@+id/hp_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/hp"
+                android:textColor="#992C3E50"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defense_label" />
+
+            <TextView
+                android:id="@+id/pokemon_profile_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="#2C3E50"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/hp_label"
+                app:layout_constraintLeft_toRightOf="@+id/hp_label"
+                app:layout_constraintTop_toTopOf="@+id/hp_label" />
+
+            <TextView
+                android:id="@+id/species_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/species"
+                android:textColor="#992C3E50"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hp_label" />
+
+            <TextView
+                android:id="@+id/pokemon_profile_species"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="#2C3E50"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/species_label"
+                app:layout_constraintLeft_toRightOf="@+id/species_label"
+                app:layout_constraintTop_toTopOf="@+id/species_label" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 </android.support.v4.widget.NestedScrollView>

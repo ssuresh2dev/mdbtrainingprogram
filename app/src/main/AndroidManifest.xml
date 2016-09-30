@@ -26,6 +26,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mdb.project2.pokedex.MainActivity" />
         </activity>
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>

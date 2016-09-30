@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Sharie on 9/26/16.
@@ -45,13 +46,16 @@ class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.CustomViewHolde
         Pokedex.Pokemon poke_data = pokemons.get(position);
         Glide.with(context).load(findUrl(poke_data.name)).into(holder.image);
         holder.name.setText(poke_data.name);
-
     }
 
     private String findUrl(String name) {
         name = Normalizer.normalize(name.toLowerCase(), Normalizer.Form.NFD);
         name = name.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "").replaceAll("\\p{P}", "");
         return String.format("http://img.pokemondb.net/artwork/%s.jpg", name);
+    }
+
+    public void setList(ArrayList<Pokedex.Pokemon> pokemons) {
+        this.pokemons = pokemons;
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -66,7 +70,7 @@ class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.CustomViewHolde
                 @Override
                 public void onClick(View v) {
                     Intent myIntent = new Intent(v.getContext(), PokemonProfile.class);
-                    myIntent.putExtra("INDEX", getAdapterPosition());
+                    myIntent.putExtra("NAME", name.getText().toString());
                     v.getContext().startActivity(myIntent);
                 }
             });
