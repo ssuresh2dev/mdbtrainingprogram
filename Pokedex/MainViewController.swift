@@ -57,19 +57,10 @@ class MainViewController: UIViewController{
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func categorySegue() {
-        printFavs()
         performSegue(withIdentifier: "toCategories", sender: self)
-    }
-    
-    func printFavs() {
-        print(Global.favPokes.count)
-        for pokemon in Global.favPokes {
-            print(pokemon.name)
-        }
     }
     
     func toNameSegue() {

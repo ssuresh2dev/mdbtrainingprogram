@@ -27,6 +27,7 @@
 		A9B28E3C1D9EEED600B2F6CC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B28E3B1D9EEED500B2F6CC /* WebViewController.swift */; };
 		A9B28E3E1D9F1E3800B2F6CC /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B28E3D1D9F1E3800B2F6CC /* TabController.swift */; };
 		A9B28E401D9F217400B2F6CC /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B28E3F1D9F217400B2F6CC /* FavoritesViewController.swift */; };
+		A9B28E421D9F41EC00B2F6CC /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9B28E411D9F41EC00B2F6CC /* Test.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		A9B28E3B1D9EEED500B2F6CC /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		A9B28E3D1D9F1E3800B2F6CC /* TabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		A9B28E3F1D9F217400B2F6CC /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		A9B28E411D9F41EC00B2F6CC /* Test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				3CFC6F3C1D98719100B4EBB5 /* pokeData.json */,
 				3CFC6F0E1D98716000B4EBB5 /* AppDelegate.swift */,
 				3CFC6F121D98716000B4EBB5 /* Main.storyboard */,
+				A9B28E411D9F41EC00B2F6CC /* Test.storyboard */,
 				3CFC6F151D98716000B4EBB5 /* Assets.xcassets */,
 				3CFC6F171D98716000B4EBB5 /* LaunchScreen.storyboard */,
 				3CFC6F1A1D98716000B4EBB5 /* Info.plist */,
@@ -283,6 +286,7 @@
 				3CFC6F161D98716000B4EBB5 /* Assets.xcassets in Resources */,
 				3CFC6F3D1D98719100B4EBB5 /* pokeData.json in Resources */,
 				3CFC6F141D98716000B4EBB5 /* Main.storyboard in Resources */,
+				A9B28E421D9F41EC00B2F6CC /* Test.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,8 +50,7 @@ class RandomViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+     }
     
     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -161,6 +160,11 @@ extension RandomViewController: UITableViewDelegate, UITableViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectCell", for: indexPath) as! CollectionViewCell
+        
+        for subview in cell.contentView.subviews{
+            subview.removeFromSuperview()
+        }
+        
         cell.awakeFromNib()
         return cell
     }
