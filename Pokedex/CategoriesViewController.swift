@@ -103,16 +103,6 @@ class CategoriesViewController: UIViewController {
     
         performSegue(withIdentifier: "alsoToRandom", sender: self)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func filterPokemon () -> [Pokemon] {
         var filtered: [Pokemon] = []
@@ -124,6 +114,10 @@ class CategoriesViewController: UIViewController {
                     if selectedTypes.contains(type) && !filtered.contains(pokemon)  {
                         filtered.append(pokemon)
                     }
+                }
+                
+                if selectedTypes.count == 0 {
+                    filtered.append(pokemon)
                 }
             }
         }
@@ -138,7 +132,6 @@ class CategoriesViewController: UIViewController {
             }
         }
     }
-
 }
 
 extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
