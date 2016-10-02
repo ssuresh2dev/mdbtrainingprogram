@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MDBEvents</string>
+    <string name="login_title">MDB Events</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Log In</string>
+    <string name="register_button">Register</string>
+</resources>
