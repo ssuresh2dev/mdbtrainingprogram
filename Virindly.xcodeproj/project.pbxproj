@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FE6333643E80041694CA8F5 /* Pods_Virindly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3025217A477989DD8F144016 /* Pods_Virindly.framework */; };
 		B64DE2FE1DA1909A0055FA01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */; };
 		B64DE3001DA1909A0055FA01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE2FF1DA1909A0055FA01 /* ViewController.swift */; };
 		B64DE3031DA1909A0055FA01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B64DE3011DA1909A0055FA01 /* Main.storyboard */; };
 		B64DE3051DA1909A0055FA01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B64DE3041DA1909A0055FA01 /* Assets.xcassets */; };
 		B64DE3081DA1909A0055FA01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B64DE3061DA1909A0055FA01 /* LaunchScreen.storyboard */; };
+		B64DE3101DA198250055FA01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B64DE30F1DA198250055FA01 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B74379702CB8882239CBE98 /* Pods-Virindly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virindly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Virindly/Pods-Virindly.release.xcconfig"; sourceTree = "<group>"; };
+		3025217A477989DD8F144016 /* Pods_Virindly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Virindly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64DE2FA1DA1909A0055FA01 /* Virindly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Virindly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B64DE2FF1DA1909A0055FA01 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +26,8 @@
 		B64DE3041DA1909A0055FA01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B64DE3071DA1909A0055FA01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B64DE3091DA1909A0055FA01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B64DE30F1DA198250055FA01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C60CB8CA7288A76AADEFCE77 /* Pods-Virindly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virindly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Virindly/Pods-Virindly.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE6333643E80041694CA8F5 /* Pods_Virindly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131B6FF0ABC944AB4C0ABDFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3025217A477989DD8F144016 /* Pods_Virindly.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B64DE2F11DA1909A0055FA01 = {
 			isa = PBXGroup;
 			children = (
 				B64DE2FC1DA1909A0055FA01 /* Virindly */,
 				B64DE2FB1DA1909A0055FA01 /* Products */,
+				E9DF4078A85986D7257ECF66 /* Pods */,
+				131B6FF0ABC944AB4C0ABDFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +77,18 @@
 				B64DE3041DA1909A0055FA01 /* Assets.xcassets */,
 				B64DE3061DA1909A0055FA01 /* LaunchScreen.storyboard */,
 				B64DE3091DA1909A0055FA01 /* Info.plist */,
+				B64DE30F1DA198250055FA01 /* GoogleService-Info.plist */,
 			);
 			path = Virindly;
+			sourceTree = "<group>";
+		};
+		E9DF4078A85986D7257ECF66 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C60CB8CA7288A76AADEFCE77 /* Pods-Virindly.debug.xcconfig */,
+				0B74379702CB8882239CBE98 /* Pods-Virindly.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B64DE30C1DA1909A0055FA01 /* Build configuration list for PBXNativeTarget "Virindly" */;
 			buildPhases = (
+				A4DD05DF2434F7E5419EED98 /* [CP] Check Pods Manifest.lock */,
 				B64DE2F61DA1909A0055FA01 /* Sources */,
 				B64DE2F71DA1909A0055FA01 /* Frameworks */,
 				B64DE2F81DA1909A0055FA01 /* Resources */,
+				8D7EF5F1D4436A41920F2995 /* [CP] Embed Pods Frameworks */,
+				F1C421D4D40E7462340AA2E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,12 +155,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				B64DE3081DA1909A0055FA01 /* LaunchScreen.storyboard in Resources */,
+				B64DE3101DA198250055FA01 /* GoogleService-Info.plist in Resources */,
 				B64DE3051DA1909A0055FA01 /* Assets.xcassets in Resources */,
 				B64DE3031DA1909A0055FA01 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D7EF5F1D4436A41920F2995 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Virindly/Pods-Virindly-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4DD05DF2434F7E5419EED98 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F1C421D4D40E7462340AA2E2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Virindly/Pods-Virindly-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B64DE2F61DA1909A0055FA01 /* Sources */ = {
@@ -259,6 +338,7 @@
 		};
 		B64DE30D1DA1909A0055FA01 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C60CB8CA7288A76AADEFCE77 /* Pods-Virindly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TMP75YC8SE;
@@ -272,6 +352,7 @@
 		};
 		B64DE30E1DA1909A0055FA01 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B74379702CB8882239CBE98 /* Pods-Virindly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = TMP75YC8SE;
@@ -302,6 +383,7 @@
 				B64DE30E1DA1909A0055FA01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
