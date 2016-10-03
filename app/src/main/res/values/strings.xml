@@ -5,4 +5,9 @@
     <string name="password_hint">Password</string>
     <string name="login_button">Log In</string>
     <string name="register_button">Register</string>
+    <string name="auth_failed">Authentication failed.</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="username_hint">Username</string>
+    <string name="register_title">Register</string>
+    <string name="sign_up_button">Sign Up!</string>
 </resources>
