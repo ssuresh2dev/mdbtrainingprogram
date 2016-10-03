@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController {
     var passwordTextField : UITextField!
     var passwordRequirementLabel :UILabel!
     var createAccountButton : UIButton!
+    var backButton : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,11 @@ class SignUpViewController: UIViewController {
     }
     
     func createAccountPressed() {
-        performSegue(withIdentifier: "signUpToFeed", sender: self)
+        performSegue(withIdentifier: "toSignUp", sender: self)
+    }
+    
+    func backPressed() {
+        performSegue(withIdentifier: "signUpToLogin", sender: self)
     }
     
     func setUpUI() {
@@ -130,6 +135,13 @@ class SignUpViewController: UIViewController {
         createAccountButton.layer.cornerRadius = 10
         createAccountButton.addTarget(self, action: #selector(createAccountPressed), for: .touchUpInside)
         view.addSubview(createAccountButton)
+        
+        //add back button
+        backButton = UIButton(frame: CGRect(x: view.frame.width * 0, y: view.frame.height * 0.025, width: view.frame.width * 0.2, height: view.frame.height * 0.05))
+        backButton.setTitle("<- Back", for: .normal)
+        backButton.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 255/255, alpha: 1), for: .normal)
+        backButton.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
+        view.addSubview(backButton)
     }
 
     override func didReceiveMemoryWarning() {

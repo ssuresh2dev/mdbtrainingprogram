@@ -103,11 +103,12 @@
                     </view>
                     <connections>
                         <segue destination="yy5-HB-jUw" kind="show" identifier="signUpToFeed" id="SGl-sD-6Dj"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="signUpToLogin" id="Sdb-87-gSS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3I5-co-7uU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1623" y="124"/>
+            <point key="canvasLocation" x="1596" y="124"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
