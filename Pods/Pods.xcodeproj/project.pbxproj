@@ -88,11 +88,11 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>056B7FB4565C8F6CFBC262FDCD790C0C</key>
+		<key>07301720DA20F15C6E656D65B259DF83</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>78AA5DF552E6422D8F195E1E35FDF1B5</string>
+				<string>1920534E7570FB812C4455E103C4A498</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -101,77 +101,44 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0B8CEF19337FA4DFF56EC7EF36B16C09</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E87E635A8BA23B6FDD7AFF5F5F24DCFC</string>
-				<string>17E963AC9EA7E429C37DA8FEEA72526B</string>
-				<string>76CC1C8D9CD798D689BCD05C98FE3EAD</string>
-				<string>AEFF8F1B6621E9AFD02CAB76FC73388F</string>
-				<string>D227E2B6883501EB56EEE7DB33608B01</string>
-				<string>1FE7E728519B8C441DC0979AF90877D4</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>122442F85AC0EEF686F286D9DE35D0A1</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>FAF822D2C02C424982832435D7291DB1</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17E963AC9EA7E429C37DA8FEEA72526B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>122442F85AC0EEF686F286D9DE35D0A1</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseAnalytics</string>
-			<key>path</key>
-			<string>FirebaseAnalytics</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1FE7E728519B8C441DC0979AF90877D4</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3A09B82FC34DC854CBB4A7D6B7C35C65</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleUtilities</string>
-			<key>path</key>
-			<string>GoogleUtilities</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>219603845216F3E24B767B2A50F80DBE</key>
+		<key>0E71039831B45BD7B36F6EA99EB5EB3B</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>GoogleInterchangeUtilities.framework</string>
+			<string>GoogleParsingUtilities.framework</string>
 			<key>path</key>
-			<string>Frameworks/GoogleInterchangeUtilities.framework</string>
+			<string>Frameworks/GoogleParsingUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1920534E7570FB812C4455E103C4A498</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseAuth.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseAuth.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>25E29BEEC7F2855B39E5E68B985C13D4</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E9C8085DEA1AEF4D51DA12C0479154B9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleSymbolUtilities</string>
+			<key>path</key>
+			<string>GoogleSymbolUtilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -229,6 +196,19 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>30236E0324763171621B1BD7E30B4820</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleInterchangeUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/GoogleInterchangeUtilities.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>33CD0FBCB142D7E7B9F51B6C66611E9F</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -242,16 +222,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3A09B82FC34DC854CBB4A7D6B7C35C65</key>
+		<key>38784703EF7945371191EFBAD8F398B1</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>DF275361F137FFFAC95E10B9F0BAE4E5</string>
-			</array>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>GoogleUtilities.framework</string>
+			<key>path</key>
+			<string>Frameworks/GoogleUtilities.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -265,6 +245,19 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4023B542E649FFA2DB5D9B5E304E5306</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D6152E0A387DC22FC09C9E43DF0A0649</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -282,6 +275,27 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>42F22A560D0E9C4BE10074DAC925220B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B2A75D815ECF5FE22533330F003A4A24</string>
+				<string>A9066EBDB99E537E1F550885081B8B22</string>
+				<string>E2FAF087529027CE2D406782EF692B09</string>
+				<string>E4D45FC60E8980A4AD89CE98EA85B06F</string>
+				<string>C8E452787544D48609E8500D479BD81F</string>
+				<string>A3398BC28E456E0ECBB3EBD29D323844</string>
+				<string>91AEC3ACDDA93E99F78E77F71B57AAC8</string>
+				<string>25E29BEEC7F2855B39E5E68B985C13D4</string>
+				<string>ED4845A9EFA08B40DB3425EA84F60D24</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>43EBD1E6B6D18D3627F1307D9CA88CB1</key>
 		<dict>
 			<key>fileRef</key>
@@ -296,18 +310,16 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>4D85ED2A288CF61E21019F9720657924</key>
+		<key>47253EB1C0D6AD99E6298973096A2B14</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>Firebase.h</string>
+			<string>GoogleSymbolUtilities.framework</string>
 			<key>path</key>
-			<string>Analytics/Sources/Firebase.h</string>
+			<string>Frameworks/GoogleSymbolUtilities.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -365,58 +377,33 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6E1E5C624A451F2216F2E980FA66DEE5</key>
+		<key>76D9B9D917E5DDABD12EEA065F567FC5</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>4D85ED2A288CF61E21019F9720657924</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Analytics</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6FF8BEBD4B336F1556D0507DDD7AE186</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B8D7BED4C9EDECD6BE78312FC6D65A02</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>76CC1C8D9CD798D689BCD05C98FE3EAD</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E902D6A1780C90DA8D9775A9551AE680</string>
-				<string>6FF8BEBD4B336F1556D0507DDD7AE186</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>FirebaseInstanceID</string>
-			<key>path</key>
-			<string>FirebaseInstanceID</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>78AA5DF552E6422D8F195E1E35FDF1B5</key>
-		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>GoogleSymbolUtilities.framework</string>
+			<string>Firebase.h</string>
 			<key>path</key>
-			<string>Frameworks/GoogleSymbolUtilities.framework</string>
+			<string>Analytics/Sources/Firebase.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7747BB04C80C1D9504DFE5B159666B49</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>FIRInstanceID.h</string>
+			<key>path</key>
+			<string>Sources/FIRInstanceID.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -426,12 +413,64 @@
 			<array>
 				<string>93A4A3777CF96A4AAC1D13BA6DCCEA73</string>
 				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
-				<string>0B8CEF19337FA4DFF56EC7EF36B16C09</string>
+				<string>42F22A560D0E9C4BE10074DAC925220B</string>
 				<string>F0F8B7BD6AB53F5034450BAA05AEC87B</string>
 				<string>68EE4BBBC3FC44039313F33A87F8D9FB</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8A00A08ED7534E409ED3B63A688412B7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8B0A47B9B63E8C7471516FA57F156ABE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8A9378A7F1F72CBC12ACB3AA9B3052BE</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>76D9B9D917E5DDABD12EEA065F567FC5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Analytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8B0A47B9B63E8C7471516FA57F156ABE</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseAnalytics.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseAnalytics.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8DFE6682135398102716AA9114A70F6E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8F42A3500A909D6FB12BEAAD7C457342</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -445,6 +484,34 @@
 			<string>text.script.sh</string>
 			<key>path</key>
 			<string>Pods-MDBSocials-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8F42A3500A909D6FB12BEAAD7C457342</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>FirebaseInstanceID.framework</string>
+			<key>path</key>
+			<string>Frameworks/frameworks/FirebaseInstanceID.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>91AEC3ACDDA93E99F78E77F71B57AAC8</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A760B194369F41E9F6E59C0A7325B60F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleParsingUtilities</string>
+			<key>path</key>
+			<string>GoogleParsingUtilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -520,18 +587,74 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>AEFF8F1B6621E9AFD02CAB76FC73388F</key>
+		<key>A3398BC28E456E0ECBB3EBD29D323844</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>F38FA45BD3E1C0E58BF4D98B0F38646B</string>
+				<string>4023B542E649FFA2DB5D9B5E304E5306</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>GoogleInterchangeUtilities</string>
+			<string>GoogleNetworkingUtilities</string>
 			<key>path</key>
-			<string>GoogleInterchangeUtilities</string>
+			<string>GoogleNetworkingUtilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A760B194369F41E9F6E59C0A7325B60F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>0E71039831B45BD7B36F6EA99EB5EB3B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A9066EBDB99E537E1F550885081B8B22</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8A00A08ED7534E409ED3B63A688412B7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseAnalytics</string>
+			<key>path</key>
+			<string>FirebaseAnalytics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AFFCB4A282716F484B0C1887998D3EF5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30236E0324763171621B1BD7E30B4820</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B2A75D815ECF5FE22533330F003A4A24</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8A9378A7F1F72CBC12ACB3AA9B3052BE</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Firebase</string>
+			<key>path</key>
+			<string>Firebase</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -553,19 +676,6 @@
 			<string>Pods-MDBSocials</string>
 			<key>path</key>
 			<string>Target Support Files/Pods-MDBSocials</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B8D7BED4C9EDECD6BE78312FC6D65A02</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseInstanceID.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseInstanceID.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -653,6 +763,21 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>C8E452787544D48609E8500D479BD81F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>AFFCB4A282716F484B0C1887998D3EF5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleInterchangeUtilities</string>
+			<key>path</key>
+			<string>GoogleInterchangeUtilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>C93EB9E4AC8C4881B7EC6B27FEEA995A</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -689,21 +814,6 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-MDBSocials.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D227E2B6883501EB56EEE7DB33608B01</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>056B7FB4565C8F6CFBC262FDCD790C0C</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>GoogleSymbolUtilities</string>
-			<key>path</key>
-			<string>GoogleSymbolUtilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -758,46 +868,88 @@
 				<string>FDA239CE839B0B7BE169B302A59D8902</string>
 			</array>
 		</dict>
-		<key>DF275361F137FFFAC95E10B9F0BAE4E5</key>
+		<key>D6152E0A387DC22FC09C9E43DF0A0649</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>wrapper.framework</string>
 			<key>name</key>
-			<string>GoogleUtilities.framework</string>
+			<string>GoogleNetworkingUtilities.framework</string>
 			<key>path</key>
-			<string>Frameworks/GoogleUtilities.framework</string>
+			<string>Frameworks/GoogleNetworkingUtilities.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E87E635A8BA23B6FDD7AFF5F5F24DCFC</key>
+		<key>E2FAF087529027CE2D406782EF692B09</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>6E1E5C624A451F2216F2E980FA66DEE5</string>
+				<string>07301720DA20F15C6E656D65B259DF83</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Firebase</string>
+			<string>FirebaseAuth</string>
 			<key>path</key>
-			<string>Firebase</string>
+			<string>FirebaseAuth</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E902D6A1780C90DA8D9775A9551AE680</key>
+		<key>E31D50E49BF973165637B7DF54AD003A</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>children</key>
+			<array>
+				<string>38784703EF7945371191EFBAD8F398B1</string>
+			</array>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>FIRInstanceID.h</string>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E4D45FC60E8980A4AD89CE98EA85B06F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7747BB04C80C1D9504DFE5B159666B49</string>
+				<string>8DFE6682135398102716AA9114A70F6E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FirebaseInstanceID</string>
 			<key>path</key>
-			<string>Sources/FIRInstanceID.h</string>
+			<string>FirebaseInstanceID</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E9C8085DEA1AEF4D51DA12C0479154B9</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>47253EB1C0D6AD99E6298973096A2B14</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>ED4845A9EFA08B40DB3425EA84F60D24</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E31D50E49BF973165637B7DF54AD003A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>GoogleUtilities</string>
+			<key>path</key>
+			<string>GoogleUtilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -811,32 +963,6 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F38FA45BD3E1C0E58BF4D98B0F38646B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>219603845216F3E24B767B2A50F80DBE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FAF822D2C02C424982832435D7291DB1</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>FirebaseAnalytics.framework</string>
-			<key>path</key>
-			<string>Frameworks/frameworks/FirebaseAnalytics.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
