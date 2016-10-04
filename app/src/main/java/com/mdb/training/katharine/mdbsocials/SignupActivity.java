@@ -1,5 +1,6 @@
 package com.mdb.training.katharine.mdbsocials;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,13 +48,36 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    startActivity(new Intent(SignupActivity.this, FeedActivity.class));
+                }
             }
         };
+
+        String em = email.getText().toString();
+        String pass = password.getText().toString();
+        mAuth.createUserWithEmailAndPassword(em, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(SignupActivity.this, "Sign up problem", Toast.LENGTH_LONG).show();
+                } else if (task.isSuccessful()) {
+                    Toast.makeText(SignupActivity.this, "Sign up success", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signup();
+                // signupAuth();
+                String n = name.getText().toString();
+                String us = username.getText().toString();
+                String em = email.getText().toString();
+                String pass = password.getText().toString();
+                //String userid = mAuth.getCurrentUser().getUid();
+                signup(n, us, em, pass);
+
             }
         });
 
@@ -74,14 +98,21 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
-    private void signup() {
-        String user = username.getText().toString();
+    private void signup(String name, String username, String email, String pass) {
+        User user = new User(name, username, email, pass);
+        dbRef.child("users").setValue(user);
+    }
+
+    private void signupAuth() {
+        String em = email.getText().toString();
         String pass = password.getText().toString();
-        mAuth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(em, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
                     Toast.makeText(SignupActivity.this, "Sign up problem", Toast.LENGTH_LONG).show();
+                } else if (task.isSuccessful()) {
+                    Toast.makeText(SignupActivity.this, "Sign up success", Toast.LENGTH_LONG).show();
                 }
             }
         });
