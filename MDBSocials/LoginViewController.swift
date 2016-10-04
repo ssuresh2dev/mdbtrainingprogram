@@ -27,13 +27,13 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-       FIRAuth.auth()?.addStateDidChangeListener{ auth, user in
-            if let user = user {
-                // User is signed in.
-            } else {
-                // No user is signed in.
-            }
-        }
+//       FIRAuth.auth()?.addStateDidChangeListener{ auth, user in
+//            if let user = user {
+//                // User is signed in.
+//            } else {
+//                // No user is signed in.
+//            }
+//        }
     }
 
     func setupUI(){
@@ -43,24 +43,30 @@ class LoginViewController: UIViewController {
         titleLabel.text = "Mobile Developers of Berkeley"
         view.addSubview(titleLabel)
         
-        emailField = UITextField(frame: CGRect(x: view.frame.width/2 - 30, y: view.frame.height/2, width: view.frame.width, height: 50))
+        emailField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2, width: view.frame.width, height: 50))
         emailField.placeholder = "Username"
         emailField.keyboardType = UIKeyboardType.emailAddress
         emailField.font = UIFont(name: "Avenir-Light", size: 13.0)
         view.addSubview(emailField)
         
-        passwordField = UITextField(frame: CGRect(x: view.frame.width/2 - 30, y: view.frame.height/2 + 30, width: view.frame.width, height: 50))
+        passwordField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 + 30, width: view.frame.width, height: 50))
         passwordField.placeholder = "Password"
         passwordField.isSecureTextEntry = true
         passwordField.font = UIFont(name: "Avenir-Light", size: 13.0)
         view.addSubview(passwordField)
         
-        
-        createAccountButton = UIButton(frame: CGRect(x: view.frame.width/2, y: passwordField.frame.maxY + 25, width: 100, height: 50))
+        createAccountButton = UIButton(frame: CGRect(x: 20, y: passwordField.frame.maxY + 25, width: view.frame.width - 20, height: 50))
         createAccountButton.setTitle("Register for a new account", for: .normal)
+        createAccountButton.addTarget(self, action: #selector(createAccountButtonPressed(_:)), for: .touchUpInside)
+        createAccountButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
+        createAccountButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        
         view.addSubview(createAccountButton)
         
         
+    }
+    func createAccountButtonPressed(_ sender: UIButton!){
+        //segue to create account screen
     }
     
     
