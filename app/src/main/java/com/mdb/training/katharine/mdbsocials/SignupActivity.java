@@ -26,9 +26,8 @@ public class SignupActivity extends AppCompatActivity {
     private Button signup;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private DatabaseReference dbRef;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,80 +41,37 @@ public class SignupActivity extends AppCompatActivity {
         signup = (Button) findViewById(R.id.signup);
 
         mAuth = FirebaseAuth.getInstance();
-        dbRef = FirebaseDatabase.getInstance().getReference();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    startActivity(new Intent(SignupActivity.this, FeedActivity.class));
-                }
-            }
-        };
-
-        String em = email.getText().toString();
-        String pass = password.getText().toString();
-        mAuth.createUserWithEmailAndPassword(em, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(SignupActivity.this, "Sign up problem", Toast.LENGTH_LONG).show();
-                } else if (task.isSuccessful()) {
-                    Toast.makeText(SignupActivity.this, "Sign up success", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // signupAuth();
-                String n = name.getText().toString();
-                String us = username.getText().toString();
-                String em = email.getText().toString();
-                String pass = password.getText().toString();
-                //String userid = mAuth.getCurrentUser().getUid();
-                signup(n, us, em, pass);
-
+                signup();
             }
         });
 
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-
-    private void signup(String name, String username, String email, String pass) {
-        User user = new User(name, username, email, pass);
-        dbRef.child("users").setValue(user);
-    }
-
-    private void signupAuth() {
+    private void signup() {
+        String n = name.getText().toString();
+        String us = username.getText().toString();
         String em = email.getText().toString();
         String pass = password.getText().toString();
+        final User user = new User(n, us, em, pass);
         mAuth.createUserWithEmailAndPassword(em, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()) {
+                if (task.isSuccessful()) {
+                    String uid = mAuth.getCurrentUser().getUid();
+                    mDatabase.child("users").child(uid).setValue(user);
+                    startActivity(new Intent(SignupActivity.this, FeedActivity.class));
+                } else if (!(task.isSuccessful())) {
                     Toast.makeText(SignupActivity.this, "Sign up problem", Toast.LENGTH_LONG).show();
-                } else if (task.isSuccessful()) {
-                    Toast.makeText(SignupActivity.this, "Sign up success", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
     }
 
 }

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
+        //logout();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void logout() {
+        mAuth.signOut();
     }
 
 }
