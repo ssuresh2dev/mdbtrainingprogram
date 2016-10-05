@@ -30,10 +30,13 @@ class LoginViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
        FIRAuth.auth()?.addStateDidChangeListener{ auth, user in
-            if let user = user {
+            if user != nil {
                 // User is signed in.
-                //self.performSegue(withIdentifier: "segueToFeedVC", sender: self)
-                self.present(FeedViewController() as! UIViewController, animated: false, completion: nil)
+               
+               
+                let fvc = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                let navigationController = UINavigationController(rootViewController: fvc)
+                self.present(navigationController, animated: true, completion: nil)
 
             } else {
                 // No user is signed in.
@@ -92,6 +95,7 @@ class LoginViewController: UIViewController {
             } else {
                 //self.signedIn(user)
                 print("signed in!")
+                self.performSegue(withIdentifier: "segueToFeedVC", sender: self)
             }
         })
     }
