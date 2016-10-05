@@ -1,6 +1,5 @@
 package com.mdb.training.katharine.mdbsocials;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +18,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 /**
  * Created by KJ on 10/4/16.
  */
-/**
+
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHolder> {
 
     private Context context;
@@ -40,7 +39,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
     a ViewHolder, and that ViewHolder holder these 3 views in it (hence "view holder").
     This function returns a single ViewHolder; it is called once for every row.
     */
-    /**@Override
+    @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //        This "inflates" the views, using the layout R.layout.row_view
         View view;
@@ -53,9 +52,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
     example, "holder.imageView" we are accessing the imageView for that row and setting the
     ImageResource to be the corresponding image for that subject.
      */
-
-
-    /**@Override
+    @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         SocialsList.Social social = socials.get(position);
         holder.titleView.setText(social.title);
@@ -83,11 +80,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
                     /*Get adapter position is getting the number of the row that was clicked,
                     starting at 0
                     */
-
                     SocialsList.Social s = socials.get(getAdapterPosition());
-
-                    /**SocialsList.Social pokemon = socials.get(getAdapterPosition());
-
                     Intent intent = new Intent(context, DetailsActivity.class);
                     intent.putExtra("title", s.title);
                     intent.putExtra("author", s.author);
@@ -101,4 +94,4 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
             });
         }
     }
-}**/
+}
