@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private EditText username;
+    private EditText email;
     private EditText password;
     private Button login;
     private TextView signup;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username = (EditText) findViewById(R.id.username);
+        email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
         signup = (TextView) findViewById(R.id.signup);
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+                // If user is already signed in, go to the feed activity
                 if (user != null) {
                     startActivity(new Intent(MainActivity.this, FeedActivity.class));
                 }
@@ -82,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void signIn() {
-        String user = username.getText().toString();
+        String em = email.getText().toString();
         String pass = password.getText().toString();
-        mAuth.signInWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(em, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
