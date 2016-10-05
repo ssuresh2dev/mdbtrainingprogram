@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3CE97AEFBFF4C6E418793CA8 /* Pods_MDBSocials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964865BB90518970B580B2E2 /* Pods_MDBSocials.framework */; };
+		EF32948B1DA4B963008CCFBA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF32948A1DA4B963008CCFBA /* GoogleService-Info.plist */; };
 		EF64F7641DA1F2F100A4C1C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */; };
 		EF64F7661DA1F2F100A4C1C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */; };
 		EF64F7691DA1F2F100A4C1C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF64F7671DA1F2F100A4C1C6 /* Main.storyboard */; };
 		EF64F76B1DA1F2F100A4C1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF64F76A1DA1F2F100A4C1C6 /* Assets.xcassets */; };
 		EF64F76E1DA1F2F100A4C1C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF64F76C1DA1F2F100A4C1C6 /* LaunchScreen.storyboard */; };
-		EFFEE6251DA216D500BF2A82 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = EFFEE6241DA216D500BF2A82 /* GoogleService-Info (1).plist */; };
 		EFFEE6271DA219D100BF2A82 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFEE6261DA219D100BF2A82 /* LoginViewController.swift */; };
 		EFFEE6291DA219FA00BF2A82 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFEE6281DA219FA00BF2A82 /* SignupViewController.swift */; };
 		EFFEE62B1DA21A0F00BF2A82 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFEE62A1DA21A0F00BF2A82 /* FeedViewController.swift */; };
@@ -24,15 +24,14 @@
 /* Begin PBXFileReference section */
 		521BAB883454E13E94829013 /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
 		964865BB90518970B580B2E2 /* Pods_MDBSocials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDBSocials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF32948A1DA4B963008CCFBA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF64F7601DA1F2F100A4C1C6 /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EF64F7681DA1F2F100A4C1C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF64F76A1DA1F2F100A4C1C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF64F76D1DA1F2F100A4C1C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EF64F76F1DA1F2F100A4C1C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFFB2A67A23CCF50F51C4314 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
-		EFFEE6241DA216D500BF2A82 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info (1).plist"; path = "../../../Downloads/GoogleService-Info (1).plist"; sourceTree = "<group>"; };
 		EFFEE6261DA219D100BF2A82 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EFFEE6281DA219FA00BF2A82 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		EFFEE62A1DA21A0F00BF2A82 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -97,11 +96,10 @@
 				EFFEE62A1DA21A0F00BF2A82 /* FeedViewController.swift */,
 				EFFEE62C1DA21A3C00BF2A82 /* DetailViewController.swift */,
 				EFFEE62E1DA21A8100BF2A82 /* NewSocialViewController.swift */,
+				EF32948A1DA4B963008CCFBA /* GoogleService-Info.plist */,
 				EF64F7671DA1F2F100A4C1C6 /* Main.storyboard */,
 				EF64F76A1DA1F2F100A4C1C6 /* Assets.xcassets */,
 				EF64F76C1DA1F2F100A4C1C6 /* LaunchScreen.storyboard */,
-				EFFEE6241DA216D500BF2A82 /* GoogleService-Info (1).plist */,
-				EF64F76F1DA1F2F100A4C1C6 /* Info.plist */,
 			);
 			path = MDBSocials;
 			sourceTree = "<group>";
@@ -169,10 +167,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF32948B1DA4B963008CCFBA /* GoogleService-Info.plist in Resources */,
 				EF64F76E1DA1F2F100A4C1C6 /* LaunchScreen.storyboard in Resources */,
 				EF64F76B1DA1F2F100A4C1C6 /* Assets.xcassets in Resources */,
 				EF64F7691DA1F2F100A4C1C6 /* Main.storyboard in Resources */,
-				EFFEE6251DA216D500BF2A82 /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
