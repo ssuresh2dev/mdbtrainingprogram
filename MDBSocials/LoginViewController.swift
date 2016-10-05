@@ -8,12 +8,14 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     var titleLabel: UILabel!
     var emailField: UITextField!
     var passwordField: UITextField!
     var createAccountButton: UIButton!
+    var loginButton: UIButton!
     
     
     var username: String?
@@ -27,13 +29,13 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-//       FIRAuth.auth()?.addStateDidChangeListener{ auth, user in
-//            if let user = user {
-//                // User is signed in.
-//            } else {
-//                // No user is signed in.
-//            }
-//        }
+       FIRAuth.auth()?.addStateDidChangeListener{ auth, user in
+            if let user = user {
+                // User is signed in.
+            } else {
+                // No user is signed in.
+            }
+        }
     }
 
     func setupUI(){
@@ -60,15 +62,36 @@ class LoginViewController: UIViewController {
         createAccountButton.addTarget(self, action: #selector(createAccountButtonPressed(_:)), for: .touchUpInside)
         createAccountButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
         createAccountButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        
         view.addSubview(createAccountButton)
+        
+        
+        loginButton = UIButton(frame: CGRect(x: 20, y: createAccountButton.frame.maxY + 25, width: view.frame.width - 20, height: 50))
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.addTarget(self, action: #selector(loginButtonPressed(_sender:)), for: .touchUpInside)
+        loginButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
+        loginButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        view.addSubview(loginButton)
         
         
     }
     func createAccountButtonPressed(_ sender: UIButton!){
         //segue to create account screen
+        performSegue(withIdentifier: "segueToSignupVC", sender: self)
+        
     }
     
+    func loginButtonPressed(_sender: UIButton!){
+        guard let email = emailField.text, let password = passwordField.text else { return }
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                //self.signedIn(user)
+                print("signed in!")
+            }
+        })
+    }
     
 
 }

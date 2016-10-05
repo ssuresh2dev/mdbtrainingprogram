@@ -16,7 +16,7 @@
 		152F0B021DA2454C00CB7D34 /* MDBSocialsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B011DA2454C00CB7D34 /* MDBSocialsUITests.swift */; };
 		152F0B141DA393B700CB7D34 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B131DA393B700CB7D34 /* LoginViewController.swift */; };
 		152F0B161DA3942C00CB7D34 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B151DA3942C00CB7D34 /* SignupViewController.swift */; };
-		152F0B181DA39F6300CB7D34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 152F0B171DA39F6300CB7D34 /* GoogleService-Info.plist */; };
+		152F0B1C1DA4BA7300CB7D34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 152F0B1B1DA4BA7300CB7D34 /* GoogleService-Info.plist */; };
 		B0D24DCA401ADE4B273E8B8C /* libPods-MDBSocials.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A533D157F9D7EE5714224F3 /* libPods-MDBSocials.a */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,8 @@
 		152F0B031DA2454C00CB7D34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		152F0B131DA393B700CB7D34 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		152F0B151DA3942C00CB7D34 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
-		152F0B171DA39F6300CB7D34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		152F0B1B1DA4BA7300CB7D34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		152F0B1D1DA4BBD400CB7D34 /* MDBSocials.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MDBSocials.entitlements; sourceTree = "<group>"; };
 		2A533D157F9D7EE5714224F3 /* libPods-MDBSocials.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MDBSocials.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA34923A6B3B759E79C98A89 /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
 		F90091B7045A153976FE4541 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,12 +111,13 @@
 		152F0AE01DA2454C00CB7D34 /* MDBSocials */ = {
 			isa = PBXGroup;
 			children = (
+				152F0B1D1DA4BBD400CB7D34 /* MDBSocials.entitlements */,
 				152F0AE11DA2454C00CB7D34 /* AppDelegate.swift */,
-				152F0B171DA39F6300CB7D34 /* GoogleService-Info.plist */,
 				152F0AE31DA2454C00CB7D34 /* ViewController.swift */,
 				152F0AE51DA2454C00CB7D34 /* Main.storyboard */,
 				152F0AE81DA2454C00CB7D34 /* Assets.xcassets */,
 				152F0B131DA393B700CB7D34 /* LoginViewController.swift */,
+				152F0B1B1DA4BA7300CB7D34 /* GoogleService-Info.plist */,
 				152F0AEA1DA2454C00CB7D34 /* LaunchScreen.storyboard */,
 				152F0B151DA3942C00CB7D34 /* SignupViewController.swift */,
 				152F0AED1DA2454C00CB7D34 /* Info.plist */,
@@ -229,7 +231,13 @@
 				TargetAttributes = {
 					152F0ADD1DA2454C00CB7D34 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 5KB7MTX8J4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					152F0AF11DA2454C00CB7D34 = {
 						CreatedOnToolsVersion = 8.0;
@@ -269,7 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				152F0AEC1DA2454C00CB7D34 /* LaunchScreen.storyboard in Resources */,
-				152F0B181DA39F6300CB7D34 /* GoogleService-Info.plist in Resources */,
+				152F0B1C1DA4BA7300CB7D34 /* GoogleService-Info.plist in Resources */,
 				152F0AE91DA2454C00CB7D34 /* Assets.xcassets in Resources */,
 				152F0AE71DA2454C00CB7D34 /* Main.storyboard in Resources */,
 			);
@@ -500,6 +508,8 @@
 			baseConfigurationReference = DA34923A6B3B759E79C98A89 /* Pods-MDBSocials.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MDBSocials/MDBSocials.entitlements;
+				DEVELOPMENT_TEAM = 5KB7MTX8J4;
 				INFOPLIST_FILE = MDBSocials/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eliothan.MDBSocials;
@@ -513,6 +523,8 @@
 			baseConfigurationReference = F90091B7045A153976FE4541 /* Pods-MDBSocials.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MDBSocials/MDBSocials.entitlements;
+				DEVELOPMENT_TEAM = 5KB7MTX8J4;
 				INFOPLIST_FILE = MDBSocials/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eliothan.MDBSocials;
