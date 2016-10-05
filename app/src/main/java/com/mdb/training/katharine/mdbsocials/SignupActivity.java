@@ -21,7 +21,6 @@ public class SignupActivity extends AppCompatActivity {
 
     private EditText name;
     private EditText email;
-    private EditText username;
     private EditText password;
     private Button signup;
 
@@ -36,7 +35,6 @@ public class SignupActivity extends AppCompatActivity {
 
         name = (EditText) findViewById(R.id.name);
         email = (EditText) findViewById(R.id.email);
-        username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         signup = (Button) findViewById(R.id.signup);
 
@@ -49,16 +47,13 @@ public class SignupActivity extends AppCompatActivity {
                 signup();
             }
         });
-
-
     }
 
     private void signup() {
         String n = name.getText().toString();
-        String us = username.getText().toString();
         String em = email.getText().toString();
         String pass = password.getText().toString();
-        final User user = new User(n, us, em, pass);
+        final User user = new User(n, em);
         mAuth.createUserWithEmailAndPassword(em, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
