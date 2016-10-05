@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		327F99DF1DA4BFE90042DF55 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F99DE1DA4BFE90042DF55 /* SignUpViewController.swift */; };
+		327F99E11DA4C0060042DF55 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F99E01DA4C0050042DF55 /* FeedViewController.swift */; };
+		327F99E31DA4C0120042DF55 /* NewSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F99E21DA4C0120042DF55 /* NewSocialViewController.swift */; };
 		3FE6333643E80041694CA8F5 /* Pods_Virindly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3025217A477989DD8F144016 /* Pods_Virindly.framework */; };
 		B64DE2FE1DA1909A0055FA01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */; };
 		B64DE3001DA1909A0055FA01 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE2FF1DA1909A0055FA01 /* LoginViewController.swift */; };
@@ -19,6 +22,9 @@
 /* Begin PBXFileReference section */
 		0B74379702CB8882239CBE98 /* Pods-Virindly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virindly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Virindly/Pods-Virindly.release.xcconfig"; sourceTree = "<group>"; };
 		3025217A477989DD8F144016 /* Pods_Virindly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Virindly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		327F99DE1DA4BFE90042DF55 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		327F99E01DA4C0050042DF55 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		327F99E21DA4C0120042DF55 /* NewSocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSocialViewController.swift; sourceTree = "<group>"; };
 		B64DE2FA1DA1909A0055FA01 /* Virindly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Virindly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B64DE2FF1DA1909A0055FA01 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +79,9 @@
 			children = (
 				B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */,
 				B64DE2FF1DA1909A0055FA01 /* LoginViewController.swift */,
+				327F99DE1DA4BFE90042DF55 /* SignUpViewController.swift */,
+				327F99E01DA4C0050042DF55 /* FeedViewController.swift */,
+				327F99E21DA4C0120042DF55 /* NewSocialViewController.swift */,
 				B64DE3011DA1909A0055FA01 /* Main.storyboard */,
 				B64DE3041DA1909A0055FA01 /* Assets.xcassets */,
 				B64DE3111DA19DA50055FA01 /* GoogleService-Info.plist */,
@@ -216,7 +225,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				327F99DF1DA4BFE90042DF55 /* SignUpViewController.swift in Sources */,
+				327F99E31DA4C0120042DF55 /* NewSocialViewController.swift in Sources */,
 				B64DE3001DA1909A0055FA01 /* LoginViewController.swift in Sources */,
+				327F99E11DA4C0060042DF55 /* FeedViewController.swift in Sources */,
 				B64DE2FE1DA1909A0055FA01 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
