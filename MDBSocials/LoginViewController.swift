@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
         view.addSubview(titleLabel)
         
         emailField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2, width: view.frame.width, height: 50))
-        emailField.placeholder = "Username"
+        emailField.placeholder = "Enter your email"
         emailField.keyboardType = UIKeyboardType.emailAddress
         emailField.font = UIFont(name: "Avenir-Light", size: 13.0)
         view.addSubview(emailField)
