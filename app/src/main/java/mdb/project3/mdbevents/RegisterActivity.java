@@ -1,5 +1,6 @@
 package mdb.project3.mdbevents;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -19,12 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-import org.w3c.dom.Text;
-
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView registerTitle;
     private EditText fullNameInput,
-            usernameInput,
             registerEmailInput,
             registerPasswordInput;
     private AppCompatButton signUpButton;
@@ -47,8 +45,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                } else {
-                    // User is signed out
                 }
             }
         };
@@ -73,7 +69,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         int id = v.getId();
         if (id == R.id.sign_up_button) {
             createAccount(fullNameInput.getText().toString(),
-                    usernameInput.getText().toString(),
                     registerEmailInput.getText().toString(),
                     registerPasswordInput.getText().toString());
         }
@@ -82,7 +77,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void initializeViews() {
         registerTitle = (TextView) findViewById(R.id.register_title);
         fullNameInput = (EditText) findViewById(R.id.full_name_input);
-        usernameInput = (EditText) findViewById(R.id.username_input);
         registerEmailInput = (EditText) findViewById(R.id.register_email_input);
         registerPasswordInput = (EditText) findViewById(R.id.register_password_input);
         signUpButton = (AppCompatButton) findViewById(R.id.sign_up_button);
@@ -94,8 +88,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    private void createAccount(final String fullName, String username, String email, String password) {
-        if (!validate(fullName, username, email, password))
+    private void createAccount(final String fullName, String email, String password) {
+        if (!validate(fullName, email, password))
             return;
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -110,9 +104,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    private boolean validate(String fullName, String username, String email, String password) {
+    private boolean validate(String fullName, String email, String password) {
         boolean valid = !(TextUtils.isEmpty(fullName) ||
-                TextUtils.isEmpty(username) ||
                 TextUtils.isEmpty(email) ||
                 TextUtils.isEmpty(password));
         if (!valid) {

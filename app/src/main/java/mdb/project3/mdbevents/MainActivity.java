@@ -3,12 +3,18 @@ package mdb.project3.mdbevents;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                } else {
-                    // User is signed out
                 }
             }
         };
@@ -70,8 +74,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.register_button) {
-            Intent myIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+            Intent myIntent = new Intent(MainActivity.this, RegisterActivity.class);
+            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(myIntent);
+        } else if (id == R.id.login_button) {
+            signIn(emailView.getText().toString(), passwordView.getText().toString());
         }
+    }
+
+    private void signIn(String email, String password) {
+        if (!validate(email, password))
+            return;
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "works", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private boolean validate(String email, String password) {
+        boolean valid = !(TextUtils.isEmpty(email) ||
+                TextUtils.isEmpty(password));
+        if (!valid) {
+            Snackbar.make(findViewById(R.id.activity_register),
+                    "Required fields are empty",
+                    Snackbar.LENGTH_SHORT).show();
+        }
+        return valid;
     }
 }
