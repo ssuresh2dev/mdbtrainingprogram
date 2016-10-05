@@ -21,6 +21,7 @@
                     </view>
                     <connections>
                         <segue destination="3Wq-OJ-MSI" kind="show" identifier="segueToSignupVC" id="8Q5-91-FI1"/>
+                        <segue destination="Feg-dx-ePS" kind="showDetail" identifier="segueToFeedVC" action="showViewController:sender:" id="Yrc-DL-Nlr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -43,6 +44,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OqD-tl-v3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18" y="681"/>
+        </scene>
+        <!--Feed View Controller-->
+        <scene sceneID="SBC-Nd-Hhi">
+            <objects>
+                <viewController id="Feg-dx-ePS" customClass="FeedViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g4m-JD-p3Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="fHK-5e-jBD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fvC-dN-dtI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iW6-XL-FYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="809" y="512"/>
         </scene>
     </scenes>
 </document>

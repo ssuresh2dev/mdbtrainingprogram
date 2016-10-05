@@ -17,6 +17,7 @@
 		152F0B141DA393B700CB7D34 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B131DA393B700CB7D34 /* LoginViewController.swift */; };
 		152F0B161DA3942C00CB7D34 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B151DA3942C00CB7D34 /* SignupViewController.swift */; };
 		152F0B1C1DA4BA7300CB7D34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 152F0B1B1DA4BA7300CB7D34 /* GoogleService-Info.plist */; };
+		152F0B1F1DA4C07E00CB7D34 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */; };
 		B0D24DCA401ADE4B273E8B8C /* libPods-MDBSocials.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A533D157F9D7EE5714224F3 /* libPods-MDBSocials.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		152F0B151DA3942C00CB7D34 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		152F0B1B1DA4BA7300CB7D34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		152F0B1D1DA4BBD400CB7D34 /* MDBSocials.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MDBSocials.entitlements; sourceTree = "<group>"; };
+		152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		2A533D157F9D7EE5714224F3 /* libPods-MDBSocials.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MDBSocials.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA34923A6B3B759E79C98A89 /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
 		F90091B7045A153976FE4541 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				152F0AE81DA2454C00CB7D34 /* Assets.xcassets */,
 				152F0B131DA393B700CB7D34 /* LoginViewController.swift */,
 				152F0B1B1DA4BA7300CB7D34 /* GoogleService-Info.plist */,
+				152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */,
 				152F0AEA1DA2454C00CB7D34 /* LaunchScreen.storyboard */,
 				152F0B151DA3942C00CB7D34 /* SignupViewController.swift */,
 				152F0AED1DA2454C00CB7D34 /* Info.plist */,
@@ -354,6 +357,7 @@
 			files = (
 				152F0B141DA393B700CB7D34 /* LoginViewController.swift in Sources */,
 				152F0AE41DA2454C00CB7D34 /* ViewController.swift in Sources */,
+				152F0B1F1DA4C07E00CB7D34 /* FeedViewController.swift in Sources */,
 				152F0B161DA3942C00CB7D34 /* SignupViewController.swift in Sources */,
 				152F0AE21DA2454C00CB7D34 /* AppDelegate.swift in Sources */,
 			);
