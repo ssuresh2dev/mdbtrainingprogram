@@ -32,6 +32,9 @@ class LoginViewController: UIViewController {
        FIRAuth.auth()?.addStateDidChangeListener{ auth, user in
             if let user = user {
                 // User is signed in.
+                //self.performSegue(withIdentifier: "segueToFeedVC", sender: self)
+                self.present(FeedViewController() as! UIViewController, animated: false, completion: nil)
+
             } else {
                 // No user is signed in.
             }
