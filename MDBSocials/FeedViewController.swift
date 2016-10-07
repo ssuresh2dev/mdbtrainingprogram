@@ -7,29 +7,55 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class FeedViewController: UIViewController {
 
+   // var ref: FIRDatabaseReference!
+    //var events: [FIRDataSnapshot]! = []
+    //var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //configureDatabase()
+//        setupTableView()
+        setupUI()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func configureDatabase(){
+        //ref = FIRDatabase().reference()
+        
+        
+    }
+//    func setupTableView(){
+//        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+//        tableView.register(EventTableViewCell.self, forCellReuseIdentifier: "eventCell")
+//        tableView.dataSource = self
+//        tableView.delegate = self
+//    
+//    }
+    func setupUI(){
+        let addEventButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FeedViewController.showCreateEventVC))
+        self.navigationItem.rightBarButtonItem = addEventButton
+    }
+    func showCreateEventVC(){
+        performSegue(withIdentifier: "segueToCreateEventVC", sender: self)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+//extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        
+//    }
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//    }
+//  
+//    
+//}

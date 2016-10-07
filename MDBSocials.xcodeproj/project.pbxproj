@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151AEDF61DA5A41F006FD875 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AEDF51DA5A41F006FD875 /* EventTableViewCell.swift */; };
+		151AEDF81DA5AFA9006FD875 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AEDF71DA5AFA9006FD875 /* CreateEventViewController.swift */; };
 		152F0AE21DA2454C00CB7D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0AE11DA2454C00CB7D34 /* AppDelegate.swift */; };
 		152F0AE41DA2454C00CB7D34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0AE31DA2454C00CB7D34 /* ViewController.swift */; };
 		152F0AE71DA2454C00CB7D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152F0AE51DA2454C00CB7D34 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151AEDF51DA5A41F006FD875 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		151AEDF71DA5AFA9006FD875 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		152F0ADE1DA2454C00CB7D34 /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		152F0AE11DA2454C00CB7D34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		152F0AE31DA2454C00CB7D34 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				152F0B131DA393B700CB7D34 /* LoginViewController.swift */,
 				152F0B1B1DA4BA7300CB7D34 /* GoogleService-Info.plist */,
 				152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */,
+				151AEDF71DA5AFA9006FD875 /* CreateEventViewController.swift */,
+				151AEDF51DA5A41F006FD875 /* EventTableViewCell.swift */,
 				152F0AEA1DA2454C00CB7D34 /* LaunchScreen.storyboard */,
 				152F0B151DA3942C00CB7D34 /* SignupViewController.swift */,
 				152F0AED1DA2454C00CB7D34 /* Info.plist */,
@@ -355,8 +361,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				151AEDF61DA5A41F006FD875 /* EventTableViewCell.swift in Sources */,
 				152F0B141DA393B700CB7D34 /* LoginViewController.swift in Sources */,
 				152F0AE41DA2454C00CB7D34 /* ViewController.swift in Sources */,
+				151AEDF81DA5AFA9006FD875 /* CreateEventViewController.swift in Sources */,
 				152F0B1F1DA4C07E00CB7D34 /* FeedViewController.swift in Sources */,
 				152F0B161DA3942C00CB7D34 /* SignupViewController.swift in Sources */,
 				152F0AE21DA2454C00CB7D34 /* AppDelegate.swift in Sources */,

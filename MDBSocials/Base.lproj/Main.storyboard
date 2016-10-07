@@ -21,7 +21,7 @@
                     </view>
                     <connections>
                         <segue destination="3Wq-OJ-MSI" kind="show" identifier="segueToSignupVC" id="8Q5-91-FI1"/>
-                        <segue destination="Feg-dx-ePS" kind="showDetail" identifier="segueToFeedVC" action="showViewController:sender:" id="Yrc-DL-Nlr"/>
+                        <segue destination="sRz-ho-i6M" kind="showDetail" identifier="segueToFeedVC" action="showViewController:sender:" id="Yrc-DL-Nlr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -45,10 +45,28 @@
             </objects>
             <point key="canvasLocation" x="18" y="681"/>
         </scene>
+        <!--Create Event View Controller-->
+        <scene sceneID="1Dm-G7-Mrd">
+            <objects>
+                <viewController id="LBE-do-Lvw" customClass="CreateEventViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AvL-TJ-mHw"/>
+                        <viewControllerLayoutGuide type="bottom" id="hxw-ic-ftL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dnt-T4-Elm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RiO-DV-nLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="-213"/>
+        </scene>
         <!--Feed View Controller-->
         <scene sceneID="SBC-Nd-Hhi">
             <objects>
-                <viewController id="Feg-dx-ePS" customClass="FeedViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Feg-dx-ePS" customClass="FeedViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g4m-JD-p3Y"/>
                         <viewControllerLayoutGuide type="bottom" id="fHK-5e-jBD"/>
@@ -58,10 +76,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ez5-Cm-FAd"/>
+                    <connections>
+                        <segue destination="LBE-do-Lvw" kind="show" identifier="segueToCreateEventVC" id="ayA-YK-fKn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iW6-XL-FYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="512"/>
+            <point key="canvasLocation" x="1748" y="511.39430284857576"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Npt-ay-3um">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sRz-ho-i6M" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OIt-Sc-2mk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Feg-dx-ePS" kind="relationship" relationship="rootViewController" id="flb-ZT-ABj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WM4-Ev-IbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="808.79999999999995" y="511.39430284857576"/>
         </scene>
     </scenes>
 </document>
