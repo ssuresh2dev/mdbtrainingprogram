@@ -8,28 +8,46 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var tableView: UITableView!
+    var posterArray: [String]!
+    var nameArray: [String]!
+    var imageArray: [UIImage]!
+    var interestedArray: [Int]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+
+class FeedTableViewCell: UITableViewCell {
+    
+    var posterLabel: String!
+    var nameLabel: String!
+    var eventImage: UIImage!
+    var interestedLabel: Int!
+    
+    override func awakeFromNib() {
+        let imageView = UIImageView()
+        
+        posterLabel = UILabel(frame: <#T##CGRect#>)
+        interestedLabel = UILabel(frame: <#T##CGRect#>)
+        nameLabel = UILabel(frame: <#T##CGRect#>)
+        imageView.frame = CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+        
+        addSubview(posterLabel)
+        addSubview(interestedLabel)
+        addSubview(nameLabel)
+        addSubview(imageView)
+        
+        eventImage = UIImage(named: <#T##String#>)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
