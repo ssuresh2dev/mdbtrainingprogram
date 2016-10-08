@@ -9,6 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#1E90F0"
+
     tools:context="com.mdb.training.katharine.mdbsocials.MainActivity">
 
     <ImageView
@@ -28,24 +30,20 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:inputType="textEmailAddress"
-        android:text="email"
+        android:hint="email"
         android:ems="10"
         android:id="@+id/email"
-=======
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/username"
-        android:hint="username"
->>>>>>> e8ae5f1903c272745daf78ac5cf05940990d91a9
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
+        android:padding="8dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffffff"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
@@ -59,15 +57,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/email"
-        android:text="Password" />
-=======
-        app:layout_constraintTop_toBottomOf="@+id/username" />
->>>>>>> e8ae5f1903c272745daf78ac5cf05940990d91a9
+        android:padding="8dp"
+        android:layout_marginRight="16dp"
+        android:background="#ffffff"/>
 
     <Button
         android:text="login"
@@ -84,7 +79,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:text="New? Sign up here"
@@ -102,6 +97,3 @@
         android:layout_marginBottom="16dp" />
 
 </android.support.constraint.ConstraintLayout>
-    <!--android:id="@+id/constraintLayout">-->
-
-<!--</android.support.constraint.ConstraintLayout>-->
