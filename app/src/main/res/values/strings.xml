@@ -16,4 +16,5 @@
     <string name="event_description_hint">Description</string>
     <string name="date_picker_hint">Date</string>
     <string name="create_event_button_text">Create Event</string>
+    <string name="feed_toolbar_title">Events Feed</string>
 </resources>
