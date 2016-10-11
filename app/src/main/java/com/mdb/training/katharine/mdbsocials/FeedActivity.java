@@ -48,7 +48,9 @@ public class FeedActivity extends AppCompatActivity {
         createSocial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(FeedActivity.this, CreateNewSocial.class));
+                Intent intent = new Intent(FeedActivity.this, CreateNewSocial.class);
+                intent.putExtra("socialsList", socials);
+                startActivity(intent);
             }
         });
 

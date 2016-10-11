@@ -51,7 +51,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private void signup() {
         String n = name.getText().toString();
-        String em = email.getText().toString();
+        final String em = email.getText().toString();
         String pass = password.getText().toString();
         final User user = new User(n, em);
         mAuth.createUserWithEmailAndPassword(em, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

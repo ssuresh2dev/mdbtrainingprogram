@@ -25,7 +25,7 @@ public class SocialsList {
     }
 
 
-    public class Social {
+    public static class Social {
         public String title;
         public String author;
         public String description;
@@ -41,6 +41,11 @@ public class SocialsList {
             this.author = author;
             this.description = description;
             this.date = date;
+            this.interested = new ArrayList<>();
+        }
+
+        public void addInterested(String uid) {
+            interested.add(uid);
         }
     }
 
