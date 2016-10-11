@@ -1,9 +1,9 @@
 package com.mdb.training.katharine.mdbsocials;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,11 +16,10 @@ public class FeedActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private RecyclerView rv;
-    private FeedAdapter adapter;
+    public  FeedAdapter adapter;
     private ArrayList<SocialsList.Social> socials;
     private FloatingActionButton logout;
     private FloatingActionButton createSocial;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +30,12 @@ public class FeedActivity extends AppCompatActivity {
         logout = (FloatingActionButton) findViewById(R.id.logout);
         createSocial = (FloatingActionButton) findViewById(R.id.createNew);
 
+
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FeedAdapter(getApplicationContext(), socials);
         rv.setAdapter(adapter);
+
 
         mAuth = FirebaseAuth.getInstance();
         logout.setOnClickListener(new View.OnClickListener() {
@@ -54,9 +55,9 @@ public class FeedActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
+
+
+
+
 }
