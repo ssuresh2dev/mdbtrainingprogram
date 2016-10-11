@@ -1,6 +1,7 @@
 package mdb.project3.mdbevents;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +76,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHo
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), DetailActivity.class);
 
+                    // Put extras
+
+                    v.getContext().startActivity(intent);
                 }
             });
             /*Think about what we said in the comment above onCreateViewHolder to determine the

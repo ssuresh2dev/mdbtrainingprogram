@@ -1,9 +1,11 @@
 package mdb.project3.mdbevents;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -50,6 +52,11 @@ public class FeedActivity extends AppCompatActivity {
 
         // Set the adapter of the recycler view to the event adapter
         recyclerView.setAdapter(eventAdapter);
+    }
+
+    public void startNewSocialActivity(View view){
+        Intent intent = new Intent(getApplicationContext(), CreateSocial.class);
+        startActivity(intent);
     }
 
 }
