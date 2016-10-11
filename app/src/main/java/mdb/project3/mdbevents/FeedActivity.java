@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FeedActivity extends AppCompatActivity {
 
     EventAdapter eventAdapter;
+    DatabaseReference rootNode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,22 +28,24 @@ public class FeedActivity extends AppCompatActivity {
         // Create a list of test events and bind the event adapter to this list
         ArrayList<Event> eventTestList = new ArrayList<>();
 
-        Event testEvent1 = new Event("Kedar Thakkar", "kedarthakkar@berkeley.edu", "10", "fakeurl1.com", new HashMap());
-        Event testEvent2 = new Event("Sayan", "sayansdope@berkeley.edu", "20", "probablyporn.com", new HashMap());
-        Event testEvent3 = new Event("Eman", "emanfyb@berkeley.edu", "30", "sleepsalot.com", new HashMap());
+        rootNode = FirebaseDatabase.getInstance().getReference();
 
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
+//        Event testEvent1 = new Event("Kedar Thakkar", "kedarthakkar@berkeley.edu", "10", "fakeurl1.com", new HashMap());
+//        Event testEvent2 = new Event("Sayan", "sayansdope@berkeley.edu", "20", "probablyporn.com", new HashMap());
+//        Event testEvent3 = new Event("Eman", "emanfyb@berkeley.edu", "30", "sleepsalot.com", new HashMap());
+//
+//        eventTestList.add(testEvent1);
+//        eventTestList.add(testEvent2);
+//        eventTestList.add(testEvent3);
+//        eventTestList.add(testEvent1);
+//        eventTestList.add(testEvent2);
+//        eventTestList.add(testEvent3);
+//        eventTestList.add(testEvent1);
+//        eventTestList.add(testEvent2);
+//        eventTestList.add(testEvent3);
+//        eventTestList.add(testEvent1);
+//        eventTestList.add(testEvent2);
+//        eventTestList.add(testEvent3);
 
         eventAdapter = new EventAdapter(getApplicationContext(), eventTestList);
 

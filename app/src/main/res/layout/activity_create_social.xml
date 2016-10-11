@@ -38,22 +38,24 @@
             android:hint="@string/event_name_hint"
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@drawable/text_cursor_yellow"
-            app:layout_constraintLeft_toLeftOf="@id/new_social_title"
-            app:layout_constraintRight_toRightOf="@id/new_social_title"
-            app:layout_constraintTop_toBottomOf="@id/new_social_title"
+            app:layout_constraintLeft_toLeftOf="@+id/new_social_title"
+            app:layout_constraintRight_toRightOf="@+id/new_social_title"
+            app:layout_constraintTop_toBottomOf="@+id/new_social_title"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@android:color/white" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/event_image"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginTop="@dimen/form_field_margin"
+            android:background="@color/colorPrimary"
             android:contentDescription="@string/event_image_description"
-            app:layout_constraintLeft_toLeftOf="@id/name_of_event"
-            app:layout_constraintRight_toRightOf="@id/name_of_event"
-            app:layout_constraintTop_toBottomOf="@id/name_of_event" />
+            android:src="@drawable/ic_add_a_photo_black_24dp"
+            app:layout_constraintLeft_toLeftOf="@+id/name_of_event"
+            app:layout_constraintRight_toRightOf="@+id/name_of_event"
+            app:layout_constraintTop_toBottomOf="@+id/name_of_event" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/event_description"
@@ -64,9 +66,9 @@
             android:inputType="textEmailAddress"
             android:maxLines="2"
             android:textCursorDrawable="@drawable/text_cursor_yellow"
-            app:layout_constraintLeft_toLeftOf="@id/event_image"
-            app:layout_constraintRight_toRightOf="@id/event_image"
-            app:layout_constraintTop_toBottomOf="@id/event_image"
+            app:layout_constraintLeft_toLeftOf="@+id/event_image"
+            app:layout_constraintRight_toRightOf="@+id/event_image"
+            app:layout_constraintTop_toBottomOf="@+id/event_image"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@android:color/white" />
@@ -79,8 +81,8 @@
             android:hint="@string/date_picker_hint"
             android:inputType="text"
             android:textCursorDrawable="@drawable/text_cursor_yellow"
-            app:layout_constraintLeft_toLeftOf="@id/event_description"
-            app:layout_constraintTop_toBottomOf="@id/event_description"
+            app:layout_constraintLeft_toLeftOf="@+id/event_description"
+            app:layout_constraintTop_toBottomOf="@+id/event_description"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@android:color/white" />
@@ -89,12 +91,15 @@
             android:id="@+id/second_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:hint="@string/date_picker_hint"
             android:inputType="text"
             android:textCursorDrawable="@drawable/text_cursor_yellow"
-            app:layout_constraintBottom_toBottomOf="@id/first_date"
-            app:layout_constraintLeft_toRightOf="@id/first_date"
-            app:layout_constraintTop_toTopOf="@id/first_date"
+            app:layout_constraintBottom_toBottomOf="@+id/first_date"
+            app:layout_constraintLeft_toRightOf="@+id/first_date"
+            app:layout_constraintRight_toLeftOf="@+id/third_date"
+            app:layout_constraintTop_toTopOf="@+id/first_date"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@android:color/white" />
@@ -106,10 +111,9 @@
             android:hint="@string/date_picker_hint"
             android:inputType="text"
             android:textCursorDrawable="@drawable/text_cursor_yellow"
-            app:layout_constraintBottom_toBottomOf="@id/second_date"
-            app:layout_constraintTop_toTopOf="@id/second_date"
-            app:layout_constraintRight_toRightOf="@id/event_description"
-            app:layout_constraintLeft_toRightOf="@id/second_date"
+            app:layout_constraintBottom_toBottomOf="@+id/second_date"
+            app:layout_constraintRight_toRightOf="@+id/event_description"
+            app:layout_constraintTop_toTopOf="@+id/second_date"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@android:color/white" />
@@ -118,14 +122,12 @@
             android:id="@+id/create_event_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/form_field_margin"
-            android:layout_marginStart="@dimen/form_field_margin"
             android:layout_marginTop="@dimen/form_field_margin"
             android:background="@color/colorAccent"
             android:text="@string/create_event_button_text"
-            app:layout_constraintLeft_toLeftOf="@id/first_date"
-            app:layout_constraintRight_toRightOf="@id/third_date"
-            app:layout_constraintTop_toBottomOf="@id/first_date"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first_date" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
