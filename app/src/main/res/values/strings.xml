@@ -10,4 +10,11 @@
     <string name="username_hint">Username</string>
     <string name="register_title">Register</string>
     <string name="sign_up_button">Sign Up!</string>
+    <string name="new_social_title_text">Create a Social</string>
+    <string name="event_name_hint">Name of event</string>
+    <string name="event_image_description">Event image</string>
+    <string name="event_description_hint">Description</string>
+    <string name="date_picker_hint">Date</string>
+    <string name="create_event_button_text">Create Event</string>
+    <string name="feed_toolbar_title">Events Feed</string>
 </resources>
