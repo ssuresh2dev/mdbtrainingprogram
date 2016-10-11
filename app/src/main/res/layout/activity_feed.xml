@@ -11,9 +11,10 @@
     tools:context="mdb.project3.mdbevents.FeedActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/recycler_view">
+        android:id="@+id/recycler_view"
+        android:background="@color/lightBlue"
+        android:layout_width="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 

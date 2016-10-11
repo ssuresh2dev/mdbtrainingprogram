@@ -5,4 +5,6 @@
     <color name="colorAccent">#FFCA23</color>
     <color name="colorSecondary">#FFA24E</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="lightBlue">#B5DDEB</color>
 </resources>
