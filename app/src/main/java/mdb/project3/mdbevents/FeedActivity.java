@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FeedActivity extends AppCompatActivity {
 
     EventAdapter eventAdapter;
+    DatabaseReference rootNode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class FeedActivity extends AppCompatActivity {
         eventTestList.add(testEvent1);
         eventTestList.add(testEvent2);
         eventTestList.add(testEvent3);
+        rootNode = FirebaseDatabase.getInstance().getReference();
 
         eventAdapter = new EventAdapter(getApplicationContext(), eventTestList);
 
