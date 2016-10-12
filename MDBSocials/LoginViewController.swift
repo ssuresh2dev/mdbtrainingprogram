@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
     }
     func createAccountButtonPressed(_ sender: UIButton!){
         //segue to create account screen
-        performSegue(withIdentifier: "segueToSignupVC", sender: self)
+        self.performSegue(withIdentifier: "segueToSignupVC", sender: self)
         
     }
     

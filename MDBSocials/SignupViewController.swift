@@ -44,7 +44,7 @@ class SignupViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        
     }
     
     func setUpUI() {
@@ -87,8 +87,8 @@ class SignupViewController: UIViewController {
         registerBox = UIButton(frame: CGRect(x: 106, y: 456, width: 165, height: 33))
         registerBox.setTitle("Register", for: .normal)
         registerBox.backgroundColor = UIColor(red:0.60, green:0.83, blue:0.82, alpha:1.0)
-        registerBox.addTarget(self, action:#selector(pressRegister(_:)), for: .touchUpInside)
         registerBox.setTitleColor(UIColor.white, for: .normal)
+        registerBox.addTarget(self, action:#selector(pressRegister(_:)), for: .touchUpInside)
         view.addSubview(registerBox)
     }
     
@@ -108,7 +108,7 @@ class SignupViewController: UIViewController {
                     } else {
                         //self.signedIn(user)
                         print("signed in!")
-                        self.performSegue(withIdentifier: "afterRegister", sender: self)
+                        self.performSegue(withIdentifier: "registerToFeed", sender: self)
                     }
                 })
             }
