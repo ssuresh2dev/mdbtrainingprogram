@@ -47,23 +47,11 @@ class SignupViewController: UIViewController {
 
     }
     
-    func pressRegister(_sender: UIButton) {
-        guard let emailAdd = emailField.text, let pass = passwordField.text else { return }
-        FIRAuth.auth()?.createUser(withEmail: emailAdd, password: pass) {(user, error) in
-            if let error = error {
-                print(error)
-                return
-            } else {
-                print("User signed in!")
-            }
-        }
-    }
-    
     func setUpUI() {
-        firstName = UILabel(frame: CGRect(x: 48, y: 162, width: 75, height: 19))
+        firstName = UILabel(frame: CGRect(x: 48, y: 162, width: 200, height: 19))
         firstName.text = "First Name"
         view.addSubview(firstName)
-        lastName = UILabel(frame: CGRect(x: 205, y: 163, width: 73, height: 19))
+        lastName = UILabel(frame: CGRect(x: 205, y: 163, width: 200, height: 19))
         lastName.text = "Last Name"
         view.addSubview(lastName)
         
@@ -74,21 +62,22 @@ class SignupViewController: UIViewController {
         lastNameField.placeholder = "YAS"
         view.addSubview(lastNameField)
         
-        usernameDisplay = UILabel(frame: CGRect(x: 45.5, y: 227, width: 70, height: 19))
+        usernameDisplay = UILabel(frame: CGRect(x: 45.5, y: 227, width: 200, height: 19))
         usernameDisplay.text = "Username"
         view.addSubview(usernameDisplay)
-        usernameField = UITextField(frame: CGRect(x: 46, y: 246, width: 273, height: 3))
+        usernameField = UITextField(frame: CGRect(x: 46, y: 246, width: 273, height: 33))
         usernameField.placeholder = "OK"
         view.addSubview(usernameField)
         
-        passwordDisplay = UILabel(frame: CGRect(x: 46, y: 299, width: 66, height: 19))
+        passwordDisplay = UILabel(frame: CGRect(x: 46, y: 299, width: 200, height: 19))
         passwordDisplay.text = "Password"
         view.addSubview(passwordDisplay)
         passwordField = UITextField(frame: CGRect(x: 46, y: 318, width: 279, height: 33))
         passwordField.placeholder = "PASS"
+        passwordField.isSecureTextEntry = true
         view.addSubview(passwordField)
         
-        emailDisplay = UILabel(frame: CGRect(x: 48, y: 373, width: 38, height: 19))
+        emailDisplay = UILabel(frame: CGRect(x: 48, y: 373, width: 200, height: 19))
         emailDisplay.text = "Email"
         view.addSubview(emailDisplay)
         emailField = UITextField(frame: CGRect(x: 47, y: 389, width: 279, height: 33))
@@ -98,9 +87,34 @@ class SignupViewController: UIViewController {
         registerBox = UIButton(frame: CGRect(x: 106, y: 456, width: 165, height: 33))
         registerBox.setTitle("Register", for: .normal)
         registerBox.backgroundColor = UIColor(red:0.60, green:0.83, blue:0.82, alpha:1.0)
+        registerBox.addTarget(self, action:#selector(pressRegister(_:)), for: .touchUpInside)
         registerBox.setTitleColor(UIColor.white, for: .normal)
         view.addSubview(registerBox)
     }
+    
+    func pressRegister(_ sender: UIButton!) {
+        print("hi")
+        guard let emailAdd = emailField.text, let pass = passwordField.text else { return }
+        FIRAuth.auth()?.createUser(withEmail: emailAdd, password: pass, completion: { (user, error) in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                print("User registered!")
+                FIRAuth.auth()?.signIn(withEmail: emailAdd, password: pass, completion: { (user, error) in
+                    if let error = error {
+                        print(error)
+                        return
+                    } else {
+                        //self.signedIn(user)
+                        print("signed in!")
+                        self.performSegue(withIdentifier: "afterRegister", sender: self)
+                    }
+                })
+            }
+        })
+    }
+
     
     
     /*

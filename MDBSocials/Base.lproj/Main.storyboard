@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -26,6 +26,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="17" y="-285"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="Khq-GR-Vfp">
@@ -40,6 +41,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="sRz-ho-i6M" kind="showDetail" identifier="afterRegister" action="showViewController:sender:" id="0s2-HV-eEr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OqD-tl-v3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,7 +109,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WM4-Ev-IbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="808.79999999999995" y="511.39430284857576"/>
+            <point key="canvasLocation" x="970" y="412"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="0s2-HV-eEr"/>
+    </inferredMetricsTieBreakers>
 </document>
