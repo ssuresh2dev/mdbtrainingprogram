@@ -22,6 +22,7 @@ class FeedViewController: UIViewController {
         //configureDatabase()
 //        setupTableView()
         setupUI()
+        setupSignOutButton()
     }
 
     func configureDatabase(){
@@ -44,8 +45,24 @@ class FeedViewController: UIViewController {
         performSegue(withIdentifier: "segueToCreateEventVC", sender: self)
     }
    
-    @IBAction func unwindToFeedVC(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToFeedVC(_ segue: UIStoryboardSegue) {}
 
+    
+    func setupSignOutButton(){
+        let signOutButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(FeedViewController.signOut))
+        self.navigationItem.leftBarButtonItem = signOutButton
+        
+    }
+    
+    func signOut(){
+        do {
+            try FIRAuth.auth()?.signOut()
+            dismiss(animated: true)
+        } catch let error as NSError {
+            print(error)
+        }
+
+    }
 }
 
 //extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
