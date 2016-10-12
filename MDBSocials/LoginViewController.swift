@@ -73,7 +73,7 @@ class LoginViewController: UIViewController {
         
         loginButton = UIButton(frame: CGRect(x: 20, y: createAccountButton.frame.maxY + 25, width: view.frame.width - 20, height: 50))
         loginButton.setTitle("Login", for: .normal)
-        loginButton.addTarget(self, action: #selector(loginButtonPressed(_sender:)), for: .touchUpInside)
+        loginButton.addTarget(self, action:#selector(loginButtonPressed(_:)), for: .touchUpInside)
         loginButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
         loginButton.setTitleColor(UIColor.black, for: UIControlState.normal)
         view.addSubview(loginButton)
@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    func loginButtonPressed(_sender: UIButton!){
+    func loginButtonPressed(_ _sender: UIButton!){
         guard let email = emailField.text, let password = passwordField.text else { return }
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {

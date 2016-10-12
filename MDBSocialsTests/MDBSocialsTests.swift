@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MDBSocials
+//@testable import MDBSocials
 
 class MDBSocialsTests: XCTestCase {
     
