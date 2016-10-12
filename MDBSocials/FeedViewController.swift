@@ -43,7 +43,9 @@ class FeedViewController: UIViewController {
     func showCreateEventVC(){
         performSegue(withIdentifier: "segueToCreateEventVC", sender: self)
     }
-    
+   
+    @IBAction func unwindToFeedVC(segue: UIStoryboardSegue) {}
+
 }
 
 //extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
