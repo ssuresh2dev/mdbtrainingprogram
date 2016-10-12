@@ -1,5 +1,7 @@
 package mdb.project3.mdbevents;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -7,15 +9,20 @@ import java.util.ResourceBundle;
  * Created by Kedar on 10/4/2016.
  */
 
+@IgnoreExtraProperties
 public class Event {
 
-    String name;
-    String emailAddress;
-    String numInterested;
-    String imageUrl;
-    HashMap timestamp;
+    public String name;
+    public String emailAddress;
+    public String numInterested;
+    public String imageUrl;
+    public String timestamp;
 
-    public Event(String aName, String aEmailAddress, String aNumInterested, String aImageUrl, HashMap aTimestamp){
+    public Event() {
+        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    }
+
+    public Event(String aName, String aEmailAddress, String aNumInterested, String aImageUrl, String aTimestamp){
         name = aName;
         emailAddress = aEmailAddress;
         numInterested = aNumInterested;
@@ -38,7 +45,7 @@ public class Event {
         return imageUrl;
     }
 
-    public HashMap getTimestamp(){
+    public String getTimestamp(){
         return timestamp;
     }
 }

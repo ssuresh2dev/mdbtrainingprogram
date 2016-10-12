@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,10 +17,19 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -37,6 +47,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     private Bitmap socialImage;
 
     private DatabaseReference dbRef;
+    private FirebaseAuth mAuth;
+    private FirebaseStorage mStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +59,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
         bindViews();
 
         dbRef = FirebaseDatabase.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void bindViews() {
@@ -89,6 +103,38 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     private void updateDatabase() {
         if (!validate())
             return;
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            Toast.makeText(getApplicationContext(), "Session timed out!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        } else {
+            final String dbKey = dbRef.child("Events").push().getKey();
+            final String name = socialName.getText().toString();
+            final String emailAddress = user.getEmail();
+            final String numInterested = "0 others are interested";
+            final String timeStamp = String.valueOf(myCalendar.getTimeInMillis() / 1000L);
+
+            StorageReference storageReference = mStorage.getReferenceFromUrl("gs://mdb-events.appspot.com/");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            socialImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] data = baos.toByteArray();
+            UploadTask uploadTask = storageReference.child("images/" + dbKey + ".jpg").putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(), "Creating a new social failed!", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+                    dbRef.child("Events").child(dbKey).setValue(new Event(name,
+                            emailAddress, numInterested, downloadUri.toString(), timeStamp));
+                    startActivity(new Intent(CreateSocial.this, FeedActivity.class));
+                }
+            });
+        }
     }
 
     private boolean validate() {
