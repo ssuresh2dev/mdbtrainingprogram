@@ -43,17 +43,10 @@
         app:layout_constraintTop_toBottomOf="@+id/name"
         android:hint="Email" />
 
-<<<<<<< HEAD
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-=======
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
->>>>>>> a1ecb3bc77e02e2e182a80b2e56d0c970d25ee5d
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/password"

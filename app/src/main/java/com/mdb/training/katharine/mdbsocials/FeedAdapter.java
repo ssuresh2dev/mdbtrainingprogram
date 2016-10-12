@@ -80,13 +80,23 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
                     */
                     SocialsList.Social s = socials.get(getAdapterPosition());
                     Intent intent = new Intent(context, DetailsActivity.class);
+
+                    ArrayList<String> interestedName = new ArrayList<String>();
+                    ArrayList<String> interestedEmail = new ArrayList<String>();
+                    for(int i =0; i<s.interested.size();i++){
+                        interestedName.add(s.interested.get(i).name);
+                        interestedEmail.add(s.interested.get(i).email);
+                    }
+
+
                     intent.putExtra("title", s.title);
                     intent.putExtra("author", s.author);
                     intent.putExtra("description", s.description);
                     intent.putExtra("date", s.date);
                     intent.putExtra("interested", s.interested.size());
+                    intent.putStringArrayListExtra("interestedName", interestedName);
+                    intent.putStringArrayListExtra("interestedEmail", interestedEmail);
                     intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-
                     context.startActivity(intent);
                 }
             });

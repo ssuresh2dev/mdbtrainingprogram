@@ -38,8 +38,6 @@ public class CreateNewSocial extends AppCompatActivity {
         choosePic = (Button) findViewById(R.id.pic);
         createSocial = (Button) findViewById(R.id.create);
 
-        Intent intent = getIntent();
-        socialsList = (ArrayList< SocialsList.Social>) intent.getExtras().get("socialsList");
 
         mAuth = FirebaseAuth.getInstance();
         // mData = FirebaseDatabase.getInstance();
@@ -61,6 +59,6 @@ public class CreateNewSocial extends AppCompatActivity {
         String descrip = description.getText().toString();
         String author = mAuth.getCurrentUser().getEmail();
         SocialsList.Social social = new SocialsList.Social(n, author, descrip, d);
-        mDatabase.child("socials").child("n").setValue(social);
+        mDatabase.child("socials").setValue(social);
     }
 }

@@ -1,6 +1,5 @@
 package com.mdb.training.katharine.mdbsocials;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +28,7 @@ public class SocialsList {
         public String title;
         public String author;
         public String description;
-        public ArrayList<String> interested;
+        public ArrayList<User> interested;
         public String date;
 
         public Social() {
@@ -44,8 +43,12 @@ public class SocialsList {
             this.interested = new ArrayList<>();
         }
 
-        public void addInterested(String uid) {
-            interested.add(uid);
+        public void addInterested(User user) {
+            interested.add(user);
+        }
+
+        public ArrayList<User> getInterested(){
+            return interested;
         }
     }
 
