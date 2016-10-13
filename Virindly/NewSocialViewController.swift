@@ -35,17 +35,11 @@ class NewSocialViewController: UIViewController {
         
         
         
-        /*
-        // Navigation Bar
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
-        let navTitle2 = UINavigationItem(title: "Create a new social!")
         
         let addEvent = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(getter: UIAccessibilityCustomAction.selector))
-        navTitle2.rightBarButtonItem = addEvent
+        self.navigationItem.rightBarButtonItem = addEvent
         
-        navBar.setItems([navTitle2], animated: false)
-        self.view.addSubview(navBar)
-        */
+        
         
 
     

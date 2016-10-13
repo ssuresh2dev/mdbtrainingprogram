@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     var inputPasswordTextField: UITextField!
     var inputEmailTextField: UITextField!
     var signupButton: UIButton!
+    var user: FIRUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +135,13 @@ class SignUpViewController: UIViewController {
     
     func signedIn(user: FIRUser?) {
         performSegue(withIdentifier: "segueSignUpToFeed", sender: signupButton)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueSignUpToFeed" {
+            let dest = segue.destination as! FeedViewController
+            dest.user = user
+        }
     }
     
 }
