@@ -120,7 +120,7 @@ class LoginViewController: UIViewController {
     func pressedSignUpButton(sender: UIButton!) {
         performSegue(withIdentifier: "segueToSignUp", sender: self)
     }
-
+    
     func pressedLoginButton(sender: UIButton!) {
         if let login = loginTextField.text, let pass = passwordTextField.text {
             FIRAuth.auth()?.signIn(withEmail: login, password: pass, completion: { (user, error) in

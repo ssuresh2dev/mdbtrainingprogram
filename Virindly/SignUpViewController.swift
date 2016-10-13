@@ -103,9 +103,8 @@ class SignUpViewController: UIViewController {
         
         self.view.addSubview(signupButton)
     }
-
+    
     func hooHah(sender: UIButton!) {
-        print("1")
         if let email = inputEmailTextField.text, let pass = inputPasswordTextField.text {
             FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
                 if let error = error {
@@ -113,13 +112,11 @@ class SignUpViewController: UIViewController {
                     return
                 }
                 self.updateProfile(user: user!)
-                print("hi")
             })
         }
     }
-        
+    
     func updateProfile(user: FIRUser) {
-        print("2")
         if let name = inputFullNameTextField.text {
             let changeRequest = user.profileChangeRequest()
             changeRequest.displayName = name
@@ -131,13 +128,12 @@ class SignUpViewController: UIViewController {
                 self.signedIn(user: FIRAuth.auth()?.currentUser)
             })
         } else {
-                return
+            return
         }
     }
-        
+    
     func signedIn(user: FIRUser?) {
-        print("3")
         performSegue(withIdentifier: "segueSignUpToFeed", sender: signupButton)
     }
-        
+    
 }
