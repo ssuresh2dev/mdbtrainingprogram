@@ -33,10 +33,6 @@ Copyright 2016 Google
 
 Copyright 2016 Google
 
-## FirebaseInvites
-
-Copyright 2016 Google
-
 ## FirebaseMessaging
 
 Copyright 2016 Google
@@ -53,14 +49,6 @@ Copyright 2016 Google
 
 Copyright 2011 Google Inc. All Rights Reserved.
 
-## GoogleAppUtilities
-
-Copyright 2015 Google Inc.
-
-## GoogleAuthUtilities
-
-Copyright 2015 Google Inc.
-
 ## GoogleIPhoneUtilities
 
 Copyright 2015 Google Inc.
@@ -72,18 +60,6 @@ Copyright 2015 Google Inc.
 ## GoogleNetworkingUtilities
 
 Copyright 2015 Google Inc.
-
-## GoogleParsingUtilities
-
-Copyright 2015 Google Inc.
-
-## GooglePlusUtilities
-
-Copyright 2015 Google Inc.
-
-## GoogleSignIn
-
-Copyright 2015 Google Inc. All Rights Reserved.
 
 ## GoogleSymbolUtilities
 
