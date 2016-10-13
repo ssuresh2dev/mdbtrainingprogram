@@ -16,10 +16,13 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     var eventDateTextField: UITextField!
     var imagePicker = UIImagePickerController()
     var eventImageView: UIImageView! = UIImageView(image: UIImage(named: "emptyimage"))
+    var actionSheetController : UIAlertController = UIAlertController(title: "Photos", message: "Select Camera or Photo Library", preferredStyle: .actionSheet)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupAlertController()
         imagePicker.delegate = self
     }
     
@@ -54,17 +57,50 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         eventImageView.addGestureRecognizer(tapGestureRecognizer)
         
     }
-    func imageTapped(){
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum){
-            print("Button capture")
-            
-            
-            imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum;
-            imagePicker.allowsEditing = false
-            
-            self.present(imagePicker, animated: true, completion: nil)
+    
+    func setupAlertController(){
+        //Create and add the "Cancel" action
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            //Just dismiss the action sheet
         }
+        actionSheetController.addAction(cancelAction)
+        
+        //Create and add "Camera" action
+        let cameraAction: UIAlertAction = UIAlertAction(title: "Camera", style: .default) { action -> Void in
+            
+            //The user just pressed the camera button.
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+                imagePicker.allowsEditing = false
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+        actionSheetController.addAction(cameraAction)
+        
+        let libraryAction: UIAlertAction = UIAlertAction(title: "Photo Library", style: .default){ action -> Void
+            in
+            //User just pressed library button
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum){
+                print("Button capture")
+                
+                
+                self.imagePicker.delegate = self
+                self.imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum;
+                self.imagePicker.allowsEditing = false
+                
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+            
+        }
+        actionSheetController.addAction(libraryAction)
+    }
+    func imageTapped(){
+        
+        //Present the AlertController
+        self.present(actionSheetController, animated: true, completion: nil)
+        
 
     }
     
