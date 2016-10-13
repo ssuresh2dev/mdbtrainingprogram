@@ -52,7 +52,9 @@ class FeedViewController: UIViewController {
         performSegue(withIdentifier: "segueToCreateEventVC", sender: self)
     }
    
-    @IBAction func unwindToFeedVC(_ segue: UIStoryboardSegue) {}
+    @IBAction func unwindToFeedVC(_ segue: UIStoryboardSegue) {
+        print("unwinded!")
+    }
 
     
     func setupSignOutButton(){
@@ -72,6 +74,8 @@ class FeedViewController: UIViewController {
 
     }
     
+    
+  
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)

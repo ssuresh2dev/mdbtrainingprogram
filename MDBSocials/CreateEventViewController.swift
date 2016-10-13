@@ -125,18 +125,40 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     
     func postButtonClicked(){
-        let eventData = ["eventTitle": self.eventTitleField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": eventDescriptonTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"] as [String : Any]
+        let eventData: [String : NSString] = ["eventTitle": eventTitleField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": eventDescriptonTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"]
         
         
         
         let eventsRef = rootRef.child("events")
-        eventsRef.childByAutoId().setValue(eventData)
+        eventsRef.childByAutoId().setValue(eventData){ (error, snap) in
+            print("Success")
+            print(error)
+            
+        }
+//        eventsRef.setValue("hello")
+//        eventsRef.observeSingleEvent(of: .Value) { (snap) in
+//            print("GOT DATA")
+//            print(snap)
+////            if snap != nil {
+//                eventsRef.setValue(["hello":"test"]) { (error, snap) in
+//                    print("THERE WAS AN ERROR, YO:")
+//                    print(error)
+//                }
+////
+////            }
+//            
+//        }
         
+//        print(eventData)
+//        print(eventsRef)
+        performSegue(withIdentifier: "unwindToFeed", sender: self)
+//        print("worked")
         
-        performSegue(withIdentifier: "unwindToFeedVC", sender: self)
-        print("worked")
-        
-        
+//        rootRef.observeSingleEvent(of: .value, with: {snap in
+//        
+//            print("GOT DATA")
+//            print(snap)
+//        })
         
     }
 }
