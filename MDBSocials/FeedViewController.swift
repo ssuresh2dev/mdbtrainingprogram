@@ -38,9 +38,12 @@ class FeedViewController: UIViewController {
 //    
 //    }
     func setupUI(){
+        let rightIcon: UIImage = #imageLiteral(resourceName: "CalendarIcon")
         let addEventButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FeedViewController.showCreateEventVC))
+        addEventButton.setBackgroundImage(rightIcon, for: .normal, barMetrics: .default)
         self.navigationItem.rightBarButtonItem = addEventButton
         self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "Bar"), for: .default)
+        self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "OpenSocials"))
     }
     func showCreateEventVC(){
         performSegue(withIdentifier: "segueToCreateEventVC", sender: self)
