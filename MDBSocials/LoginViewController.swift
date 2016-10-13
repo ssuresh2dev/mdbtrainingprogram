@@ -79,11 +79,17 @@ class LoginViewController: UIViewController {
         
         emailField = UITextField(frame: CGRect(x: 66, y: 349, width: 244, height: 33))
         emailField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "DefaultTextView"))
-        emailField.leftViewMode = UITextFieldViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 14, height: 20))
-        let image: UIImage = #imageLiteral(resourceName: "PeopleIcon")
-        imageView.image = image
-        emailField.leftView = imageView
+        let imageView = UIView(frame: CGRect(x: 15, y: 0, width: 25, height: 22.22))
+//        emailField.leftViewMode = UITextFieldViewMode.always
+//        emailField.leftView = imageView
+        emailField.placeholder = "E-mail"
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 16.94, height: 22.22))
+        image.contentMode = UIViewContentMode.center
+        imageView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "PeopleIcon"))
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 16.94, height: 22.22))
+//        let image: UIImage = #imageLiteral(resourceName: "PeopleIcon")
+//        imageView.image = image
+//        emailField.leftView = imageView
         view.addSubview(emailField)
         
 //        passwordField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 + 30, width: view.frame.width, height: 50))
