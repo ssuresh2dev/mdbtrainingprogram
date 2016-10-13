@@ -28,7 +28,7 @@ public class SocialsList {
         public String title;
         public String author;
         public String description;
-        public ArrayList<User> interested;
+        public ArrayList<String> interested;
         public String date;
 
         public Social() {
@@ -43,11 +43,15 @@ public class SocialsList {
             this.interested = new ArrayList<>();
         }
 
-        public void addInterested(User user) {
-            interested.add(user);
+        public void setInterested(ArrayList<String> list) {
+            interested = list;
         }
 
-        public ArrayList<User> getInterested(){
+        public void addInterested(String uid) {
+            interested.add(uid);
+        }
+
+        public ArrayList<String> getInterested(){
             return interested;
         }
     }

@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -27,6 +29,8 @@ public class FeedActivity extends AppCompatActivity {
     private FloatingActionButton logout;
     private FloatingActionButton createSocial;
     private DatabaseReference mDatabase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +55,21 @@ public class FeedActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 socials = new ArrayList<SocialsList.Social>();
                 for(DataSnapshot dsp: dataSnapshot.getChildren()){
-                    System.out.println(dsp.getValue());
-
-                    //socials.add(dsp.getValue(SocialsList.Social.class));
+                    Log.d("feed", "in datasnapshot");
+                    HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                    String name = (String) map.get("name");
+                    String author = (String) map.get("author");
+                    String description = (String) map.get("description");
+                    String date = (String) map.get("date");
+                    ArrayList<String> interested = (ArrayList<String>) map.get("interested");
+                    SocialsList.Social social = new SocialsList.Social(name, author, description, date);
+                    social.setInterested(interested);
+                    adapter.socials.add(social);
                     //issue is that were getting string values instead of social classes, also how do i new socials, using set value in create new social just replaces values
                 }
+
                 adapter.notifyDataSetChanged();
+                rv.setAdapter(adapter);
             }
 
 
@@ -66,11 +79,11 @@ public class FeedActivity extends AppCompatActivity {
             }
 
         };
-        mDatabase.child("socials").addValueEventListener(postListener);
+        mDatabase.child("Socials").addValueEventListener(postListener);
 
 
 
-            mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

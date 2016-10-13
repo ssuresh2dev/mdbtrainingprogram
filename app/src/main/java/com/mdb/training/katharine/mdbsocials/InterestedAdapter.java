@@ -1,6 +1,7 @@
 package com.mdb.training.katharine.mdbsocials;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.Cu
     public ArrayList<String> names;
     public ArrayList<String> emails;
 
-    public InterestedAdapter(Context context, ArrayList<String> interestedName, ArrayList<String> interestedEmail) {
+    public InterestedAdapter(Context context, @NonNull ArrayList<String> interestedName, @NonNull ArrayList<String> interestedEmail) {
         this.context = context;
         names = interestedName;
         emails = interestedEmail;

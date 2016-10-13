@@ -5,10 +5,21 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -18,12 +29,16 @@ public class DetailsActivity extends AppCompatActivity {
     private Toolbar toolbar;
     FloatingActionButton fab;
 
+    private DatabaseReference dbRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        dbRef = FirebaseDatabase.getInstance().getReference();
 
         eventName = (TextView) findViewById(R.id.eventName);
         eventName.setText(getIntent().getExtras().getString("title"));
@@ -45,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),InterestedActivity.class);
                 intent.putExtra("interestedName", getIntent().getStringArrayExtra("interestedName"));
-                intent.putExtra("interestedName", getIntent().getStringArrayExtra("interestedName"));
+                intent.putExtra("interestedEmail", getIntent().getStringArrayExtra("interestedEmail"));
                 startActivity(intent);
             }
         });
@@ -56,8 +71,66 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
+                    ValueEventListener postListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot dsp: dataSnapshot.getChildren()){
+                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                                if (map.get("name").equals(eventName)) {
+                                    ArrayList<String> interested = (ArrayList<String>) map.get("interested");
+                                    interested.add((String) map.get("uid"));
+                                    Map<String, Object> newMap = new HashMap<String, Object>();
+                                    newMap.put("name", map.get("name"));
+                                    newMap.put("author", map.get("author"));
+                                    newMap.put("date", map.get("date"));
+                                    newMap.put("description", map.get("description"));
+                                    newMap.put("interested", interested);
+                                    dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
+                                }
 
-                    //TODO: how would we set interested we dont have access to social arraylist, probelm with code structure
+                            }
+
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
+                        }
+
+                    };
+                    dbRef.child("Socials").addValueEventListener(postListener);
+                } else {
+                    ValueEventListener postListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot dsp: dataSnapshot.getChildren()){
+                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                                if (map.get("name").equals(eventName)) {
+                                    ArrayList<String> interested = (ArrayList<String>) map.get("interested");
+                                    for (int i = 0; i < interested.size(); i += 1) {
+                                        if (interested.get(i).equals(map.get("uid"))) {
+                                            interested.remove(i);
+                                        }
+                                    }
+                                    Map<String, Object> newMap = new HashMap<String, Object>();
+                                    newMap.put("name", map.get("name"));
+                                    newMap.put("author", map.get("author"));
+                                    newMap.put("date", map.get("date"));
+                                    newMap.put("description", map.get("description"));
+                                    newMap.put("interested", interested);
+                                    dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
+                                }
+
+                            }
+
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
+                        }
+
+                    };
+                    dbRef.child("Socials").addValueEventListener(postListener);
+
                 }
 
 

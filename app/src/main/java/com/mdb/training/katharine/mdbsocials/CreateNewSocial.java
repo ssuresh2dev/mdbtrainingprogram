@@ -60,12 +60,15 @@ public class CreateNewSocial extends AppCompatActivity {
         String d = date.getText().toString();
         String descrip = description.getText().toString();
         String author = mAuth.getCurrentUser().getEmail();
+        ArrayList<String> interested = new ArrayList<>();
+        // interested.add("testuid");
         SocialsList.Social social = new SocialsList.Social(n, author, descrip, d);
         Map<String, Object> post = new HashMap<>();
         post.put("name", n);
         post.put("author", author);
         post.put("description", descrip);
         post.put("date", d);
+        post.put("interested", interested);
         mDatabase.child("Socials").push().setValue(post);
     }
 }

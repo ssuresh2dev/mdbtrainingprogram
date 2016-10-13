@@ -3,13 +3,22 @@ package com.mdb.training.katharine.mdbsocials;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
@@ -20,7 +29,9 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHolder> {
 
     private Context context;
-    private ArrayList<SocialsList.Social> socials;
+    public ArrayList<SocialsList.Social> socials = new ArrayList<>();
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();;
+
 
     public FeedAdapter(Context context, ArrayList<SocialsList.Social> socials) {
         this.context = context;
@@ -55,7 +66,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
         SocialsList.Social social = socials.get(position);
         holder.titleView.setText(social.title);
         holder.authorView.setText(social.author);
-        holder.numinterestedView.setText(social.interested.size());
+        // holder.numinterestedView.setText(Integer.toString(social.interested.size()));
     }
 
 
@@ -64,6 +75,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
         ImageView imageView;
         TextView authorView;
         TextView numinterestedView;
+        ArrayList<String> interestedName = new ArrayList<String>();
+        ArrayList<String> interestedEmail = new ArrayList<String>();
 
         public CustomViewHolder (View view) {
             super(view);
@@ -78,16 +91,33 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
                     /*Get adapter position is getting the number of the row that was clicked,
                     starting at 0
                     */
-                    SocialsList.Social s = socials.get(getAdapterPosition());
+                    final SocialsList.Social s = socials.get(getAdapterPosition());
                     Intent intent = new Intent(context, DetailsActivity.class);
 
-                    ArrayList<String> interestedName = new ArrayList<String>();
-                    ArrayList<String> interestedEmail = new ArrayList<String>();
-                    for(int i =0; i<s.interested.size();i++){
-                        interestedName.add(s.interested.get(i).name);
-                        interestedEmail.add(s.interested.get(i).email);
-                    }
+                    ValueEventListener postListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            ArrayList<String> interested = s.getInterested();
+                            for(DataSnapshot dsp: dataSnapshot.getChildren()){
+                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                                if (interested.contains(map.get("uid"))) {
+                                    String name = (String) map.get("name");
+                                    String email = (String) map.get("email");
+                                    interestedName.add(name);
+                                    interestedEmail.add(email);
 
+                                }
+
+                            }
+
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
+                        }
+
+                    };
+                    mDatabase.child("Users").addValueEventListener(postListener);
 
                     intent.putExtra("title", s.title);
                     intent.putExtra("author", s.author);
