@@ -101,6 +101,7 @@ class SignupViewController: UIViewController {
                 return
             } else {
                 print("User registered!")
+        
                 FIRAuth.auth()?.signIn(withEmail: emailAdd, password: pass, completion: { (user, error) in
                     if let error = error {
                         print(error)
@@ -108,6 +109,21 @@ class SignupViewController: UIViewController {
                     } else {
                         //self.signedIn(user)
                         print("signed in!")
+                        
+                        //Create User Object in FirDatabase
+                        let rootRef = FIRDatabase.database().reference()
+                        let uid = FIRAuth.auth()?.currentUser?.uid
+                        let userData: [String: NSString] = ["firstName": (self.firstNameField.text as NSString?)!, "lastName": (self.lastNameField.text as NSString?)!, "uid": (uid as NSString?)!, "username": (self.usernameField.text as NSString?)!]
+                        
+                        
+                        let usersRef = rootRef.child("users")
+                        usersRef.child(uid!).setValue(userData){ (error, snap) in
+                            print("Success in creating user in Firdatabase")
+                            print(error)
+                        }
+                        
+                        
+                        
                         self.performSegue(withIdentifier: "toFeedAfterRegister", sender: self)
                     }
                 })

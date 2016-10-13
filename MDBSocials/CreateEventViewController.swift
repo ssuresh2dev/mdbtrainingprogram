@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 class CreateEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -126,16 +127,37 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     
     func postButtonClicked(){
+        //Event Information: Firebase Database Stuff
         let eventData: [String : NSString] = ["eventTitle": eventTitleField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": eventDescriptonTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"]
-        
-        
-        
+
         let eventsRef = rootRef.child("events")
-        eventsRef.childByAutoId().setValue(eventData){ (error, snap) in
+        let uniqueEventRef = eventsRef.childByAutoId()
+        uniqueEventRef.setValue(eventData){ (error, snap) in
             print("Success")
             print(error)
             
         }
+        
+        //For the Image: Firebase Storage stuff
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://mdbsocials2.appspot.com")
+        let imagesRef = storageRef.child("images")
+        let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
+        
+        
+        var data = NSData()
+        data = UIImageJPEGRepresentation(eventImageView.image!, 0.8)! as NSData
+        
+        // Upload the file to the path eventImageRef
+        let uploadTask = eventImageRef.put(data as Data, metadata: nil) { metadata, error in
+            if (error != nil) {
+                // Uh-oh, an error occurred!
+            } else {
+                // Metadata contains file metadata such as size, content-type, and download URL.
+                let downloadURL = metadata!.downloadURL
+            }
+        }
+        
+        
 //        eventsRef.setValue("hello")
 //        eventsRef.observeSingleEvent(of: .Value) { (snap) in
 //            print("GOT DATA")
