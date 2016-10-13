@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 
 class CreateEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -30,6 +32,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         setupUI()
         setupAlertController()
         imagePicker.delegate = self
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
