@@ -16,7 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -66,7 +65,10 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
         SocialsList.Social social = socials.get(position);
         holder.titleView.setText(social.title);
         holder.authorView.setText(social.author);
-        // holder.numinterestedView.setText(Integer.toString(social.interested.size()));
+        if(social.interested == null){
+            social.interested = new ArrayList<>();
+        }
+        holder.numinterestedView.setText(Integer.toString(social.interested.size()));
     }
 
 
@@ -83,7 +85,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
             this.titleView = (TextView) view.findViewById(R.id.title);
             this.imageView = (ImageView) view.findViewById(R.id.eventpic);
             this.authorView = (TextView) view.findViewById(R.id.author);
-            this.numinterestedView = (TextView) view.findViewById(R.id.interested);
+            this.numinterestedView = (TextView) view.findViewById(R.id.number);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,6 +94,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
                     starting at 0
                     */
                     final SocialsList.Social s = socials.get(getAdapterPosition());
+
                     Intent intent = new Intent(context, DetailsActivity.class);
 
                     ValueEventListener postListener = new ValueEventListener() {

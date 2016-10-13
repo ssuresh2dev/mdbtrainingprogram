@@ -31,9 +31,6 @@ public class SocialsList {
         public ArrayList<String> interested;
         public String date;
 
-        public Social() {
-
-        }
 
         public Social(String title, String author, String description, String date) {
             this.title = title;

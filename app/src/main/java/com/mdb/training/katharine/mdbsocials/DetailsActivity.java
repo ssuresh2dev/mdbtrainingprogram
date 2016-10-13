@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,13 +60,12 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),InterestedActivity.class);
-                intent.putExtra("interestedName", getIntent().getStringArrayExtra("interestedName"));
-                intent.putExtra("interestedEmail", getIntent().getStringArrayExtra("interestedEmail"));
+                intent.putExtra("interestedName", getIntent().getStringArrayListExtra("interestedName"));
+                intent.putExtra("interestedEmail", getIntent().getStringArrayListExtra("interestedEmail"));
                 startActivity(intent);
             }
         });
         interested = (CheckBox) findViewById(R.id.interested);
-        interested.setChecked(false);
 
         interested.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -76,9 +76,14 @@ public class DetailsActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot dsp: dataSnapshot.getChildren()){
                                 HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
-                                if (map.get("name").equals(eventName)) {
-                                    ArrayList<String> interested = (ArrayList<String>) map.get("interested");
-                                    interested.add((String) map.get("uid"));
+                                ArrayList<String> interested = (ArrayList<String>) map.get("interested");
+                                if(interested == null){
+                                    interested = new ArrayList<String>();
+                                }
+
+                                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                if (map.get("name").equals(eventName.getText().toString()) && !interested.contains(uid)) {
+                                    interested.add(uid);
                                     Map<String, Object> newMap = new HashMap<String, Object>();
                                     newMap.put("name", map.get("name"));
                                     newMap.put("author", map.get("author"));
@@ -86,6 +91,8 @@ public class DetailsActivity extends AppCompatActivity {
                                     newMap.put("description", map.get("description"));
                                     newMap.put("interested", interested);
                                     dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
+                                    Log.d("test","event listener works"); //listener still not quite working
+
                                 }
 
                             }

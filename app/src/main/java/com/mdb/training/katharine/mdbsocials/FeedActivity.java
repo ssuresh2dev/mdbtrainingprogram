@@ -18,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -62,6 +61,9 @@ public class FeedActivity extends AppCompatActivity {
                     String description = (String) map.get("description");
                     String date = (String) map.get("date");
                     ArrayList<String> interested = (ArrayList<String>) map.get("interested");
+                    if(interested == null){
+                        interested = new ArrayList<String>();
+                    }
                     SocialsList.Social social = new SocialsList.Social(name, author, description, date);
                     social.setInterested(interested);
                     adapter.socials.add(social);
