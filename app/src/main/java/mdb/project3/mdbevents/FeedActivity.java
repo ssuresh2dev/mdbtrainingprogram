@@ -6,12 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,27 +39,31 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Create a list of test events and bind the event adapter to this list
-        ArrayList<Event> eventTestList = new ArrayList<>();
+        final ArrayList<Event> eventList = new ArrayList<>();
+        eventAdapter = new EventAdapter(getApplicationContext(), eventList);
 
-        Event testEvent1 = new Event("Kedar Thakkar", "kedarthakkar@berkeley.edu", "10 others are interested", "fakeurl1.com", "", new ArrayList<String>());
-        Event testEvent2 = new Event("Sayan Bigcok", "sayansdope@berkeley.edu", "20 others are intereseted", "probablyporn.com", "", new ArrayList<String>());
-        Event testEvent3 = new Event("Eman Swift", "emanfyb@berkeley.edu", "30 others are interested", "sleepsalot.com", "", new ArrayList<String>());
-
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
-        eventTestList.add(testEvent1);
-        eventTestList.add(testEvent2);
-        eventTestList.add(testEvent3);
+        Toast.makeText(getApplicationContext(), "Loading events...", Toast.LENGTH_SHORT).show();
+        
         rootNode = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference eventNode = rootNode.child("Events");
+        eventNode.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                Log.e("Count " ,""+snapshot.getChildrenCount());
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Event event = postSnapshot.getValue(Event.class);
+                    eventList.add(event);
+                }
 
-        eventAdapter = new EventAdapter(getApplicationContext(), eventTestList);
+                Collections.sort(eventList);
+                eventAdapter.eventList = eventList;
+                eventAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+                Log.e("The read failed: " ,firebaseError.getMessage());
+            }
+        });
 
         // Set the adapter of the recycler view to the event adapter
         recyclerView.setAdapter(eventAdapter);

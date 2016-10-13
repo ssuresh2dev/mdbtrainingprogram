@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
  */
 
 @IgnoreExtraProperties
-public class Event {
+public class Event implements Comparable<Event>{
 
     public String name;
     public String emailAddress;
@@ -50,5 +50,9 @@ public class Event {
 
     public String getTimestamp(){
         return timestamp;
+    }
+
+    public int compareTo(Event other){
+        return other.timestamp.compareTo(timestamp);
     }
 }

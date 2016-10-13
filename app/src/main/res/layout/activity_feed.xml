@@ -36,7 +36,6 @@
         android:layout_marginRight="16dp"
         android:src="@drawable/ic_add_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:onClick="startNewSocialActivity"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
