@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>561059508548-83k2u20emst8ldp7d68i3ova2v3m46gs.apps.googleusercontent.com</string>
+	<string>1096756488511-jl423ihudsr6nhboc2tpkv56efktltpb.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.561059508548-83k2u20emst8ldp7d68i3ova2v3m46gs</string>
+	<string>com.googleusercontent.apps.1096756488511-jl423ihudsr6nhboc2tpkv56efktltpb</string>
 	<key>API_KEY</key>
-	<string>AIzaSyATu8ovtKwYck-PPMG_MNUuabtG3LWOI_A</string>
+	<string>AIzaSyDILKx77FGnRaWIWgJyLCuzhV4LAfDTl4c</string>
 	<key>GCM_SENDER_ID</key>
-	<string>561059508548</string>
+	<string>1096756488511</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.eliothan.MDBSocials</string>
 	<key>PROJECT_ID</key>
-	<string>mdbsocials-bac32</string>
+	<string>mdbsocials2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mdbsocials-bac32.appspot.com</string>
+	<string>mdbsocials2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:561059508548:ios:25d2fba347c2d0e7</string>
+	<string>1:1096756488511:ios:25d2fba347c2d0e7</string>
 	<key>DATABASE_URL</key>
-	<string>https://mdbsocials-bac32.firebaseio.com</string>
+	<string>https://mdbsocials2.firebaseio.com</string>
 </dict>
 </plist>
