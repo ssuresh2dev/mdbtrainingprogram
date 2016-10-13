@@ -38,9 +38,12 @@ class FeedViewController: UIViewController {
 //    
 //    }
     func setupUI(){
-        let rightIcon: UIImage = #imageLiteral(resourceName: "CalendarIcon")
-        let addEventButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(FeedViewController.showCreateEventVC))
-        addEventButton.setBackgroundImage(rightIcon, for: .normal, barMetrics: .default)
+        let bttn = UIButton()
+        bttn.setImage(#imageLiteral(resourceName: "CalendarIcon"), for: .normal)
+        bttn.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        bttn.addTarget(self, action: #selector(FeedViewController.showCreateEventVC), for: .touchUpInside)
+        let addEventButton = UIBarButtonItem()
+        addEventButton.customView = bttn
         self.navigationItem.rightBarButtonItem = addEventButton
         self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "Bar"), for: .default)
         self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "OpenSocials"))
@@ -63,7 +66,8 @@ class FeedViewController: UIViewController {
     func signOut(){
         do {
             try FIRAuth.auth()?.signOut()
-            dismiss(animated: true)
+            performSegue(withIdentifier: "afterSignOut", sender: self)
+            viewWillDisappear(true)
         } catch let error as NSError {
             print(error)
         }
@@ -72,6 +76,11 @@ class FeedViewController: UIViewController {
     
     
   
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
 }
 
 //extension FeedViewController: UITableViewDelegate, UITableViewDataSource{

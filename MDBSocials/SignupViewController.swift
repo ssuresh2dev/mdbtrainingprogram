@@ -108,7 +108,7 @@ class SignupViewController: UIViewController {
                     } else {
                         //self.signedIn(user)
                         print("signed in!")
-                        self.performSegue(withIdentifier: "registerToFeed", sender: self)
+                        self.performSegue(withIdentifier: "toFeedAfterRegister", sender: self)
                     }
                 })
             }

@@ -41,6 +41,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="sRz-ho-i6M" kind="show" identifier="toFeedAfterRegister" id="vyp-At-psE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OqD-tl-v3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,6 +87,7 @@
                     <navigationItem key="navigationItem" id="ez5-Cm-FAd"/>
                     <connections>
                         <segue destination="LBE-do-Lvw" kind="show" identifier="segueToCreateEventVC" id="ayA-YK-fKn"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="afterSignOut" id="8d5-Ut-1V0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iW6-XL-FYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -109,4 +113,7 @@
             <point key="canvasLocation" x="860" y="197"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vyp-At-psE"/>
+    </inferredMetricsTieBreakers>
 </document>
