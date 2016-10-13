@@ -43,5 +43,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BEBAS___.TTF</string>
+		<string>Brush Script.ttf</string>
+		<string>BrushScriptStd.otf</string>
+		<string>mark_my_words.otf</string>
+		<string>mark_my_words.ttf</string>
+	</array>
 </dict>
 </plist>

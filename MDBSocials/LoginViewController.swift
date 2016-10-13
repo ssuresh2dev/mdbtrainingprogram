@@ -12,10 +12,14 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     var titleLabel: UILabel!
+    var secondTitle: UILabel!
     var emailField: UITextField!
     var passwordField: UITextField!
     var createAccountButton: UIButton!
     var loginButton: UIButton!
+    
+    var titleImg: UIImageView!
+    var secondTitleImg: UIImageView!
     
     
     var username: String?
@@ -25,6 +29,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "MainBG"))
+    
         // Do any additional setup after loading the view.
     }
 
@@ -45,44 +51,76 @@ class LoginViewController: UIViewController {
     }
 
     func setupUI(){
-        titleLabel = UILabel(frame: CGRect(x: 0, y: view.frame.height/2 - 80, width: view.frame.width, height: 100))
-        titleLabel.font = UIFont(name: "Avenir-Light", size: 30.0)
-        titleLabel.isUserInteractionEnabled = false
-        titleLabel.text = "Mobile Developers of Berkeley"
-        view.addSubview(titleLabel)
+//        titleLabel = UILabel(frame: CGRect(x: 0, y: view.frame.height/2 - 80, width: view.frame.width, height: 100))
+//        //titleLabel.font = UIFont(name: "Avenir-Light", size: 30.0)
+//        titleLabel.isUserInteractionEnabled = false
+//        titleLabel.text = "Mobile Developers of Berkeley"
+//        titleLabel.font = UIFont(name: "Bebas", size: 36)
+//        secondTitle = UILabel(frame: CGRect(x: 108, y: 263, width: 150, height: 46))
+//        secondTitle.text = "socials"
+//        secondTitle.font = UIFont(name: "MarkMyWords", size: 36)
+//        view.addSubview(secondTitle)
+//        view.addSubview(titleLabel)
         
-        emailField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2, width: view.frame.width, height: 50))
-        emailField.placeholder = "Enter your email"
-        emailField.keyboardType = UIKeyboardType.emailAddress
-        emailField.font = UIFont(name: "Avenir-Light", size: 13.0)
+        titleImg = UIImageView(frame: CGRect(x: 85, y: 122, width: 206, height: 141))
+        titleImg.image = #imageLiteral(resourceName: "MobileTitle")
+        titleImg.contentMode = UIViewContentMode.scaleAspectFit
+        secondTitleImg = UIImageView(frame: CGRect(x: 108, y: 263, width: 150, height: 46))
+        secondTitleImg.image = #imageLiteral(resourceName: "Socials")
+        secondTitleImg.contentMode = UIViewContentMode.scaleAspectFit
+        view.addSubview(secondTitleImg)
+        view.addSubview(titleImg)
+        
+//        emailField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2, width: view.frame.width, height: 50))
+//        emailField.placeholder = "Enter your email"
+//        emailField.keyboardType = UIKeyboardType.emailAddress
+//        emailField.font = UIFont(name: "AvenirNext-Regular", size: 13.0)
+//        view.addSubview(emailField)
+        
+        emailField = UITextField(frame: CGRect(x: 66, y: 349, width: 244, height: 33))
+        emailField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "UserTF"))
         view.addSubview(emailField)
         
-        passwordField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 + 30, width: view.frame.width, height: 50))
-        passwordField.placeholder = "Password"
+//        passwordField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 + 30, width: view.frame.width, height: 50))
+//        passwordField.placeholder = "Password"
+//        passwordField.isSecureTextEntry = true
+//        passwordField.font = UIFont(name: "AvenirNext-Regular", size: 13.0)
+//        view.addSubview(passwordField)
+        
+        passwordField = UITextField(frame: CGRect(x: 66, y: 394, width: 244, height: 33))
         passwordField.isSecureTextEntry = true
-        passwordField.font = UIFont(name: "Avenir-Light", size: 13.0)
+        passwordField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "PassTF"))
         view.addSubview(passwordField)
         
-        createAccountButton = UIButton(frame: CGRect(x: 20, y: passwordField.frame.maxY + 25, width: view.frame.width - 20, height: 50))
-        createAccountButton.setTitle("Register for a new account", for: .normal)
+//        createAccountButton = UIButton(frame: CGRect(x: 20, y: passwordField.frame.maxY + 25, width: view.frame.width - 20, height: 50))
+//        createAccountButton.setTitle("Register for a new account", for: .normal)
+//        createAccountButton.addTarget(self, action: #selector(createAccountButtonPressed(_:)), for: .touchUpInside)
+//        createAccountButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
+//        createAccountButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+//        view.addSubview(createAccountButton)
+        
+        createAccountButton = UIButton(frame: CGRect(x: 91, y: 490, width: 197, height: 21))
+        createAccountButton.setBackgroundImage(#imageLiteral(resourceName: "NewAcc"), for: .normal)
+        createAccountButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         createAccountButton.addTarget(self, action: #selector(createAccountButtonPressed(_:)), for: .touchUpInside)
-        createAccountButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
-        createAccountButton.setTitleColor(UIColor.black, for: UIControlState.normal)
         view.addSubview(createAccountButton)
         
-        
-        loginButton = UIButton(frame: CGRect(x: 20, y: createAccountButton.frame.maxY + 25, width: view.frame.width - 20, height: 50))
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.addTarget(self, action:#selector(loginButtonPressed(_:)), for: .touchUpInside)
-        loginButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
-        loginButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+//        loginButton = UIButton(frame: CGRect(x: 20, y: createAccountButton.frame.maxY + 25, width: view.frame.width - 20, height: 50))
+//        loginButton.setTitle("Login", for: .normal)
+//        loginButton.addTarget(self, action:#selector(loginButtonPressed(_:)), for: .touchUpInside)
+//        loginButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
+//        loginButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+//        view.addSubview(loginButton)
+        loginButton = UIButton(frame: CGRect(x: 123, y: 453, width: 131, height: 33))
+        loginButton.setBackgroundImage(#imageLiteral(resourceName: "Login"), for: .normal)
+        loginButton.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(loginButton)
         
         
     }
     func createAccountButtonPressed(_ sender: UIButton!){
         //segue to create account screen
-        performSegue(withIdentifier: "segueToSignupVC", sender: self)
+        self.performSegue(withIdentifier: "segueToSignupVC", sender: self)
         
     }
     
