@@ -3,6 +3,7 @@ package mdb.project3.mdbevents;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -17,17 +18,19 @@ public class Event {
     public String numInterested;
     public String imageUrl;
     public String timestamp;
+    public List<String> dates;
 
     public Event() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Event(String aName, String aEmailAddress, String aNumInterested, String aImageUrl, String aTimestamp){
+    public Event(String aName, String aEmailAddress, String aNumInterested, String aImageUrl, String aTimestamp, List<String> aDates){
         name = aName;
         emailAddress = aEmailAddress;
         numInterested = aNumInterested;
         imageUrl = aImageUrl;
         timestamp = aTimestamp;
+        dates = aDates;
     }
     public String getName(){
         return name;
