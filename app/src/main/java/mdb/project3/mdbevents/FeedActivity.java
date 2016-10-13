@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FeedActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,9 +34,9 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         // Create a list of test events and bind the event adapter to this list
         ArrayList<Event> eventTestList = new ArrayList<>();
 
-        Event testEvent1 = new Event("Kedar Thakkar", "kedarthakkar@berkeley.edu", "10 others are interested", "fakeurl1.com", "");
-        Event testEvent2 = new Event("Sayan Bigcok", "sayansdope@berkeley.edu", "20 others are intereseted", "probablyporn.com", "");
-        Event testEvent3 = new Event("Eman Swift", "emanfyb@berkeley.edu", "30 others are interested", "sleepsalot.com", "");
+        Event testEvent1 = new Event("Kedar Thakkar", "kedarthakkar@berkeley.edu", "10 others are interested", "fakeurl1.com", "", new ArrayList<String>());
+        Event testEvent2 = new Event("Sayan Bigcok", "sayansdope@berkeley.edu", "20 others are intereseted", "probablyporn.com", "", new ArrayList<String>());
+        Event testEvent3 = new Event("Eman Swift", "emanfyb@berkeley.edu", "30 others are interested", "sleepsalot.com", "", new ArrayList<String>());
 
         eventTestList.add(testEvent1);
         eventTestList.add(testEvent2);
