@@ -23,11 +23,6 @@
 		152F0B1F1DA4C07E00CB7D34 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */; };
 		40B8662B4D846F5E0940E654 /* libPods-MDBSocials.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE170A06BEFCF6798623FF80 /* libPods-MDBSocials.a */; };
 		8BE4B3DC1DAE249E00248437 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4B3DB1DAE249E00248437 /* DetailViewController.swift */; };
-		8BE4B3E41DAE388000248437 /* BEBAS___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8BE4B3E11DAE388000248437 /* BEBAS___.TTF */; };
-		8BE4B3E51DAE388000248437 /* Brush Script.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BE4B3E21DAE388000248437 /* Brush Script.ttf */; };
-		8BE4B3E61DAE388000248437 /* BrushScriptStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8BE4B3E31DAE388000248437 /* BrushScriptStd.otf */; };
-		8BE4B3E91DAE3ABE00248437 /* mark_my_words.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8BE4B3E71DAE3ABE00248437 /* mark_my_words.otf */; };
-		8BE4B3EA1DAE3ABE00248437 /* mark_my_words.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BE4B3E81DAE3ABE00248437 /* mark_my_words.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,11 +65,6 @@
 		152F0B1D1DA4BBD400CB7D34 /* MDBSocials.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MDBSocials.entitlements; sourceTree = "<group>"; };
 		152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		8BE4B3DB1DAE249E00248437 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		8BE4B3E11DAE388000248437 /* BEBAS___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = "BEBAS___.TTF"; path = "../fonts/BEBAS___.TTF"; sourceTree = SOURCE_ROOT; };
-		8BE4B3E21DAE388000248437 /* Brush Script.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Brush Script.ttf"; path = "../fonts/Brush Script.ttf"; sourceTree = SOURCE_ROOT; };
-		8BE4B3E31DAE388000248437 /* BrushScriptStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = BrushScriptStd.otf; path = ../fonts/BrushScriptStd.otf; sourceTree = SOURCE_ROOT; };
-		8BE4B3E71DAE3ABE00248437 /* mark_my_words.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mark_my_words.otf; path = ../../fonts/mark_my_words.otf; sourceTree = "<group>"; };
-		8BE4B3E81DAE3ABE00248437 /* mark_my_words.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mark_my_words.ttf; path = ../../fonts/mark_my_words.ttf; sourceTree = "<group>"; };
 		CE170A06BEFCF6798623FF80 /* libPods-MDBSocials.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MDBSocials.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA34923A6B3B759E79C98A89 /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
 		F90091B7045A153976FE4541 /* Pods-MDBSocials.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,11 +121,6 @@
 		152F0AE01DA2454C00CB7D34 /* MDBSocials */ = {
 			isa = PBXGroup;
 			children = (
-				8BE4B3E71DAE3ABE00248437 /* mark_my_words.otf */,
-				8BE4B3E81DAE3ABE00248437 /* mark_my_words.ttf */,
-				8BE4B3E11DAE388000248437 /* BEBAS___.TTF */,
-				8BE4B3E21DAE388000248437 /* Brush Script.ttf */,
-				8BE4B3E31DAE388000248437 /* BrushScriptStd.otf */,
 				152F0B1D1DA4BBD400CB7D34 /* MDBSocials.entitlements */,
 				152F0AE11DA2454C00CB7D34 /* AppDelegate.swift */,
 				152F0AE31DA2454C00CB7D34 /* ViewController.swift */,
@@ -310,14 +295,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				152F0AEC1DA2454C00CB7D34 /* LaunchScreen.storyboard in Resources */,
-				8BE4B3E51DAE388000248437 /* Brush Script.ttf in Resources */,
-				8BE4B3E61DAE388000248437 /* BrushScriptStd.otf in Resources */,
 				152F0B1C1DA4BA7300CB7D34 /* GoogleService-Info.plist in Resources */,
 				152F0AE91DA2454C00CB7D34 /* Assets.xcassets in Resources */,
-				8BE4B3E41DAE388000248437 /* BEBAS___.TTF in Resources */,
-				8BE4B3E91DAE3ABE00248437 /* mark_my_words.otf in Resources */,
 				152F0AE71DA2454C00CB7D34 /* Main.storyboard in Resources */,
-				8BE4B3EA1DAE3ABE00248437 /* mark_my_words.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
