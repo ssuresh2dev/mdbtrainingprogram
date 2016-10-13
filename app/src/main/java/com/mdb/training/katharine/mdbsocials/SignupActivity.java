@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignupActivity extends AppCompatActivity {
 
     private EditText name;
@@ -50,7 +53,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signup() {
-        String n = name.getText().toString();
+        final String n = name.getText().toString();
         final String em = email.getText().toString();
         String pass = password.getText().toString();
         final User user = new User(n, em);
@@ -59,7 +62,11 @@ public class SignupActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     String uid = mAuth.getCurrentUser().getUid();
-                    mDatabase.child("users").child(uid).setValue(user);
+                    Map<String, Object> post = new HashMap<>();
+                    post.put("uid", uid);
+                    post.put("name", n);
+                    post.put("email", em);
+                    mDatabase.child("Users").push().setValue(post);
                     startActivity(new Intent(SignupActivity.this, FeedActivity.class));
                 } else if (!(task.isSuccessful())) {
                     Toast.makeText(SignupActivity.this, "Sign up problem", Toast.LENGTH_LONG).show();

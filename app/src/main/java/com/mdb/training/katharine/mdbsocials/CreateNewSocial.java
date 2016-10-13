@@ -12,6 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateNewSocial extends AppCompatActivity {
 
@@ -61,6 +63,11 @@ public class CreateNewSocial extends AppCompatActivity {
         String descrip = description.getText().toString();
         String author = mAuth.getCurrentUser().getEmail();
         SocialsList.Social social = new SocialsList.Social(n, author, descrip, d);
-        mDatabase.child("socials").child("n").setValue(social);
+        Map<String, Object> post = new HashMap<>();
+        post.put("name", n);
+        post.put("author", author);
+        post.put("description", descrip);
+        post.put("date", d);
+        mDatabase.child("Socials").push().setValue(post);
     }
 }
