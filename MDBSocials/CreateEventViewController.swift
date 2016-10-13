@@ -92,7 +92,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
             in
             //User just pressed library button
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum){
-                print("Button capture")
+                print("library chosen")
                 
                 
                 self.imagePicker.delegate = self
@@ -113,9 +113,10 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     }
     
-    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             eventImageView.image = image
+            print("image picked")
         } else{
             print("Something went wrong")
         }
