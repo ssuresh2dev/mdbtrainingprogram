@@ -15,11 +15,13 @@ import java.util.ArrayList;
 
 public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.CustomViewHolder>  {
     private Context context;
-    public ArrayList<User> interestedMembers;
+    public ArrayList<String> names;
+    public ArrayList<String> emails;
 
-    public InterestedAdapter(Context context, ArrayList<User> interested) {
+    public InterestedAdapter(Context context, ArrayList<String> interestedName, ArrayList<String> interestedEmail) {
         this.context = context;
-        interestedMembers=interested;
+        names = interestedName;
+        emails = interestedEmail;
     }
 
 
@@ -43,15 +45,12 @@ public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.Cu
      */
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        User user = interestedMembers.get(position);
-
-
-        holder.name.setText(user.name);
-        holder.email.setText(user.email);
+        holder.name.setText(names.get(position));
+        holder.email.setText(emails.get(position));
     }
 
     public int getItemCount() {
-        return interestedMembers.size();
+        return names.size();
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {

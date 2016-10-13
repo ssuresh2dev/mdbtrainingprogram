@@ -1,9 +1,11 @@
 package com.mdb.training.katharine.mdbsocials;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -38,6 +40,15 @@ public class DetailsActivity extends AppCompatActivity {
         numInterested = (TextView) findViewById(R.id.textView4);
         numInterested.setText("Interested: " + getIntent().getExtras().getInt("interested"));
 
+        numInterested.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),InterestedActivity.class);
+                intent.putExtra("interestedName", getIntent().getStringArrayExtra("interestedName"));
+                intent.putExtra("interestedName", getIntent().getStringArrayExtra("interestedName"));
+                startActivity(intent);
+            }
+        });
         interested = (CheckBox) findViewById(R.id.interested);
         interested.setChecked(false);
 

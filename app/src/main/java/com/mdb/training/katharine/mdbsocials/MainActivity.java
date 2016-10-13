@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser user;
 
     private EditText email;
     private EditText password;
@@ -43,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
                 // If user is already signed in, go to the feed activity
                 if (user != null) {
                     startActivity(new Intent(MainActivity.this, FeedActivity.class));
                 }
+
             }
         };
         //logout();
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
-                    Log.d("testing", task.getException().getMessage());
+                    Log.d("signed in", "onAuthStateChanged:signed_in:" + user.getUid());
                     task.getException().printStackTrace();
                     Toast.makeText(MainActivity.this, "Sign in problem", Toast.LENGTH_LONG).show();
                 }

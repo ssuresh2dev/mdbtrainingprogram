@@ -40,8 +40,6 @@ public class CreateNewSocial extends AppCompatActivity {
         choosePic = (Button) findViewById(R.id.pic);
         createSocial = (Button) findViewById(R.id.create);
 
-        Intent intent = getIntent();
-        socialsList = (ArrayList< SocialsList.Social>) intent.getExtras().get("socialsList");
 
         mAuth = FirebaseAuth.getInstance();
         // mData = FirebaseDatabase.getInstance();
