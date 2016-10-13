@@ -6,15 +6,22 @@
 //  Copyright © 2016 Ben Goldberg. All rights reserved.
 //
 
+import Firebase
 import UIKit
 
 class SignUpViewController: UIViewController {
-
+    
+    var inputFullNameTextField: UITextField!
+    var inputUsernameTextField: UITextField!
+    var inputPasswordTextField: UITextField!
+    var inputEmailTextField: UITextField!
+    var signupButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Input Full Name Textfield
-        let inputFullNameTextField = UITextField()
+        inputFullNameTextField = UITextField()
         
         let inputFullNamePlaceholder = NSAttributedString(string: "What's your full name?", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         inputFullNameTextField.attributedPlaceholder = inputFullNamePlaceholder
@@ -31,7 +38,7 @@ class SignUpViewController: UIViewController {
         
         
         // Input Username Textfield
-        let inputUsernameTextField = UITextField()
+        inputUsernameTextField = UITextField()
         
         let inputUsernamePlaceholder = NSAttributedString(string: "Pick a unique username!", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         inputUsernameTextField.attributedPlaceholder = inputUsernamePlaceholder
@@ -48,7 +55,7 @@ class SignUpViewController: UIViewController {
         
         
         // Password Textfield
-        let inputPasswordTextField = UITextField()
+        inputPasswordTextField = UITextField()
         
         let inputPasswordPlaceholder = NSAttributedString(string: "Enter a new password.", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         inputPasswordTextField.attributedPlaceholder = inputPasswordPlaceholder
@@ -65,7 +72,7 @@ class SignUpViewController: UIViewController {
         
         
         // Password Textfield
-        let inputEmailTextField = UITextField()
+        inputEmailTextField = UITextField()
         
         let inputEmailPlaceholder = NSAttributedString(string: "What's your email?", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         inputEmailTextField.attributedPlaceholder = inputEmailPlaceholder
@@ -81,24 +88,56 @@ class SignUpViewController: UIViewController {
         self.view.addSubview(inputEmailTextField)
         
         
+        // Signup Button
+        signupButton = UIButton()
+        signupButton.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/1.4, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
+        signupButton.setTitle("Hoo Hah!", for: .normal)
+        signupButton.titleLabel!.font = UIFont(name: "Avenir", size: 15)
+        signupButton.titleLabel!.textColor = UIColor.black
+        signupButton.tintColor = UIColor.black
+        signupButton.backgroundColor = UIColor.black
+        signupButton.layer.cornerRadius = 5
+        signupButton.layer.borderWidth = 1
+        signupButton.layer.borderColor = UIColor.lightGray.cgColor
+        signupButton.addTarget(self, action: #selector(hooHah), for: .touchUpInside)
         
-        // Do any additional setup after loading the view.
+        self.view.addSubview(signupButton)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func hooHah(sender: UIButton!) {
+        print("1")
+        if let email = inputEmailTextField.text, let pass = inputPasswordTextField.text {
+            FIRAuth.auth()?.createUser(withEmail: email, password: pass, completion: { (user, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self.updateProfile(user: user!)
+                print("hi")
+            })
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+    func updateProfile(user: FIRUser) {
+        print("2")
+        if let name = inputFullNameTextField.text {
+            let changeRequest = user.profileChangeRequest()
+            changeRequest.displayName = name
+            changeRequest.commitChanges(completion: { (error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self.signedIn(user: FIRAuth.auth()?.currentUser)
+            })
+        } else {
+                return
+        }
     }
-    */
-
+        
+    func signedIn(user: FIRUser?) {
+        print("3")
+        performSegue(withIdentifier: "segueSignUpToFeed", sender: signupButton)
+    }
+        
 }

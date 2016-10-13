@@ -7,28 +7,35 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
-
-    // Segues
+    
+    var backgroundImage: UIImageView!
+    var virindlyLogoView: UIImageView!
+    var loginTextField: UITextField!
+    var passwordTextField: UITextField!
+    var loginButton: UIButton!
+    var signupButton: UIButton!
+    var user: FIRUser!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let backgroundImage = UIImageView(image: #imageLiteral(resourceName: "Background.jpg"))
+        backgroundImage = UIImageView(image: #imageLiteral(resourceName: "Background.jpg"))
         backgroundImage.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         self.view.addSubview(backgroundImage)
         
         // VIRINDLY Logo
-        let virindlyLogoView = UIImageView(image: #imageLiteral(resourceName: "VIRINDLYLogoOrange"))
+        virindlyLogoView = UIImageView(image: #imageLiteral(resourceName: "VIRINDLYLogoOrange"))
         virindlyLogoView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height/7, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/9)
         self.view.addSubview(virindlyLogoView)
         
-
+        
         // Login Textfield
-        let loginTextField = UITextField()
+        loginTextField = UITextField()
         
         let loginPlaceholder = NSAttributedString(string: "Please enter username", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         loginTextField.attributedPlaceholder = loginPlaceholder
@@ -45,7 +52,7 @@ class LoginViewController: UIViewController {
         
         
         // Password Textfield
-        let passwordTextField = UITextField()
+        passwordTextField = UITextField()
         
         let passwordPlaceholder = NSAttributedString(string: "Please enter password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         passwordTextField.attributedPlaceholder = passwordPlaceholder
@@ -59,10 +66,10 @@ class LoginViewController: UIViewController {
         passwordTextField.returnKeyType = UIReturnKeyType.done
         
         self.view.addSubview(passwordTextField)
-
+        
         
         // Login Button
-        let loginButton = UIButton()
+        loginButton = UIButton()
         loginButton.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/1.6, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
         loginButton.setTitle("Log in!", for: .normal)
         loginButton.tintColor = UIColor.white
@@ -72,11 +79,15 @@ class LoginViewController: UIViewController {
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.clear.cgColor
         
+        
+        loginButton.addTarget(self, action: #selector(pressedLoginButton), for: .touchUpInside)
+        self.performSegue(withIdentifier: "segueLoginToFeed", sender: loginButton)
+        
         self.view.addSubview(loginButton)
         
         
         // Signup Button
-        let signupButton = UIButton()
+        signupButton = UIButton()
         signupButton.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/1.375, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
         signupButton.setTitle("Don't have an account? Sign up!", for: .normal)
         signupButton.tintColor = UIColor.white
@@ -86,24 +97,43 @@ class LoginViewController: UIViewController {
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor.clear.cgColor
         
-        signupButton.addTarget(self, action: #selector(LoginViewController.pressedSignUpButton(sender:)), for: .touchUpInside)
-        
-        
+        signupButton.addTarget(self, action: #selector(pressedSignUpButton), for: .touchUpInside)
         self.performSegue(withIdentifier: "segueToSignUp", sender: signupButton)
         
         self.view.addSubview(signupButton)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueLoginToFeed" {
+            let dest = segue.destination as! FeedViewController
+            dest.user = user
+        }
+    }
+    
+    // FUNCTIONS
     func pressedSignUpButton(sender: UIButton!) {
         performSegue(withIdentifier: "segueToSignUp", sender: self)
     }
 
-
+    func pressedLoginButton(sender: UIButton!) {
+        if let login = loginTextField.text, let pass = passwordTextField.text {
+            FIRAuth.auth()?.signIn(withEmail: login, password: pass, completion: { (user, error) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self.signedIn(user: user!)
+            })
+        }
+    }
+    
+    func signedIn(user: FIRUser) {
+        performSegue(withIdentifier: "segueLoginToFeed", sender: self)
+    }
 }
-
