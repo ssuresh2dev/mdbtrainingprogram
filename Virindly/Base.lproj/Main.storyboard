@@ -21,7 +21,7 @@
                     </view>
                     <connections>
                         <segue destination="WXL-9x-0lW" kind="show" identifier="segueToSignUp" id="qTb-gS-vyM"/>
-                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueLoginToFeed" id="tIK-i2-Gk4"/>
+                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueLoginToFeed" id="uhP-Mk-hbX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -52,7 +52,7 @@
         <!--Feed View Controller-->
         <scene sceneID="MeP-4I-1sW">
             <objects>
-                <viewController id="vVs-MB-bxw" customClass="FeedViewController" customModule="Virindly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vVs-MB-bxw" customClass="FeedViewController" customModule="Virindly" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qBH-pZ-9Iu"/>
                         <viewControllerLayoutGuide type="bottom" id="UhC-5r-zlS"/>

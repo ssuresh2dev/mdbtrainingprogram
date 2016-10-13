@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedViewController: UIViewController {
     
+    var user: FIRUser!
     var tableView: UITableView!
     var images = [UIImage(named: "mountain1"), UIImage(named: "mountain2"), UIImage(named: "mountain3"),  UIImage(named: "mountain4"), UIImage(named: "mountain5"), UIImage(named: "mountain6"), UIImage(named: "mountain7"), UIImage(named: "mountain8"), UIImage(named: "mountain9"), UIImage(named: "mountain10")]
     var eventNames = ["Event 1", "Event 2", "Event 3", "Event 4", "Event 5", "Event 6", "Event 7", "Event 8", "Event 9", "Event 10"]
@@ -64,4 +66,5 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
 
