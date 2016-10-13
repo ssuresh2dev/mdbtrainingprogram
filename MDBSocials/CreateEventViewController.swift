@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 
-
 class CreateEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var eventTitleField: UITextField!
@@ -20,6 +19,11 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     var eventImageView: UIImageView! = UIImageView(image: UIImage(named: "emptyimage"))
     var actionSheetController : UIAlertController = UIAlertController(title: "Photos", message: "Select Camera or Photo Library", preferredStyle: .actionSheet)
 
+    
+    
+    let rootRef = FIRDatabase.database().reference()
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +110,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             eventImageView.image = image
         } else{
@@ -118,6 +122,18 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     
     func postButtonClicked(){
+        let eventData = ["eventTitle": self.eventTitleField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": eventDescriptonTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"] as [String : Any]
+        
+        
+        
+        let eventsRef = rootRef.child("events")
+        eventsRef.childByAutoId().setValue(eventData)
+        
+        
         performSegue(withIdentifier: "unwindToFeedVC", sender: self)
+        print("worked")
+        
+        
+        
     }
 }
