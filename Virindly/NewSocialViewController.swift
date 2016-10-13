@@ -23,6 +23,17 @@ class NewSocialViewController: UIViewController {
         self.view.addSubview(newSocialBackground)
         
         
+        // Navigation Bar
+        let navBar2: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
+        let navTitle2 = UINavigationItem(title: "Create a new social!")
+        let backButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedBackButton))
+        navTitle2.rightBarButtonItem = backButton
+        navBar2.setItems([navTitle2], animated: false)
+        
+        self.view.addSubview(navBar2)
+
+        
+        
         
         /*
         // Navigation Bar
@@ -44,6 +55,16 @@ class NewSocialViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // ACTION
+    func pressedBackButton(sender: UIButton!) {
+        performSegue(withIdentifier: "segueBackToFeed", sender: self)
+    }
+
+    
+    
+    
     
 
     /*

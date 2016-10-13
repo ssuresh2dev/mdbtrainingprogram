@@ -16,6 +16,7 @@ class FeedViewController: UIViewController {
     var images = [UIImage(named: "mountain1"), UIImage(named: "mountain2"), UIImage(named: "mountain3"),  UIImage(named: "mountain4"), UIImage(named: "mountain5"), UIImage(named: "mountain6"), UIImage(named: "mountain7"), UIImage(named: "mountain8"), UIImage(named: "mountain9"), UIImage(named: "mountain10")]
     var eventNames = ["Event 1", "Event 2", "Event 3", "Event 4", "Event 5", "Event 6", "Event 7", "Event 8", "Event 9", "Event 10"]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -55,6 +56,7 @@ class FeedViewController: UIViewController {
     
 }
 
+
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -69,7 +71,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    // Objective C part was suggested by Xcode in Issue Navigator
     @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let imageCell = cell as! ImageTableViewCell
         imageCell.eventImageView.image = images[indexPath.row]
