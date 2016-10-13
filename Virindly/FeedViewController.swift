@@ -19,7 +19,20 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         setupTableView()
+        
+
+        // Navigation Bar 
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
+        let navTitle = UINavigationItem(title: "What's going on?")
+        
+        let addEvent = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: #selector(getter: UIAccessibilityCustomAction.selector))
+        navTitle.rightBarButtonItem = addEvent
+        
+        navBar.setItems([navTitle], animated: false)
+        self.view.addSubview(navBar)
+ 
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,6 +45,7 @@ class FeedViewController: UIViewController {
         // Set Layout
         tableView = UITableView(frame: CGRect(x: view.frame.width/24, y: view.frame.height/8, width: view.frame.width - view.frame.width/12, height: view.frame.height - view.frame.height/8))
         tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "imageCell")
+        tableView.rowHeight = 120
         tableView.backgroundColor = UIColor.white
         tableView.delegate = self
         tableView.dataSource = self
@@ -48,22 +62,22 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return images.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as! ImageTableViewCell
-
         cell.awakeFromNib()
-        
         return cell
     }
+    
     
     @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let imageCell = cell as! ImageTableViewCell
         imageCell.eventImageView.image = images[indexPath.row]
         imageCell.eventLabel.text = "\(eventNames[indexPath.row])"
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 120
-    }
+
+    
+    
     
 }
 

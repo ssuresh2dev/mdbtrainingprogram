@@ -10,10 +10,34 @@ import UIKit
 
 class NewSocialViewController: UIViewController {
 
+    var newSocialBackground: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Background
+        newSocialBackground = UIImageView(image: #imageLiteral(resourceName: "orangeGradient"))
+        newSocialBackground.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        self.view.addSubview(newSocialBackground)
+        
+        
+        
+        /*
+        // Navigation Bar
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
+        let navTitle2 = UINavigationItem(title: "Create a new social!")
+        
+        let addEvent = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(getter: UIAccessibilityCustomAction.selector))
+        navTitle2.rightBarButtonItem = addEvent
+        
+        navBar.setItems([navTitle2], animated: false)
+        self.view.addSubview(navBar)
+        */
+        
+
+    
     }
 
     override func didReceiveMemoryWarning() {

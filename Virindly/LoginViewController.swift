@@ -24,9 +24,12 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
+        // Background
         backgroundImage = UIImageView(image: #imageLiteral(resourceName: "Background.jpg"))
         backgroundImage.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         self.view.addSubview(backgroundImage)
+        
         
         // VIRINDLY Logo
         virindlyLogoView = UIImageView(image: #imageLiteral(resourceName: "VIRINDLYLogoOrange"))
@@ -37,7 +40,7 @@ class LoginViewController: UIViewController {
         // Login Textfield
         loginTextField = UITextField()
         
-        let loginPlaceholder = NSAttributedString(string: "Please enter username", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        let loginPlaceholder = NSAttributedString(string: "Please enter email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         loginTextField.attributedPlaceholder = loginPlaceholder
         
         loginTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2.5, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
@@ -78,7 +81,6 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = 5
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.clear.cgColor
-        
         
         loginButton.addTarget(self, action: #selector(pressedLoginButton), for: .touchUpInside)
         self.performSegue(withIdentifier: "segueLoginToFeed", sender: loginButton)

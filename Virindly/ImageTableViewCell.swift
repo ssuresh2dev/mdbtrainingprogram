@@ -28,6 +28,7 @@ class ImageTableViewCell: UITableViewCell {
         
         // Event Label
         eventLabel = UILabel(frame: CGRect(x: contentView.frame.height + contentView.frame.height/20, y: contentView.frame.height + contentView.frame.height/20, width: contentView.frame.width - contentView.frame.height - contentView.frame.height/20, height: contentView.frame.height/2))
+        eventLabel.clipsToBounds = true
         
         // Add Subviews
         contentView.addSubview(eventImageView)
