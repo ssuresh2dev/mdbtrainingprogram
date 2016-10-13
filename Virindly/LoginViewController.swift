@@ -72,6 +72,10 @@ class LoginViewController: UIViewController {
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.clear.cgColor
         
+
+        loginButton.addTarget(self, action: #selector(pressedLoginButton), for: .touchUpInside)
+        self.performSegue(withIdentifier: "segueLoginToFeed", sender: loginButton)
+        
         self.view.addSubview(loginButton)
         
         
@@ -86,13 +90,10 @@ class LoginViewController: UIViewController {
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor.clear.cgColor
         
-        signupButton.addTarget(self, action: #selector(LoginViewController.pressedSignUpButton(sender:)), for: .touchUpInside)
-        
-        
+        signupButton.addTarget(self, action: #selector(pressedSignUpButton), for: .touchUpInside)
         self.performSegue(withIdentifier: "segueToSignUp", sender: signupButton)
         
         self.view.addSubview(signupButton)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,8 +101,16 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // FUNCTIONS
     func pressedSignUpButton(sender: UIButton!) {
         performSegue(withIdentifier: "segueToSignUp", sender: self)
+    }
+    
+    func pressedLoginButton(sender: UIButton!) {
+        performSegue(withIdentifier: "segueLoginToFeed", sender: self)
+        
+    
+        
     }
 
 
