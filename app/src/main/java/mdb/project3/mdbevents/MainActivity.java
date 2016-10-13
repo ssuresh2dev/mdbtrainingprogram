@@ -85,14 +85,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void signIn(String email, String password) {
         if (!validate(email, password))
             return;
+        Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()) {
+                if (!task.isSuccessful())
                     Toast.makeText(getApplicationContext(), R.string.auth_failed, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "works", Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }

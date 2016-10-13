@@ -15,14 +15,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".CreateSocial">
-        </activity>
-        <activity android:name=".FeedActivity">
-            <intent-filter>
-
-            </intent-filter>
-        </activity>
         <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".CreateSocial" />
+        <activity android:name=".FeedActivity" />
     </application>
 
 </manifest>

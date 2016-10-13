@@ -68,7 +68,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHo
             super(view);
 
             // Set the views within the holder to the corresponding XML attributes
-            this.eventImage = (ImageView) (view.findViewById(R.id.event_image));
+            this.eventImage = (ImageView) (view.findViewById(R.id.social_image));
             this.eventName = (TextView) (view.findViewById(R.id.event_name));
             this.eventEmail = (TextView) (view.findViewById(R.id.event_email));
             this.eventInterested = (TextView) (view.findViewById(R.id.event_interested));

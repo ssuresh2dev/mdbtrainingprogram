@@ -1,6 +1,7 @@
 package mdb.project3.mdbevents;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,10 +14,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FeedActivity extends AppCompatActivity {
+public class FeedActivity extends AppCompatActivity implements View.OnClickListener {
 
     EventAdapter eventAdapter;
     DatabaseReference rootNode;
+
+    FloatingActionButton createSocialFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +27,15 @@ public class FeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
 
         // Create a variable for the recycler view and set its layout manager to be linear
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Create a list of test events and bind the event adapter to this list
         ArrayList<Event> eventTestList = new ArrayList<>();
 
-        Event testEvent1 = new Event("Kedar Thakkar", "kedarthakkar@berkeley.edu", "10 others are interested", "fakeurl1.com", new HashMap());
-        Event testEvent2 = new Event("Sayan Bigcok", "sayansdope@berkeley.edu", "20 others are intereseted", "probablyporn.com", new HashMap());
-        Event testEvent3 = new Event("Eman Swift", "emanfyb@berkeley.edu", "30 others are interested", "sleepsalot.com", new HashMap());
+        Event testEvent1 = new Event("Kedar Thakkar", "kedarthakkar@berkeley.edu", "10 others are interested", "fakeurl1.com", "");
+        Event testEvent2 = new Event("Sayan Bigcok", "sayansdope@berkeley.edu", "20 others are intereseted", "probablyporn.com", "");
+        Event testEvent3 = new Event("Eman Swift", "emanfyb@berkeley.edu", "30 others are interested", "sleepsalot.com", "");
 
         eventTestList.add(testEvent1);
         eventTestList.add(testEvent2);
@@ -52,11 +55,22 @@ public class FeedActivity extends AppCompatActivity {
 
         // Set the adapter of the recycler view to the event adapter
         recyclerView.setAdapter(eventAdapter);
+        createSocialFab = (FloatingActionButton) findViewById(R.id.create_social_fab);
+        createSocialFab.setOnClickListener(this);
     }
 
-    public void startNewSocialActivity(View view){
+    public void startNewSocialActivity() {
         Intent intent = new Intent(getApplicationContext(), CreateSocial.class);
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.create_social_fab:
+	    	startNewSocialActivity();
+                break;
+        }
+    }
 }
