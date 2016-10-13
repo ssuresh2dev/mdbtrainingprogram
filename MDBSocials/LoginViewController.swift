@@ -78,7 +78,12 @@ class LoginViewController: UIViewController {
 //        view.addSubview(emailField)
         
         emailField = UITextField(frame: CGRect(x: 66, y: 349, width: 244, height: 33))
-        emailField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "UserTF"))
+        emailField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "DefaultTextView"))
+        emailField.leftViewMode = UITextFieldViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 14, height: 20))
+        let image: UIImage = #imageLiteral(resourceName: "PeopleIcon")
+        imageView.image = image
+        emailField.leftView = imageView
         view.addSubview(emailField)
         
 //        passwordField = UITextField(frame: CGRect(x: view.frame.width/2 - 25, y: view.frame.height/2 + 30, width: view.frame.width, height: 50))
@@ -100,7 +105,7 @@ class LoginViewController: UIViewController {
 //        view.addSubview(createAccountButton)
         
         createAccountButton = UIButton(frame: CGRect(x: 91, y: 490, width: 197, height: 21))
-        createAccountButton.setBackgroundImage(#imageLiteral(resourceName: "NewAcc"), for: .normal)
+        createAccountButton.setImage(#imageLiteral(resourceName: "NewAcc"), for: .normal)
         createAccountButton.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         createAccountButton.addTarget(self, action: #selector(createAccountButtonPressed(_:)), for: .touchUpInside)
         view.addSubview(createAccountButton)
@@ -118,6 +123,7 @@ class LoginViewController: UIViewController {
         
         
     }
+    
     func createAccountButtonPressed(_ sender: UIButton!){
         //segue to create account screen
         self.performSegue(withIdentifier: "segueToSignupVC", sender: self)
