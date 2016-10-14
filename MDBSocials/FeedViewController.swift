@@ -124,9 +124,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let eventCell = cell as! EventTableViewCell
         
-        for info in events[indexPath.row] {
-            eventCell.titleName.text = info.children.value["eventName"] as! String
-        }
+//        for info in events[indexPath.row] {
+//            eventCell.titleName.text = info.children.value["eventName"] as! String
+//        }
         
     }
   
