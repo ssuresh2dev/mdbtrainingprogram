@@ -20,13 +20,14 @@ public class Event implements Comparable<Event>{
     public String imageUrl;
     public String timestamp;
     public String date;
+    public String description;
     public List<String> peopleInterested = new ArrayList<>();
 
     public Event() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Event(String aName, String aEmailAddress, int aNumInterested, String aImageUrl, String aTimestamp, String aDate, List<String> aPeopleInterested){
+    public Event(String aName, String aEmailAddress, int aNumInterested, String aImageUrl, String aTimestamp, String aDescription, String aDate, List<String> aPeopleInterested){
         name = aName;
         emailAddress = aEmailAddress;
         numInterested = aNumInterested;
@@ -34,6 +35,7 @@ public class Event implements Comparable<Event>{
         timestamp = aTimestamp;
         date = aDate;
         peopleInterested = aPeopleInterested;
+        description = aDescription;
     }
     public String getName(){
         return name;
