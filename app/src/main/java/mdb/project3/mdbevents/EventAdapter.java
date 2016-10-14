@@ -43,7 +43,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHo
 
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, int position) {
-
         Event currEvent = eventList.get(position);
 
         // Set holders for TextViews to values of the current Event
@@ -80,9 +79,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHo
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), DetailActivity.class);
-
-                    // Put extras
-
+                    intent.putExtra("DBKEY", FeedActivity.databaseKeys.get(getAdapterPosition()));
                     v.getContext().startActivity(intent);
                 }
             });
