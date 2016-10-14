@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     var modalView: UIButton!
     var numInterested: UILabel!
     var addToRSVP: UIButton!
+    // hello worlddddddd hopefully this works pleaseseeseses
 
     override func viewDidLoad() {
         super.viewDidLoad()
