@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15D87FFB1DB18FBF002AB54A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D87FFA1DB18FBF002AB54A /* AppDelegate.swift */; };
+		15D87FFD1DB18FBF002AB54A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D87FFC1DB18FBF002AB54A /* ViewController.swift */; };
+		15D880001DB18FBF002AB54A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D87FFE1DB18FBF002AB54A /* Main.storyboard */; };
+		15D880021DB18FBF002AB54A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15D880011DB18FBF002AB54A /* Assets.xcassets */; };
+		15D880051DB18FBF002AB54A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D880031DB18FBF002AB54A /* LaunchScreen.storyboard */; };
+		15D880101DB18FBF002AB54A /* Dark_Sky_ForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8800F1DB18FBF002AB54A /* Dark_Sky_ForecastTests.swift */; };
+		15D8801B1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8801A1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15D8800C1DB18FBF002AB54A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D87FEF1DB18FBF002AB54A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15D87FF61DB18FBF002AB54A;
+			remoteInfo = "Dark Sky Forecast";
+		};
+		15D880171DB18FBF002AB54A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15D87FEF1DB18FBF002AB54A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15D87FF61DB18FBF002AB54A;
+			remoteInfo = "Dark Sky Forecast";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15D87FF71DB18FBF002AB54A /* Dark Sky Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dark Sky Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D87FFA1DB18FBF002AB54A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		15D87FFC1DB18FBF002AB54A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		15D87FFF1DB18FBF002AB54A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		15D880011DB18FBF002AB54A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		15D880041DB18FBF002AB54A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		15D880061DB18FBF002AB54A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15D8800B1DB18FBF002AB54A /* Dark Sky ForecastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dark Sky ForecastTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D8800F1DB18FBF002AB54A /* Dark_Sky_ForecastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dark_Sky_ForecastTests.swift; sourceTree = "<group>"; };
+		15D880111DB18FBF002AB54A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15D880161DB18FBF002AB54A /* Dark Sky ForecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dark Sky ForecastUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D8801A1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dark_Sky_ForecastUITests.swift; sourceTree = "<group>"; };
+		15D8801C1DB18FBF002AB54A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15D87FF41DB18FBF002AB54A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D880081DB18FBF002AB54A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D880131DB18FBF002AB54A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15D87FEE1DB18FBF002AB54A = {
+			isa = PBXGroup;
+			children = (
+				15D87FF91DB18FBF002AB54A /* Dark Sky Forecast */,
+				15D8800E1DB18FBF002AB54A /* Dark Sky ForecastTests */,
+				15D880191DB18FBF002AB54A /* Dark Sky ForecastUITests */,
+				15D87FF81DB18FBF002AB54A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15D87FF81DB18FBF002AB54A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15D87FF71DB18FBF002AB54A /* Dark Sky Forecast.app */,
+				15D8800B1DB18FBF002AB54A /* Dark Sky ForecastTests.xctest */,
+				15D880161DB18FBF002AB54A /* Dark Sky ForecastUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15D87FF91DB18FBF002AB54A /* Dark Sky Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				15D87FFA1DB18FBF002AB54A /* AppDelegate.swift */,
+				15D87FFC1DB18FBF002AB54A /* ViewController.swift */,
+				15D87FFE1DB18FBF002AB54A /* Main.storyboard */,
+				15D880011DB18FBF002AB54A /* Assets.xcassets */,
+				15D880031DB18FBF002AB54A /* LaunchScreen.storyboard */,
+				15D880061DB18FBF002AB54A /* Info.plist */,
+			);
+			path = "Dark Sky Forecast";
+			sourceTree = "<group>";
+		};
+		15D8800E1DB18FBF002AB54A /* Dark Sky ForecastTests */ = {
+			isa = PBXGroup;
+			children = (
+				15D8800F1DB18FBF002AB54A /* Dark_Sky_ForecastTests.swift */,
+				15D880111DB18FBF002AB54A /* Info.plist */,
+			);
+			path = "Dark Sky ForecastTests";
+			sourceTree = "<group>";
+		};
+		15D880191DB18FBF002AB54A /* Dark Sky ForecastUITests */ = {
+			isa = PBXGroup;
+			children = (
+				15D8801A1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift */,
+				15D8801C1DB18FBF002AB54A /* Info.plist */,
+			);
+			path = "Dark Sky ForecastUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15D87FF61DB18FBF002AB54A /* Dark Sky Forecast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15D8801F1DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky Forecast" */;
+			buildPhases = (
+				15D87FF31DB18FBF002AB54A /* Sources */,
+				15D87FF41DB18FBF002AB54A /* Frameworks */,
+				15D87FF51DB18FBF002AB54A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dark Sky Forecast";
+			productName = "Dark Sky Forecast";
+			productReference = 15D87FF71DB18FBF002AB54A /* Dark Sky Forecast.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15D8800A1DB18FBF002AB54A /* Dark Sky ForecastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15D880221DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky ForecastTests" */;
+			buildPhases = (
+				15D880071DB18FBF002AB54A /* Sources */,
+				15D880081DB18FBF002AB54A /* Frameworks */,
+				15D880091DB18FBF002AB54A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15D8800D1DB18FBF002AB54A /* PBXTargetDependency */,
+			);
+			name = "Dark Sky ForecastTests";
+			productName = "Dark Sky ForecastTests";
+			productReference = 15D8800B1DB18FBF002AB54A /* Dark Sky ForecastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		15D880151DB18FBF002AB54A /* Dark Sky ForecastUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15D880251DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky ForecastUITests" */;
+			buildPhases = (
+				15D880121DB18FBF002AB54A /* Sources */,
+				15D880131DB18FBF002AB54A /* Frameworks */,
+				15D880141DB18FBF002AB54A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15D880181DB18FBF002AB54A /* PBXTargetDependency */,
+			);
+			name = "Dark Sky ForecastUITests";
+			productName = "Dark Sky ForecastUITests";
+			productReference = 15D880161DB18FBF002AB54A /* Dark Sky ForecastUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15D87FEF1DB18FBF002AB54A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Eliot Han";
+				TargetAttributes = {
+					15D87FF61DB18FBF002AB54A = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					15D8800A1DB18FBF002AB54A = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 15D87FF61DB18FBF002AB54A;
+					};
+					15D880151DB18FBF002AB54A = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 15D87FF61DB18FBF002AB54A;
+					};
+				};
+			};
+			buildConfigurationList = 15D87FF21DB18FBF002AB54A /* Build configuration list for PBXProject "Dark Sky Forecast" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15D87FEE1DB18FBF002AB54A;
+			productRefGroup = 15D87FF81DB18FBF002AB54A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15D87FF61DB18FBF002AB54A /* Dark Sky Forecast */,
+				15D8800A1DB18FBF002AB54A /* Dark Sky ForecastTests */,
+				15D880151DB18FBF002AB54A /* Dark Sky ForecastUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15D87FF51DB18FBF002AB54A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D880051DB18FBF002AB54A /* LaunchScreen.storyboard in Resources */,
+				15D880021DB18FBF002AB54A /* Assets.xcassets in Resources */,
+				15D880001DB18FBF002AB54A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D880091DB18FBF002AB54A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D880141DB18FBF002AB54A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15D87FF31DB18FBF002AB54A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D87FFD1DB18FBF002AB54A /* ViewController.swift in Sources */,
+				15D87FFB1DB18FBF002AB54A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D880071DB18FBF002AB54A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D880101DB18FBF002AB54A /* Dark_Sky_ForecastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15D880121DB18FBF002AB54A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D8801B1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15D8800D1DB18FBF002AB54A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15D87FF61DB18FBF002AB54A /* Dark Sky Forecast */;
+			targetProxy = 15D8800C1DB18FBF002AB54A /* PBXContainerItemProxy */;
+		};
+		15D880181DB18FBF002AB54A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15D87FF61DB18FBF002AB54A /* Dark Sky Forecast */;
+			targetProxy = 15D880171DB18FBF002AB54A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		15D87FFE1DB18FBF002AB54A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15D87FFF1DB18FBF002AB54A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		15D880031DB18FBF002AB54A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15D880041DB18FBF002AB54A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		15D8801D1DB18FBF002AB54A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15D8801E1DB18FBF002AB54A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15D880201DB18FBF002AB54A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Dark Sky Forecast/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliothan.Dark-Sky-Forecast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		15D880211DB18FBF002AB54A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Dark Sky Forecast/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliothan.Dark-Sky-Forecast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		15D880231DB18FBF002AB54A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Dark Sky ForecastTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliothan.Dark-Sky-ForecastTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dark Sky Forecast.app/Dark Sky Forecast";
+			};
+			name = Debug;
+		};
+		15D880241DB18FBF002AB54A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Dark Sky ForecastTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliothan.Dark-Sky-ForecastTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dark Sky Forecast.app/Dark Sky Forecast";
+			};
+			name = Release;
+		};
+		15D880261DB18FBF002AB54A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "Dark Sky ForecastUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliothan.Dark-Sky-ForecastUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Dark Sky Forecast";
+			};
+			name = Debug;
+		};
+		15D880271DB18FBF002AB54A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "Dark Sky ForecastUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eliothan.Dark-Sky-ForecastUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Dark Sky Forecast";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15D87FF21DB18FBF002AB54A /* Build configuration list for PBXProject "Dark Sky Forecast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D8801D1DB18FBF002AB54A /* Debug */,
+				15D8801E1DB18FBF002AB54A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15D8801F1DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky Forecast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D880201DB18FBF002AB54A /* Debug */,
+				15D880211DB18FBF002AB54A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		15D880221DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky ForecastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D880231DB18FBF002AB54A /* Debug */,
+				15D880241DB18FBF002AB54A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		15D880251DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky ForecastUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15D880261DB18FBF002AB54A /* Debug */,
+				15D880271DB18FBF002AB54A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15D87FEF1DB18FBF002AB54A /* Project object */;
+}
