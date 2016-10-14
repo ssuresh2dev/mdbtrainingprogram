@@ -21,6 +21,17 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Navigation Bar
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
+        let navTitle = UINavigationItem(title: "Create your account!")
+        
+        let backLogin = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedBackLogin))
+        navTitle.leftBarButtonItem = backLogin
+        
+        navBar.setItems([navTitle], animated: false)
+        self.view.addSubview(navBar)
+
+        
         // Input Full Name Textfield
         inputFullNameTextField = UITextField()
         
@@ -103,6 +114,10 @@ class SignUpViewController: UIViewController {
         signupButton.addTarget(self, action: #selector(hooHah), for: .touchUpInside)
         
         self.view.addSubview(signupButton)
+    }
+    
+    func pressedBackLogin(sender: UIButton!) {
+        performSegue(withIdentifier: "segueSignupToLogin", sender: self)
     }
     
     func hooHah(sender: UIButton!) {

@@ -11,6 +11,8 @@ import UIKit
 class NewSocialViewController: UIViewController {
 
     var newSocialBackground: UIImageView!
+    var virindlyMiniLogoView: UIImageView!
+    // var nameOfEvent: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,46 @@ class NewSocialViewController: UIViewController {
         // Navigation Bar
         let navBar2: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle2 = UINavigationItem(title: "Create a new social!")
-        let backButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedBackButton))
-        navTitle2.rightBarButtonItem = backButton
-        navBar2.setItems([navTitle2], animated: false)
         
+        let backButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedBackButton))
+        navTitle2.leftBarButtonItem = backButton
+        
+        let completeEventButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: #selector(pressedCompleteEventButton))
+        navTitle2.rightBarButtonItem = completeEventButton
+        
+        
+        navBar2.setItems([navTitle2], animated: false)
         self.view.addSubview(navBar2)
+        
+        
+        // VIRINDLY Logo
+        virindlyMiniLogoView = UIImageView(image: #imageLiteral(resourceName: "VIRINDLYLogoOrange"))
+        virindlyMiniLogoView.frame = CGRect(x: 15, y: 100, width: 100, height: 25)
+        self.view.addSubview(virindlyMiniLogoView)
+        
+        /*
+        // Name Of Event Textfield
+        nameOfEvent = UITextField()
+        
+        let nameOfEvent = NSAttributedString(string: "Name of event", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        nameOfEvent.attributedPlaceholder = nameOfEventPlaceholder
+        
+        nameOfEvent.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2.5, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
+        nameOfEvent.font = UIFont.systemFont(ofSize: 15)
+        nameOfEvent.borderStyle = UITextBorderStyle.roundedRect
+        
+        nameOfEvent.autocorrectionType = UITextAutocorrectionType.no
+        nameOfEvent.keyboardType = UIKeyboardType.default
+        nameOfEvent.returnKeyType = UIReturnKeyType.done
+        
+        self.view.addSubview(nameOfEvent)
+        */
+        
+
+        
+        
+        
+        
 
         
         
@@ -53,6 +90,10 @@ class NewSocialViewController: UIViewController {
     
     // ACTION
     func pressedBackButton(sender: UIButton!) {
+        performSegue(withIdentifier: "segueBackToFeed", sender: self)
+    }
+    
+    func pressedCompleteEventButton(sender: UIButton!) {
         performSegue(withIdentifier: "segueBackToFeed", sender: self)
     }
 

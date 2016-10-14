@@ -118,7 +118,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // FUNCTIONS
+    // ACTIONS
     func pressedSignUpButton(sender: UIButton!) {
         performSegue(withIdentifier: "segueToSignUp", sender: self)
     }

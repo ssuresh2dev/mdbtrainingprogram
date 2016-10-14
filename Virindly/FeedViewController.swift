@@ -28,8 +28,11 @@ class FeedViewController: UIViewController {
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle = UINavigationItem(title: "What's going on?")
         
-        let addEvent = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: #selector(getter: UIAccessibilityCustomAction.selector))
+        let addEvent = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: #selector(pressedAddButton))
         navTitle.rightBarButtonItem = addEvent
+        
+        let logoutButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedLogout))
+        navTitle.leftBarButtonItem = logoutButton
         
         navBar.setItems([navTitle], animated: false)
         self.view.addSubview(navBar)
@@ -52,6 +55,16 @@ class FeedViewController: UIViewController {
         tableView.dataSource = self
         self.view.addSubview(tableView)
     }
+    
+    // ACTIONS
+    func pressedAddButton(sender: UIButton!) {
+        performSegue(withIdentifier: "segueToNewSocial", sender: self)
+    }
+    
+    func pressedLogout(sender: UIButton!) {
+        performSegue(withIdentifier: "segueFeedToLogin", sender: self)
+    }
+
     
     
 }

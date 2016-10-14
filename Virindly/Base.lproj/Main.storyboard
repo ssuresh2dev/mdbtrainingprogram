@@ -43,6 +43,7 @@
                     </view>
                     <connections>
                         <segue destination="vVs-MB-bxw" kind="show" identifier="segueSignUpToFeed" id="CSD-7M-hVY"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueSignupToLogin" id="hcw-Vr-sap"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ba5-MQ-iIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -64,6 +65,7 @@
                     </view>
                     <connections>
                         <segue destination="JgY-vY-RIx" kind="show" identifier="segueToNewSocial" id="6fT-US-9Xm"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueFeedToLogin" id="c5s-w2-T4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPN-T8-FI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,13 +85,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueBackToFeed" id="TRU-pf-F0B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcK-dB-eNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1463" y="899"/>
+            <point key="canvasLocation" x="1790" y="899"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uhP-Mk-hbX"/>
+        <segue reference="hcw-Vr-sap"/>
+        <segue reference="CSD-7M-hVY"/>
     </inferredMetricsTieBreakers>
 </document>
