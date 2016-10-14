@@ -171,18 +171,18 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         let imagesRef = storageRef.child("images")
         let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
         
-        var posterName: NSString?
-        let ref = rootRef.child("users").child("\(FIRAuth.auth()?.currentUser?.uid)")
+        var posterName: String?
+        let ref = rootRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
         ref.observe(.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject]{
-                
+            if let dictionary = snapshot.value as? [String: String]{
+                posterName = dictionary["username"]
                 
             }
         })
-
+        print(posterName)
         
         //Event Information
-        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0", "posterName": posterName ?? "None"]
+        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0", "posterName": posterName as NSString? ?? "None"]
 
         //Set Event Information
         uniqueEventRef.setValue(eventData){ (error, snap) in

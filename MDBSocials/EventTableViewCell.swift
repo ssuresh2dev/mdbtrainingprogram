@@ -34,7 +34,7 @@ class EventTableViewCell: UITableViewCell {
         rsvpLabel = UILabel(frame: CGRect(x: contentView.frame.width - 30, y: 28.5, width: 50, height: 38))
         contentView.addSubview(rsvpLabel)
         
-        posterLabel = UILabel(frame:CGRect(x: 76, y: 35, width: 50, height: 40))
+        posterLabel = UILabel(frame:CGRect(x: 80, y: 40, width: 50, height: 40))
         contentView.addSubview(posterLabel)
         
         super.awakeFromNib()
