@@ -15,32 +15,48 @@ import FirebaseStorage
 
 class FeedViewController: UIViewController {
 
-   // var ref: FIRDatabaseReference!
-    //var events: [FIRDataSnapshot]! = []
-    //var tableView: UITableView!
+   
+    var events: [FIRDataSnapshot]! = []
+    var tableView: UITableView!
     
     var deleteLater: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //configureDatabase()
-//        setupTableView()
+        configureDatabase()
+        setupTableView()
         setupUI()
         setupSignOutButton()
     }
 
     func configureDatabase(){
-        //ref = FIRDatabase().reference()
+        let rootRef = FIRDatabase().reference()
+        let eventsRef = rootRef.child("events")
+        //let usersRef = rootRef.child("users")
+        
+        eventsRef.observe(.value, with: { snapshot in
+            var newEvents: [FIRDataSnapshot] = []
+            for event in snapshot.children {
+        
+                newEvents.append(event as! FIRDataSnapshot)
+            }
+            
+            self.events = newEvents
+            self.tableView.reloadData()
+        })
+        
+        
         
         
     }
-//    func setupTableView(){
-//        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-//        tableView.register(EventTableViewCell.self, forCellReuseIdentifier: "eventCell")
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//    
-//    }
+    func setupTableView(){
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        tableView.register(EventTableViewCell.self, forCellReuseIdentifier: "eventCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+    
+    }
+    
     func setupUI(){
         let bttn = UIButton()
         bttn.setImage(#imageLiteral(resourceName: "CalendarIcon"), for: .normal)
@@ -96,16 +112,26 @@ class FeedViewController: UIViewController {
     }
 }
 
-//extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        
-//    }
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//    }
-//  
-//    
-//}
+extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return events.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventTableViewCell", for: indexPath) as! EventTableViewCell
+        for subview in cell.contentView.subviews{
+            subview.removeFromSuperview()
+        }
+        cell.awakeFromNib()
+        self.tableView?.rowHeight = 80
+        return cell
+
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //cell shtit
+    }
+  
+    
+}
