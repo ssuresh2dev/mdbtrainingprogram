@@ -32,7 +32,7 @@ class EventTableViewCell: UITableViewCell {
         
         numInterest = UILabel(frame: CGRect(x: 281, y: 28.5, width: 50, height: 38))
         contentView.addSubview(numInterest)
-        //LET ME COMMITTTTTT please
+        
         
         super.awakeFromNib()
         // Initialization code
