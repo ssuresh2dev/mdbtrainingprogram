@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JgY-vY-RIx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vVs-MB-bxw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -64,7 +64,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="JgY-vY-RIx" kind="show" identifier="segueToNewSocial" id="6fT-US-9Xm"/>
+                        <segue destination="JgY-vY-RIx" kind="presentation" identifier="segueToNewSocial" id="6fT-US-9Xm"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segueFeedToLogin" id="c5s-w2-T4d"/>
                     </connections>
                 </viewController>
@@ -85,9 +85,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueBackToFeed" id="TRU-pf-F0B"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcK-dB-eNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,7 +92,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hcw-Vr-sap"/>
+        <segue reference="c5s-w2-T4d"/>
         <segue reference="CSD-7M-hVY"/>
     </inferredMetricsTieBreakers>
 </document>

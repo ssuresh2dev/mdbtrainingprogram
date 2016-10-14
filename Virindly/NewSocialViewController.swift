@@ -121,7 +121,7 @@ class NewSocialViewController: UIViewController {
     
     // ACTION
     func pressedBackButton(sender: UIButton!) {
-        performSegue(withIdentifier: "segueBackToFeed", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     
     func pressedCompleteEventButton(sender: UIButton!) {
