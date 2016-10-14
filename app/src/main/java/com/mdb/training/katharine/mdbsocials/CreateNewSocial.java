@@ -14,7 +14,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,15 +73,12 @@ public class CreateNewSocial extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         if (resultCode == RESULT_OK) {
-            selectedImage = imageReturnedIntent.getData();
-            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("socialPics/");
-
-
+            int numSocials = getIntent().getExtras().getInt("numSocials");
+            numSocials += 1;
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("socialPics/" + numSocials + ".jpg");
+            UploadTask uploadTask = storageRef.putFile(selectedImage);
         }
     }
-
-
-
 
     public void createSocial() {
         String n = name.getText().toString();

@@ -98,6 +98,7 @@ public class FeedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FeedActivity.this, CreateNewSocial.class);
+                intent.putExtra("numSocials", socials.size());
                 startActivity(intent);
             }
         });
