@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
         // Login Textfield
         loginTextField = UITextField()
         
-        let loginPlaceholder = NSAttributedString(string: "Please enter email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        let loginPlaceholder = NSAttributedString(string: "Enter email", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         loginTextField.attributedPlaceholder = loginPlaceholder
         
         loginTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2.5, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
         // Password Textfield
         passwordTextField = UITextField()
         
-        let passwordPlaceholder = NSAttributedString(string: "Please enter password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        let passwordPlaceholder = NSAttributedString(string: "Enter password", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         passwordTextField.attributedPlaceholder = passwordPlaceholder
         
         passwordTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)

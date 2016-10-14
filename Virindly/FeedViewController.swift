@@ -21,8 +21,7 @@ class FeedViewController: UIViewController {
     var posts = [postStruct]()
     var user: FIRUser!
     var tableView: UITableView!
-    var images = [UIImage(named: "mountain1"), UIImage(named: "mountain2"), UIImage(named: "mountain3"),  UIImage(named: "mountain4"), UIImage(named: "mountain5"), UIImage(named: "mountain6"), UIImage(named: "mountain7"), UIImage(named: "mountain8"), UIImage(named: "mountain9"), UIImage(named: "mountain10")]
-    var eventNames = ["Event 1", "Event 2", "Event 3", "Event 4", "Event 5", "Event 6", "Event 7", "Event 8", "Event 9", "Event 10"]
+    var images = [UIImage(named: "event1"), UIImage(named: "event2"), UIImage(named: "event3"),  UIImage(named: "event4"), UIImage(named: "event5"), UIImage(named: "event6"), UIImage(named: "event7")]
     
     
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let ref = FIRDatabase.database().reference()
-        ref.child("posts").queryOrderedByKey().observe(<#T##eventType: FIRDataEventType##FIRDataEventType#>, with: { (snapshot) in
+        ref.child("posts").queryOrderedByKey().observe(.childAdded, with: { (snapshot) in
             
             let snapshotValue = snapshot.value as? NSDictionary
             
@@ -39,19 +38,20 @@ class FeedViewController: UIViewController {
             let date = snapshotValue!["date"]
             
             self.posts.insert(postStruct(event: event as! String!, details: details as! String, date: date as! String), at: 0)
-            tableView.reloadData()
+            self.tableView.reloadData()
         })
         
         setupTableView()
+    
 
         // Navigation Bar 
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle = UINavigationItem(title: "What's going on?")
         
-        let addEvent = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(pressedAddButton))
+        let addEvent = UIBarButtonItem(barButtonSystemItem: .undo, target: nil, action: #selector(pressedAddButton))
         navTitle.rightBarButtonItem = addEvent
         
-        let logoutButton = UIBarButtonItem(barButtonSystemItem: .undo, target: nil, action: #selector(pressedLogout))
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(pressedLogout))
         navTitle.leftBarButtonItem = logoutButton
         
         navBar.setItems([navTitle], animated: false)
@@ -62,7 +62,8 @@ class FeedViewController: UIViewController {
     // Initializing a TableView and additing it to VC's current screen
     func setupTableView() {
         // Set Layout
-        tableView = UITableView(frame: CGRect(x: view.frame.width/24, y: view.frame.height/8, width: view.frame.width - view.frame.width/12, height: view.frame.height - view.frame.height/8))
+        tableView = UITableView(frame: CGRect(x: 0, y: 80, width: view.frame.width, height: view.frame.height))
+        tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "Screen Shot 2016-10-13 at 11.42.31 PM"))
         tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "imageCell")
         tableView.rowHeight = 120
         tableView.backgroundColor = UIColor.white
@@ -113,8 +114,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let imageCell = cell as! ImageTableViewCell
         imageCell.eventLabel.text = posts[indexPath.row].event
+        imageCell.eventDescription.text = posts[indexPath.row].details
         imageCell.eventImageView.image = images[indexPath.row]
-        imageCell.eventLabel.text = "\(eventNames[indexPath.row])"
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
 
     

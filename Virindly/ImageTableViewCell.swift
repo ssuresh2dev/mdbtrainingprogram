@@ -12,36 +12,33 @@ class ImageTableViewCell: UITableViewCell {
 
     var eventImageView: UIImageView!
     var eventLabel: UILabel!
+    var eventDescription: UILabel!
     
     
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Cell Background
-        let cellBackground = UIImageView(image: #imageLiteral(resourceName: "bluegradient"))
-        cellBackground.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-        self.contentView.addSubview(cellBackground)
-        
+
         // Event Image
         eventImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: contentView.frame.height, height: contentView.frame.height))
         eventImageView.contentMode = .scaleAspectFill
         eventImageView.clipsToBounds = true
         
         // Event Label
-        eventLabel = UILabel(frame: CGRect(x: contentView.frame.height + contentView.frame.height/20, y: contentView.frame.height + contentView.frame.height/20, width: contentView.frame.width - contentView.frame.height - contentView.frame.height/20, height: contentView.frame.height/2))
-        eventLabel.clipsToBounds = true
+        eventLabel = UILabel(frame: CGRect(x: contentView.frame.height + contentView.frame.height/15, y: 0, width: contentView.frame.width - contentView.frame.height - contentView.frame.height/20, height: contentView.frame.height/2))
+        eventLabel.font = UIFont.boldSystemFont(ofSize: 23)
+        
+        // Event description
+        eventDescription = UILabel(frame: CGRect(x: contentView.frame.height + contentView.frame.height/15, y: contentView.frame.height * 0.12 , width: contentView.frame.width - contentView.frame.height - contentView.frame.height/20, height: contentView.frame.height * 0.75))
+        eventDescription.clipsToBounds = true
         
         // Add Subviews
         contentView.addSubview(eventImageView)
         contentView.addSubview(eventLabel)
+        contentView.addSubview(eventDescription)
         
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
 
 }
 

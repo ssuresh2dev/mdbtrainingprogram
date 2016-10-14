@@ -34,7 +34,7 @@ class NewSocialViewController: UIViewController {
         let navBar2: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle2 = UINavigationItem(title: "Create a new social!")
         
-        let backButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedBackButton))
+        let backButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(pressedBackButton))
         navTitle2.leftBarButtonItem = backButton
         
         let completeEventButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: nil, action: #selector(pressedCompleteEventButton))
@@ -48,7 +48,7 @@ class NewSocialViewController: UIViewController {
         // Input Full Name Textfield
         inputEventNameTextField = UITextField()
         
-        let inputEventNamePlaceholder = NSAttributedString(string: "Event name here", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        let inputEventNamePlaceholder = NSAttributedString(string: "Event name", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         inputEventNameTextField.attributedPlaceholder = inputEventNamePlaceholder
         
         inputEventNameTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/3.3, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
@@ -65,7 +65,7 @@ class NewSocialViewController: UIViewController {
         // Input Description Textfield
         inputDescriptionTextField = UITextField()
         
-        let inputDescriptionPlaceholder = NSAttributedString(string: "Short description here", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        let inputDescriptionPlaceholder = NSAttributedString(string: "Short description", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         inputDescriptionTextField.attributedPlaceholder = inputDescriptionPlaceholder
         
         inputDescriptionTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2.5, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)

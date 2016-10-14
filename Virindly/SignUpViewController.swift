@@ -24,8 +24,8 @@ class SignUpViewController: UIViewController {
         // Navigation Bar
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle = UINavigationItem(title: "Create your account!")
-        
-        let backLogin = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedBackLogin))
+
+        let backLogin = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(pressedBackLogin))
         navTitle.leftBarButtonItem = backLogin
         
         navBar.setItems([navTitle], animated: false)
