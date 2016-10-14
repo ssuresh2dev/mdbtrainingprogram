@@ -14,6 +14,7 @@
 		EF3294911DA4BEEB008CCFBA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3294901DA4BEEB008CCFBA /* Constants.swift */; };
 		EF4503341DAF50BD00850EEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF4503331DAF50BD00850EEA /* Main.storyboard */; };
 		EF4503361DAF627000850EEA /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4503351DAF627000850EEA /* FeedTableViewCell.swift */; };
+		EF4503381DB0A1B200850EEA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4503371DB0A1B200850EEA /* Event.swift */; };
 		EF64F7641DA1F2F100A4C1C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */; };
 		EF64F7661DA1F2F100A4C1C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */; };
 		EF64F76B1DA1F2F100A4C1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF64F76A1DA1F2F100A4C1C6 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		EF3294901DA4BEEB008CCFBA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EF4503331DAF50BD00850EEA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EF4503351DAF627000850EEA /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		EF4503371DB0A1B200850EEA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		EF64F7601DA1F2F100A4C1C6 /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */,
 				EF32948E1DA4BD94008CCFBA /* AppState.swift */,
 				EF3294901DA4BEEB008CCFBA /* Constants.swift */,
+				EF4503371DB0A1B200850EEA /* Event.swift */,
 				EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */,
 				EFFEE6261DA219D100BF2A82 /* LoginViewController.swift */,
 				EFFEE62C1DA21A3C00BF2A82 /* DetailViewController.swift */,
@@ -245,6 +248,7 @@
 				EFFEE6271DA219D100BF2A82 /* LoginViewController.swift in Sources */,
 				EF64F7661DA1F2F100A4C1C6 /* ViewController.swift in Sources */,
 				EF32948F1DA4BD94008CCFBA /* AppState.swift in Sources */,
+				EF4503381DB0A1B200850EEA /* Event.swift in Sources */,
 				EFFEE62B1DA21A0F00BF2A82 /* FeedViewController.swift in Sources */,
 				EF3294911DA4BEEB008CCFBA /* Constants.swift in Sources */,
 				EFFEE62F1DA21A8100BF2A82 /* NewSocialViewController.swift in Sources */,

@@ -31,7 +31,7 @@ class FeedTableViewCell: UITableViewCell {
         contentView.addSubview(date)
         
         eventPictureImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width/3, height: contentView.frame.height))
-        eventPictureImageView.contentMode = .scaleAspectFill
+        eventPictureImageView.contentMode = .scaleAspectFit
         eventPictureImageView.clipsToBounds = true
         
         contentView.addSubview(eventPictureImageView)

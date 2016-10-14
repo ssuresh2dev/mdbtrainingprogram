@@ -25,11 +25,4 @@ struct Constants {
     static let SignInToFp = "SignInToFP"
     static let FpToSignIn = "FPToSignIn"
   }
-
-  struct Events {
-    static let event = "event"
-    static let poster = "poster"
-    static let photoURL = "photoURL"
-    static let imageURL = "imageURL"
-  }
 }

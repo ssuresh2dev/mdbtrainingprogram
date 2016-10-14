@@ -9,13 +9,23 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
+    var event: Event!
     var titleToBeSet: String! = "TestTitleOfEvent"
     var whoPostedName: String! = "TestPerson"
     var testPeopleRSVP: String! = "17"
+    var dateLabel: UILabel!
+    var RSVPButton: UIButton!
+    var whoInterestedButton: UIButton!
     var backButton: UIButton!
+    var descriptionLabel: UILabel!
+    var descriptionText: String! 
     
     override func viewDidLoad() {
+        titleToBeSet = event.name
+        whoPostedName = "Jessica Chen"
+        testPeopleRSVP = event.numRSVPs
+        descriptionText = event.description
+        
         super.viewDidLoad()
         setUI()
         
@@ -50,6 +60,7 @@ class DetailViewController: UIViewController {
         eventTitleLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(eventTitleLabel)
         
+        
         let fillerLabel = UILabel(frame: CGRect(x: view.frame.width * 0.8 - 1, y: 0, width: view.frame.width * 0.2 + 1, height: view.frame.height * 0.1))
         fillerLabel.backgroundColor = themeColor
         fillerLabel.clipsToBounds = true
@@ -66,7 +77,7 @@ class DetailViewController: UIViewController {
         whoPostedLabel.textAlignment = NSTextAlignment.center
         view.addSubview(whoPostedLabel)
         
-        let whoInterestedButton = UIButton(frame: CGRect(x: (view.frame.width - view.frame.height * 0.3)/2, y: view.frame.height * 0.4 + 90, width: view.frame.height * 0.3, height: 30))
+        whoInterestedButton = UIButton(frame: CGRect(x: (view.frame.width - view.frame.height * 0.3)/2, y: view.frame.height * 0.4 + 90, width: view.frame.height * 0.3, height: 30))
         whoInterestedButton.setTitle("\(testPeopleRSVP!) people interested", for: UIControlState.normal)
         whoInterestedButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
         whoInterestedButton.titleLabel!.adjustsFontSizeToFitWidth = true
@@ -77,7 +88,7 @@ class DetailViewController: UIViewController {
         whoInterestedButton.layer.cornerRadius = 5
         view.addSubview(whoInterestedButton)
         
-        let RSVPButton = UIButton(frame: CGRect(x: view.frame.width * 0.45, y: view.frame.height * 0.4 + 130, width: view.frame.width * 0.1, height: 30))
+        RSVPButton = UIButton(frame: CGRect(x: view.frame.width * 0.45, y: view.frame.height * 0.4 + 130, width: view.frame.width * 0.1, height: 30))
         RSVPButton.setTitle("RSVP", for: UIControlState.normal)
         RSVPButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
         RSVPButton.titleLabel!.adjustsFontSizeToFitWidth = true
@@ -88,9 +99,17 @@ class DetailViewController: UIViewController {
         RSVPButton.layer.cornerRadius = 5
         view.addSubview(RSVPButton)
         
+        descriptionLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.4 + 160, width: view.frame.width * 0.7, height: view.frame.height * 0.6 - 190))
+        descriptionLabel.text = descriptionText
+        descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 14.0)
+        descriptionLabel.textColor = UIColor.black
+        descriptionLabel.textAlignment = NSTextAlignment.justified
+        descriptionLabel.clipsToBounds = true
+        view.addSubview(descriptionLabel)
+        
     }
     
-    func backPressed(){
+    func backPressed() {
         performSegue(withIdentifier: "backToFeed", sender: self)
     }
     

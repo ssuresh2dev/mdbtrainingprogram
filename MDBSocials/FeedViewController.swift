@@ -13,15 +13,32 @@ class FeedViewController: UIViewController {
     var newSocial: UIButton!
     var signOutButton: UIButton!
     var feedTableView: UITableView!
-    var feedEventPictures = [UIImage(named: "IMG_2469")]
-    
-    
+    var feedEvents = [Event]()
+    var eventSelected: Event!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFeedTableView()
         setUI()
         
+        let ref = FIRDatabase.database().reference()
+        ref.child("events").queryOrderedByKey().observe(.childAdded, with: {
+            snapshot in
+            let snapshotValue = snapshot.value as? NSDictionary
+            let date = snapshotValue?["date"] as? String
+            let name = snapshotValue?["name"] as? String
+            let numRSVPs = snapshotValue?["numRSVPs"] as? String
+            let time = snapshotValue?["time"] as? String
+            
+            self.feedEvents.insert(Event(name: name!, date: date!, time: time!, numRSVPs: numRSVPs!), at: 0)
+            
+        })
+        feedTableView.reloadData()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        feedTableView.reloadData()
     }
     
     func setUI() {
@@ -110,12 +127,15 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Specifies the number of rows in the given SECTION.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feedEventPictures.count
+        return feedEvents.count
     }
     
     // Deques the cell and sets it up.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
+        for subview in cell.contentView.subviews{
+            subview.removeFromSuperview()
+        }
         cell.awakeFromNib()
     
         return cell
@@ -124,15 +144,25 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     // Populates the data of a given cell.
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let feedCell = cell as! FeedTableViewCell
-        feedCell.eventPictureImageView.image = feedEventPictures[indexPath.row]
+        feedCell.eventPictureImageView.image = UIImage(named: "event")
+        feedCell.date.text = feedEvents[indexPath.row].date
+        feedCell.eventName.text = feedEvents[indexPath.row].name
+        feedCell.numRSVP.text = feedEvents[indexPath.row].numRSVPs
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        eventSelected = feedEvents[indexPath.row]
        performSegue(withIdentifier: "toDetail", sender: self)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height/4
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetail"{
+            let next = segue.destination as! DetailViewController
+            next.event = eventSelected
+        }
     }
     
 }
