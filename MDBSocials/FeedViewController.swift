@@ -158,15 +158,15 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedEvent = eventsArray[indexPath.row]
         performSegue(withIdentifier: "moreInfo", sender: self)
-        
-        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreInfo" {
             let dest = segue.destination as? DetailViewController
-            dest?.titleOfEvent.text = selectedEvent?.eventTitle
-            dest.
+            dest?.titleOfEvent.text = selectedEvent!.eventTitle
+            dest?.paragraphText.text = selectedEvent!.eventDescription
+            dest?.numInterested.text = selectedEvent!.rsvp
         }
     }
   
