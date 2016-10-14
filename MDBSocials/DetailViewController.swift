@@ -39,7 +39,6 @@ class DetailViewController: UIViewController {
         view.addSubview(modalView)
         
         numInterested = UILabel(frame: CGRect(x: 118.5, y: 540, width: 265, height: 21))
-        numInterested.text = "# people interested"
         numInterested.font = UIFont(name: "AvenirNext-Regular", size: 15.0)
         numInterested.textColor = UIColor.white
         view.addSubview(numInterested)

@@ -17,12 +17,9 @@ class FeedViewController: UIViewController {
     let rootRef = Constants.Colors.rootRef
     var events: [NSString] = []
     var tableView: UITableView!
-<<<<<<< HEAD
     var eventsArray: [Event] = []
     var selectedEvent: Event?
-=======
-    //events is an array 
->>>>>>> 8360d0c479300d0f6895ba58ccfce36fe7d59ce9
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,15 +158,15 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedEvent = eventsArray[indexPath.row]
         performSegue(withIdentifier: "moreInfo", sender: self)
-        
-        
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreInfo" {
             let dest = segue.destination as? DetailViewController
-            dest?.titleOfEvent.text = selectedEvent?.eventTitle
-            dest.
+            dest?.titleOfEvent.text = selectedEvent!.eventTitle
+            dest?.paragraphText.text = selectedEvent!.eventDescription
+            dest?.numInterested.text = selectedEvent!.rsvp
         }
     }
   
