@@ -15,6 +15,8 @@ class NewSocialViewController: UIViewController {
     var inputEventNameTextField: UITextField!
     var inputDescriptionTextField: UITextField!
     
+    //let dateSelect: UIDatePicker =
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +79,7 @@ class NewSocialViewController: UIViewController {
         
         
         // Date Picker
-        // let selectDate: UIDatePicker!
+        
         
 
 
