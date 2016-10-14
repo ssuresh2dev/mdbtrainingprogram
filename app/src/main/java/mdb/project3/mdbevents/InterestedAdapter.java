@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kedarthakkar on 10/13/16.
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.CustomViewHolder> {
 
     Context context;
-    ArrayList<String> interestedList;
+    List<String> interestedList;
 
-    public InterestedAdapter (Context context, ArrayList<String> list){
+    public InterestedAdapter (Context context, List<String> list){
         this.context = context;
         this.interestedList = list;
     }

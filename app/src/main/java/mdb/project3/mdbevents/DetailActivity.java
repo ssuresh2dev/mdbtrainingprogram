@@ -44,6 +44,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     FirebaseStorage mStorage;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+    String dbKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         bindViews();
 
-        String dbKey = getIntent().getExtras().getString("DBKEY");
+        dbKey = getIntent().getExtras().getString("DBKEY");
 
         Toast.makeText(getApplicationContext(), "Loading event info...", Toast.LENGTH_SHORT).show();
 
@@ -122,7 +123,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 });
                 break;
             case R.id.InterestedButton:
-                startActivity(new Intent());
+                Intent myIntent = new Intent(DetailActivity.this, InterestedActivity.class);
+                myIntent.putExtra("DBKEY", dbKey);
+                startActivity(myIntent);
                 break;
         }
     }

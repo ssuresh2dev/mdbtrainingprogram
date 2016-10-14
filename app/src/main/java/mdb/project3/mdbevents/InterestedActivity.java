@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class InterestedActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class InterestedActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) (findViewById(R.id.interested_recycler_view));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        final ArrayList<String> interested = new ArrayList<String>();
+        final List<String> interested = new ArrayList<>();
 
         String eventId = getIntent().getStringExtra("DBKEY");
 
@@ -42,9 +43,8 @@ public class InterestedActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 Log.e("Count " ,""+snapshot.getChildrenCount());
                 Event event = snapshot.getValue(Event.class);
-                interested.add(event.peopleInterested);
 
-                interestedAdapter.interestedList = interested;
+                interestedAdapter.interestedList = event.peopleInterested;
                 interestedAdapter.notifyDataSetChanged();
             }
             @Override
