@@ -54,6 +54,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
 
+    private Toast mToast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +110,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
         if (!validate())
             return;
 
-        Toast.makeText(getApplicationContext(), "Creating event...", Toast.LENGTH_SHORT).show();
+        mToast = Toast.makeText(getApplicationContext(), "Creating event...", Toast.LENGTH_LONG);
+        mToast.show();
 
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
@@ -118,7 +121,7 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
             final String dbKey = dbRef.child("Events").push().getKey();
             final String name = socialName.getText().toString();
             final String emailAddress = user.getEmail();
-            final String numInterested = "0 others are interested";
+            final int numInterested = 0;
             final String timeStamp = String.valueOf(myCalendar.getTimeInMillis() / 1000L);
             final List<String> dateStrings = Arrays.asList(dates[0].getText().toString(),
                     dates[1].getText().toString(),
@@ -159,6 +162,13 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
                     Snackbar.LENGTH_SHORT).show();
         }
         return valid;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mToast != null)
+            mToast.cancel();
     }
 
     @Override
