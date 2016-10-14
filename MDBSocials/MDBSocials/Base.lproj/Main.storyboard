@@ -21,7 +21,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Uqo-Bc-BGS"/>
                     <connections>
-                        <segue destination="eWk-xy-5iF" kind="show" identifier="toSignUp" id="DhQ-8E-7jR"/>
+                        <segue destination="eWk-xy-5iF" kind="presentation" identifier="toSignUp" id="DhQ-8E-7jR"/>
                         <segue destination="yy5-HB-jUw" kind="show" identifier="loginToFeed" id="jFG-hh-s6c"/>
                     </connections>
                 </viewController>
@@ -44,8 +44,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="YFQ-Cm-Si3"/>
                     <connections>
-                        <segue destination="Pwz-Jq-Afc" kind="show" identifier="toDetail" id="Bff-dB-hpA"/>
-                        <segue destination="ODW-yL-w1M" kind="show" identifier="toNewSocial" id="rP3-bH-gRi"/>
+                        <segue destination="Pwz-Jq-Afc" kind="presentation" identifier="toDetail" id="Bff-dB-hpA"/>
+                        <segue destination="ODW-yL-w1M" kind="presentation" identifier="toNewSocial" id="rP3-bH-gRi"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="feedToLogin" id="QLu-sm-XZm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ntU-xA-tok" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -68,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3p-qQ-D9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2561" y="1355"/>
+            <point key="canvasLocation" x="2561" y="1281"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="8yz-cK-AxW">
@@ -103,7 +104,6 @@
                     </view>
                     <connections>
                         <segue destination="yy5-HB-jUw" kind="show" identifier="signUpToFeed" id="SGl-sD-6Dj"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="signUpToLogin" id="Sdb-87-gSS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3I5-co-7uU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -112,6 +112,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="SGl-sD-6Dj"/>
+        <segue reference="jFG-hh-s6c"/>
     </inferredMetricsTieBreakers>
 </document>

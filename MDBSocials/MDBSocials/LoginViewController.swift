@@ -8,22 +8,25 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
     //All Variables
     var loginBackground: UIImageView!
     var MDBLabel: UILabel!
-    var userLabel: UILabel!
+    var emailLabel: UILabel!
     var passLabel: UILabel!
     var logInButton: UIButton!
     var createButton: UIButton!
-    var userText: UITextField!
+    var emailText: UITextField!
     var passText: UITextField!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+//        FIRApp.configure()
         
         //Creates Background
         loginBackground = UIImageView(frame: view.frame)
@@ -44,12 +47,12 @@ class LoginViewController: UIViewController {
         
         
         //Creates UserName
-        userLabel = UILabel(frame: CGRect(x: view.frame.width*0.15, y: MDBLabel.frame.height+view.frame.height*0.2, width: view.frame.width*0.4, height: view.frame.height*0.1))
-        userLabel.text = "Username:"
-        userLabel.textColor = UIColor.white
-        userLabel.font = UIFont(name: MDBLabel.font.fontName, size: 40)
-        userLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
-        view.addSubview(userLabel)
+        emailLabel = UILabel(frame: CGRect(x: view.frame.width*0.15, y: MDBLabel.frame.height+view.frame.height*0.2, width: view.frame.width*0.4, height: view.frame.height*0.1))
+        emailLabel.text = "Email:"
+        emailLabel.textColor = UIColor.white
+        emailLabel.font = UIFont(name: MDBLabel.font.fontName, size: 40)
+        emailLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        view.addSubview(emailLabel)
         
         
         //Creates Password
@@ -61,11 +64,11 @@ class LoginViewController: UIViewController {
         view.addSubview(passLabel)
         
         //Creates Username Text Field
-        userText = UITextField(frame: CGRect(x: view.frame.width*0.46, y: MDBLabel.frame.height+view.frame.height*0.23, width: view.frame.width*0.4, height: view.frame.height*0.04))
-        userText.backgroundColor = UIColor.white
-        userText.layer.masksToBounds = true
-        userText.layer.cornerRadius = 10
-        view.addSubview(userText)
+        emailText = UITextField(frame: CGRect(x: view.frame.width*0.46, y: MDBLabel.frame.height+view.frame.height*0.23, width: view.frame.width*0.4, height: view.frame.height*0.04))
+        emailText.backgroundColor = UIColor.white
+        emailText.layer.masksToBounds = true
+        emailText.layer.cornerRadius = 10
+        view.addSubview(emailText)
         
         //Creates Password Text Field
         passText = UITextField(frame: CGRect(x: view.frame.width*0.46, y: MDBLabel.frame.height+view.frame.height*0.33, width: view.frame.width*0.4, height: view.frame.height*0.04))
@@ -96,6 +99,16 @@ class LoginViewController: UIViewController {
          //Do any additional setup after loading the view, typically from a nib.
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        FIRAuth.auth()?.addStateDidChangeListener({ (auth : FIRAuth, user : FIRUser?) in
+            if let user = user {
+                self.signedIn(user)
+            } else {
+                print("Sign up or log in!")
+            }
+        })
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -105,6 +118,21 @@ class LoginViewController: UIViewController {
     //When Log In Button is clicked, the FeedViewController opens
     func logInClicked(sender: UIButton)
     {
+        guard let email = emailText.text, let password = passText.text else {return}
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                self.signedIn(user)
+            }
+        }
+    }
+    
+    func signedIn(_ user: FIRUser?) {
+        AppState.sharedInstance.signedIn = true
+        emailText.text = ""
+        passText.text = ""
         performSegue(withIdentifier: "loginToFeed", sender: self)
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpViewController: UIViewController {
 
@@ -29,27 +30,55 @@ class SignUpViewController: UIViewController {
         setUpUI()
     }
     
-    func createAccountPressed() {
-        performSegue(withIdentifier: "toSignUp", sender: self)
+    //Should Create a new account
+    func createAccountPressed(_ sender: UIButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+            if let error = error{
+                print(error)
+                return
+            }else {
+                self.setDisplayName(user)
+                AppState.sharedInstance.signedIn = true
+            }
+            
+        })
     }
     
+    func setDisplayName(_ user: FIRUser?) {
+        let changeRequest = user?.profileChangeRequest()
+        changeRequest?.displayName = user?.email!.components(separatedBy: "@")[0]
+        changeRequest?.commitChanges(completion: { (error) in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                self.signedIn(FIRAuth.auth()?.currentUser)
+            }
+        })
+    }
+    
+    func signedIn(_ user: FIRUser?) {
+        performSegue(withIdentifier: "signUpToFeed", sender: self)
+    }
+
     func backPressed() {
-        performSegue(withIdentifier: "signUpToLogin", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     
     func setUpUI() {
         //set background
         backgroundImage = UIImageView(frame: view.frame)
-        backgroundImage.image = #imageLiteral(resourceName: "lighter background")
+        backgroundImage.image = #imageLiteral(resourceName: "background")
         view.addSubview(backgroundImage)
         
-        //add sign up label
+        //add sign up labels
         signUpLabel = UILabel(frame: CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.1, width: view.frame.width * 0.8, height: view.frame.height * 0.15))
         signUpLabel.text = "Sign Up"
         signUpLabel.textColor = UIColor.white
         signUpLabel.textAlignment = .center
         signUpLabel.font = UIFont(name: signUpLabel.font.fontName, size: 50)
-        signUpLabel.backgroundColor = UIColor(red: 0/255, green: 115/255, blue: 230/255, alpha: 0.9)
+        signUpLabel.backgroundColor = UIColor(red: 41/255, green: 70/255, blue: 164/255, alpha: 0.9)
         signUpLabel.layer.masksToBounds = true
         signUpLabel.layer.cornerRadius = 10
         view.addSubview(signUpLabel)
