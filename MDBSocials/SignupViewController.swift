@@ -152,7 +152,6 @@ class SignupViewController: UIViewController {
                         }
                         
                         
-                        
                         self.performSegue(withIdentifier: "toFeedAfterRegister", sender: self)
                     }
                 })

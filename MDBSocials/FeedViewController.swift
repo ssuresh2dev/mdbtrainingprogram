@@ -139,13 +139,17 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 event.rsvp = dictionary["rsvp"] as! String?
                 event.downloadURL = dictionary["downloadURL"] as! String?
                 event.poster = dictionary["poster"] as! String?
+                event.posterName = dictionary["posterName"] as! String?
                 
                 eventCell.titleName.text = event.eventTitle
-                
-                print(event.eventTitle, event.eventDate)
+                eventCell.rsvpLabel.text = event.rsvp
+                eventCell.posterLabel.text = event.posterName
             }
         })
         
+    
+        
+    
     }
   
     

@@ -15,4 +15,5 @@ class Event: NSObject {
     var downloadURL: String?
     var poster: String?
     var rsvp: String?
+    var posterName: String?
 }

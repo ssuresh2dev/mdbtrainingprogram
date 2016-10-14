@@ -171,9 +171,18 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         let imagesRef = storageRef.child("images")
         let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
         
+        var posterName: NSString?
+        let ref = rootRef.child("users").child("\(FIRAuth.auth()?.currentUser?.uid)")
+        ref.observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                
+                
+            }
+        })
+
         
         //Event Information
-        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"]
+        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0", "posterName": posterName ?? "None"]
 
         //Set Event Information
         uniqueEventRef.setValue(eventData){ (error, snap) in
