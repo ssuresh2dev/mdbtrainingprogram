@@ -53,8 +53,8 @@ public class FeedActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 socials = new ArrayList<SocialsList.Social>();
+
                 for(DataSnapshot dsp: dataSnapshot.getChildren()){
-                    Log.d("feed", "in datasnapshot");
                     HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
                     String name = (String) map.get("name");
                     String author = (String) map.get("author");
@@ -66,10 +66,10 @@ public class FeedActivity extends AppCompatActivity {
                     }
                     SocialsList.Social social = new SocialsList.Social(name, author, description, date);
                     social.setInterested(interested);
-                    adapter.socials.add(social);
+                    socials.add(social);
                     //issue is that were getting string values instead of social classes, also how do i new socials, using set value in create new social just replaces values
                 }
-
+                adapter.socials = socials;
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
             }

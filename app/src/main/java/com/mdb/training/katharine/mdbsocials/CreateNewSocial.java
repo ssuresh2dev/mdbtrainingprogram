@@ -1,8 +1,10 @@
 package com.mdb.training.katharine.mdbsocials;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +12,8 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,11 +27,12 @@ public class CreateNewSocial extends AppCompatActivity {
     private Button choosePic;
     private Button createSocial;
     private ArrayList<SocialsList.Social> socialsList;
+    private Uri selectedImage;
 
     private FirebaseAuth mAuth;
     // private FirebaseDatabase mData;
     private DatabaseReference mDatabase;
-
+    private StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +58,28 @@ public class CreateNewSocial extends AppCompatActivity {
             }
         });
 
+        choosePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto, 0);
+            }
+        });
+
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        if (resultCode == RESULT_OK) {
+            selectedImage = imageReturnedIntent.getData();
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("socialPics/");
+
+
+        }
+    }
+
+
+
 
     public void createSocial() {
         String n = name.getText().toString();
@@ -61,7 +87,6 @@ public class CreateNewSocial extends AppCompatActivity {
         String descrip = description.getText().toString();
         String author = mAuth.getCurrentUser().getEmail();
         ArrayList<String> interested = new ArrayList<>();
-        // interested.add("testuid");
         SocialsList.Social social = new SocialsList.Social(n, author, descrip, d);
         Map<String, Object> post = new HashMap<>();
         post.put("name", n);
@@ -69,6 +94,7 @@ public class CreateNewSocial extends AppCompatActivity {
         post.put("description", descrip);
         post.put("date", d);
         post.put("interested", interested);
+        post.put("uri", selectedImage);
         mDatabase.child("Socials").push().setValue(post);
     }
 }

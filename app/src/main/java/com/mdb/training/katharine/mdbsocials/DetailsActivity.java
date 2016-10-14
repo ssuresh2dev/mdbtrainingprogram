@@ -26,9 +26,12 @@ public class DetailsActivity extends AppCompatActivity {
 
     private TextView eventName, date, author, description, numInterested;
     private CheckBox interested;
-
+    private String uid;
     private Toolbar toolbar;
     FloatingActionButton fab;
+    private ArrayList<String> interestedName = new ArrayList<>();
+    private ArrayList<String> interestedEmail = new ArrayList<>();
+    private ArrayList<String> interestedUid = new ArrayList<>();
 
     private DatabaseReference dbRef;
 
@@ -40,6 +43,7 @@ public class DetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         eventName = (TextView) findViewById(R.id.eventName);
         eventName.setText(getIntent().getExtras().getString("title"));
@@ -56,16 +60,89 @@ public class DetailsActivity extends AppCompatActivity {
         numInterested = (TextView) findViewById(R.id.textView4);
         numInterested.setText("Interested: " + getIntent().getExtras().getInt("interested"));
 
-        numInterested.setOnClickListener(new View.OnClickListener() {
+
+            numInterested.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                dbRef.child("Users").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        interestedName = new ArrayList<String>();
+                        interestedEmail = new ArrayList<String>();
+                        for(DataSnapshot dsp: dataSnapshot.getChildren()) {
+                            HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                            if(interestedUid.contains(map.get("uid"))){
+                                interestedName.add((String) map.get("name"));
+                                interestedEmail.add((String) map.get("email"));
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
                 Intent intent = new Intent(getApplicationContext(),InterestedActivity.class);
-                intent.putExtra("interestedName", getIntent().getStringArrayListExtra("interestedName"));
-                intent.putExtra("interestedEmail", getIntent().getStringArrayListExtra("interestedEmail"));
+                intent.putExtra("interestedName", interestedName);
+                intent.putExtra("interestedEmail", interestedEmail);
                 startActivity(intent);
             }
         });
         interested = (CheckBox) findViewById(R.id.interested);
+        dbRef.child("Socials").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dsp: dataSnapshot.getChildren()) {
+                    HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                    ArrayList<String> listInterested = (ArrayList<String>) map.get("interested");
+                    if(listInterested == null){
+                        listInterested = new ArrayList<String>();
+                    }
+                    if(map.get("name").equals(eventName.getText().toString())){
+                        if(listInterested.contains(uid)) {
+                            interested.setChecked(true);
+                            numInterested.setText("Interested: " + listInterested.size());
+                        }
+                        interestedUid = listInterested;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        dbRef.child("Users").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                interestedName = new ArrayList<String>();
+                interestedEmail = new ArrayList<String>();
+                for(DataSnapshot dsp: dataSnapshot.getChildren()) {
+                    HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                    if(interestedUid.contains(map.get("uid"))){
+                        interestedName.add((String) map.get("name"));
+                        interestedEmail.add((String) map.get("email"));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+
 
         interested.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -76,22 +153,20 @@ public class DetailsActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot dsp: dataSnapshot.getChildren()){
                                 HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
-                                ArrayList<String> interested = (ArrayList<String>) map.get("interested");
-                                if(interested == null){
-                                    interested = new ArrayList<String>();
+                                ArrayList<String> listInterested = (ArrayList<String>) map.get("interested");
+                                if(listInterested == null){
+                                    listInterested = new ArrayList<String>();
                                 }
 
-                                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                if (map.get("name").equals(eventName.getText().toString()) && !interested.contains(uid)) {
-                                    interested.add(uid);
+                                if (map.get("name").equals(eventName.getText().toString()) && !listInterested.contains(uid)) {
+                                    listInterested.add(uid);
                                     Map<String, Object> newMap = new HashMap<String, Object>();
                                     newMap.put("name", map.get("name"));
                                     newMap.put("author", map.get("author"));
                                     newMap.put("date", map.get("date"));
                                     newMap.put("description", map.get("description"));
-                                    newMap.put("interested", interested);
+                                    newMap.put("interested", listInterested);
                                     dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
-                                    Log.d("test","event listener works"); //listener still not quite working
 
                                 }
 
@@ -105,26 +180,40 @@ public class DetailsActivity extends AppCompatActivity {
 
                     };
                     dbRef.child("Socials").addValueEventListener(postListener);
-                } else {
+                }
+                else {
+                    Log.d("test", "unchecked");
                     ValueEventListener postListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot dsp: dataSnapshot.getChildren()){
                                 HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
-                                if (map.get("name").equals(eventName)) {
-                                    ArrayList<String> interested = (ArrayList<String>) map.get("interested");
-                                    for (int i = 0; i < interested.size(); i += 1) {
-                                        if (interested.get(i).equals(map.get("uid"))) {
-                                            interested.remove(i);
+                                if (map.get("name").equals(eventName.getText().toString())) {
+                                    Log.d("test", "inside social");
+                                    ArrayList<String> listInterested = (ArrayList<String>) map.get("interested");
+                                    if(listInterested==null){
+                                        listInterested = new ArrayList<String>();
+                                    }
+                                    for (int i = 0; i < listInterested.size(); i++) {
+                                        Log.d("test", "inside forloop");
+                                        if (listInterested.get(i).equals(uid)) {
+                                            listInterested.remove(i);
+                                            Log.d("test", "removed from interested");
+                                            break;
                                         }
+                                    }
+                                    if(listInterested==null){
+                                        listInterested = new ArrayList<String>();
                                     }
                                     Map<String, Object> newMap = new HashMap<String, Object>();
                                     newMap.put("name", map.get("name"));
                                     newMap.put("author", map.get("author"));
                                     newMap.put("date", map.get("date"));
                                     newMap.put("description", map.get("description"));
-                                    newMap.put("interested", interested);
+                                    newMap.put("interested", listInterested);
                                     dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
+                                    Log.d("test", "database changed");
+                                    break;
                                 }
 
                             }
