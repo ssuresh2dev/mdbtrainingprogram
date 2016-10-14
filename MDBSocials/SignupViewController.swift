@@ -32,6 +32,7 @@ class SignupViewController: UIViewController {
     var registerBox: UIButton!
     var signUpDisplay: UIImageView!
     var clearBoxView: UIImageView!
+    var cancelRegistration: UIButton!
     
     var password: String = ""
     var username: String = ""
@@ -106,10 +107,19 @@ class SignupViewController: UIViewController {
         emailField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RegTextFieldBox"))
         view.addSubview(emailField)
         
-        registerBox = UIButton(frame: CGRect(x: 106, y: 456, width: 165, height: 33))
+        registerBox = UIButton(frame: CGRect(x: 107, y: 442, width: 165, height: 33))
         registerBox.setImage(#imageLiteral(resourceName: "RegisterButton"), for: .normal)
         registerBox.addTarget(self, action:#selector(pressRegister(_:)), for: .touchUpInside)
         view.addSubview(registerBox)
+        
+        cancelRegistration = UIButton(frame: CGRect(x: 117, y: 483, width: 147, height: 21))
+        cancelRegistration.setImage(#imageLiteral(resourceName: "CancelReg"), for: .normal)
+        cancelRegistration.addTarget(self, action: #selector(goBackHome), for: .touchUpInside)
+        view.addSubview(cancelRegistration)
+    }
+    
+    func goBackHome() {
+        performSegue(withIdentifier: "cancelReg", sender: self)
     }
     
     func pressRegister(_ sender: UIButton!) {

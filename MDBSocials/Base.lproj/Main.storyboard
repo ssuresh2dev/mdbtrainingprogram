@@ -43,6 +43,7 @@
                     </view>
                     <connections>
                         <segue destination="sRz-ho-i6M" kind="show" identifier="toFeedAfterRegister" id="vyp-At-psE"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="cancelReg" id="3rg-j9-EHY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OqD-tl-v3g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,7 +118,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sRz-ho-i6M" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OIt-Sc-2mk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OIt-Sc-2mk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -132,6 +133,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="3rg-j9-EHY"/>
         <segue reference="vyp-At-psE"/>
     </inferredMetricsTieBreakers>
 </document>

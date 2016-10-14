@@ -146,8 +146,6 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
             }
         })
         
-        // eventCell.titleName.text = ref.value(forKey: "eventTitle") as! String?
-        
     }
   
     
