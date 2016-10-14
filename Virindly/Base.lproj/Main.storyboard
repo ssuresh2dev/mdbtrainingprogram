@@ -85,6 +85,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueBackToFeed" id="WGH-Gd-67g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcK-dB-eNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,6 +96,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="c5s-w2-T4d"/>
-        <segue reference="CSD-7M-hVY"/>
+        <segue reference="WGH-Gd-67g"/>
     </inferredMetricsTieBreakers>
 </document>
