@@ -106,7 +106,6 @@
                     <connections>
                         <segue destination="LBE-do-Lvw" kind="show" identifier="segueToCreateEventVC" id="ayA-YK-fKn"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="afterSignOut" id="8d5-Ut-1V0"/>
-                        <segue destination="hGb-eH-CHo" kind="show" identifier="forNow" id="xta-GU-D8s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iW6-XL-FYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -118,7 +117,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sRz-ho-i6M" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OIt-Sc-2mk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OIt-Sc-2mk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
