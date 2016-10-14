@@ -9,17 +9,19 @@ import java.util.Map;
 
 public class User {
     public String email;
-    public String uid;
+    public String id;
 
     public User(){
 
     }
 
     public User(String uid, String email){
-        this.uid = uid;
         this.email = email;
+        this.id = uid;
 
     }
+
+
 
 
 

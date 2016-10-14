@@ -9,9 +9,13 @@
     tools:showIn="@layout/activity_details">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:text="SUpUSpUSpuPSupUSpUSpuPSupUSp"
+        android:id="@+id/content"
+        android:paddingTop="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" />
 
 </android.support.v4.widget.NestedScrollView>

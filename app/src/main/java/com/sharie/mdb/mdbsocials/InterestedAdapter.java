@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.CustomViewHolder> {
 
     private Context context;
+    private ArrayList<String> people;
 
 
 
-    public InterestedAdapter(Context context) {
+    public InterestedAdapter(Context context, ArrayList<String> people) {
+        this.people = people;
         this.context = context;
     }
 
@@ -34,37 +36,21 @@ public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.Cu
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-
-
+        String email = people.get(position);
+        holder.textView.setText(email);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return people.size();
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
-        ImageView imageView;
 
         public CustomViewHolder (View view) {
             super(view);
             this.textView = (TextView) view.findViewById(R.id.name);
-            this.imageView = (ImageView) view.findViewById(R.id.idea_pic);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    /*Get adapter position is getting the number of the row that was clicked,
-                    starting at 0
-                    */
-
-
-
-
-                }
-            });
-
-
         }
     }
 

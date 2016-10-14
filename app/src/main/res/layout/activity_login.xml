@@ -46,7 +46,6 @@
                     android:layout_weight="1" />
 
 
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -70,18 +69,17 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp">
+                android:layout_height="wrap_content">
 
                 <Button
-                    android:text="Sign In "
+                    android:text="sign in"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/sign_in"
                     android:layout_weight="1" />
 
                 <Button
-                    android:text="Register"
+                    android:text="register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/register"
@@ -89,5 +87,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
+
     </ScrollView>
 </LinearLayout>

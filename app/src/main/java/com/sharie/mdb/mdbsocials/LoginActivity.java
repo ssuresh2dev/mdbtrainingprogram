@@ -15,15 +15,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private DatabaseReference database;
     private FirebaseAuth.AuthStateListener mAuthListener;
     // UI references.
     private EditText email;
     private EditText password;
+    private String my_uid;
     private static final String TAG = "EmailPassword";
 
     @Override
@@ -34,35 +38,24 @@ public class LoginActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         Button sign_in = (Button) findViewById(R.id.sign_in);
-        Button register = (Button) findViewById(R.id.register);
+        Button reg = (Button)findViewById(R.id.register);
 
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-            }
-        };
+        database = FirebaseDatabase.getInstance().getReference();
+
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sign_in(email.getText().toString(),password.getText().toString());
             }
         });
-        register.setOnClickListener(new View.OnClickListener() {
+        reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),SignUp.class);
-                startActivity(intent);
+                createUser(email.getText().toString(),password.getText().toString());
             }
         });
+
     }
     public void sign_in(String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)
@@ -73,19 +66,38 @@ public class LoginActivity extends AppCompatActivity {
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(getApplicationContext(),FeedActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
                             Toast.makeText(getApplicationContext(), "Login failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Logging in...",
-                                    Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+    public void createUser(String email_field, String password){
+        mAuth.createUserWithEmailAndPassword(email_field, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            my_uid = mAuth.getCurrentUser().getUid();
+                            User current = new User(my_uid,email.getText().toString());
+                            database.child("users").child(my_uid).setValue(current);
 
                             Intent intent = new Intent(getApplicationContext(),FeedActivity.class);
                             startActivity(intent);
                         }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Failed to create an account.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+
     }
 }
 
