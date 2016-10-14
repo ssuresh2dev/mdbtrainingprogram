@@ -123,6 +123,8 @@ class LoginViewController: UIViewController {
         loginButton = UIButton(frame: CGRect(x: 123, y: 453, width: 131, height: 33))
         loginButton.setBackgroundImage(#imageLiteral(resourceName: "Login"), for: .normal)
         loginButton.contentMode = UIViewContentMode.scaleAspectFit
+        loginButton.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
+        
         view.addSubview(loginButton)
         
         
@@ -134,7 +136,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    func loginButtonPressed(_ _sender: UIButton!){
+    func loginButtonPressed(_ _sender: UIButton){
         guard let email = emailField.text, let password = passwordField.text else { return }
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
