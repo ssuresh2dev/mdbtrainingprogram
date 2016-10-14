@@ -12,6 +12,8 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SignupViewController: UIViewController {
+    
+    //COMIMIT
     var firstName: UIImageView!
     var lastName: UIImageView!
     
