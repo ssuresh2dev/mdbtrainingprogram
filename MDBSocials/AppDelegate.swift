@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Pods_MDBSocials
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

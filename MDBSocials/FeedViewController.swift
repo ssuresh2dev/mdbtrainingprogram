@@ -30,6 +30,7 @@ class FeedViewController: UIViewController {
         
         let newSocialButton = UIButton(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.03 + 10, width: view.frame.width * 0.2, height: view.frame.height * 0.04))
         newSocialButton.setTitle("Add event", for: .normal)
+        newSocialButton.titleLabel!.adjustsFontSizeToFitWidth = true
         newSocialButton.setTitleColor(UIColor.white, for: .normal)
         newSocialButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
         newSocialButton.addTarget(self, action: #selector(addEvent), for: .touchUpInside)
