@@ -31,7 +31,8 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     var actionSheetController : UIAlertController = UIAlertController(title: "Photos", message: "Select Camera or Photo Library", preferredStyle: .actionSheet)
 
     
-    
+    var posterName: String?
+
     let rootRef = FIRDatabase.database().reference()
 
     
@@ -39,6 +40,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        getPosterID()
         setupAlertController()
         imagePicker.delegate = self
     }
@@ -160,7 +162,20 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         self.dismiss(animated: true, completion: nil)
     }
 
-    
+    func getPosterID(){
+        //Get UserID and PosterName
+        let currentUserID = (FIRAuth.auth()?.currentUser?.uid)! as String
+        let ref = rootRef.child("users").child(currentUserID)
+        //print(ref)
+        ref.observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: String]{
+                //print(dictionary["username"])
+                self.posterName = dictionary["username"]
+                
+            }
+        })
+
+    }
     func postButtonClicked(){
         //Event references: Firebase Database
         let eventsRef = rootRef.child("events")
@@ -170,25 +185,16 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         let storageRef = FIRStorage.storage().reference(forURL: "gs://mdbsocials2.appspot.com")
         let imagesRef = storageRef.child("images")
         let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
-        
-        var posterName: String?
-        let currentUserID = (FIRAuth.auth()?.currentUser?.uid)! as String
-        let ref = rootRef.child("users").child(currentUserID)
-        ref.observe(.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: String]{
-                posterName = dictionary["username"]
-                
-            }
-        })
-        print(posterName)
+       
+       
         
         //Event Information
-        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0", "posterName": posterName as NSString? ?? "None"]
+        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0", "posterName": self.posterName as NSString? ?? "Nooone"]
 
         //Set Event Information
         uniqueEventRef.setValue(eventData){ (error, snap) in
             print("Success")
-            print(error)
+            //print(error)
             
         }
         
