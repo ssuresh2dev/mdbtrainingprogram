@@ -1,22 +1,29 @@
 package com.mdb.training.katharine.mdbsocials;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +31,9 @@ import java.util.Map;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private TextView eventName, date, author, description, numInterested;
+    private TextView eventName, date, author, description;
+    private Button numInterested;
+    private ImageView eventPic;
     private CheckBox interested;
     private String uid;
     private Toolbar toolbar;
@@ -45,6 +54,20 @@ public class DetailsActivity extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        eventPic = (ImageView) findViewById(R.id.picture);
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(getIntent().getExtras().getString("firebasePath"));
+        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+        {
+            @Override
+            public void onSuccess(Uri downloadUrl)
+            {
+                Glide.with(getApplicationContext()).load(downloadUrl).into(eventPic);
+            }
+
+        });
+
+
         eventName = (TextView) findViewById(R.id.eventName);
         eventName.setText(getIntent().getExtras().getString("title"));
 
@@ -57,7 +80,7 @@ public class DetailsActivity extends AppCompatActivity {
         description = (TextView) findViewById(R.id.textView3);
         description.setText(getIntent().getExtras().getString("description"));
 
-        numInterested = (TextView) findViewById(R.id.textView4);
+        numInterested = (Button) findViewById(R.id.button);
         numInterested.setText("Interested: " + getIntent().getExtras().getInt("interested"));
 
 
@@ -165,6 +188,7 @@ public class DetailsActivity extends AppCompatActivity {
                                     newMap.put("author", map.get("author"));
                                     newMap.put("date", map.get("date"));
                                     newMap.put("description", map.get("description"));
+                                    newMap.put("path", map.get("path"));
                                     newMap.put("interested", listInterested);
                                     dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
 
@@ -210,6 +234,7 @@ public class DetailsActivity extends AppCompatActivity {
                                     newMap.put("author", map.get("author"));
                                     newMap.put("date", map.get("date"));
                                     newMap.put("description", map.get("description"));
+                                    newMap.put("path", map.get("path"));
                                     newMap.put("interested", listInterested);
                                     dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
                                     Log.d("test", "database changed");
@@ -232,15 +257,6 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
-
-
 
     }
 }

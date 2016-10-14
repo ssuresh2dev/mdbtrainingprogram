@@ -14,8 +14,8 @@ public class SocialsList {
         socials = new ArrayList<>();
     }
 
-    public void addSocial(String title, String author, String descrip, String date) {
-        Social social = new Social(title, author, descrip, date);
+    public void addSocial(String title, String author, String descrip, String date, String firebasePath) {
+        Social social = new Social(title, author, descrip, date, firebasePath);
         socials.add(social);
     }
 
@@ -30,13 +30,14 @@ public class SocialsList {
         public String description;
         public ArrayList<String> interested;
         public String date;
+        public String firebasePath;
 
-
-        public Social(String title, String author, String description, String date) {
+        public Social(String title, String author, String description, String date, String firebasePath) {
             this.title = title;
             this.author = author;
             this.description = description;
             this.date = date;
+            this.firebasePath = firebasePath;
             this.interested = new ArrayList<>();
         }
 

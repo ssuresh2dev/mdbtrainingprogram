@@ -60,11 +60,12 @@ public class FeedActivity extends AppCompatActivity {
                     String author = (String) map.get("author");
                     String description = (String) map.get("description");
                     String date = (String) map.get("date");
+                    String firebasePath = (String) map.get("path");
                     ArrayList<String> interested = (ArrayList<String>) map.get("interested");
                     if(interested == null){
                         interested = new ArrayList<String>();
                     }
-                    SocialsList.Social social = new SocialsList.Social(name, author, description, date);
+                    SocialsList.Social social = new SocialsList.Social(name, author, description, date, firebasePath);
                     social.setInterested(interested);
                     socials.add(social);
                     //issue is that were getting string values instead of social classes, also how do i new socials, using set value in create new social just replaces values

@@ -2,6 +2,7 @@ package com.mdb.training.katharine.mdbsocials;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,11 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,14 +66,30 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
     ImageResource to be the corresponding image for that subject.
      */
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomViewHolder holder, int position) {
         SocialsList.Social social = socials.get(position);
         holder.titleView.setText(social.title);
         holder.authorView.setText(social.author);
         if(social.interested == null){
             social.interested = new ArrayList<>();
         }
+
         holder.numinterestedView.setText(Integer.toString(social.interested.size()));
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(socials.get(position).firebasePath);
+        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+        {
+            @Override
+            public void onSuccess(Uri downloadUrl)
+            {
+                Glide.with(context).load(downloadUrl).into(holder.imageView);
+            }
+
+        });
+
+
+
+
     }
 
 
@@ -79,6 +100,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
         TextView numinterestedView;
         ArrayList<String> interestedName = new ArrayList<String>();
         ArrayList<String> interestedEmail = new ArrayList<String>();
+        String firebasePath;
 
         public CustomViewHolder (View view) {
             super(view);
@@ -94,6 +116,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
                     starting at 0
                     */
                     final SocialsList.Social s = socials.get(getAdapterPosition());
+
 
                     Intent intent = new Intent(context, DetailsActivity.class);
 
@@ -127,6 +150,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
                     intent.putExtra("description", s.description);
                     intent.putExtra("date", s.date);
                     intent.putExtra("interested", s.interested.size());
+                    intent.putExtra("firebasePath", s.firebasePath);
+
                     intent.putStringArrayListExtra("interestedName", interestedName);
                     intent.putStringArrayListExtra("interestedEmail", interestedEmail);
                     intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
