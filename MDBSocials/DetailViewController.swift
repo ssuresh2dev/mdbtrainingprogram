@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     var whoPostedName: String! = "TestPerson"
     var testPeopleRSVP: String! = "17"
     var backButton: UIButton!
+    var descriptionText: String! = "This is a description that tests the layout of the Details page. The description of the event will be found below the option to RSVP."
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,9 +89,16 @@ class DetailViewController: UIViewController {
         RSVPButton.layer.cornerRadius = 5
         view.addSubview(RSVPButton)
         
+        let descriptionLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.4 + 160, width: view.frame.width * 0.7, height: view.frame.height * 0.6 - 190))
+        descriptionLabel.text = descriptionText
+        descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 14.0)
+        descriptionLabel.textAlignment = NSTextAlignment.justified
+        descriptionLabel.clipsToBounds = true
+        view.addSubview(descriptionLabel)
+        
     }
     
-    func backPressed(){
+    func backPressed() {
         performSegue(withIdentifier: "backToFeed", sender: self)
     }
     
