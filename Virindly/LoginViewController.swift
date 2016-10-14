@@ -131,6 +131,7 @@ class LoginViewController: UIViewController {
                     return
                 }
                 self.signedIn(user: user!)
+                AppState.sharedInstance.signedIn = true
             })
         }
     }

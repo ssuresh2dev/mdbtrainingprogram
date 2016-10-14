@@ -142,6 +142,7 @@ class SignUpViewController: UIViewController {
                     return
                 }
                 self.signedIn(user: FIRAuth.auth()?.currentUser)
+                AppState.sharedInstance.signedIn = true
             })
         } else {
             return

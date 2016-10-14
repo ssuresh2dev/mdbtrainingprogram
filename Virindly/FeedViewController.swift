@@ -28,10 +28,10 @@ class FeedViewController: UIViewController {
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle = UINavigationItem(title: "What's going on?")
         
-        let addEvent = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: nil, action: #selector(pressedAddButton))
+        let addEvent = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(pressedAddButton))
         navTitle.rightBarButtonItem = addEvent
         
-        let logoutButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(pressedLogout))
+        let logoutButton = UIBarButtonItem(barButtonSystemItem: .undo, target: nil, action: #selector(pressedLogout))
         navTitle.leftBarButtonItem = logoutButton
         
         navBar.setItems([navTitle], animated: false)
@@ -62,7 +62,14 @@ class FeedViewController: UIViewController {
     }
     
     func pressedLogout(sender: UIButton!) {
-        performSegue(withIdentifier: "segueFeedToLogin", sender: self)
+        let auth = FIRAuth.auth()
+        do {
+            try auth?.signOut()
+            AppState.sharedInstance.signedIn = false
+            performSegue(withIdentifier: "segueFeedToLogin", sender: self)
+        } catch let error as NSError {
+            print(error)
+        }
     }
 
     
