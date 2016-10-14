@@ -9,24 +9,27 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignupViewController: UIViewController {
-    var firstName: UILabel!
-    var lastName: UILabel!
+    var firstName: UIImageView!
+    var lastName: UIImageView!
     
     var firstNameField: UITextField!
     var lastNameField: UITextField!
     
-    var usernameDisplay: UILabel!
+    var usernameDisplay: UIImageView!
     var usernameField: UITextField!
     
-    var passwordDisplay: UILabel!
+    var passwordDisplay: UIImageView!
     var passwordField: UITextField!
     
-    var emailDisplay: UILabel!
+    var emailDisplay: UIImageView!
     var emailField: UITextField!
     
     var registerBox: UIButton!
+    var signUpDisplay: UIImageView!
+    var clearBoxView: UIImageView!
     
     var password: String = ""
     var username: String = ""
@@ -35,6 +38,7 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "SignUpBG"))
         // Do any additional setup after loading the view.
     }
     
@@ -48,52 +52,65 @@ class SignupViewController: UIViewController {
     }
     
     func setUpUI() {
-        firstName = UILabel(frame: CGRect(x: 48, y: 162, width: 200, height: 19))
-        firstName.text = "First Name"
+        signUpDisplay = UIImageView(frame: CGRect(x: 99, y: 111, width: 165, height: 46))
+        signUpDisplay.image = #imageLiteral(resourceName: "SignUp")
+        signUpDisplay.contentMode = UIViewContentMode.scaleAspectFit
+        view.addSubview(signUpDisplay)
+        
+        clearBoxView = UIImageView(frame: CGRect(x: 38, y: 150, width: 303, height: 369))
+        clearBoxView.image = #imageLiteral(resourceName: "ClearBox")
+        clearBoxView.contentMode = UIViewContentMode.scaleAspectFit
+        view.addSubview(clearBoxView)
+        
+        firstName = UIImageView(frame: CGRect(x: 48, y: 162, width: 75, height: 19))
+        firstName.image = #imageLiteral(resourceName: "FirstName")
+        firstName.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(firstName)
-        lastName = UILabel(frame: CGRect(x: 205, y: 163, width: 200, height: 19))
-        lastName.text = "Last Name"
+        
+        lastName = UIImageView(frame: CGRect(x: 205, y: 163, width: 73, height: 19))
+        lastName.image = #imageLiteral(resourceName: "LastName")
+        lastName.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(lastName)
         
         firstNameField = UITextField(frame: CGRect(x: 47, y: 181, width: 122, height: 33))
-        firstNameField.placeholder = "lemme see"
+        firstNameField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "FLNameBox"))
         view.addSubview(firstNameField)
         lastNameField = UITextField(frame: CGRect(x: 204, y: 181, width: 122, height: 33))
-        lastNameField.placeholder = "YAS"
+        lastNameField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "FLNameBox"))
         view.addSubview(lastNameField)
         
-        usernameDisplay = UILabel(frame: CGRect(x: 45.5, y: 227, width: 200, height: 19))
-        usernameDisplay.text = "Username"
+        usernameDisplay = UIImageView(frame: CGRect(x: 45.5, y: 227, width: 70, height: 19))
+        usernameDisplay.image = #imageLiteral(resourceName: "Username")
+        usernameDisplay.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(usernameDisplay)
         usernameField = UITextField(frame: CGRect(x: 46, y: 246, width: 273, height: 33))
-        usernameField.placeholder = "OK"
+        usernameField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RegTextFieldBox"))
         view.addSubview(usernameField)
         
-        passwordDisplay = UILabel(frame: CGRect(x: 46, y: 299, width: 200, height: 19))
-        passwordDisplay.text = "Password"
+        passwordDisplay = UIImageView(frame: CGRect(x: 46, y: 299, width: 65, height: 19))
+        passwordDisplay.image = #imageLiteral(resourceName: "Password")
+        passwordDisplay.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(passwordDisplay)
         passwordField = UITextField(frame: CGRect(x: 46, y: 318, width: 279, height: 33))
-        passwordField.placeholder = "PASS"
+        passwordField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RegTextFieldBox"))
         passwordField.isSecureTextEntry = true
         view.addSubview(passwordField)
         
-        emailDisplay = UILabel(frame: CGRect(x: 48, y: 373, width: 200, height: 19))
-        emailDisplay.text = "Email"
+        emailDisplay = UIImageView(frame: CGRect(x: 48, y: 373, width: 38, height: 19))
+        emailDisplay.image = #imageLiteral(resourceName: "Email")
+        emailDisplay.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(emailDisplay)
         emailField = UITextField(frame: CGRect(x: 47, y: 389, width: 279, height: 33))
-        emailField.placeholder = "HAAHHA"
+        emailField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "RegTextFieldBox"))
         view.addSubview(emailField)
         
         registerBox = UIButton(frame: CGRect(x: 106, y: 456, width: 165, height: 33))
-        registerBox.setTitle("Register", for: .normal)
-        registerBox.backgroundColor = UIColor(red:0.60, green:0.83, blue:0.82, alpha:1.0)
-        registerBox.setTitleColor(UIColor.white, for: .normal)
+        registerBox.setImage(#imageLiteral(resourceName: "RegisterButton"), for: .normal)
         registerBox.addTarget(self, action:#selector(pressRegister(_:)), for: .touchUpInside)
         view.addSubview(registerBox)
     }
     
     func pressRegister(_ sender: UIButton!) {
-        print("hi")
         guard let emailAdd = emailField.text, let pass = passwordField.text else { return }
         FIRAuth.auth()?.createUser(withEmail: emailAdd, password: pass, completion: { (user, error) in
             if let error = error {

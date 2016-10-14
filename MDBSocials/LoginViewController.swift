@@ -79,14 +79,11 @@ class LoginViewController: UIViewController {
         
         emailField = UITextField(frame: CGRect(x: 66, y: 349, width: 244, height: 33))
         emailField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "DefaultTextView"))
-        let imageView = UIView(frame: CGRect(x: 15, y: 0, width: 25, height: 22.22))
+        emailField.placeholder = "E-mail"
+//        let imageView = UIView(frame: CGRect(x: 15, y: 0, width: 25, height: 22.22))
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 16.94, height: 22.22))
 //        emailField.leftViewMode = UITextFieldViewMode.always
 //        emailField.leftView = imageView
-        emailField.placeholder = "E-mail"
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 16.94, height: 22.22))
-        image.contentMode = UIViewContentMode.center
-        imageView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "PeopleIcon"))
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 16.94, height: 22.22))
 //        let image: UIImage = #imageLiteral(resourceName: "PeopleIcon")
 //        imageView.image = image
 //        emailField.leftView = imageView
@@ -100,7 +97,8 @@ class LoginViewController: UIViewController {
         
         passwordField = UITextField(frame: CGRect(x: 66, y: 394, width: 244, height: 33))
         passwordField.isSecureTextEntry = true
-        passwordField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "PassTF"))
+        passwordField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "DefaultTextView"))
+        passwordField.placeholder = "Password"
         view.addSubview(passwordField)
         
 //        createAccountButton = UIButton(frame: CGRect(x: 20, y: passwordField.frame.maxY + 25, width: view.frame.width - 20, height: 50))
