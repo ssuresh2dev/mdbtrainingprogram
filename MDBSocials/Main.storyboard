@@ -102,16 +102,28 @@
                     <view key="view" contentMode="scaleToFill" id="Z0m-tM-ST1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKE-Ri-JR0">
+                                <frame key="frameInset" minX="166" minY="178" width="51" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="jAW-Dd-93b" kind="show" identifier="backToFeed" id="51n-dp-FST"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6AW-7S-CPE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4463" y="-2242"/>
+            <point key="canvasLocation" x="-4463.1999999999998" y="-2242.1289355322342"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8CW-1s-GGp"/>
+        <segue reference="51n-dp-FST"/>
         <segue reference="wUF-BC-Y3i"/>
     </inferredMetricsTieBreakers>
 </document>

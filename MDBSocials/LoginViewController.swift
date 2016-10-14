@@ -17,14 +17,11 @@ class LoginViewController: UIViewController {
     var passwordTextField: UITextField!
     var loginButton: UIButton!
     var signupButton: UIButton!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         addButtonTargets()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -41,7 +38,6 @@ class LoginViewController: UIViewController {
     func addButtonTargets(){
         //add Login Button Target Action
         loginButton.addTarget(self, action: #selector(clickedLogin), for: .touchUpInside)
-        
         //add Signup Button Target Action
         signupButton.addTarget(self, action: #selector(clickedSignup), for: .touchUpInside)
     }
@@ -56,7 +52,6 @@ class LoginViewController: UIViewController {
         appLabel.textAlignment = NSTextAlignment.center
         appLabel.textColor = UIColor.white
         view.addSubview(appLabel)
-        
         
         emailLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27, width: view.frame.width * 0.5, height: 30))
         emailLabel.text = "Email:"
@@ -74,7 +69,6 @@ class LoginViewController: UIViewController {
         emailTextField.backgroundColor = UIColor.white
         emailTextField.borderStyle = .roundedRect
         view.addSubview(emailTextField)
-        
         
         passwordLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 75, width: view.frame.width * 0.5, height: 30))
         passwordLabel.text = "Password:"

@@ -95,6 +95,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "feedCell", for: indexPath) as! FeedTableViewCell
         cell.awakeFromNib()
+    
         return cell
     }
     
@@ -106,9 +107,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let detailsVC = DetailViewController()
-        let navVC = UINavigationController(rootViewController: detailsVC)
-        present(navVC, animated: true, completion: nil)
+       performSegue(withIdentifier: "toDetail", sender: self)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height/4

@@ -13,12 +13,13 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
+import UIKit
 struct Constants {
 
   struct NotificationKeys {
     static let SignedIn = "onSignInCompleted"
   }
+
 
   struct Segues {
     static let SignInToFp = "SignInToFP"
