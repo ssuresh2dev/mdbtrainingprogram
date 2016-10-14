@@ -17,7 +17,7 @@ class FeedViewController: UIViewController {
     let rootRef = Constants.Colors.rootRef
     var events: [NSString] = []
     var tableView: UITableView!
-    
+    //events is an array 
     
     override func viewDidLoad() {
         super.viewDidLoad()
