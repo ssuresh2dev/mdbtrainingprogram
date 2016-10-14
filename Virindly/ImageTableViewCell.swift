@@ -16,7 +16,6 @@ class ImageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // Cell Background
         let cellBackground = UIImageView(image: #imageLiteral(resourceName: "bluegradient"))
         cellBackground.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)

@@ -87,6 +87,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as! ImageTableViewCell
+        for subview in cell.contentView.subviews {
+            subview.removeFromSuperview()
+        }
         cell.awakeFromNib()
         return cell
     }
