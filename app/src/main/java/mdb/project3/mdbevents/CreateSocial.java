@@ -41,8 +41,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
 
     private final int PICK_IMAGE_REQUEST = 1;
 
-    private DatePickerDialog.OnDateSetListener[] dateSetListeners = new DatePickerDialog.OnDateSetListener[3];
-    private EditText dates[], socialName, socialDescription;
+    private DatePickerDialog.OnDateSetListener dateSetListener;
+    private EditText date, socialName, socialDescription;
     private TextView createSocialTitle;
     private ImageButton socialPictureView;
     private Calendar myCalendar = Calendar.getInstance();
@@ -53,6 +53,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
+
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +70,7 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     }
 
     private void bindViews() {
-        dates = new EditText[]{
-                (EditText) findViewById(R.id.first_date),
-                (EditText) findViewById(R.id.second_date),
-                (EditText) findViewById(R.id.third_date)
-        };
-
+        date = (EditText) findViewById(R.id.date);
         createSocialTitle = (TextView) findViewById(R.id.new_social_title);
         socialName = (EditText) findViewById(R.id.name_of_social);
         socialDescription = (EditText) findViewById(R.id.social_description);
@@ -83,32 +80,29 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
         Typeface customFont = Typeface.createFromAsset(getAssets(), "fonts/cornerstone.ttf");
         createSocialTitle.setTypeface(customFont);
 
-        for (EditText e : dates)
-            e.setOnClickListener(this);
+        date.setOnClickListener(this);
         socialPictureView.setOnClickListener(this);
         createSocialButton.setOnClickListener(this);
     }
 
     private void bindDateSetListeners() {
-        for (int i = 0; i < dateSetListeners.length; i++) {
-            final int pos = i;
-            dateSetListeners[i] = new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    dates[pos].setText(new StringBuilder()
-                            .append(month + 1).append("/")
-                            .append(dayOfMonth).append("/")
-                            .append(year));
-                }
-            };
-        }
+        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                date.setText(new StringBuilder()
+                        .append(month + 1).append("/")
+                        .append(dayOfMonth).append("/")
+                        .append(year));
+            }
+        };
     }
 
     private void updateDatabase() {
         if (!validate())
             return;
 
-        Toast.makeText(getApplicationContext(), "Creating event...", Toast.LENGTH_SHORT).show();
+        mToast = Toast.makeText(getApplicationContext(), "Creating event...", Toast.LENGTH_LONG);
+        mToast.show();
 
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
@@ -118,11 +112,10 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
             final String dbKey = dbRef.child("Events").push().getKey();
             final String name = socialName.getText().toString();
             final String emailAddress = user.getEmail();
-            final String numInterested = "0 others are interested";
+            final int numInterested = 0;
             final String timeStamp = String.valueOf(myCalendar.getTimeInMillis() / 1000L);
-            final List<String> dateStrings = Arrays.asList(dates[0].getText().toString(),
-                    dates[1].getText().toString(),
-                    dates[2].getText().toString());
+            final String dateString = date.getText().toString();
+            final List<String> asdf = new ArrayList<>();
 
             StorageReference storageReference = mStorage.getReferenceFromUrl("gs://mdb-events.appspot.com/");
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -139,7 +132,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
                     dbRef.child("Events").child(dbKey).setValue(new Event(name,
-                            emailAddress, numInterested, downloadUri.toString(), timeStamp, dateStrings));
+                            emailAddress, numInterested, downloadUri.toString(), timeStamp,
+                            dateString, new ArrayList<String>()));
                     startActivity(new Intent(CreateSocial.this, FeedActivity.class));
                 }
             });
@@ -149,9 +143,7 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     private boolean validate() {
         boolean emptyFields = TextUtils.isEmpty(socialName.getText().toString()) ||
                 TextUtils.isEmpty(socialDescription.getText().toString()) ||
-                (TextUtils.isEmpty(dates[0].getText().toString()) &&
-                        TextUtils.isEmpty(dates[1].getText().toString()) &&
-                        TextUtils.isEmpty(dates[2].getText().toString()));
+                TextUtils.isEmpty(date.getText().toString());
         boolean valid = !emptyFields && updatedPicture;
         if (!valid) {
             Snackbar.make(findViewById(R.id.activity_create_social),
@@ -162,28 +154,19 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mToast != null)
+            mToast.cancel();
+    }
+
+    @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.first_date:
+            case R.id.date:
                 new DatePickerDialog(CreateSocial.this,
-                        dateSetListeners[0],
-                        myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH))
-                        .show();
-                break;
-            case R.id.second_date:
-                new DatePickerDialog(CreateSocial.this,
-                        dateSetListeners[1],
-                        myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH))
-                        .show();
-                break;
-            case R.id.third_date:
-                new DatePickerDialog(CreateSocial.this,
-                        dateSetListeners[2],
+                        dateSetListener,
                         myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH))

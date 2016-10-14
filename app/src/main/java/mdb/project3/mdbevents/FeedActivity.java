@@ -16,11 +16,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.StringBufferInputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FeedActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +31,8 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseReference rootNode;
 
     FloatingActionButton createSocialFab;
+
+    static List<String> databaseKeys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,25 +48,33 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         eventAdapter = new EventAdapter(getApplicationContext(), eventList);
 
         Toast.makeText(getApplicationContext(), "Loading events...", Toast.LENGTH_SHORT).show();
-        
+
         rootNode = FirebaseDatabase.getInstance().getReference();
         DatabaseReference eventNode = rootNode.child("Events");
         eventNode.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Log.e("Count " ,""+snapshot.getChildrenCount());
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                Log.e("Count ", "" + snapshot.getChildrenCount());
+                Map<Event, String> eventToKey = new HashMap<>();
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     Event event = postSnapshot.getValue(Event.class);
+                    eventToKey.put(event, postSnapshot.getKey());
                     eventList.add(event);
                 }
 
                 Collections.sort(eventList);
+
+                databaseKeys = new ArrayList<>();
+                for (Event e : eventList)
+                    databaseKeys.add(eventToKey.get(e));
+
                 eventAdapter.eventList = eventList;
                 eventAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(DatabaseError firebaseError) {
-                Log.e("The read failed: " ,firebaseError.getMessage());
+                Log.e("The read failed: ", firebaseError.getMessage());
             }
         });
 
@@ -81,7 +94,7 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         switch (id) {
             case R.id.create_social_fab:
-	    	startNewSocialActivity();
+                startNewSocialActivity();
                 break;
         }
     }
