@@ -172,7 +172,8 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
         
         var posterName: String?
-        let ref = rootRef.child("users").child((FIRAuth.auth()?.currentUser?.uid)!)
+        let currentUserID = (FIRAuth.auth()?.currentUser?.uid)! as String
+        let ref = rootRef.child("users").child(currentUserID)
         ref.observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: String]{
                 posterName = dictionary["username"]

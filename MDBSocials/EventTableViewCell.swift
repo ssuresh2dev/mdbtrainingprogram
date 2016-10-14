@@ -22,20 +22,14 @@ class EventTableViewCell: UITableViewCell {
         backgroundClear.contentMode = UIViewContentMode.scaleAspectFit
         contentView.addSubview(backgroundClear)
         
-<<<<<<< HEAD
-        defaultPostLabel = UIImageView(frame: CGRect(x: 47, y: 47.5, width: 60, height: 17))
-=======
+
         defaultPostLabel = UIImageView(frame: CGRect(x: 25, y: 50, width: 50, height: 17))
->>>>>>> 8360d0c479300d0f6895ba58ccfce36fe7d59ce9
         defaultPostLabel.image = #imageLiteral(resourceName: "PostedBy")
         defaultPostLabel.contentMode = UIViewContentMode.scaleAspectFit
         contentView.addSubview(defaultPostLabel)
         
-<<<<<<< HEAD
-        titleName = UILabel(frame: CGRect(x: 47, y: 19.5, width: 225, height: 29))
-=======
+
         titleName = UILabel(frame: CGRect(x: 25, y: 20, width: 225, height: 29))
->>>>>>> 8360d0c479300d0f6895ba58ccfce36fe7d59ce9
         titleName.textAlignment = NSTextAlignment.left
         titleName.font = UIFont(name: "Bebas", size: 22)
         //titleName.font = UIFont(name: "AvenirNext-Regular", size: 22)
