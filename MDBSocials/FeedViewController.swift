@@ -30,7 +30,7 @@ class FeedViewController: UIViewController {
     }
 
     func configureDatabase(){
-        let rootRef = FIRDatabase().reference()
+        let rootRef = FIRDatabase.database().reference()
         let eventsRef = rootRef.child("events")
         //let usersRef = rootRef.child("users")
         
@@ -54,6 +54,7 @@ class FeedViewController: UIViewController {
         tableView.register(EventTableViewCell.self, forCellReuseIdentifier: "eventCell")
         tableView.dataSource = self
         tableView.delegate = self
+        view.addSubview(tableView)
     
     }
     
