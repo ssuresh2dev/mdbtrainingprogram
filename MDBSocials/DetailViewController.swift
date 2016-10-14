@@ -14,6 +14,8 @@ class DetailViewController: UIViewController {
     var modalView: UIButton!
     var numInterested: UILabel!
     var addToRSVP: UIButton!
+    var titleOfEvent: UILabel!
+    var paragraphText: UILabel!
     // hello worlddddddd hopefully this works pleaseseeseses
 
     override func viewDidLoad() {
@@ -46,6 +48,15 @@ class DetailViewController: UIViewController {
         addToRSVP.setImage(#imageLiteral(resourceName: "NotYetRsvp"), for: .normal)
         addToRSVP.addTarget(self, action:#selector(pressedCountMeIn), for: .touchUpInside)
         view.addSubview(addToRSVP)
+        
+        titleOfEvent = UILabel(frame: CGRect(x: 42, y: 326, width: 292, height: 29))
+        titleOfEvent.font = UIFont(name: "Bebas", size: 22)
+        titleOfEvent.textAlignment = NSTextAlignment.center
+        view.addSubview(titleOfEvent)
+        
+        paragraphText = UILabel(frame: CGRect(x: 42, y: 361, width: 292, height: 144))
+        paragraphText.textAlignment = NSTextAlignment.center
+        view.addSubview(paragraphText)
     }
     
     func pressedCountMeIn() {

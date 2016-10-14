@@ -23,6 +23,7 @@
 		152F0B1F1DA4C07E00CB7D34 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */; };
 		1544CFBC1DB0939C0004C424 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544CFBB1DB0939C0004C424 /* Event.swift */; };
 		40B8662B4D846F5E0940E654 /* libPods-MDBSocials.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE170A06BEFCF6798623FF80 /* libPods-MDBSocials.a */; };
+		8BA986351DB09ABA00870C77 /* BEBAS___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 1544CFBA1DB07C1D0004C424 /* BEBAS___.TTF */; };
 		8BE4B3DC1DAE249E00248437 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4B3DB1DAE249E00248437 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -302,6 +303,7 @@
 				152F0AEC1DA2454C00CB7D34 /* LaunchScreen.storyboard in Resources */,
 				152F0AE91DA2454C00CB7D34 /* Assets.xcassets in Resources */,
 				1526B3101DAF62A200C153C0 /* GoogleService-Info.plist in Resources */,
+				8BA986351DB09ABA00870C77 /* BEBAS___.TTF in Resources */,
 				152F0AE71DA2454C00CB7D34 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
