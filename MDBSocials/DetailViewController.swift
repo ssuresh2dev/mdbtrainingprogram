@@ -16,7 +16,6 @@ class DetailViewController: UIViewController {
     var addToRSVP: UIButton!
     var titleOfEvent: UILabel!
     var paragraphText: UILabel!
-    // hello worlddddddd hopefully this works pleaseseeseses
 
     override func viewDidLoad() {
         super.viewDidLoad()

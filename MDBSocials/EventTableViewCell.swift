@@ -39,8 +39,9 @@ class EventTableViewCell: UITableViewCell {
         rsvpLabel = UILabel(frame: CGRect(x: contentView.frame.width - 30, y: 28.5, width: 50, height: 38))
         contentView.addSubview(rsvpLabel)
         
-        posterLabel = UILabel(frame:CGRect(x: 107, y: 120, width: 167, height: 16))
+        posterLabel = UILabel(frame:CGRect(x: 113, y: 129, width: 167, height: 16))
         posterLabel.textAlignment = NSTextAlignment.left
+        posterLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
         contentView.addSubview(posterLabel)
         
         super.awakeFromNib()

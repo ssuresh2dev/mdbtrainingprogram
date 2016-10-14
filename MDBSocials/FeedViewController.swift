@@ -38,7 +38,7 @@ class FeedViewController: UIViewController {
             var newEvents: [NSString] = []
             for event in snapshot.children.allObjects as! [FIRDataSnapshot] {
         
-                newEvents.append(event.key as! NSString)
+                newEvents.append(event.key as NSString)
             }
            
             
@@ -49,6 +49,18 @@ class FeedViewController: UIViewController {
     
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moreInfo" {
+            let dest = segue.destination as? DetailViewController
+            print(selectedEvent?.eventTitle!)
+            dest?.titleOfEvent.text = selectedEvent!.eventTitle!
+            dest?.paragraphText.text = selectedEvent!.eventDescription!
+            dest?.numInterested.text = selectedEvent!.rsvp!
+            
+        }
+    }
+    
     
     func setupTableView(){
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
@@ -105,15 +117,18 @@ class FeedViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
+
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventTableViewCell
         for subview in cell.contentView.subviews{
@@ -123,6 +138,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
 
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let eventCell = cell as! EventTableViewCell
 
@@ -144,6 +160,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 event.posterName = dictionary["posterName"] as! String?
                 
                 self.eventsArray.append(event)
+                print(event.eventDate)
+                print(event.eventTitle)
+                print(self.eventsArray)
                 eventCell.titleName.text = event.eventTitle
                 eventCell.rsvpLabel.text = event.rsvp
                 eventCell.posterLabel.text = event.posterName
@@ -161,15 +180,6 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "moreInfo" {
-            let dest = segue.destination as? DetailViewController
-            dest?.titleOfEvent.text = selectedEvent!.eventTitle
-            dest?.paragraphText.text = selectedEvent!.eventDescription
-            dest?.numInterested.text = selectedEvent!.rsvp
-        }
-    }
-  
     
 //    eventsRef.observe(.value, with: { snapshot in
 //    var newEvents: [NSString] = []
