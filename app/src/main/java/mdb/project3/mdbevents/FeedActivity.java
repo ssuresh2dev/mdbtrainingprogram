@@ -6,10 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,12 +23,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.StringBufferInputStream;
 import java.lang.reflect.Array;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class FeedActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,10 +41,13 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
 
     static List<String> databaseKeys;
 
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
+        setSupportActionBar((Toolbar) findViewById(R.id.feed_toolbar));
 
         // Create a variable for the recycler view and set its layout manager to be linear
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -97,5 +107,22 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
                 startNewSocialActivity();
                 break;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_feed, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
