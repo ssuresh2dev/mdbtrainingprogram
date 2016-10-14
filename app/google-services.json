@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "420424174481",
+    "firebase_url": "https://mdb-events.firebaseio.com",
+    "project_id": "mdb-events",
+    "storage_bucket": "mdb-events.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420424174481:android:616bf578be97dd79",
+        "android_client_info": {
+          "package_name": "mdb.project3.mdbevents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420424174481-i3hcls6241kocqompn743j82tud7pkf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9zQX9VAp0wG7G1KIaxMeK79NUZZGqQ94"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
