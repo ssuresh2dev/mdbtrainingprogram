@@ -14,11 +14,19 @@ import FirebaseStorage
 
 class CreateEventViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    var eventTitleField: UITextField!
-    var eventDescriptonTextField: UITextField!
+    var eventNameLabel: UILabel!
+    var eventNameTextField: UITextField!
+    
+    var descriptionLabel: UILabel!
+    var descriptionTextField: UITextView!
+    
     var imageView: UIImageView!
+    
+    var eventDateLabel: UILabel!
     var eventDateTextField: UITextField!
+    
     var imagePicker = UIImagePickerController()
+    var eventImageLabel: UILabel!
     var eventImageView: UIImageView! = UIImageView(image: UIImage(named: "emptyimage"))
     var actionSheetController : UIAlertController = UIAlertController(title: "Photos", message: "Select Camera or Photo Library", preferredStyle: .actionSheet)
 
@@ -33,7 +41,6 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         setupUI()
         setupAlertController()
         imagePicker.delegate = self
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,25 +49,53 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
     }
     
     func setupUI(){
-        view.backgroundColor = Constants.Colors.purpleColor
+        navigationController?.isNavigationBarHidden = false
+        view.backgroundColor = UIColor(red:0.96, green:1.00, blue:1.00, alpha:1.0)
         
-        let postEventButton = UIBarButtonItem(title: "Post", style: .done, target: self, action: #selector(CreateEventViewController.postButtonClicked))
-        self.navigationItem.rightBarButtonItem = postEventButton
-        
-        eventTitleField = UITextField(frame: CGRect(x: 20, y: (self.navigationController?.navigationBar.frame.height)! + 20, width: view.frame.width - 20, height: 50))
-        eventTitleField.placeholder = "What is the title of your event?"
-        view.addSubview(eventTitleField)
-        
-        eventDescriptonTextField = UITextField(frame: CGRect(x: 20, y: eventTitleField.frame.maxY + 25, width: view.frame.width - 20, height: 50))
-        eventDescriptonTextField.placeholder = "Describe your event."
-        view.addSubview(eventDescriptonTextField)
-        
+        let bttn = UIButton()
+        bttn.setImage(#imageLiteral(resourceName: "PostIcon"), for: .normal)
+        bttn.frame = CGRect(x: 0, y: 0, width: 36, height: 27)
+        bttn.addTarget(self, action: #selector(CreateEventViewController.postButtonClicked), for: .touchUpInside)
+        let addEventButton = UIBarButtonItem()
+        addEventButton.customView = bttn
+        self.navigationItem.rightBarButtonItem = addEventButton
+        self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "Bar"), for: .default)
+        self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "CreateEventBanner"))
 
-        eventDateTextField = UITextField(frame: CGRect(x: 20, y: eventDescriptonTextField.frame.maxY + 25, width: view.frame.width-40, height: 50))
-        eventDateTextField.placeholder = "Date"
+        eventNameLabel = UILabel(frame: CGRect(x: 38.5, y: 90, width: 110, height: 19))
+        eventNameLabel.text = "Name of event:"
+        eventNameLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        view.addSubview(eventNameLabel)
+        
+        eventNameTextField = UITextField(frame: CGRect(x: 36, y: 108, width: 298, height: 33))
+        eventNameTextField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "NameEventTF"))
+        view.addSubview(eventNameTextField)
+        
+        eventDateLabel = UILabel(frame: CGRect(x: 39.5, y: 158, width: 102, height: 19))
+        eventDateLabel.text = "Date of event:"
+        eventDateLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        view.addSubview(eventDateLabel)
+
+        eventDateTextField = UITextField(frame: CGRect(x: 36, y: 176, width: 152, height: 33))
+        eventDateTextField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "DateEventTF"))
         view.addSubview(eventDateTextField)
         
-        eventImageView.frame = CGRect(x: 20, y: eventDateTextField.frame.maxY + 20, width: view.frame.width - 40, height: 320)
+        descriptionLabel = UILabel(frame: CGRect(x: 36.5, y: 225, width: 141, height: 19))
+        descriptionLabel.text = "Describe the event:"
+        descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        view.addSubview(descriptionLabel)
+        
+        descriptionTextField = UITextView(frame: CGRect(x: 36, y: 244, width: 298, height: 117))
+        descriptionTextField.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "DescriptionTF"))
+        view.addSubview(descriptionTextField)
+        
+        eventImageLabel = UILabel(frame: CGRect(x: 122, y: 397, width: 131, height: 19))
+        eventImageLabel.text = "Insert image here:"
+        eventImageLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        view.addSubview(eventImageLabel)
+        
+        eventImageView.frame = CGRect(x: 62, y: 416, width: 252, height: 192)
+        eventImageView.contentMode = UIViewContentMode.scaleAspectFit
         view.addSubview(eventImageView!)
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(CreateEventViewController.imageTapped))
         eventImageView.isUserInteractionEnabled = true
@@ -138,7 +173,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         
         
         //Event Information
-        let eventData: [String : NSString] = ["eventTitle": eventTitleField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": eventDescriptonTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"]
+        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"]
 
         //Set Event Information
         uniqueEventRef.setValue(eventData){ (error, snap) in
