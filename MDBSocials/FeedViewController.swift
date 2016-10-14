@@ -19,6 +19,8 @@ class FeedViewController: UIViewController {
     //var events: [FIRDataSnapshot]! = []
     //var tableView: UITableView!
     
+    var deleteLater: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //configureDatabase()
@@ -49,6 +51,15 @@ class FeedViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = addEventButton
         self.navigationController?.navigationBar.setBackgroundImage(#imageLiteral(resourceName: "Bar"), for: .default)
         self.navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "OpenSocials"))
+        
+        deleteLater = UIButton(frame: CGRect(x: 106, y: 456, width: 165, height: 33))
+        deleteLater.setImage(#imageLiteral(resourceName: "RegisterButton"), for: .normal)
+        deleteLater.addTarget(self, action:#selector(tempSeg), for: .touchUpInside)
+        view.addSubview(deleteLater)
+    }
+    
+    func tempSeg() {
+        performSegue(withIdentifier: "forNow", sender: self)
     }
     func showCreateEventVC(){
         performSegue(withIdentifier: "segueToCreateEventVC", sender: self)

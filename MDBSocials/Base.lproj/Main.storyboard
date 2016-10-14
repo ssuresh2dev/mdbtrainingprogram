@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -71,6 +71,24 @@
             </objects>
             <point key="canvasLocation" x="1748" y="-257"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="mhb-Vm-hvD">
+            <objects>
+                <viewController id="hGb-eH-CHo" customClass="DetailViewController" customModule="MDBSocials" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x6b-ch-5qa"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eyi-F0-p3O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FPJ-78-QD5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6sb-7l-Z7K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2618" y="126"/>
+        </scene>
         <!--Feed View Controller-->
         <scene sceneID="SBC-Nd-Hhi">
             <objects>
@@ -88,6 +106,7 @@
                     <connections>
                         <segue destination="LBE-do-Lvw" kind="show" identifier="segueToCreateEventVC" id="ayA-YK-fKn"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="afterSignOut" id="8d5-Ut-1V0"/>
+                        <segue destination="hGb-eH-CHo" kind="show" identifier="forNow" id="xta-GU-D8s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iW6-XL-FYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
