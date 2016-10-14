@@ -48,7 +48,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHo
         // Set holders for TextViews to values of the current Event
         holder.eventName.setText(currEvent.getName());
         holder.eventEmail.setText(currEvent.getEmailAddress());
-        holder.eventInterested.setText(String.format(Locale.getDefault(), "%d others are interested", currEvent.getNumInterested()));
+        holder.eventInterested.setText(String.format(Locale.getDefault(), "%d are interested", currEvent.getNumInterested()));
 
         Glide.with(context).load(currEvent.imageUrl).into(holder.eventImage);
     }
