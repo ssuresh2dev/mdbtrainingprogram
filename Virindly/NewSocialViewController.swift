@@ -14,8 +14,7 @@ class NewSocialViewController: UIViewController {
     var virindlyMiniLogoView: UIImageView!
     var inputEventNameTextField: UITextField!
     var inputDescriptionTextField: UITextField!
-    
-    //let dateSelect: UIDatePicker =
+    var inputDateTextField: UITextField!
     
     
     override func viewDidLoad() {
@@ -78,11 +77,25 @@ class NewSocialViewController: UIViewController {
         self.view.addSubview(inputDescriptionTextField)
         
         
-        // Date Picker
+        // Input Date Textfield
+        inputDateTextField = UITextField()
+        
+        let inputDatePlaceholder = NSAttributedString(string: "Date of event", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        inputDateTextField.attributedPlaceholder = inputDatePlaceholder
+        
+        inputDateTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
+        inputDateTextField.font = UIFont.systemFont(ofSize: 15)
+        inputDateTextField.borderStyle = UITextBorderStyle.roundedRect
+        
+        inputDateTextField.autocorrectionType = UITextAutocorrectionType.no
+        inputDateTextField.keyboardType = UIKeyboardType.default
+        inputDateTextField.returnKeyType = UIReturnKeyType.done
+        
+        self.view.addSubview(inputDateTextField)
         
         
-
-
+        
+        
         
         
         
