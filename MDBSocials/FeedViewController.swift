@@ -126,6 +126,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(events.count)
         return events.count
     }
     
