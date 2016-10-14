@@ -115,7 +115,7 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
             final int numInterested = 0;
             final String timeStamp = String.valueOf(myCalendar.getTimeInMillis() / 1000L);
             final String dateString = date.getText().toString();
-            final List<String> asdf = new ArrayList<>();
+            final String description = socialDescription.getText().toString();
 
             StorageReference storageReference = mStorage.getReferenceFromUrl("gs://mdb-events.appspot.com/");
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -132,7 +132,7 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
                     dbRef.child("Events").child(dbKey).setValue(new Event(name,
-                            emailAddress, numInterested, downloadUri.toString(), timeStamp,
+                            emailAddress, numInterested, downloadUri.toString(), timeStamp, description,
                             dateString, new ArrayList<String>()));
                     startActivity(new Intent(CreateSocial.this, FeedActivity.class));
                 }
