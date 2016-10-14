@@ -14,9 +14,8 @@ import FirebaseStorage
 
 
 class FeedViewController: UIViewController {
-
-   
-    var events: [FIRDataSnapshot]! = []
+    let rootRef = Constants.Colors.rootRef
+    var events: [NSString] = []
     var tableView: UITableView!
     
     
@@ -29,19 +28,20 @@ class FeedViewController: UIViewController {
     }
 
     func configureDatabase(){
-        let rootRef = Constants.Colors.rootRef
         let eventsRef = rootRef.child("events")
+
         //let usersRef = rootRef.child("users")
         
         eventsRef.observe(.value, with: { snapshot in
-            var newEvents: [FIRDataSnapshot] = []
-            for event in snapshot.children {
+            var newEvents: [NSString] = []
+            for event in snapshot.children.allObjects as! [FIRDataSnapshot] {
         
-                newEvents.append(event as! FIRDataSnapshot)
-                print(event)
+                newEvents.append(event.key as! NSString)
             }
+           
             
             self.events = newEvents
+            
             self.tableView.reloadData()
         })
     
@@ -123,12 +123,50 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let eventCell = cell as! EventTableViewCell
+
+//        ref.child("users").child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+//            // Get user value
+//            let username = snapshot.value!["username"] as! String
+//            let user = User.init(username: username)
+        //        })
+        let ref = rootRef.child("events").child("\(events[indexPath.row])")
+        ref.observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let event = Event()
+                event.eventTitle = dictionary["eventTitle"] as! String?
+                event.eventDate = dictionary["eventDate"] as! String?
+                event.eventDescription = dictionary["eventDescription"] as! String?
+                event.rsvp = dictionary["rsvp"] as! String?
+                event.downloadURL = dictionary["downloadURL"] as! String?
+                event.poster = dictionary["poster"] as! String?
+                
+                eventCell.titleName.text = event.eventTitle
+                
+                print(event.eventTitle, event.eventDate)
+            }
+        })
         
-        for info in events[indexPath.row] {
-            eventCell.titleName.text = info.children.value["eventName"] as! String
-        }
+        // eventCell.titleName.text = ref.value(forKey: "eventTitle") as! String?
         
     }
   
     
+//    eventsRef.observe(.value, with: { snapshot in
+//    var newEvents: [NSString] = []
+//    for event in snapshot.children.allObjects as! [FIRDataSnapshot] {
+//    
+//    newEvents.append(event.key as! NSString)
+//    }
+//
+//    
+//    self.events = newEvents
+//    print(self.events)
+//    
+//    self.tableView.reloadData()
+//    })
+//    
+//    
+//}
+
+
 }
