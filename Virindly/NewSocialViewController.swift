@@ -12,7 +12,9 @@ class NewSocialViewController: UIViewController {
 
     var newSocialBackground: UIImageView!
     var virindlyMiniLogoView: UIImageView!
-    // var nameOfEvent: UITextField!
+    var inputEventNameTextField: UITextField!
+    var inputDescriptionTextField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,28 +42,55 @@ class NewSocialViewController: UIViewController {
         self.view.addSubview(navBar2)
         
         
-        // VIRINDLY Logo
+        // Input Full Name Textfield
+        inputEventNameTextField = UITextField()
+        
+        let inputEventNamePlaceholder = NSAttributedString(string: "Event name here", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        inputEventNameTextField.attributedPlaceholder = inputEventNamePlaceholder
+        
+        inputEventNameTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/3.3, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
+        inputEventNameTextField.font = UIFont.systemFont(ofSize: 15)
+        inputEventNameTextField.borderStyle = UITextBorderStyle.roundedRect
+        
+        inputEventNameTextField.autocorrectionType = UITextAutocorrectionType.no
+        inputEventNameTextField.keyboardType = UIKeyboardType.default
+        inputEventNameTextField.returnKeyType = UIReturnKeyType.done
+        
+        self.view.addSubview(inputEventNameTextField)
+        
+        
+        // Input Description Textfield
+        inputDescriptionTextField = UITextField()
+        
+        let inputDescriptionPlaceholder = NSAttributedString(string: "Short description here", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        inputDescriptionTextField.attributedPlaceholder = inputDescriptionPlaceholder
+        
+        inputDescriptionTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2.5, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
+        inputDescriptionTextField.font = UIFont.systemFont(ofSize: 15)
+        inputDescriptionTextField.borderStyle = UITextBorderStyle.roundedRect
+        
+        inputDescriptionTextField.autocorrectionType = UITextAutocorrectionType.no
+        inputDescriptionTextField.keyboardType = UIKeyboardType.default
+        inputDescriptionTextField.returnKeyType = UIReturnKeyType.done
+        
+        self.view.addSubview(inputDescriptionTextField)
+        
+        
+        // Date Picker
+        // let selectDate: UIDatePicker!
+        
+
+
+        
+        
+        
+        // Mini VIRINDLY Logo
         virindlyMiniLogoView = UIImageView(image: #imageLiteral(resourceName: "VIRINDLYLogoOrange"))
         virindlyMiniLogoView.frame = CGRect(x: 15, y: 100, width: 100, height: 25)
         self.view.addSubview(virindlyMiniLogoView)
         
-        /*
-        // Name Of Event Textfield
-        nameOfEvent = UITextField()
         
-        let nameOfEvent = NSAttributedString(string: "Name of event", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
-        nameOfEvent.attributedPlaceholder = nameOfEventPlaceholder
         
-        nameOfEvent.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/2.5, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
-        nameOfEvent.font = UIFont.systemFont(ofSize: 15)
-        nameOfEvent.borderStyle = UITextBorderStyle.roundedRect
-        
-        nameOfEvent.autocorrectionType = UITextAutocorrectionType.no
-        nameOfEvent.keyboardType = UIKeyboardType.default
-        nameOfEvent.returnKeyType = UIReturnKeyType.done
-        
-        self.view.addSubview(nameOfEvent)
-        */
         
 
         

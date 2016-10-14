@@ -13,6 +13,7 @@ class ImageTableViewCell: UITableViewCell {
     var eventImageView: UIImageView!
     var eventLabel: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
