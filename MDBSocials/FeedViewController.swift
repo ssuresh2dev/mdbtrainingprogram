@@ -17,8 +17,12 @@ class FeedViewController: UIViewController {
     let rootRef = Constants.Colors.rootRef
     var events: [NSString] = []
     var tableView: UITableView!
+<<<<<<< HEAD
     var eventsArray: [Event] = []
     var selectedEvent: Event?
+=======
+    //events is an array 
+>>>>>>> 8360d0c479300d0f6895ba58ccfce36fe7d59ce9
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,14 +144,18 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 event.rsvp = dictionary["rsvp"] as! String?
                 event.downloadURL = dictionary["downloadURL"] as! String?
                 event.poster = dictionary["poster"] as! String?
+                event.posterName = dictionary["posterName"] as! String?
                 
                 self.eventsArray.append(event)
                 eventCell.titleName.text = event.eventTitle
-                
-                print(event.eventTitle, event.eventDate)
+                eventCell.rsvpLabel.text = event.rsvp
+                eventCell.posterLabel.text = event.posterName
             }
         })
         
+    
+        
+    
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -13,7 +13,8 @@ class EventTableViewCell: UITableViewCell {
     var backgroundClear: UIImageView!
     var defaultPostLabel: UIImageView!
     var titleName: UILabel!
-    var numInterest: UILabel!
+    var rsvpLabel: UILabel!
+    var posterLabel: UILabel!
     
     override func awakeFromNib() {
         backgroundClear = UIImageView(frame: CGRect(x: 38, y: 12.5, width: 300, height: 57))
@@ -21,20 +22,30 @@ class EventTableViewCell: UITableViewCell {
         backgroundClear.contentMode = UIViewContentMode.scaleAspectFit
         contentView.addSubview(backgroundClear)
         
+<<<<<<< HEAD
         defaultPostLabel = UIImageView(frame: CGRect(x: 47, y: 47.5, width: 60, height: 17))
+=======
+        defaultPostLabel = UIImageView(frame: CGRect(x: 25, y: 50, width: 50, height: 17))
+>>>>>>> 8360d0c479300d0f6895ba58ccfce36fe7d59ce9
         defaultPostLabel.image = #imageLiteral(resourceName: "PostedBy")
         defaultPostLabel.contentMode = UIViewContentMode.scaleAspectFit
         contentView.addSubview(defaultPostLabel)
         
+<<<<<<< HEAD
         titleName = UILabel(frame: CGRect(x: 47, y: 19.5, width: 225, height: 29))
+=======
+        titleName = UILabel(frame: CGRect(x: 25, y: 20, width: 225, height: 29))
+>>>>>>> 8360d0c479300d0f6895ba58ccfce36fe7d59ce9
         titleName.textAlignment = NSTextAlignment.left
         titleName.font = UIFont(name: "Bebas", size: 22)
         //titleName.font = UIFont(name: "AvenirNext-Regular", size: 22)
         contentView.addSubview(titleName)
         
-        numInterest = UILabel(frame: CGRect(x: 281, y: 28.5, width: 50, height: 38))
-        contentView.addSubview(numInterest)
+        rsvpLabel = UILabel(frame: CGRect(x: contentView.frame.width - 30, y: 28.5, width: 50, height: 38))
+        contentView.addSubview(rsvpLabel)
         
+        posterLabel = UILabel(frame:CGRect(x: 76, y: 35, width: 50, height: 40))
+        contentView.addSubview(posterLabel)
         
         super.awakeFromNib()
         // Initialization code
