@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>773061992714-s590heqsdj66thicpr4jfrku1765a7dk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.773061992714-s590heqsdj66thicpr4jfrku1765a7dk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA_RIKZkqSB3AiRgNYeTTBB_kIHG8acJbo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>773061992714</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>MohitMDB.MDBSocials</string>
+	<key>PROJECT_ID</key>
+	<string>mdbsocials-3a715</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mdbsocials-3a715.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:773061992714:ios:8c02250e0efe4f2f</string>
+	<key>DATABASE_URL</key>
+	<string>https://mdbsocials-3a715.firebaseio.com</string>
+</dict>
+</plist>
