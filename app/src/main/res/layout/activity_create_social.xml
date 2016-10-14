@@ -79,7 +79,7 @@
             app:met_primaryColor="@android:color/white" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/first_date"
+            android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/form_field_margin"
@@ -94,34 +94,6 @@
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@android:color/white" />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/second_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:hint="@string/date_picker_hint"
-            android:inputType="text"
-            app:layout_constraintLeft_toLeftOf="@+id/first_date"
-            app:layout_constraintRight_toRightOf="@+id/first_date"
-            app:layout_constraintTop_toBottomOf="@+id/first_date"
-            app:met_baseColor="@android:color/white"
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@android:color/white" />
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/third_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:hint="@string/date_picker_hint"
-            android:inputType="text"
-            app:layout_constraintLeft_toLeftOf="@+id/second_date"
-            app:layout_constraintRight_toRightOf="@+id/second_date"
-            app:layout_constraintTop_toBottomOf="@+id/second_date"
-            app:met_baseColor="@android:color/white"
-            app:met_floatingLabel="highlight"
-            app:met_primaryColor="@android:color/white" />
-
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/create_social_button"
             android:layout_width="0dp"
@@ -132,6 +104,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/third_date" />
+            app:layout_constraintTop_toBottomOf="@+id/date" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
