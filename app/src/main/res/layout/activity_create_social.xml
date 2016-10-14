@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_social"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="mdb.project3.mdbevents.CreateSocial">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/create_social_constraint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/new_social_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="4dp"
+            android:text="@string/new_social_title_text"
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/name_of_social"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_field_margin"
+            android:hint="@string/event_name_hint"
+            android:inputType="textEmailAddress"
+            android:textCursorDrawable="@drawable/text_cursor_yellow"
+            app:layout_constraintLeft_toLeftOf="@+id/new_social_title"
+            app:layout_constraintRight_toRightOf="@+id/new_social_title"
+            app:layout_constraintTop_toBottomOf="@+id/new_social_title"
+            app:met_baseColor="@android:color/white"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/social_image"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/form_field_margin"
+            android:adjustViewBounds="true"
+            android:background="@color/colorPrimary"
+            android:contentDescription="@string/event_image_description"
+            android:scaleType="center"
+            android:src="@drawable/ic_add_a_photo_black_24dp"
+            app:layout_constraintLeft_toLeftOf="@+id/name_of_social"
+            app:layout_constraintRight_toRightOf="@+id/name_of_social"
+            app:layout_constraintTop_toBottomOf="@+id/name_of_social" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/social_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_field_margin"
+            android:hint="@string/event_description_hint"
+            android:inputType="textEmailAddress"
+            android:maxLines="2"
+            android:textCursorDrawable="@drawable/text_cursor_yellow"
+            app:layout_constraintLeft_toLeftOf="@+id/name_of_social"
+            app:layout_constraintRight_toRightOf="@+id/name_of_social"
+            app:layout_constraintTop_toBottomOf="@+id/social_image"
+            app:met_baseColor="@android:color/white"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@android:color/white" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_field_margin"
+            android:focusable="false"
+            android:hint="@string/date_picker_hint"
+            android:inputType="text"
+            android:textCursorDrawable="@drawable/text_cursor_yellow"
+            app:layout_constraintLeft_toLeftOf="@+id/social_description"
+            app:layout_constraintRight_toRightOf="@+id/social_description"
+            app:layout_constraintTop_toBottomOf="@+id/social_description"
+            app:met_baseColor="@android:color/white"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@android:color/white" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/create_social_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_field_margin"
+            android:background="@color/colorAccent"
+            android:text="@string/create_event_button_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
