@@ -3,6 +3,7 @@ package mdb.project3.mdbevents;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -10,24 +11,26 @@ import java.util.ResourceBundle;
  */
 
 @IgnoreExtraProperties
-public class Event {
+public class Event implements Comparable<Event>{
 
     public String name;
     public String emailAddress;
-    public String numInterested;
+    public int numInterested;
     public String imageUrl;
     public String timestamp;
+    public List<String> dates;
 
     public Event() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Event(String aName, String aEmailAddress, String aNumInterested, String aImageUrl, String aTimestamp){
+    public Event(String aName, String aEmailAddress, int aNumInterested, String aImageUrl, String aTimestamp, List<String> aDates){
         name = aName;
         emailAddress = aEmailAddress;
         numInterested = aNumInterested;
         imageUrl = aImageUrl;
         timestamp = aTimestamp;
+        dates = aDates;
     }
     public String getName(){
         return name;
@@ -37,7 +40,7 @@ public class Event {
         return emailAddress;
     }
 
-    public String getNumInterested(){
+    public int getNumInterested(){
         return numInterested;
     }
 
@@ -47,5 +50,9 @@ public class Event {
 
     public String getTimestamp(){
         return timestamp;
+    }
+
+    public int compareTo(Event other){
+        return other.timestamp.compareTo(timestamp);
     }
 }

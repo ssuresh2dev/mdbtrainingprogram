@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -31,7 +32,10 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class CreateSocial extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,6 +53,8 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
     private FirebaseStorage mStorage;
+
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +110,9 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
         if (!validate())
             return;
 
+        mToast = Toast.makeText(getApplicationContext(), "Creating event...", Toast.LENGTH_LONG);
+        mToast.show();
+
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
             Toast.makeText(getApplicationContext(), "Session timed out!", Toast.LENGTH_SHORT).show();
@@ -112,8 +121,11 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
             final String dbKey = dbRef.child("Events").push().getKey();
             final String name = socialName.getText().toString();
             final String emailAddress = user.getEmail();
-            final String numInterested = "0 others are interested";
+            final int numInterested = 0;
             final String timeStamp = String.valueOf(myCalendar.getTimeInMillis() / 1000L);
+            final List<String> dateStrings = Arrays.asList(dates[0].getText().toString(),
+                    dates[1].getText().toString(),
+                    dates[2].getText().toString());
 
             StorageReference storageReference = mStorage.getReferenceFromUrl("gs://mdb-events.appspot.com/");
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -130,7 +142,7 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
                     dbRef.child("Events").child(dbKey).setValue(new Event(name,
-                            emailAddress, numInterested, downloadUri.toString(), timeStamp));
+                            emailAddress, numInterested, downloadUri.toString(), timeStamp, dateStrings));
                     startActivity(new Intent(CreateSocial.this, FeedActivity.class));
                 }
             });
@@ -150,6 +162,13 @@ public class CreateSocial extends AppCompatActivity implements View.OnClickListe
                     Snackbar.LENGTH_SHORT).show();
         }
         return valid;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mToast != null)
+            mToast.cancel();
     }
 
     @Override
