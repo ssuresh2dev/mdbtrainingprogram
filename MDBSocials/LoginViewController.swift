@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
         emailLabel.textColor = UIColor.white
         view.addSubview(emailLabel)
         
-        emailTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 33, width: 220, height: 30))
+        emailTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 33, width: view.frame.width * 0.7, height: 30))
         emailTextField.adjustsFontSizeToFitWidth = true
         emailTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         emailTextField.textAlignment = NSTextAlignment.left
@@ -79,7 +79,7 @@ class LoginViewController: UIViewController {
         passwordLabel.textColor = UIColor.white
         view.addSubview(passwordLabel)
         
-        passwordTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 108, width: 220, height: 30))
+        passwordTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 108, width: view.frame.width * 0.7, height: 30))
         passwordTextField.adjustsFontSizeToFitWidth = true
         passwordTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         passwordTextField.textAlignment = NSTextAlignment.left

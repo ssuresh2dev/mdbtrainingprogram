@@ -71,7 +71,7 @@ class SignupViewController: UIViewController {
         fullNameLabel.textColor = UIColor.white
         view.addSubview(fullNameLabel)
         
-        fullNameTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 33, width: 220, height: 30))
+        fullNameTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 33, width: view.frame.width * 0.7, height: 30))
         fullNameTextField.adjustsFontSizeToFitWidth = true
         fullNameTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         fullNameTextField.textAlignment = NSTextAlignment.left
@@ -88,7 +88,7 @@ class SignupViewController: UIViewController {
         emailLabel.textColor = UIColor.white
         view.addSubview(emailLabel)
         
-        emailTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 108, width: 220, height: 30))
+        emailTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 108, width: view.frame.width * 0.7, height: 30))
         emailTextField.adjustsFontSizeToFitWidth = true
         emailTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         emailTextField.textAlignment = NSTextAlignment.left
@@ -105,7 +105,7 @@ class SignupViewController: UIViewController {
         passwordLabel.textColor = UIColor.white
         view.addSubview(passwordLabel)
         
-        passwordTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 183, width: 220, height: 30))
+        passwordTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 183, width: view.frame.width * 0.7, height: 30))
         passwordTextField.adjustsFontSizeToFitWidth = true
         passwordTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         passwordTextField.textAlignment = NSTextAlignment.left
@@ -123,7 +123,7 @@ class SignupViewController: UIViewController {
         confirmLabel.textColor = UIColor.white
         view.addSubview(confirmLabel)
         
-        confirmTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 257, width: 220, height: 30))
+        confirmTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 257, width: view.frame.width * 0.7, height: 30))
         confirmTextField.adjustsFontSizeToFitWidth = true
         confirmTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         confirmTextField.textAlignment = NSTextAlignment.left

@@ -19,22 +19,43 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFeedTableView()
-                newSocial = UIButton(frame: CGRect(x: 0, y:0, width: view.frame.width/4, height: view.frame.height/10))
-        
-        newSocial.setTitle("Add event", for: .normal)
-        newSocial.setTitleColor(UIColor.black, for: .normal)
-        view.addSubview(newSocial)
-        
-        signOutButton = UIButton(frame: CGRect(x:view.frame.width - view.frame.width/4, y: 0, width: view.frame.width/4, height: view.frame.height/10))
-        signOutButton.setTitle("Sign out", for: .normal)
-        signOutButton.setTitleColor(UIColor.black, for: .normal)
-        view.addSubview(signOutButton)
-        
-        newSocial.addTarget(self, action: #selector(addEvent), for: .touchUpInside)
-        signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
+        setUI()
         
         // Do any additional setup after loading the view.
     }
+    
+    func setUI() {
+        
+        view.backgroundColor = themeColor
+        
+        let newSocialButton = UIButton(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.03 + 10, width: view.frame.width * 0.2, height: view.frame.height * 0.04))
+        newSocialButton.setTitle("Add event", for: .normal)
+        newSocialButton.setTitleColor(UIColor.white, for: .normal)
+        newSocialButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
+        newSocialButton.addTarget(self, action: #selector(addEvent), for: .touchUpInside)
+        view.addSubview(newSocialButton)
+        
+        let signOutButton = UIButton(frame: CGRect(x: view.frame.width * 0.75, y: view.frame.height * 0.03 + 10, width: view.frame.width * 0.2, height: view.frame.height * 0.04))
+        signOutButton.setTitle("Sign out", for: .normal)
+        signOutButton.setTitleColor(UIColor.white, for: .normal)
+        signOutButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
+        signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
+        signOutButton.layer.cornerRadius = 5
+        signOutButton.clipsToBounds = true
+        view.addSubview(signOutButton)
+        
+        let titleLabel = UILabel(frame: CGRect(x: view.frame.width * 0.3, y: view.frame.height * 0.03 + 10, width: view.frame.width * 0.4, height: view.frame.height * 0.04))
+        titleLabel.text = "MDB Socials"
+        titleLabel.numberOfLines = 1
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.font = UIFont(name: "Avenir-Black", size: 24.0)
+        titleLabel.textAlignment = NSTextAlignment.center
+        titleLabel.textColor = UIColor.white
+        view.addSubview(titleLabel)
+        
+    }
+    
+    
     func signOut() {
         let firebaseAuth = FIRAuth.auth()
         do {
@@ -57,7 +78,7 @@ class FeedViewController: UIViewController {
     // Initializes table containing the feeds and adds it to FeedViewController's current view.
     func setupFeedTableView() {
         
-        feedTableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        feedTableView = UITableView(frame: CGRect(x: 0, y: view.frame.height * 0.1 + 10, width: view.frame.width, height: view.frame.height * 0.9))
         feedTableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "feedCell")
         feedTableView.rowHeight = 80
         feedTableView.backgroundColor = UIColor.white
