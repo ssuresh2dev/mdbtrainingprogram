@@ -8,9 +8,17 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
+
+struct postStruct {
+    let event: String!
+    let details: String!
+    let date: String!
+}
 
 class FeedViewController: UIViewController {
     
+    var posts = [postStruct]()
     var user: FIRUser!
     var tableView: UITableView!
     var images = [UIImage(named: "mountain1"), UIImage(named: "mountain2"), UIImage(named: "mountain3"),  UIImage(named: "mountain4"), UIImage(named: "mountain5"), UIImage(named: "mountain6"), UIImage(named: "mountain7"), UIImage(named: "mountain8"), UIImage(named: "mountain9"), UIImage(named: "mountain10")]
@@ -21,8 +29,20 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        setupTableView()
+        let ref = FIRDatabase.database().reference()
+        ref.child("posts").queryOrderedByKey().observe(<#T##eventType: FIRDataEventType##FIRDataEventType#>, with: { (snapshot) in
+            
+            let snapshotValue = snapshot.value as? NSDictionary
+            
+            let event = snapshotValue!["event"]
+            let details = snapshotValue!["details"]
+            let date = snapshotValue!["date"]
+            
+            self.posts.insert(postStruct(event: event as! String!, details: details as! String, date: date as! String), at: 0)
+            tableView.reloadData()
+        })
         
+        setupTableView()
 
         // Navigation Bar 
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
@@ -37,11 +57,6 @@ class FeedViewController: UIViewController {
         navBar.setItems([navTitle], animated: false)
         self.view.addSubview(navBar)
  
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // Initializing a TableView and additing it to VC's current screen
@@ -82,7 +97,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,6 +112,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     // Objective C part was suggested by Xcode in Issue Navigator
     @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let imageCell = cell as! ImageTableViewCell
+        imageCell.eventLabel.text = posts[indexPath.row].event
         imageCell.eventImageView.image = images[indexPath.row]
         imageCell.eventLabel.text = "\(eventNames[indexPath.row])"
     }

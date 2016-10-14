@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class NewSocialViewController: UIViewController {
 
@@ -125,6 +127,7 @@ class NewSocialViewController: UIViewController {
 
     
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -138,22 +141,14 @@ class NewSocialViewController: UIViewController {
     }
     
     func pressedCompleteEventButton(sender: UIButton!) {
-        performSegue(withIdentifier: "segueBackToFeed", sender: self)
+        if let event = inputEventNameTextField.text, let details = inputDescriptionTextField.text, let date = inputDescriptionTextField.text {
+            let post: [String: String] = ["event": event, "details": details, "date": date]
+        
+            let db = FIRDatabase.database().reference()
+            db.child("posts").childByAutoId().setValue(post)
+        
+            performSegue(withIdentifier: "segueBackToFeed", sender: self)
+        }
     }
-
-    
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
