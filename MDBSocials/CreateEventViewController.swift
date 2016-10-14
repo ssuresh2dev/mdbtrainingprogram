@@ -127,36 +127,51 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     
     func postButtonClicked(){
-        //Event Information: Firebase Database Stuff
-        let eventData: [String : NSString] = ["eventTitle": eventTitleField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": eventDescriptonTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"]
-
+        //Event references: Firebase Database
         let eventsRef = rootRef.child("events")
         let uniqueEventRef = eventsRef.childByAutoId()
+        
+        //Image References: Firebase Storage stuff
+        let storageRef = FIRStorage.storage().reference(forURL: "gs://mdbsocials2.appspot.com")
+        let imagesRef = storageRef.child("images")
+        let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
+        
+        
+        //Event Information
+        let eventData: [String : NSString] = ["eventTitle": eventTitleField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": eventDescriptonTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0"]
+
+        //Set Event Information
         uniqueEventRef.setValue(eventData){ (error, snap) in
             print("Success")
             print(error)
             
         }
         
-        //For the Image: Firebase Storage stuff
-        let storageRef = FIRStorage.storage().reference(forURL: "gs://mdbsocials2.appspot.com")
-        let imagesRef = storageRef.child("images")
-        let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
-        
-        
+        //Set Picture
         var data = NSData()
         data = UIImageJPEGRepresentation(eventImageView.image!, 0.8)! as NSData
         
         // Upload the file to the path eventImageRef
+        var downloadURL: URL?
         let uploadTask = eventImageRef.put(data as Data, metadata: nil) { metadata, error in
             if (error != nil) {
                 // Uh-oh, an error occurred!
             } else {
                 // Metadata contains file metadata such as size, content-type, and download URL.
-                let downloadURL = metadata!.downloadURL
+                downloadURL = metadata!.downloadURL()
             }
+            
+        uniqueEventRef.child("downloadURL").setValue(downloadURL?.absoluteString){ (error, snap) in
+            print("downloadURL added to uniqueeventRef")
+        }
+
         }
         
+        
+        
+        
+        performSegue(withIdentifier: "unwindToFeed", sender: self)
+
         
 //        eventsRef.setValue("hello")
 //        eventsRef.observeSingleEvent(of: .Value) { (snap) in
@@ -174,7 +189,6 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         
 //        print(eventData)
 //        print(eventsRef)
-        performSegue(withIdentifier: "unwindToFeed", sender: self)
 //        print("worked")
         
 //        rootRef.observeSingleEvent(of: .value, with: {snap in

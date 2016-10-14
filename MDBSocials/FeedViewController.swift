@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
+
 
 class FeedViewController: UIViewController {
 
