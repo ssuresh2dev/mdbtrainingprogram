@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     var backButton: UIButton!
     var descriptionLabel: UILabel!
     var descriptionText: String! 
+
     
     override func viewDidLoad() {
         titleToBeSet = event.name
@@ -98,7 +99,7 @@ class DetailViewController: UIViewController {
         RSVPButton.addTarget(self, action: #selector(DetailViewController.modifyPeople), for: UIControlEvents.touchUpInside)
         RSVPButton.layer.cornerRadius = 5
         view.addSubview(RSVPButton)
-        
+
         descriptionLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.4 + 160, width: view.frame.width * 0.7, height: view.frame.height * 0.6 - 190))
         descriptionLabel.text = descriptionText
         descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 14.0)
