@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#1E90F0"
 
     tools:context="com.mdb.training.katharine.mdbsocials.FeedActivity">
 
@@ -28,9 +29,10 @@
         app:fabSize="mini"
         app:srcCompat="@android:drawable/ic_input_add"
         android:id="@+id/createNew"
-        tools:layout_editor_absoluteY="432dp"
+        tools:layout_editor_absoluteY="424dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
+        app:backgroundTint="@color/button"
         android:layout_marginRight="16dp" />
 
     <android.support.design.widget.FloatingActionButton
@@ -41,15 +43,16 @@
         app:srcCompat="?android:attr/homeAsUpIndicator"
         android:id="@+id/logout"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="25dp"
-        android:layout_marginBottom="16dp" />
+        app:backgroundTint="@color/button"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/rv" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:scrollbars="vertical"
         android:layout_width="352dp"
         android:layout_height="479dp"
-        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteY="1dp"
         tools:layout_editor_absoluteX="0dp" />
 
 
