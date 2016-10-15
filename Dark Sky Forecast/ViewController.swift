@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var weatherData: [String: AnyObject]?
     var backgroundView : UIImageView!
     var locationLabel : UILabel!
+    var summaryLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +39,16 @@ class ViewController: UIViewController {
         view.addSubview(locationLabel)
         
         let temperatureLabel: UILabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.2, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
-        temperatureLabel.text = "Current temperature: " + String(describing: weatherData!["temperature"]! as! NSNumber)
+        temperatureLabel.text = "Current temperature: " + String(describing: (weatherData!["temperature"]! as! NSNumber) as! Int)
         setUILabel(label: temperatureLabel)
         setLabelFontSize(label: temperatureLabel, size: 25)
         view.addSubview(temperatureLabel)
+        
+        let summaryLabel: UILabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: temperatureLabel.frame.maxY + 50, width: view.frame.width, height: 50))
+        summaryLabel.text = weatherData?["summary"] as! String
+        setLabelFontSize(label: summaryLabel, size: 30)
+        setUILabel(label: summaryLabel)
+        view.addSubview(summaryLabel)
     }
     
     func setUILabel(label : UILabel) {
