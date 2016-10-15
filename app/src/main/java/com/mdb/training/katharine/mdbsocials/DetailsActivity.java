@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -49,6 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
     private ArrayList<String> interestedName = new ArrayList<>();
     private ArrayList<String> interestedEmail = new ArrayList<>();
     private ArrayList<String> interestedUid = new ArrayList<>();
+    public int color;
 
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
@@ -100,6 +102,16 @@ public class DetailsActivity extends AppCompatActivity {
                     @Override
                     protected void onPostExecute(Bitmap result) {
                         eventPic.setImageBitmap(result);
+                        Palette.from(result).generate(new Palette.PaletteAsyncListener() {
+                            public void onGenerated(Palette p) {
+                                Palette.Swatch vibrant = p.getVibrantSwatch();
+                                if (vibrant != null) {
+                                    // Set the background color of a layout based on the vibrant color
+                                    getWindow().getDecorView().setBackgroundColor(vibrant.getRgb());
+
+                                }
+                            }
+                        });
                     }
                 }.execute();
 
