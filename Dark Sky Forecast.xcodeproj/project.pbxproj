@@ -14,6 +14,7 @@
 		15D880051DB18FBF002AB54A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D880031DB18FBF002AB54A /* LaunchScreen.storyboard */; };
 		15D880101DB18FBF002AB54A /* Dark_Sky_ForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8800F1DB18FBF002AB54A /* Dark_Sky_ForecastTests.swift */; };
 		15D8801B1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D8801A1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift */; };
+		7D5BF0996B20038841A01013 /* Pods_Dark_Sky_Forecast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A284AAFD9A7F8BAD55460309 /* Pods_Dark_Sky_Forecast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,9 @@
 		15D880161DB18FBF002AB54A /* Dark Sky ForecastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dark Sky ForecastUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D8801A1DB18FBF002AB54A /* Dark_Sky_ForecastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dark_Sky_ForecastUITests.swift; sourceTree = "<group>"; };
 		15D8801C1DB18FBF002AB54A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1765C0907EFFF083EC3A0C6B /* Pods-Dark Sky Forecast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dark Sky Forecast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dark Sky Forecast/Pods-Dark Sky Forecast.debug.xcconfig"; sourceTree = "<group>"; };
+		24930DC566E7B49BF3EED68A /* Pods-Dark Sky Forecast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dark Sky Forecast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dark Sky Forecast/Pods-Dark Sky Forecast.release.xcconfig"; sourceTree = "<group>"; };
+		A284AAFD9A7F8BAD55460309 /* Pods_Dark_Sky_Forecast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dark_Sky_Forecast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D5BF0996B20038841A01013 /* Pods_Dark_Sky_Forecast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +86,8 @@
 				15D8800E1DB18FBF002AB54A /* Dark Sky ForecastTests */,
 				15D880191DB18FBF002AB54A /* Dark Sky ForecastUITests */,
 				15D87FF81DB18FBF002AB54A /* Products */,
+				3DB0B3B08DF04FF4A3243253 /* Pods */,
+				F1E7BD963B9E680BEA0B3688 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +132,23 @@
 			path = "Dark Sky ForecastUITests";
 			sourceTree = "<group>";
 		};
+		3DB0B3B08DF04FF4A3243253 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1765C0907EFFF083EC3A0C6B /* Pods-Dark Sky Forecast.debug.xcconfig */,
+				24930DC566E7B49BF3EED68A /* Pods-Dark Sky Forecast.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F1E7BD963B9E680BEA0B3688 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A284AAFD9A7F8BAD55460309 /* Pods_Dark_Sky_Forecast.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15D8801F1DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky Forecast" */;
 			buildPhases = (
+				643A802D5B12FAB1C3B3583D /* [CP] Check Pods Manifest.lock */,
 				15D87FF31DB18FBF002AB54A /* Sources */,
 				15D87FF41DB18FBF002AB54A /* Frameworks */,
 				15D87FF51DB18FBF002AB54A /* Resources */,
+				40DBE88F3692D72E66CF90A0 /* [CP] Embed Pods Frameworks */,
+				37CBA383561F93C6F632993D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,15 +220,18 @@
 				TargetAttributes = {
 					15D87FF61DB18FBF002AB54A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					15D8800A1DB18FBF002AB54A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 15D87FF61DB18FBF002AB54A;
 					};
 					15D880151DB18FBF002AB54A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 15D87FF61DB18FBF002AB54A;
 					};
@@ -253,6 +283,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		37CBA383561F93C6F632993D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dark Sky Forecast/Pods-Dark Sky Forecast-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40DBE88F3692D72E66CF90A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dark Sky Forecast/Pods-Dark Sky Forecast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		643A802D5B12FAB1C3B3583D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		15D87FF31DB18FBF002AB54A /* Sources */ = {
@@ -410,18 +488,21 @@
 		};
 		15D880201DB18FBF002AB54A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1765C0907EFFF083EC3A0C6B /* Pods-Dark Sky Forecast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Dark Sky Forecast/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eliothan.Dark-Sky-Forecast";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		15D880211DB18FBF002AB54A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24930DC566E7B49BF3EED68A /* Pods-Dark Sky Forecast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Dark Sky Forecast/Info.plist";
@@ -505,6 +586,7 @@
 				15D880211DB18FBF002AB54A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15D880221DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky ForecastTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +595,7 @@
 				15D880241DB18FBF002AB54A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15D880251DB18FBF002AB54A /* Build configuration list for PBXNativeTarget "Dark Sky ForecastUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +604,7 @@
 				15D880271DB18FBF002AB54A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

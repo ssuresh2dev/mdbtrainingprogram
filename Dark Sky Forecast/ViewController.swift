@@ -7,12 +7,29 @@
 //
 
 import UIKit
+import CoreLocation
+import Foundation
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    
+    lazy var locationManager: CLLocationManager = CLLocationManager()
+    var latitude: Double?
+    var longitude: Double?
 
-class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.requestLocation()
+            
+            latitude = (locationManager.location?.coordinate.latitude)!
+            longitude = (locationManager.location?.coordinate.longitude)!
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
