@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     var latitude: Double?
     var longitude: Double?
     var weatherData: [String: AnyObject]?
+    var backgroundView : UIImageView!
+    var locationLabel : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +24,33 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestLocation()
-        
-        
-      
-
     }
+    
     func setupUI(){
-        let temperatureLabel: UILabel = UILabel(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 70, height: 50))
-        temperatureLabel.text = String(describing: weatherData!["temperature"]! as! NSNumber)
+        backgroundView = UIImageView(frame: view.frame)
+        backgroundView.image = #imageLiteral(resourceName: "background")
+        view.addSubview(backgroundView)
+        
+        locationLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.15))
+        locationLabel.text = "Berkeley, CA"
+        setUILabel(label: locationLabel)
+        setLabelFontSize(label: locationLabel, size: 50)
+        view.addSubview(locationLabel)
+        
+        let temperatureLabel: UILabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.2, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
+        temperatureLabel.text = "Current temperature: " + String(describing: weatherData!["temperature"]! as! NSNumber)
+        setUILabel(label: temperatureLabel)
+        setLabelFontSize(label: temperatureLabel, size: 25)
         view.addSubview(temperatureLabel)
+    }
+    
+    func setUILabel(label : UILabel) {
+        label.textColor = UIColor.white
+        label.textAlignment = .center
+    }
+    
+    func setLabelFontSize(label : UILabel, size : CGFloat) {
+        label.font = UIFont(name: label.font.fontName, size: size)
     }
     
     override func didReceiveMemoryWarning() {
