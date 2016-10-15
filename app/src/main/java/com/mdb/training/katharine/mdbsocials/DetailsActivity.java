@@ -1,7 +1,10 @@
 package com.mdb.training.katharine.mdbsocials;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,12 +66,46 @@ public class DetailsActivity extends AppCompatActivity {
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
         {
             @Override
-            public void onSuccess(Uri downloadUrl)
+            public void onSuccess(final Uri downloadUrl)
             {
-                Glide.with(getApplicationContext()).load(downloadUrl).into(eventPic);
+
+
+                AsyncTask<Void, Void, Bitmap> asyncTask = new AsyncTask<Void, Void, Bitmap>() {
+
+                    @Override
+                    protected Bitmap doInBackground(Void... params) {
+                        return getBitmapFromURL(downloadUrl.toString());
+                    }
+
+                    public Bitmap getBitmapFromURL(String src) {
+                        try {
+                            URL url = new URL(src);
+                            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                            connection.setDoInput(true);
+                            connection.connect();
+                            InputStream input = connection.getInputStream();
+                            Bitmap bitmap = BitmapFactory.decodeStream(input);
+                            return bitmap;
+                        } catch (IOException e) {
+                            // Log exception
+                            return null;
+                        }
+                    }
+
+
+                    @Override
+                    protected void onPostExecute(Bitmap result) {
+                        eventPic.setImageBitmap(result);
+                    }
+                }.execute();
+
+
             }
 
         });
+
+
+
 
 
         eventName = (TextView) findViewById(R.id.eventName);
