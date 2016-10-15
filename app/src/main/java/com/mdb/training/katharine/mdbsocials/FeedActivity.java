@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +27,7 @@ public class FeedActivity extends AppCompatActivity {
     private RecyclerView rv;
     public  FeedAdapter adapter;
     public  ArrayList<SocialsList.Social> socials = new ArrayList<SocialsList.Social>();
-    private FloatingActionButton logout;
+    //private FloatingActionButton logout;
     private FloatingActionButton createSocial;
     private DatabaseReference mDatabase;
 
@@ -37,7 +39,7 @@ public class FeedActivity extends AppCompatActivity {
 
         SocialsList socialsList = new SocialsList();
         socials = socialsList.getSocials();
-        logout = (FloatingActionButton) findViewById(R.id.logout);
+        //logout = (FloatingActionButton) findViewById(R.id.logout);
         createSocial = (FloatingActionButton) findViewById(R.id.createNew);
 
 
@@ -87,13 +89,13 @@ public class FeedActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(FeedActivity.this, MainActivity.class));
-            }
-        });
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mAuth.signOut();
+//                startActivity(new Intent(FeedActivity.this, MainActivity.class));
+//            }
+//        });
 
         createSocial.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +107,23 @@ public class FeedActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_details, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                mAuth.signOut();
+                startActivity(new Intent(this, MainActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
 
