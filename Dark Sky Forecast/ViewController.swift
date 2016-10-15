@@ -61,11 +61,8 @@ class ViewController: UIViewController {
     func getData(){
         API(latitude: latitude!, longitude: longitude!).getCurrentForecast({ (forecast) in
             self.weatherData = forecast
-            print(self.weatherData)
             self.setupUI()
-            
         })
-        print(weatherData)
 
     }
 }
@@ -75,10 +72,8 @@ extension ViewController: CLLocationManagerDelegate{
         print(error)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("hi")
         latitude = (locationManager.location?.coordinate.latitude)!
         longitude = (locationManager.location?.coordinate.longitude)!
-        print(latitude!,longitude!)
         getData()
         
     }
