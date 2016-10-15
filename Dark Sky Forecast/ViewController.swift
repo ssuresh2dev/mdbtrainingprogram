@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     }
     func setupUI(){
         let temperatureLabel: UILabel = UILabel(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 70, height: 50))
-        temperatureLabel.text = weatherData?["temperature"] as! String ?? "yo"
+        temperatureLabel.text = String(describing: weatherData!["temperature"]! as! NSNumber)
         view.addSubview(temperatureLabel)
     }
     
@@ -39,14 +39,13 @@ class ViewController: UIViewController {
     }
     
     func getData(){
-        print("1919")
         API(latitude: latitude!, longitude: longitude!).getCurrentForecast({ (forecast) in
             self.weatherData = forecast
             print(self.weatherData)
             self.setupUI()
             
         })
-        //print(weatherData)
+        print(weatherData)
 
     }
 }

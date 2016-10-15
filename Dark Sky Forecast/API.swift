@@ -21,7 +21,7 @@ class API {
         self.longitude = longitude
     }
     
-    func getCurrentForecast(_ completion: @escaping (_ forecast: [String: NSObject]) -> Void){
+    func getCurrentForecast(_ completion: @escaping (_ forecast: [String: AnyObject]) -> Void){
         
         let url = "https://api.darksky.net/forecast/\(API.key)/\(latitude),\(longitude)"
         print(url)
@@ -32,27 +32,13 @@ class API {
                 var forecast: [String: AnyObject] = [:]
                 let currently = json["currently"] as! [String: AnyObject]
                 let temperature = currently["temperature"]
-                print(temperature)
+                print(temperature!)
                 forecast["temperature"] = temperature as AnyObject?
+                completion(forecast)
             }
+            
         }
-//        Alamofire.request(url).responseJSON { response in
-//            switch response.result {
-//            case .success(let data):
-//                
-//                let json = try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as! [String:AnyObject]
-//                //let number = Int(pokemonData["#"] as! String)!
-//                let currently = json["currently"] as! AnyObject
-//                let temperature = currently["temperature"] as! Int
-//                
-//                
-//                
-//                
-//                
-//            case .failure(let error):
-//                print(error)
-//            }
-    
+
     
     }
 }
