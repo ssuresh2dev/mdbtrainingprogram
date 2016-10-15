@@ -21,17 +21,19 @@ class API {
         self.longitude = longitude
     }
     
-    func getCurrentForecast(_ completion: @escaping (_ forecast: [NSObject]) -> Void){
-        
+    func getCurrentForecast(_ completion: @escaping (_ forecast: [String: NSObject]) -> Void){
         
         let url = "https://api.darksky.net/forecast/\(API.key)/\(latitude),\(longitude)"
+        print(url)
+
         Alamofire.request(url).responseJSON { response in
             
             if let json = response.result.value as? [String: AnyObject] {
+                var forecast: [String: AnyObject] = [:]
                 let currently = json["currently"] as! [String: AnyObject]
-                let temperature = currently["temperature"] as! Int
-                
-
+                let temperature = currently["temperature"]
+                print(temperature)
+                forecast["temperature"] = temperature as AnyObject?
             }
         }
 //        Alamofire.request(url).responseJSON { response in
