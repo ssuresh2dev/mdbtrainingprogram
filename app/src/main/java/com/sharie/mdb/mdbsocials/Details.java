@@ -1,6 +1,9 @@
 package com.sharie.mdb.mdbsocials;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +27,10 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Details extends AppCompatActivity {
@@ -58,7 +65,11 @@ public class Details extends AppCompatActivity {
         url = getIntent().getExtras().getString("url");
 
         image = (ImageView) findViewById(R.id.imageView2);
-        Glide.with(getApplicationContext()).load(url).into(image);
+
+        Operation download = new Operation();
+        image.setImageBitmap(download.execute(url));
+
+        //Glide.with(getApplicationContext()).load(url).into(image);
 
         content = (TextView) findViewById(R.id.content);
         setMessage();
@@ -74,7 +85,6 @@ public class Details extends AppCompatActivity {
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //BUG: DOES NOT REBIND VIEW HOLDER NOR DETAIL SCREEN IF YOU CLICK ON DETAIL AGAIN UNTIL RE-SIGN IN.
                 FirebaseUser cur = mAuth.getCurrentUser();
 
                 if (cur != null)
@@ -125,5 +135,31 @@ public class Details extends AppCompatActivity {
         else
             ans += stars + " people are interested.";
         content.setText(ans);
+    }
+
+     private class Operation extends AsyncTask<String, Void, Bitmap> {
+         protected void onPreExecute() {
+             super.onPreExecute();
+         }
+
+         protected Bitmap doInBackground(String... params) {
+             String url = params[0];
+             try {
+                 URL myUrl = new URL(url);
+                 HttpURLConnection connection = (HttpURLConnection) myUrl.openConnection();
+                 connection.setDoInput(true);
+                 connection.connect();
+                 InputStream input = connection.getInputStream();
+                 return BitmapFactory.decodeStream(input);
+             } catch (IOException e) {
+                 // Log exception
+                 return null;
+             }
+         }
+         protected void onPostExecute(Bitmap result) {
+             super.onPostExecute(result);
+
+         }
+
     }
 }
