@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_create_social"
+    android:id="@+id/detail_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
@@ -29,7 +29,7 @@
             android:textSize="40sp"
             app:layout_constraintLeft_toLeftOf="@+id/eventImageView"
             app:layout_constraintRight_toRightOf="@+id/eventImageView"
-            tools:layout_editor_absoluteY="50dp" />
+            tools:layout_editor_absoluteY="74dp" />
 
         <TextView
             android:id="@+id/dateTextView"
@@ -85,6 +85,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:text="ToggleButton"
             android:textOff="Interested"
             android:textOn="Interested ✓"

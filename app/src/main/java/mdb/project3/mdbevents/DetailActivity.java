@@ -18,9 +18,11 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
+import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -38,6 +40,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     TextView dateTextView;
     ImageView eventImageView;
     TextView descriptionTextView;
+    ScrollView detailScrollView;
     Button interestedButton;
     ToggleButton interestedToggleButton;
 
@@ -91,6 +94,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
         interestedButton = (Button) findViewById(R.id.InterestedButton);
         interestedToggleButton = (ToggleButton) findViewById(R.id.interestedToggleButton);
+        detailScrollView = (ScrollView) findViewById(R.id.detail_scrollview);
 
         interestedButton.setOnClickListener(this);
         interestedToggleButton.setOnClickListener(this);
@@ -117,6 +121,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             protected void onPostExecute(Bitmap bitmap) {
                 if (bitmap != null) {
                     eventImageView.setImageBitmap(bitmap);
+                    Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+                        @Override
+                        public void onGenerated(Palette palette) {
+                            interestedButton.setBackgroundColor(palette.getLightVibrantColor(0xFF3396DC));
+                            interestedToggleButton.setBackgroundColor(palette.getLightMutedColor(0xFF3396DC));
+                        }
+                    });
                 }
                 super.onPostExecute(bitmap);
             }
