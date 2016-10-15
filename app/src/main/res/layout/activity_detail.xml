@@ -2,7 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< HEAD
     android:id="@+id/detail_scrollview"
+=======
+    android:id="@+id/activity_create_social"
+>>>>>>> origin/emaan
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
@@ -28,8 +32,12 @@
             android:textColor="@color/colorAccent"
             android:textSize="40sp"
             app:layout_constraintLeft_toLeftOf="@+id/eventImageView"
+<<<<<<< HEAD
             app:layout_constraintRight_toRightOf="@+id/eventImageView"
             tools:layout_editor_absoluteY="74dp" />
+=======
+            app:layout_constraintRight_toRightOf="@+id/eventImageView" />
+>>>>>>> origin/emaan
 
         <TextView
             android:id="@+id/dateTextView"
@@ -38,14 +46,22 @@
             android:text="Date"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
+<<<<<<< HEAD
             app:layout_constraintBottom_toTopOf="@+id/eventImageView"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/socialTitleView" />
+=======
+            app:layout_constraintBottom_toTopOf="@id/eventImageView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/socialTitleView" />
+>>>>>>> origin/emaan
 
         <ImageView
             android:id="@+id/eventImageView"
             android:layout_width="0dp"
+<<<<<<< HEAD
             android:layout_height="100dp"
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
@@ -54,18 +70,36 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+=======
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_camera_alt_black_24dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateTextView" />
+>>>>>>> origin/emaan
 
         <TextView
             android:id="@+id/descriptionTextView"
             android:layout_width="0dp"
+<<<<<<< HEAD
             android:layout_height="wrap_content"
+=======
+            android:layout_height="128dp"
+>>>>>>> origin/emaan
             android:layout_marginTop="16dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
+<<<<<<< HEAD
             app:layout_constraintLeft_toLeftOf="@+id/socialTitleView"
             app:layout_constraintRight_toRightOf="@+id/socialTitleView"
             app:layout_constraintTop_toBottomOf="@+id/eventImageView" />
+=======
+            app:layout_constraintLeft_toLeftOf="@id/socialTitleView"
+            app:layout_constraintRight_toRightOf="@id/socialTitleView"
+            app:layout_constraintTop_toBottomOf="@id/eventImageView" />
+>>>>>>> origin/emaan
 
         <Button
             android:id="@+id/InterestedButton"
@@ -73,9 +107,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="# People Interested"
+<<<<<<< HEAD
             app:layout_constraintLeft_toLeftOf="@+id/descriptionTextView"
             app:layout_constraintRight_toRightOf="@+id/descriptionTextView"
             app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+=======
+            app:layout_constraintLeft_toLeftOf="@id/descriptionTextView"
+            app:layout_constraintRight_toRightOf="@id/descriptionTextView"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTextView" />
+>>>>>>> origin/emaan
 
         <ToggleButton
             android:id="@+id/interestedToggleButton"
@@ -85,14 +125,21 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
+<<<<<<< HEAD
             android:layout_marginTop="8dp"
+=======
+>>>>>>> origin/emaan
             android:text="ToggleButton"
             android:textOff="Interested"
             android:textOn="Interested ✓"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+<<<<<<< HEAD
             app:layout_constraintTop_toBottomOf="@+id/InterestedButton" />
+=======
+            app:layout_constraintTop_toBottomOf="@id/InterestedButton" />
+>>>>>>> origin/emaan
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
