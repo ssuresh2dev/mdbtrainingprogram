@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -43,6 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
     private ArrayList<String> interestedUid = new ArrayList<>();
 
     private DatabaseReference dbRef;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         eventPic = (ImageView) findViewById(R.id.picture);
@@ -161,12 +165,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
         interested.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -259,4 +257,22 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_details, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                mAuth.signOut();
+                startActivity(new Intent(this, MainActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

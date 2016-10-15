@@ -13,14 +13,11 @@
 
     tools:context="com.mdb.training.katharine.mdbsocials.FeedActivity">
 
-
     <include layout="@layout/row_view"
         android:layout_height="0dp"
         android:layout_width="0dp"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="0dp" />
-
-    <!-- A RecyclerView with some commonly used attributes -->
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="39dp"
@@ -36,18 +33,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:fabSize="mini"
-        app:srcCompat="?android:attr/homeAsUpIndicator"
-        android:id="@+id/logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="@color/button"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/rv" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
