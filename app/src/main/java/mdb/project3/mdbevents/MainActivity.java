@@ -37,13 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initializeViews();
         mAuth = FirebaseAuth.getInstance();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dbRef =database.getReference();
-        Map<String, Object> post = new HashMap<String, Object>();
-        post.put("title", "a post");
-        post.put("author email", "john@smith.com");
-        dbRef.child("Events").push().setValue(post);
-
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

@@ -8,15 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
-<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseUser;
-=======
->>>>>>> origin/emaan
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-<<<<<<< HEAD
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
@@ -27,19 +23,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-=======
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-
-import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageView;
->>>>>>> origin/emaan
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -48,24 +35,7 @@ import java.util.Locale;
 
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
-
-    TextView socialTitleView;
-    TextView dateTextView;
-    ImageView eventImageView;
-    TextView descriptionTextView;
     ScrollView detailScrollView;
-    Button interestedButton;
-    ToggleButton interestedToggleButton;
-=======
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
->>>>>>> origin/emaan
-
-    DatabaseReference dbRef;
-    FirebaseStorage mStorage;
-    FirebaseAuth mAuth;
     FirebaseUser mUser;
     String dbKey;
 
@@ -84,21 +54,15 @@ import java.util.Map;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-<<<<<<< HEAD
         bindViews();
 
         dbKey = getIntent().getExtras().getString("DBKEY");
 
         Toast.makeText(getApplicationContext(), "Loading event info...", Toast.LENGTH_SHORT).show();
-=======
-        String dbKey = getIntent().getExtras().getString("DBKEY");
->>>>>>> origin/emaan
 
         dbRef = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance();
         mAuth = FirebaseAuth.getInstance();
-<<<<<<< HEAD
         mUser = mAuth.getCurrentUser();
 
         dbRef = dbRef.child("Events").child(dbKey);
@@ -112,16 +76,6 @@ import java.util.Map;
                 getBitmap.execute();
                 descriptionTextView.setText(event.description);
                 interestedButton.setText(String.format(Locale.getDefault(), "%d people interested", event.numInterested));
-=======
-
-        dbRef = dbRef.child("Events").child(dbKey);
-        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                Event event = snapshot.getValue(Event.class);
-                socialTitleView.setText(event.getName());
-                dateTextView
->>>>>>> origin/emaan
             }
 
             @Override
@@ -130,7 +84,6 @@ import java.util.Map;
             }
         });
 
-<<<<<<< HEAD
     }
 
     public void bindViews() {
@@ -215,19 +168,4 @@ import java.util.Map;
                 break;
         }
     }
-=======
-    }
-
-    public void bindViews()
-    {
-        socialTitleView = (TextView) findViewById(R.id.socialTitleView);
-        dateTextView = (TextView) findViewById(R.id.dateTextView);
-        eventImageView = (ImageView) findViewById(R.id.eventImageView);
-        descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
-        interestedButton = (Button) findViewById(R.id.InterestedButton);
-        interestedToggleButton = (ToggleButton) findViewById(R.id.interestedToggleButton);
-    }
-
-
->>>>>>> origin/emaan
 }

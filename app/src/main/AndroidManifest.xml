@@ -30,7 +30,6 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".CreateSocial" />
-        <activity android:name=".DetailActivity"></activity>
         <activity android:name=".FeedActivity" />
         <activity android:name=".InterestedActivity" />
     </application>
