@@ -14,7 +14,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     lazy var locationManager: CLLocationManager = CLLocationManager()
     var latitude: Double?
     var longitude: Double?
-
+    var weatherData: [String: AnyObject]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             longitude = (locationManager.location?.coordinate.longitude)!
             
         }
+        
+        API(latitude: latitude!, longitude: longitude!).getCurrentForecast{
+            (forecast) in
+            self.weatherData = forecast
+        }
+
         
     }
 

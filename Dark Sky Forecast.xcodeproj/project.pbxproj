@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15842F1C1DB2D9150033734F /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15842F1B1DB2D9150033734F /* API.swift */; };
 		15D87FFB1DB18FBF002AB54A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D87FFA1DB18FBF002AB54A /* AppDelegate.swift */; };
 		15D87FFD1DB18FBF002AB54A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D87FFC1DB18FBF002AB54A /* ViewController.swift */; };
 		15D880001DB18FBF002AB54A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D87FFE1DB18FBF002AB54A /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15842F1B1DB2D9150033734F /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		15D87FF71DB18FBF002AB54A /* Dark Sky Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dark Sky Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15D87FFA1DB18FBF002AB54A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15D87FFC1DB18FBF002AB54A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				15D87FFA1DB18FBF002AB54A /* AppDelegate.swift */,
 				15D87FFC1DB18FBF002AB54A /* ViewController.swift */,
 				15D87FFE1DB18FBF002AB54A /* Main.storyboard */,
+				15842F1B1DB2D9150033734F /* API.swift */,
 				15D880011DB18FBF002AB54A /* Assets.xcassets */,
 				15D880031DB18FBF002AB54A /* LaunchScreen.storyboard */,
 				15D880061DB18FBF002AB54A /* Info.plist */,
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15D87FFD1DB18FBF002AB54A /* ViewController.swift in Sources */,
+				15842F1C1DB2D9150033734F /* API.swift in Sources */,
 				15D87FFB1DB18FBF002AB54A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
