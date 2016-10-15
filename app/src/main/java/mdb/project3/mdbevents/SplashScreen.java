@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 /**
  * Created by emaanhariri on 10/14/16.
  */
@@ -14,28 +17,12 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
 
-        Thread timerThread = new Thread(){
-            public void run(){
-                try{
-                    sleep(3000);
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                }finally{
-                    Intent intent = new Intent(SplashScreen.this,MainActivity.class);
-                    startActivity(intent);
-                }
-            }
-        };
-        timerThread.start();
-    }
-
-    @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser == null)
+            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+        else
+            startActivity(new Intent(SplashScreen.this, FeedActivity.class));
         finish();
     }
-
 }
