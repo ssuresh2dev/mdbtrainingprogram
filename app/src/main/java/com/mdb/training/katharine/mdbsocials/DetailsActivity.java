@@ -51,6 +51,7 @@ public class DetailsActivity extends AppCompatActivity {
     private ArrayList<String> interestedEmail = new ArrayList<>();
     private ArrayList<String> interestedUid = new ArrayList<>();
     public int color;
+    public Bitmap bitmap;
 
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
@@ -90,7 +91,7 @@ public class DetailsActivity extends AppCompatActivity {
                             connection.setDoInput(true);
                             connection.connect();
                             InputStream input = connection.getInputStream();
-                            Bitmap bitmap = BitmapFactory.decodeStream(input);
+                            bitmap = BitmapFactory.decodeStream(input);
                             return bitmap;
                         } catch (IOException e) {
                             // Log exception
@@ -112,6 +113,7 @@ public class DetailsActivity extends AppCompatActivity {
                                 }
                             }
                         });
+
                     }
                 }.execute();
 
@@ -309,6 +311,65 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
     }
+    /**protected void onStop(){
+        super.onStop();
+        bitmap.recycle();
+        bitmap=null;
+    }
+
+    protected void onStart(){
+        super.onStart();
+        eventPic = (ImageView) findViewById(R.id.picture);
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(getIntent().getExtras().getString("firebasePath"));
+        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(final Uri downloadUrl) {
+
+
+                AsyncTask<Void, Void, Bitmap> asyncTask = new AsyncTask<Void, Void, Bitmap>() {
+
+                    @Override
+                    protected Bitmap doInBackground(Void... params) {
+                        return getBitmapFromURL(downloadUrl.toString());
+                    }
+
+                    public Bitmap getBitmapFromURL(String src) {
+                        try {
+                            URL url = new URL(src);
+                            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                            connection.setDoInput(true);
+                            connection.connect();
+                            InputStream input = connection.getInputStream();
+                            bitmap = BitmapFactory.decodeStream(input);
+                            return bitmap;
+                        } catch (IOException e) {
+                            // Log exception
+                            return null;
+                        }
+                    }
+
+
+                    @Override
+                    protected void onPostExecute(Bitmap result) {
+                        eventPic.setImageBitmap(result);
+                        Palette.from(result).generate(new Palette.PaletteAsyncListener() {
+                            public void onGenerated(Palette p) {
+                                Palette.Swatch vibrant = p.getVibrantSwatch();
+                                if (vibrant != null) {
+                                    // Set the background color of a layout based on the vibrant color
+                                    getWindow().getDecorView().setBackgroundColor(vibrant.getRgb());
+
+                                }
+                            }
+                        });
+
+                    }
+                }.execute();
+
+            }
+        });
+    }**/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
