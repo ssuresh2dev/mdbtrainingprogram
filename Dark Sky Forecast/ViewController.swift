@@ -23,6 +23,9 @@ class ViewController: UIViewController {
     var temperatureLabel: UILabel!
     var rainLabel : UILabel!
     
+    var yourLocation: String?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.requestWhenInUseAuthorization()
@@ -36,11 +39,15 @@ class ViewController: UIViewController {
         backgroundView.image = #imageLiteral(resourceName: "background")
         view.addSubview(backgroundView)
         
-        locationLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 0.15))
-        locationLabel.text = "Berkeley, CA"
-        setUILabel(label: locationLabel)
-        setLabelFontSize(label: locationLabel, size: 50)
-        view.addSubview(locationLabel)
+//        etCurrentForecast({ (forecast) in
+//            self.weatherData = forecast
+//            self.setupUI()
+//        })
+
+        reverseGeocoding(latitude: latitude!, longitude: longitude!)
+        
+     
+        
         
         temperatureLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.2, width: view.frame.width * 0.9, height: view.frame.height * 0.05))
         temperatureLabel.text = "Current temperature: \(weatherData!["temperature"]!)"
@@ -64,7 +71,10 @@ class ViewController: UIViewController {
         }
         view.addSubview(rainLabel)
         
-        reverseGeocoding(latitude: latitude!, longitude: longitude!)
+        
+        
+        
+        
     }
     
     func setUILabel(label : UILabel) {
@@ -103,18 +113,40 @@ extension ViewController: CLLocationManagerDelegate{
 }
 
 extension ViewController{
-    func reverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    func reverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
         let location = CLLocation(latitude: latitude, longitude: longitude)
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
             if error != nil {
                 print(error)
-                return
+                
             }
             else if (placemarks?.count)! > 0 {
                 let pm = placemarks![0]
                 let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
-                print("\n\(address)")
+                print(address)
+                self.createLocationLabels(address: address)
+               
+                
             }
         })
+        
+        
     }
+    
+    func createLocationLabels(address: String){
+        
+        let newlineChars = NSCharacterSet.newlines
+        let lineArray = address.components(separatedBy: newlineChars).filter{!$0.isEmpty}
+        
+        self.locationLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.15))
+        self.locationLabel.text = lineArray[1]
+        self.setUILabel(label: self.locationLabel)
+        self.setLabelFontSize(label: self.locationLabel, size: 30)
+        self.view.addSubview(self.locationLabel)
+
+    }
+    
+    
 }
+
+

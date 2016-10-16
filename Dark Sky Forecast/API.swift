@@ -32,7 +32,7 @@ class API {
                 let currently = json["currently"] as! [String: AnyObject]
                 
                 let temperature = currently["temperature"]
-                forecast["temperature"] = String(describing: temperature)
+                forecast["temperature"] = String(describing: temperature!)
             
                 
                 let summary = currently["summary"]
