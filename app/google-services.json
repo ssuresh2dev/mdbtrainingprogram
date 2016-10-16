@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "510160351055",
+    "firebase_url": "https://mdbsocial-app.firebaseio.com",
+    "project_id": "mdbsocial-app",
+    "storage_bucket": "mdbsocial-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510160351055:android:5ac4a500e2a0ef22",
+        "android_client_info": {
+          "package_name": "com.mdb.training.katharine.mdbsocials"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510160351055-otm9a3teg2fb2m3csmd560d0tel17nq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl5BtrHgba8PDjaq0t_7rOKnU7gydWwa4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
