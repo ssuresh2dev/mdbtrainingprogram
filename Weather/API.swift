@@ -17,7 +17,7 @@ class API {
     var time: String!
     var temp: Double!
     var rainStatus: String!
-    var rainMinute: String!
+    var rainMinute: Int!
     var desc: String!
     
     typealias JSONStandard = [String : AnyObject]
@@ -47,21 +47,25 @@ class API {
     
     func parseData(JSONData : Data) {
         do {
-            var readJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as! JSONStandard
+            var readJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as! NSDictionary
+            print(readJSON)
+            desc = (((readJSON["alerts"] as! NSArray)[0] as! NSDictionary)["description"] as! String)
+            temp = ((readJSON["currently"] as! NSDictionary)["temperature"] as! Double)
+            time = readJSON["timezone"] as! String
+            rainStatus = ((readJSON["currently"] as! NSDictionary)["summary"] as! String)
             
-            let des = readJSON["alerts"]
-            //desc = des?["description"] as! String!
-//            if let zone = readJSON["timezone"] as? JSONStandard {
-//                time = zone as! String
-//            }
-//            if let currTemp = readJSON["currently"]?["temperature"] as? JSONStandard {
-//                temp = currTemp as! Double
-//            }
-            //print(readJSON)
-            print(des)
-            //print(desc)
-//            print(time)
-//            print(temp)
+            if (rainStatus == "Rain") {
+                rainMinute = ((((readJSON["minutely"] as! NSDictionary)["data"] as! NSArray)[0] as! NSDictionary)[1] as! Int!)
+            }
+            
+            let addWeather = Weather(timezone: time, temperature: temp, willItRain: rainStatus, minuteRain: rainMinute, description: desc)
+            
+            weatherData.append(addWeather)
+            
+            print(desc)
+            print(temp)
+            print(time)
+            print(rainStatus)
         } catch {
             print(error)
         }

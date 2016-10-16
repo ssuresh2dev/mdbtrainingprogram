@@ -10,8 +10,8 @@ import Foundation
 
 struct Weather {
     let timezone: String
-    let temperature: String
+    let temperature: Double
     let willItRain: String
-    let minuteRain: String
+    let minuteRain: Int
     let description: String
 }
