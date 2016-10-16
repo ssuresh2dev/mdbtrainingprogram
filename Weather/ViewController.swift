@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    
+    var locationManager: CLLocationManager!
+    var latitude: CLLocationDegrees = 0.0
+    var longitude: CLLocationDegrees = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         willRain()
         setUI()
         API().getWeatherData()
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    private func locationManager(_ manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        let userLocation = locations[0] as! CLLocation
+        latitude = userLocation.coordinate.latitude
+        longitude = userLocation.coordinate.longitude
     }
     
     func setUI() {
