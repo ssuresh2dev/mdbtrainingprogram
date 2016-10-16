@@ -2,14 +2,19 @@ package com.sharie.mdb.mdbsocials;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +29,7 @@ public class FeedActivity extends AppCompatActivity {
     ArrayList<Idea> ideas = new ArrayList<Idea>();
     IdeaAdapter ideaAdapter;
     DatabaseReference ref;
+    FirebaseAuth mAuth;
     FirebaseDatabase database;
 
     public FeedActivity(){}
@@ -35,6 +41,18 @@ public class FeedActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null){
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("ideas");
 
@@ -97,5 +115,20 @@ public class FeedActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ideaAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_details, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,18 +1,25 @@
 package com.sharie.mdb.mdbsocials;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -23,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -36,6 +44,7 @@ public class Details extends AppCompatActivity {
     private FloatingActionButton star;
     private TextView content;
     private String url;
+    private CollapsingToolbarLayout tool;
     private ImageView image;
 
 
@@ -58,7 +67,7 @@ public class Details extends AppCompatActivity {
         url = getIntent().getExtras().getString("url");
 
         image = (ImageView) findViewById(R.id.imageView2);
-        Glide.with(getApplicationContext()).load(url).into(image);
+        //Glide.with(getApplicationContext()).load(url).into(image);
 
         content = (TextView) findViewById(R.id.content);
         setMessage();
@@ -67,7 +76,7 @@ public class Details extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
-        CollapsingToolbarLayout tool = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        tool = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         tool.setTitle(title);
 
         star = (FloatingActionButton) findViewById(R.id.star);
@@ -113,6 +122,14 @@ public class Details extends AppCompatActivity {
                 startActivity(show_info);
             }
         });
+
+        FirebaseStorage.getInstance().getReferenceFromUrl("gs://mdb-socials-5cc85.appspot.com").child(key + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                new DownloadFilesTask().execute(uri.toString());
+                //Glide.with(context).load(uri.toString()).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
+            }
+        });
     }
 
     public void setMessage(){
@@ -125,5 +142,33 @@ public class Details extends AppCompatActivity {
         else
             ans += stars + " people are interested.";
         content.setText(ans);
+    }
+
+    class DownloadFilesTask extends AsyncTask<String, Void, Bitmap> {
+        protected Bitmap doInBackground(String... strings) {
+            try {return Glide.
+                    with(getApplicationContext()).
+                    load(strings[0]).
+                    asBitmap().
+                    into(100, 100). // Width and height
+                    get();}
+            catch (Exception e) {return null;}
+        }
+
+        protected void onProgressUpdate(Void... progress) {}
+
+        protected void onPostExecute(Bitmap result) {
+            Palette.PaletteAsyncListener paletteListener = new Palette.PaletteAsyncListener() {
+                public void onGenerated(Palette palette) {
+                    int defaulto = 0x000000;
+                    tool.setBackgroundColor(palette.getDarkMutedColor(defaulto));
+                    star.setBackgroundColor(palette.getVibrantColor(defaulto));
+                }
+            };
+            if (result != null && !result.isRecycled()) {
+                Palette.from(result).generate(paletteListener);
+            }
+            image.setImageBitmap(result);
+        }
     }
 }
