@@ -21,41 +21,37 @@ class API {
         self.longitude = longitude
     }
     
-    func getCurrentForecast(_ completion: @escaping (_ forecast: [String: AnyObject]) -> Void){
+    func getCurrentForecast(_ completion: @escaping (_ forecast: [String: String]) -> Void){
         
         let url = "https://api.darksky.net/forecast/\(API.key)/\(latitude),\(longitude)"
 
         Alamofire.request(url).responseJSON { response in
             
             if let json = response.result.value as? [String: AnyObject] {
-                var forecast: [String: AnyObject] = [:]
+                var forecast: [String: String] = [:]
                 let currently = json["currently"] as! [String: AnyObject]
                 
                 let temperature = currently["temperature"]
-                forecast["temperature"] = temperature as AnyObject?
+                forecast["temperature"] = String(describing: temperature)
             
                 
                 let summary = currently["summary"]
-                forecast["summary"] = summary as AnyObject?
+                forecast["summary"] = summary as! String?
                 
                 
                 let hourly = json["hourly"] as! [String: AnyObject]
                 
                 let hourlySummary = hourly["icon"] as AnyObject?
-                forecast["hourlySummary"] = hourlySummary
+                forecast["hourlySummary"] = hourlySummary as! String?
                 
                 let minutely = json["minutely"] as! [String: AnyObject]
-                let minutelyData = minutely["data"] as! [AnyObject]
-                var whenItRains : [Int] = []
-                
+                let minutelyData = minutely["data"] as! [[String:AnyObject]]
                 for currMinute in minutelyData {
-                    if (currMinute["precipIntensity"] as! Int) != 0 {
-                        whenItRains.append(currMinute["time"] as! Int)
+                    if currMinute["precipIntensity"] as! Double > 0.0 {
+                        forecast["willStartRaining"] = String(describing: currMinute["time"])
+                        break
                     }
                 }
-                forecast["willRainAt"] = whenItRains as AnyObject?
-                
-                
                 
                 completion(forecast)
             }

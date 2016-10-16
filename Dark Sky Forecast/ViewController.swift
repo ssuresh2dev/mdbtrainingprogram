@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     lazy var locationManager: CLLocationManager = CLLocationManager()
     var latitude: Double?
     var longitude: Double?
-    var weatherData: [String: AnyObject]?
+    var weatherData: [String: String]?
     var backgroundView : UIImageView!
     var locationLabel : UILabel!
     var summaryLabel: UILabel!
@@ -43,29 +43,24 @@ class ViewController: UIViewController {
         view.addSubview(locationLabel)
         
         temperatureLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.2, width: view.frame.width * 0.9, height: view.frame.height * 0.05))
-        temperatureLabel.text = "Current temperature: " + String(describing: (weatherData!["temperature"]! as! NSNumber) as Int)
+        temperatureLabel.text = "Current temperature: \(weatherData!["temperature"]!)"
         setUILabel(label: temperatureLabel)
         setLabelFontSize(label: temperatureLabel, size: 25)
         view.addSubview(temperatureLabel)
         
         summaryLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: temperatureLabel.frame.maxY + 5, width: view.frame.width * 0.9, height: view.frame.height * 0.05))
-        summaryLabel.text = weatherData?["summary"] as? String
+        summaryLabel.text = weatherData?["summary"]
         setLabelFontSize(label: summaryLabel, size: 30)
         setUILabel(label: summaryLabel)
         view.addSubview(summaryLabel)
         rainLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: summaryLabel.frame.maxY + 5, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
         setUILabel(label: rainLabel)
-        if (weatherData?["willItRain"]?.count == 0) {
-            rainLabel.text = "No rain!"
+        if let min = weatherData?["willStartRainingAt"] {
+            rainLabel.text = "It will start raining at: \(weatherData?["willStartRainingAt"]!))"
             setLabelFontSize(label: rainLabel, size: 50)
         } else {
-            var minutes = ""
-            for min in (weatherData?["willRainAt"] as? [Int])! {
-                minutes += "\(min), "
-//                minutes += "\(NSDate(timeIntervalSince1970: TimeInterval(min)).description), "
-            }
-            rainLabel.text = "It will rain at: \n\(minutes)"
-            setLabelFontSize(label: rainLabel, size: 30)
+            rainLabel.text = "No rain!"
+            setLabelFontSize(label: rainLabel, size: 50)
         }
         view.addSubview(rainLabel)
         
