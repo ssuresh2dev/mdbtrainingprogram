@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private FirebaseAuth mAuth;
+    private static FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference usersRef;
     private static String  name;
@@ -145,7 +145,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         };
     }
 
-
+    public static FirebaseAuth getmAuth() {
+        return mAuth;
+    }
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {

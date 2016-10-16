@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,7 +25,6 @@ public class ListActivity extends AppCompatActivity {
         SocialsAdapter adapter = new SocialsAdapter(getApplicationContext(), s.getSocialist());
         recycleman.setAdapter(adapter);
 
-        Toast.makeText(this, "Hi, " + LoginActivity.getName() + "!", Toast.LENGTH_SHORT).show();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,5 +34,18 @@ public class ListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void signout(MenuItem item) {
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        LoginActivity.getmAuth().signOut();
+        startActivity(intent);
     }
 }

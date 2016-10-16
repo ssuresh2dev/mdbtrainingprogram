@@ -6,8 +6,12 @@ package com.projects.mdb.mdbsocials;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v7.graphics.Palette;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,11 +62,39 @@ public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomVi
         if (social.getInterested() == 1) {holder.numberTextView.setText("1 person is interested");}
         holder.creatorTextView.setText("Created by " + social.getCreator() + " on " + social.getDate());
 
+        class DownloadFilesTask extends AsyncTask<String, Void, Bitmap> {
+            protected Bitmap doInBackground(String... strings) {
+                try {return Glide.
+                        with(context).
+                        load(strings[0]).
+                        asBitmap().
+                        into(100, 100). // Width and height
+                        get();}
+                catch (Exception e) {return null;}
+            }
+
+            protected void onProgressUpdate(Void... progress) {}
+
+            protected void onPostExecute(Bitmap result) {
+                Palette.PaletteAsyncListener paletteListener = new Palette.PaletteAsyncListener() {
+                    public void onGenerated(Palette palette) {
+                        int defaulto = 0x000000;
+                        holder.cardView.setCardBackgroundColor(palette.getDominantColor(defaulto));
+                    }
+                };
+                if (result != null && !result.isRecycled()) {
+                    Palette.from(result).generate(paletteListener);
+                }
+                holder.imageView.setImageBitmap(result);
+            }
+        }
+
         FirebaseStorage.getInstance().getReferenceFromUrl("gs://mdbsocials-700a9.appspot.com").child(social.getID() + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Log.d("ye", uri.toString());
-                Glide.with(context).load(uri.toString()).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
+                new DownloadFilesTask().execute(uri.toString());
+                //Glide.with(context).load(uri.toString()).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -83,6 +115,7 @@ public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomVi
         ImageView imageView;
         TextView numberTextView;
         TextView creatorTextView;
+        CardView cardView;
 
         public CustomViewHolder (View view) {
             super(view);
@@ -90,6 +123,7 @@ public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomVi
             this.imageView = (ImageView) view.findViewById(R.id.imageView);
             this.numberTextView = (TextView) view.findViewById(R.id.numberTextView);
             this.creatorTextView = (TextView) view.findViewById(R.id.creatorTextView);
+            this.cardView = (CardView) view.findViewById(R.id.card);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -109,6 +143,24 @@ public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomVi
                     context.startActivity(intent);
                 }
             });
+        }
+    }
+
+    private class DownloadFilesTask extends AsyncTask<String, Void, Bitmap> {
+        protected Bitmap doInBackground(String... strings) {
+            try {return Glide.
+                    with(context).
+                    load(strings[0]).
+                    asBitmap().
+                    into(100, 100). // Width and height
+                    get();}
+            catch (Exception e) {return null;}
+        }
+
+        protected void onProgressUpdate(Void... progress) {}
+
+        protected void onPostExecute(Bitmap result) {
+
         }
     }
 }
