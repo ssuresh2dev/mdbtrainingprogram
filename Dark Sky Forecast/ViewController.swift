@@ -62,11 +62,13 @@ class ViewController: UIViewController {
         rainLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: summaryLabel.frame.maxY + 5, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
         setUILabel(label: rainLabel)
         if let min = weatherData?["willStartRainingAt"] {
-            rainLabel.text = "It will start raining at: \(weatherData?["willStartRainingAt"]!))"
-            setLabelFontSize(label: rainLabel, size: 50)
+            let unixTime = weatherData?["willStartRainingAt"]!
+            let time = NSDate(timeIntervalSince1970: Double(unixTime!)!)
+            rainLabel.text = "It will start raining at: \(time)))"
+            setLabelFontSize(label: rainLabel, size: 40)
         } else {
             rainLabel.text = "No rain!"
-            setLabelFontSize(label: rainLabel, size: 50)
+            setLabelFontSize(label: rainLabel, size: 40)
         }
         view.addSubview(rainLabel)
         
@@ -137,8 +139,8 @@ extension ViewController{
         let newlineChars = NSCharacterSet.newlines
         let lineArray = address.components(separatedBy: newlineChars).filter{!$0.isEmpty}
         
-        self.locationLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.15))
-        self.locationLabel.text = lineArray[1]
+        self.locationLabel = UILabel(frame: CGRect(x: 0, y: 20, width: self.view.frame.width, height: self.view.frame.height * 0.15))
+        self.locationLabel.text = lineArray[1]  //get city name
         self.setUILabel(label: self.locationLabel)
         self.setLabelFontSize(label: self.locationLabel, size: 30)
         self.view.addSubview(self.locationLabel)

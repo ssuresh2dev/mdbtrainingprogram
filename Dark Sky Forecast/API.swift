@@ -45,10 +45,10 @@ class API {
                 forecast["hourlySummary"] = hourlySummary as! String?
                 
                 let minutely = json["minutely"] as! [String: AnyObject]
-                let minutelyData = minutely["data"] as! [[String:AnyObject]]
+                let minutelyData = minutely["data"] as! [[String: AnyObject]]
                 for currMinute in minutelyData {
                     if currMinute["precipIntensity"] as! Double > 0.0 {
-                        forecast["willStartRaining"] = String(describing: currMinute["time"])
+                        forecast["willStartRaining"] = currMinute["time"] as! String
                         break
                     }
                 }
