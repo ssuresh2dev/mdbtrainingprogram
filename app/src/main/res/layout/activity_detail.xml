@@ -15,22 +15,22 @@
 
     <TextView
         android:text="Event Title"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold|normal"
         android:textSize="24sp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:id="@+id/eventTitleTextView" />
+        android:id="@+id/eventTitleTextView"
+        android:layout_width="355dp" />
 
     <ImageView
-        android:layout_width="match_parent"
         app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/eventImageView"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/white" />
+        android:background="@color/white"
+        android:layout_width="match_parent" />
 
     <CheckBox
         android:text="Interested"

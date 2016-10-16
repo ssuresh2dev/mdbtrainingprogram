@@ -14,8 +14,8 @@
         completions."
     </string>
 
-    <string name = "dialogTitle">Choose Photo</string>
-    <string name = "cancel">Cancel</string>
+    <string name="dialogTitle">Choose Photo</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="choices">
         <item>Take Pic from Camera</item>

@@ -2,8 +2,10 @@ package com.demo.mdb.mdbsocials;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -12,6 +14,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +29,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +45,7 @@ public class NewSocial extends AppCompatActivity {
     EditText nameEditText;
     EditText desEditText;
     EditText dateEditText;
+    String picURL;
     DatabaseReference ref;
     FirebaseAuth mAuth;
 
@@ -53,8 +62,9 @@ public class NewSocial extends AppCompatActivity {
         eventImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new PhotoDialogFragment();
-                newFragment.show(getFragmentManager(), "dia");
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK);
+                pickPhoto.setType("image/*");
+                startActivityForResult(pickPhoto , 1);
             }
         });
 
@@ -67,7 +77,6 @@ public class NewSocial extends AppCompatActivity {
 
                 String email = mAuth.getCurrentUser().getEmail();
                 String eventName = nameEditText.getText().toString();
-                String pictureURL = "";
                 String description = desEditText.getText().toString();
                 String eventDate = dateEditText.getText().toString();
                 ArrayList<String> interestedPeople = new ArrayList<>();
@@ -75,84 +84,47 @@ public class NewSocial extends AppCompatActivity {
                 Map<String, Object> event = new HashMap<String, Object>();
                 event.put("user", email);
                 event.put("name", eventName);
-                event.put("pictureURL", pictureURL);
+                event.put("pictureURL", picURL);
                 event.put("description", description);
                 event.put("date", eventDate);
                 event.put("interestedPeople", interestedPeople);
                 ref.child("Events").push().setValue(event);
+
+                eventImg.setDrawingCacheEnabled(true);
+                eventImg.buildDrawingCache();
+                Bitmap image = eventImg.getDrawingCache();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] data = baos.toByteArray();
+                StorageReference ref = FirebaseStorage.getInstance().getReferenceFromUrl("gs://mdb-socials-6fb87.appspot.com");
+                StorageReference eventRef = ref.child(eventName);
+                UploadTask uploadTask = eventRef.putBytes(data);
+
                 Intent intent = new Intent(NewSocial.this, FeedActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    public static class PhotoDialogFragment extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.dialogTitle)
-                    .setItems(R.array.choices, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if(which==0){
-                                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                startActivityForResult(takePicture, 0);//zero can be replaced with any action code
-                            }
-                            else{
-                                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                startActivityForResult(pickPhoto , 1);//one can be replaced with any action code
-                            }
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            PhotoDialogFragment.this.getDialog().cancel();
-                        }
-                    });
-            return builder.create();
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
         switch(requestCode) {
-            case 0:
-                if(resultCode == RESULT_OK){
-                    Uri selectedImage = imageReturnedIntent.getData();
-                    InputStream is = null;
-                    try {
-                        is = getApplicationContext().getContentResolver().openInputStream(imageReturnedIntent.getData());
-                    }
-                    catch (Exception e) {
-                        Log.d("File", "Not Found");
-                    }
-                    if (is != null) {
-                        Bitmap imageResource = BitmapFactory.decodeStream(is);
-                        eventImg.setImageBitmap(imageResource);
-                    } else {
-                        Log.d("BITMAP", "is null");
-                    }
-                }
-                break;
             case 1:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     Uri selectedImage = imageReturnedIntent.getData();
-                    InputStream is = null;
+                    InputStream imageStream = null;
                     try {
-                        is = getApplicationContext().getContentResolver().openInputStream(imageReturnedIntent.getData());
+                        imageStream = getContentResolver().openInputStream(selectedImage);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
-                    catch (Exception e) {
-                        Log.d("File", "Not Found");
-                    }
-                    if (is != null) {
-                        Bitmap imageResource = BitmapFactory.decodeStream(is);
-                        eventImg.setImageBitmap(imageResource);
-                    } else {
-                        Log.d("BITMAP", "is null");
-                    }
+                    Bitmap myImg = BitmapFactory.decodeStream(imageStream);
+                    eventImg.setImageBitmap(myImg);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    myImg.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                    picURL = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
                 }
-                break;
         }
     }
 }

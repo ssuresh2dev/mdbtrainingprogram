@@ -1,5 +1,10 @@
 package com.demo.mdb.mdbsocials;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +28,7 @@ public class EventList {
         String pictureURL;
         String description;
         String date;
+        Bitmap picture;
         ArrayList<String> interestedPeople;
 
         public Event(String email, String name, String pictureURL, String description, String date,
@@ -33,6 +39,11 @@ public class EventList {
             this.description = description;
             this.date = date;
             this.interestedPeople = interestedPeople;
+        }
+
+        public static Bitmap decodeFromFirebase(String image) throws IOException {
+            byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
         }
     }
 }

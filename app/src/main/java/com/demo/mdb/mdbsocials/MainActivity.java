@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
                     // User is signed in
                     Intent intent = new Intent(MainActivity.this, FeedActivity.class);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(MainActivity.this, "Not Signed In", Toast.LENGTH_SHORT).show();
                 }
             }
         };

@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +30,7 @@ public class FeedActivity extends AppCompatActivity {
     DatabaseReference ref;
     EventList eventList;
     ArrayList<EventList.Event> eventArrayList;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,7 @@ public class FeedActivity extends AppCompatActivity {
                     String date = (String) map.get("date");
                     ArrayList<String> interestedPeople = (ArrayList<String>) map.get("interestedPeople");
                     EventList.Event event = new EventList.Event(email, name, pictureURL, description, date, interestedPeople);
-                    Log.d("SOS", email + name + pictureURL + description + date + interestedPeople);
+                    //Log.d("SOS", email + name + pictureURL + description + date + interestedPeople);
                     eventArrayList.add(0, event);
                 }
                 listViewAdapter.eventArrayList = eventArrayList;
@@ -84,5 +89,29 @@ public class FeedActivity extends AppCompatActivity {
         a.addCategory(Intent.CATEGORY_HOME);
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.logout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
+
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                mAuth.getInstance().signOut();
+                Intent intent = new Intent(FeedActivity.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

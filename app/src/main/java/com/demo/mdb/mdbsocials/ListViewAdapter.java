@@ -2,6 +2,10 @@ package com.demo.mdb.mdbsocials;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -34,13 +42,19 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.Custom
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         EventList.Event event = eventArrayList.get(position);
-        //set imageView of holder
-        holder.eventTitleTextView.setText(event.name);
-        holder.eventUserTextView.setText("Created by " + event.email);
+
+        try {
+            Bitmap imageBitmap = EventList.Event.decodeFromFirebase(event.pictureURL);
+            holder.eventImageView.setImageBitmap(imageBitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         if (event.interestedPeople != null) {
             holder.eventInterestedTextView.setText(event.interestedPeople.size() + " people interested");
         }
-
+        holder.eventTitleTextView.setText(event.name);
+        holder.eventUserTextView.setText("Created by " + event.email);
     }
 
     @Override
@@ -74,10 +88,16 @@ public class ListViewAdapter extends RecyclerView.Adapter<ListViewAdapter.Custom
                     intent.putExtra("user", event.email);
                     intent.putExtra("description", event.description);
                     intent.putStringArrayListExtra("interestedPeople", event.interestedPeople);
+
+                    eventImageView.buildDrawingCache();
+                    Bitmap image= eventImageView.getDrawingCache();
+                    Bundle extras = new Bundle();
+                    extras.putParcelable("imagebitmap", image);
+                    intent.putExtras(extras);
+
                     v.getContext().startActivity(intent);
                 }
             });
         }
     }
 }
-
