@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 import Foundation
+import AddressBookUI
+
 class ViewController: UIViewController {
     
     lazy var locationManager: CLLocationManager = CLLocationManager()
@@ -52,20 +54,22 @@ class ViewController: UIViewController {
         setUILabel(label: summaryLabel)
         view.addSubview(summaryLabel)
         
-        rainLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: summaryLabel.frame.maxY + 5, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
-        setUILabel(label: rainLabel)
-        if (weatherData?["willItRain"]?.count == 0) {
-            rainLabel.text = "No rain!"
-            setLabelFontSize(label: rainLabel, size: 50)
-        } else {
-            let minutes = ""
-            for min in weatherData?["willItRain"] {
-                
-            }
-            rainLabel.text = "It will rain at: \n\(minutes)"
-            setLabelFontSize(label: rainLabel, size: 50)
-        }
-        view.addSubview(rainLabel)
+//        rainLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: summaryLabel.frame.maxY + 5, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
+//        setUILabel(label: rainLabel)
+//        if (weatherData?["willItRain"]?.count == 0) {
+//            rainLabel.text = "No rain!"
+//            setLabelFontSize(label: rainLabel, size: 50)
+//        } else {
+//            let minutes = ""
+//            for min in weatherData?["willItRain"] {
+//                
+//            }
+//            rainLabel.text = "It will rain at: \n\(minutes)"
+//            setLabelFontSize(label: rainLabel, size: 50)
+//        }
+//        view.addSubview(rainLabel)
+        
+        reverseGeocoding(latitude: latitude!, longitude: longitude!)
     }
     
     func setUILabel(label : UILabel) {
@@ -103,3 +107,19 @@ extension ViewController: CLLocationManagerDelegate{
     }
 }
 
+extension ViewController{
+    func reverseGeocoding(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+            if error != nil {
+                print(error)
+                return
+            }
+            else if (placemarks?.count)! > 0 {
+                let pm = placemarks![0]
+                let address = ABCreateStringWithAddressDictionary(pm.addressDictionary!, false)
+                print("\n\(address)")
+            }
+        })
+    }
+}
