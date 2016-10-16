@@ -9,17 +9,18 @@
 import UIKit
 import CoreLocation
 
+//var latitude: CLLocationDegrees!
+//var longitude: CLLocationDegrees!
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
-    var latitude: CLLocationDegrees = 0.0
-    var longitude: CLLocationDegrees = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         willRain()
-        setUI()
         API().getWeatherData()
+        setUI()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -30,9 +31,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func locationManager(_ manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let userLocation = locations[0] as! CLLocation
-        latitude = userLocation.coordinate.latitude
-        longitude = userLocation.coordinate.longitude
+//        let userLocation = locations[0] as! CLLocation
+//        latitude = userLocation.coordinate.latitude
+//        longitude = userLocation.coordinate.longitude
     }
     
     func setUI() {
@@ -40,7 +41,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         view.backgroundColor = .black
         
         let locationLabel = UILabel(frame: CGRect(x: view.frame.width * 0.2, y: 40, width: view.frame.width * 0.6, height: 40))
-        locationLabel.text = "Location"
+        //locationLabel.text = "Location"
+        print(Global.weatherData)
+        //locationLabel.text = Global.weatherData[0].timezone
         locationLabel.font = UIFont(name: "AvenirNext-Regular", size: 36.0)
         locationLabel.textColor = UIColor(colorLiteralRed: 0, green: 204/255, blue: 204/255, alpha: 1)
         locationLabel.textAlignment = NSTextAlignment.center
@@ -60,7 +63,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(iconImageView)
         
         let tempLabel = UILabel(frame: CGRect(x: view.frame.width * 0.35, y: view.frame.height * 0.2 + 115, width: view.frame.width * 0.3, height: view.frame.height * 0.13))
-        tempLabel.text = "62 F"
+        //tempLabel.text = "62 F"
+        //tempLabel.text = String(Global.weatherData[0].temperature)
         tempLabel.font = UIFont(name: "AvenirNext-Regular", size: 75.0)
         tempLabel.textAlignment = NSTextAlignment.center
         tempLabel.textColor = .white
@@ -70,7 +74,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(tempLabel)
         
         let statusLabel = UILabel(frame: CGRect(x: view.frame.width * 0.4, y: view.frame.height * 0.33 + 120, width: view.frame.width * 0.2, height: 30))
-        statusLabel.text = "Rain"
+        //statusLabel.text = "Rain"
+        //statusLabel.text = Global.weatherData[0].willItRain
         statusLabel.font = UIFont(name: "AvenirNext-Regular", size: 34.0)
         statusLabel.textAlignment = NSTextAlignment.center
         statusLabel.textColor = .white
@@ -90,7 +95,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(descTitleLabel)
         
         let descTextLabel = UILabel(frame: CGRect(x: view.frame.width * 0.125, y: view.frame.height * 0.4 + 185, width: view.frame.width * 0.75, height: 60))
-        descTextLabel.text = "Some description of the weather which will be obtained from the JSON file queried by the call to Dark Sky API."
+//        descTextLabel.text = "Some description of the weather which will be obtained from the JSON file queried by the call to Dark Sky API."
+        //descTextLabel.text = Global.weatherData[0].description
         descTextLabel.textAlignment = NSTextAlignment.justified
         descTextLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         descTextLabel.numberOfLines = 5
