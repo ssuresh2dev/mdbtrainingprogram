@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     var temperatureLabel: UILabel!
     var rainLabel : UILabel!
     
-    var yourLocation: String?
 
     
     override func viewDidLoad() {
