@@ -24,6 +24,7 @@ class API {
     typealias JSONStandard = [String : AnyObject]
     
     func getWeatherData() {
+        //we put constants here temporarily because the simulator can not get coordinates
         let latitude = 37.866602
         let longitude = -122.257757
         let urlString = "https://api.darksky.net/forecast/295a15b47e1a3e4649c5f43bfa41a17e/\(latitude),\(longitude)"
@@ -37,7 +38,9 @@ class API {
         do {
             var readJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as! NSDictionary
             print(readJSON)
-            desc = (((readJSON["alerts"] as! NSArray)[0] as! NSDictionary)["description"] as! String)
+        
+            desc = ((readJSON["daily"] as! NSDictionary)["summary"] as! String)
+            
             temp = ((readJSON["currently"] as! NSDictionary)["temperature"] as! Double)
             time = readJSON["timezone"] as! String
             rainStatus = ((readJSON["currently"] as! NSDictionary)["summary"] as! String)
@@ -48,15 +51,12 @@ class API {
             
             let addWeather = Weather(timezone: time, temperature: temp, willItRain: rainStatus, minuteRain: rainMinute, description: desc)
             
-            print(addWeather)
-            print(Global.weatherData)
             Global.weatherData.append(addWeather)
-            print(Global.weatherData)
             
-//            print(desc)
-//            print(temp)
-//            print(time)
-//            print(rainStatus)
+            print(desc)
+            print(temp)
+            print(time)
+            print(rainStatus)
         } catch {
             print(error)
         }
