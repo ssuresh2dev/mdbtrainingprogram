@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        willRain()
         setUI()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,7 +34,78 @@ class ViewController: UIViewController {
         
         let container = UIImageView(frame: CGRect(x: view.frame.width * 0.15, y: 110, width: view.frame.width * 0.7, height: view.frame.height * 0.4))
         container.image = #imageLiteral(resourceName: "clearBox")
+        container.contentMode = .scaleAspectFill
         view.addSubview(container)
+        
+        let iconImageView = UIImageView(frame: CGRect(x: view.frame.width * 0.15, y: 135, width: view.frame.width * 0.7, height: view.frame.height * 0.2 - 50))
+        iconImageView.image = #imageLiteral(resourceName: "LocationPin")
+        iconImageView.contentMode = .scaleAspectFit
+        view.addSubview(iconImageView)
+        
+        let tempLabel = UILabel(frame: CGRect(x: view.frame.width * 0.35, y: view.frame.height * 0.2 + 115, width: view.frame.width * 0.3, height: view.frame.height * 0.13))
+        tempLabel.text = "62 F"
+        tempLabel.font = UIFont(name: "AvenirNext-Regular", size: 75.0)
+        tempLabel.textAlignment = NSTextAlignment.center
+        tempLabel.textColor = .white
+        tempLabel.numberOfLines = 1
+        tempLabel.adjustsFontSizeToFitWidth = true
+        tempLabel.clipsToBounds = true
+        view.addSubview(tempLabel)
+        
+        let statusLabel = UILabel(frame: CGRect(x: view.frame.width * 0.4, y: view.frame.height * 0.33 + 120, width: view.frame.width * 0.2, height: 30))
+        statusLabel.text = "Rain"
+        statusLabel.font = UIFont(name: "AvenirNext-Regular", size: 34.0)
+        statusLabel.textAlignment = NSTextAlignment.center
+        statusLabel.textColor = .white
+        statusLabel.numberOfLines = 1
+        statusLabel.adjustsFontSizeToFitWidth = true
+        statusLabel.clipsToBounds = true
+        view.addSubview(statusLabel)
+        
+        let descTitleLabel = UILabel(frame: CGRect(x: view.frame.width * 0.125, y: view.frame.height * 0.4 + 140, width: view.frame.width * 0.75, height: 30))
+        descTitleLabel.text = "Description:"
+        descTitleLabel.font = UIFont(name: "AvenirNext-Regular", size: 24.0)
+        descTitleLabel.textAlignment = NSTextAlignment.left
+        descTitleLabel.textColor = UIColor(colorLiteralRed: 0, green: 204/255, blue: 204/255, alpha: 1)
+        descTitleLabel.numberOfLines = 1
+        descTitleLabel.adjustsFontSizeToFitWidth = true
+        descTitleLabel.clipsToBounds = true
+        view.addSubview(descTitleLabel)
+        
+        let descTextLabel = UILabel(frame: CGRect(x: view.frame.width * 0.125, y: view.frame.height * 0.4 + 185, width: view.frame.width * 0.75, height: 60))
+        descTextLabel.text = "Some description of the weather which will be obtained from the JSON file queried by the call to Dark Sky API."
+        descTextLabel.textAlignment = NSTextAlignment.justified
+        descTextLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+        descTextLabel.numberOfLines = 5
+        descTextLabel.adjustsFontSizeToFitWidth = true
+        descTextLabel.textColor = .white
+        view.addSubview(descTextLabel)
+        
+    }
+    
+    func willRain() {
+        
+        let timeTitleLabel = UILabel(frame: CGRect(x: view.frame.width * 0.125, y: view.frame.height * 0.4 + 260, width: view.frame.width * 0.75, height: 30))
+        timeTitleLabel.text = "Time of rain:"
+        timeTitleLabel.textAlignment = NSTextAlignment.left
+        timeTitleLabel.font = UIFont(name: "AvenirNext-Regular", size: 24.0)
+        timeTitleLabel.textColor = UIColor(colorLiteralRed: 0, green: 204/255, blue: 204/255, alpha: 1)
+        timeTitleLabel.numberOfLines = 1
+        timeTitleLabel.adjustsFontSizeToFitWidth = true
+        timeTitleLabel.clipsToBounds = true
+        
+        let timeTextLabel = UILabel(frame: CGRect(x: view.frame.width * 0.125, y: view.frame.height * 0.4 + 260, width: view.frame.width * 0.75, height: 30))
+        timeTextLabel.text = "10:52 PM"
+        timeTextLabel.adjustsFontSizeToFitWidth = true
+        timeTextLabel.textAlignment = NSTextAlignment.right
+        timeTextLabel.font = UIFont(name: "AvenirNext-Regular", size: 24.0)
+        timeTextLabel.textColor = .white
+        timeTextLabel.numberOfLines = 1
+        timeTextLabel.clipsToBounds = true
+        
+        // If it will rain, add the timeTitleLabel and timeTextLabel subviews to the current View:
+        // view.addSubview(timeTitleLabel)
+        // view.addSubview(timeTextLabel)
     }
 
     override func didReceiveMemoryWarning() {
