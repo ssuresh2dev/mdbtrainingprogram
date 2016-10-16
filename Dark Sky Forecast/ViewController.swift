@@ -49,9 +49,9 @@ class ViewController: UIViewController {
         
         
         temperatureLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.2, width: view.frame.width * 0.9, height: view.frame.height * 0.05))
-        temperatureLabel.text = "Current temperature: \(weatherData!["temperature"]!)"
+        temperatureLabel.text = "Current temperature: \(weatherData!["temperature"]!) °F"
         setUILabel(label: temperatureLabel)
-        setLabelFontSize(label: temperatureLabel, size: 25)
+        setLabelFontSize(label: temperatureLabel, size: 20)
         view.addSubview(temperatureLabel)
         
         summaryLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: temperatureLabel.frame.maxY + 5, width: view.frame.width * 0.9, height: view.frame.height * 0.05))

@@ -223,6 +223,7 @@
 				TargetAttributes = {
 					15D87FF61DB18FBF002AB54A = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 6EDCXEAQ9P;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -495,6 +496,7 @@
 			baseConfigurationReference = 1765C0907EFFF083EC3A0C6B /* Pods-Dark Sky Forecast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6EDCXEAQ9P;
 				INFOPLIST_FILE = "Dark Sky Forecast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -510,6 +512,7 @@
 			baseConfigurationReference = 24930DC566E7B49BF3EED68A /* Pods-Dark Sky Forecast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6EDCXEAQ9P;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "Dark Sky Forecast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
