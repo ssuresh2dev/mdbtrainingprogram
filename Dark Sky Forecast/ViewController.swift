@@ -58,12 +58,13 @@ class ViewController: UIViewController {
             rainLabel.text = "No rain!"
             setLabelFontSize(label: rainLabel, size: 50)
         } else {
-            let minutes = ""
-            for min in weatherData?["willItRain"] {
-                
+            var minutes = ""
+            for min in (weatherData?["willRainAt"] as? [Int])! {
+                minutes += "\(min), "
+//                minutes += "\(NSDate(timeIntervalSince1970: TimeInterval(min)).description), "
             }
             rainLabel.text = "It will rain at: \n\(minutes)"
-            setLabelFontSize(label: rainLabel, size: 50)
+            setLabelFontSize(label: rainLabel, size: 30)
         }
         view.addSubview(rainLabel)
     }
