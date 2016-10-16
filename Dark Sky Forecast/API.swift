@@ -31,8 +31,6 @@ class API {
                 var forecast: [String: AnyObject] = [:]
                 let currently = json["currently"] as! [String: AnyObject]
                 
-                
-                
                 let temperature = currently["temperature"]
                 forecast["temperature"] = temperature as AnyObject?
             
@@ -46,8 +44,16 @@ class API {
                 let hourlySummary = hourly["icon"] as AnyObject?
                 forecast["hourlySummary"] = hourlySummary
                 
+                let minutely = json["minutely"] as! [String: AnyObject]
+                let minutelyData = minutely["data"] as! [AnyObject]
+                var whenItRains : [Int] = []
                 
-                
+                for currMinute in minutelyData {
+                    if (currMinute["precipIntensity"] as! Int) != 0 {
+                        whenItRains.append(currMinute["time"] as! Int)
+                    }
+                }
+                forecast["willRainAt"] = whenItRains as AnyObject?
                 
                 
                 
