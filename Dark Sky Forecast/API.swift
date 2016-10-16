@@ -48,7 +48,7 @@ class API {
                 let minutelyData = minutely["data"] as! [[String: AnyObject]]
                 for currMinute in minutelyData {
                     if currMinute["precipIntensity"] as! Double > 0.0 {
-                        forecast["willStartRaining"] = currMinute["time"] as! String
+                        forecast["willStartRaining"] = String(describing: currMinute["time"])
                         break
                     }
                 }
