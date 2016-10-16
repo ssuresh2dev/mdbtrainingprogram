@@ -13,49 +13,57 @@ import Alamofire
 class API {
     var latitude: Double = 0.0
     var longitude: Double = 0.0
+    var weatherData: [Weather] = []
+    var time: String!
+    var temp: Double!
+    var rainStatus: String!
+    var rainMinute: String!
+    var desc: String!
     
-    func getLocation() {
-        var locManager = CLLocationManager()
-        locManager.requestWhenInUseAuthorization()
-        
-        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
-            latitude = (locManager.location?.coordinate.latitude)!
-            longitude = (locManager.location?.coordinate.longitude)!
-            
-        }
-    }
+    typealias JSONStandard = [String : AnyObject]
+    
+//    func getLocation() {
+//        var locManager = CLLocationManager()
+//        locManager.requestWhenInUseAuthorization()
+//        
+//        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+//            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+//            latitude = (locManager.location?.coordinate.latitude)!
+//            longitude = (locManager.location?.coordinate.longitude)!
+//            
+//        }
+//    }
     
     func getWeatherData() {
-        let url = "https://api.darksky.net/forecast/295a15b47e1a3e4649c5f43bfa41a17e/\(latitude),\(longitude)"
-
-        
-        if let url = NSURL(string: url) {
-            if let data = try? Data(contentsOf: url as URL) {
-                do {
-                    let parsedData = try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments)
-                    
-                    //Store response in NSDictionary for easy access
-                    let dict = parsedData as? NSDictionary
-                    
-                    let currentConditions = "\(dict!["currently"]!)"
-                    
-                    //This produces an error, Type 'Any' has no subscript members
-//                    let currentTemperatureF = ("\(dict!["currently"]!["temperature"]!!)" as NSString).doubleValue
-                    
-                    //Display all current conditions from API
-                    print(currentConditions)
-                    
-                    //Output the current temperature in Fahrenheit
-                    //print(currentTemperatureF)
-                    
-                }
-                    //else throw an error detailing what went wrong
-                catch let error as NSError {
-                    print("Details of JSON parsing error:\n \(error)")
-                }
-            }
+        //getLocation()
+        latitude = 37.866602
+        longitude = -122.257757
+        let urlString = "https://api.darksky.net/forecast/295a15b47e1a3e4649c5f43bfa41a17e/\(latitude),\(longitude)"
+        Alamofire.request(urlString).responseJSON { response in
+            self.parseData(JSONData: response.data!)
         }
-
+        
+    }
+    
+    func parseData(JSONData : Data) {
+        do {
+            var readJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as! JSONStandard
+            
+            let des = readJSON["alerts"]
+            //desc = des?["description"] as! String!
+//            if let zone = readJSON["timezone"] as? JSONStandard {
+//                time = zone as! String
+//            }
+//            if let currTemp = readJSON["currently"]?["temperature"] as? JSONStandard {
+//                temp = currTemp as! Double
+//            }
+            //print(readJSON)
+            print(des)
+            //print(desc)
+//            print(time)
+//            print(temp)
+        } catch {
+            print(error)
+        }
     }
 }
