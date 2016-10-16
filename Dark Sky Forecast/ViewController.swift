@@ -21,6 +21,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var temperature: Double?
     var willItRain: Bool?
     var minRain: Int?
+    var hourRain: Int?
     var summary: String = ""
     var address: String = ""
     
@@ -41,22 +42,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print("long:\(longitude)")
         reverseGeocoding(latitude: latitude!, longitude: longitude!)
         getWeather()
+        setup()
     }
     
     func getWeather(){
+        print("ZDDDDDDDD")
         Alamofire.request("https://api.darksky.net/forecast/\(APIkey)/\(latitude!),\(longitude!)").responseJSON { response in
+            print("GGGGGGGGGG")
             print(response.request)  // original URL request
             print(response.response) // HTTP URL response
             print(response.data)     // server data
             print(response.result)   // result of response serialization
             if let JSON = response.result.value as? [String: AnyObject]{
-                
+                print("CCCCCCCCCC")
                 let currentInfo = JSON["currently"] as? [String: AnyObject]
                 let minutelyInfo = JSON["minutely"] as? [String: AnyObject]
                 let hourlyInfo = JSON["hourly"] as? [String: AnyObject]
                 let minutelyData = minutelyInfo?["data"] as? [[String: AnyObject]]
                 
                 self.temperature = currentInfo?["temperature"] as? Double
+                print("BBBBBBBB\(self.temperature)")
                 self.willItRain = (minutelyInfo?["icon"] as! String == "rain")
                 self.summary = hourlyInfo?["summary"] as! String!
                 print(self.willItRain)
@@ -67,17 +72,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         if(d["precipProbability"] as! Double == 1.0){
                             print(d)
                             print("it worked")
-                            let hexTime: AnyObject = d["time"] as! AnyObject
-                            print(hexTime)
+                            let hexTime: AnyObject = d["time"] as AnyObject
                             let date = NSDate(timeIntervalSince1970: hexTime as! TimeInterval)
                             print(date)
                             let calendar = NSCalendar.current
                             self.minRain = calendar.component(.minute, from: date as Date)
+                            self.hourRain = calendar.component(.hour, from: date as Date)
                             print("minute: \(self.minRain)")
                             break
                         }
                     }
                 }
+                print(self.minRain)
                 print(self.minRain)
             }
         }
@@ -98,9 +104,49 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print(error)
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    func setup() {
+        let bgImage = UIImageView(image: #imageLiteral(resourceName: "waves"))
+        bgImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        
+        let tempLabel = UILabel(frame: CGRect(x: view.frame.width / 4, y: view.frame.height / 5, width: view.frame.width / 2, height: view.frame.width / 3))
+        print("AAAAAAAAA\(temperature)")
+        tempLabel.text = String(Int(temperature!))
+        tempLabel.font = UIFont(name: "SFUIDisplay-Ultralight", size: 140)
+        tempLabel.textColor = UIColor.white
+        tempLabel.textAlignment = .center
+        
+        let descriptionLabel = UILabel(frame: CGRect(x: view.frame.width / 10, y: view.frame.height / 6 + view.frame.width / 2, width: view.frame.width * 0.8, height: view.frame.width / 3))
+        descriptionLabel.text = summary
+        descriptionLabel.font = UIFont(name: "SFUIDisplay-Ultralight", size: 28)
+        descriptionLabel.textColor = UIColor.white
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.numberOfLines = 3
+        
+        let rainLabel = UILabel(frame: CGRect(x: view.frame.width / 10, y: view.frame.height / 6 + view.frame.width / 3.8, width: view.frame.width * 0.8, height: view.frame.width / 3))
+        if willItRain! {
+            rainLabel.text = "It will rain at: \(hourRain): \(minRain)"
+        }
+        rainLabel.font = UIFont(name: "SFUIDisplay-Ultralight", size: 28)
+        rainLabel.textColor = UIColor.white
+        rainLabel.textAlignment = .center
+        
+        let locationLabel = UILabel(frame: CGRect(x: view.frame.width / 10, y: view.frame.height * 0.85, width: view.frame.width * 0.8, height: view.frame.width / 3))
+        locationLabel.text = "Berkeley, CA"
+        // Location was working inproperly so I typed it in manually
+        locationLabel.font = UIFont(name: "SFUIDisplay-Ultralight", size: 28)
+        locationLabel.textColor = UIColor.white
+        locationLabel.textAlignment = .center
+        
+        view.addSubview(bgImage)
+        view.addSubview(tempLabel)
+        view.addSubview(descriptionLabel)
+        view.addSubview(rainLabel)
+        view.addSubview(locationLabel)
     }
 
 }
