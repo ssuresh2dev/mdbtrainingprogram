@@ -42,7 +42,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print("long:\(longitude)")
         reverseGeocoding(latitude: latitude!, longitude: longitude!)
         getWeather()
-        setup()
     }
     
     func getWeather(){
@@ -82,7 +81,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                             break
                         }
                     }
+                    self.setUI()
                 }
+                self.setUI()
                 print(self.minRain)
                 print(self.minRain)
             }
@@ -109,7 +110,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         return .lightContent
     }
     
-    func setup() {
+    func setUI() {
         let bgImage = UIImageView(image: #imageLiteral(resourceName: "waves"))
         bgImage.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         

@@ -34,6 +34,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>fonts provided</key>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-UI-Display-Ultralight.otf</string>
+		<string></string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
