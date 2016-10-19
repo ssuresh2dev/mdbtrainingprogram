@@ -9,6 +9,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    var passedEvent: Event?
+    
     
     var eventImage: UIImageView!
     var modalView: UIButton!
@@ -49,6 +51,7 @@ class DetailViewController: UIViewController {
         
         titleOfEvent = UILabel(frame: CGRect(x: 42, y: 326, width: 292, height: 29))
         titleOfEvent.font = UIFont(name: "Bebas", size: 22)
+        titleOfEvent.text = passedEvent?.eventTitle
         titleOfEvent.textAlignment = NSTextAlignment.center
         view.addSubview(titleOfEvent)
         
