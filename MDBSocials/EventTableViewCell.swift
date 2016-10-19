@@ -41,11 +41,8 @@ class EventTableViewCell: UITableViewCell {
         rsvpLabel = UILabel(frame: CGRect(x: contentView.frame.width - 30, y: 28.5, width: 50, height: 38))
         contentView.addSubview(rsvpLabel)
         
-<<<<<<< HEAD
-        posterLabel = UILabel(frame:CGRect(x: 113, y: 129, width: 167, height: 16))
-=======
+
         posterLabel = UILabel(frame:CGRect(x: 140, y: 45, width: 167, height: 16))
->>>>>>> e949831e258e800ac8a3f1d7b9761620ede411ba
         posterLabel.textAlignment = NSTextAlignment.left
         posterLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
         contentView.addSubview(posterLabel)

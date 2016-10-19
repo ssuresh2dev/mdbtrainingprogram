@@ -53,11 +53,7 @@ class FeedViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreInfo" {
             let dest = segue.destination as? DetailViewController
-            print(selectedEvent?.eventTitle!)
-            dest?.titleOfEvent.text = selectedEvent!.eventTitle!
-            dest?.paragraphText.text = selectedEvent!.eventDescription!
-            dest?.numInterested.text = selectedEvent!.rsvp!
-            
+            dest?.passedEvent = selectedEvent
         }
     }
     
@@ -103,7 +99,6 @@ class FeedViewController: UIViewController {
         do {
             try FIRAuth.auth()?.signOut()
             performSegue(withIdentifier: "afterSignOut", sender: self)
-            viewWillDisappear(true)
         } catch let error as NSError {
             print(error)
         }
@@ -115,7 +110,6 @@ class FeedViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = true
     }
 
 }
