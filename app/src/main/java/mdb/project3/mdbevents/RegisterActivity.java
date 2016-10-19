@@ -1,6 +1,5 @@
 package mdb.project3.mdbevents;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
