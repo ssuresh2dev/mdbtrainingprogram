@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,16 +20,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.StringBufferInputStream;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class FeedActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,8 +34,6 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
     FloatingActionButton createSocialFab;
 
     static List<String> databaseKeys;
-
-    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,17 +86,13 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         createSocialFab.setOnClickListener(this);
     }
 
-    public void startNewSocialActivity() {
-        Intent intent = new Intent(getApplicationContext(), CreateSocial.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
             case R.id.create_social_fab:
-                startNewSocialActivity();
+                Intent intent = new Intent(getApplicationContext(), CreateSocial.class);
+                startActivity(intent);
                 break;
         }
     }

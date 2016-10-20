@@ -3,9 +3,7 @@ package mdb.project3.mdbevents;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * Created by Kedar on 10/4/2016.

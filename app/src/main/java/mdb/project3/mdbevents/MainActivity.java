@@ -17,11 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -62,6 +57,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.register_button:
+                Intent myIntent = new Intent(MainActivity.this, RegisterActivity.class);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(myIntent);
+                break;
+            case R.id.login_button:
+                signIn(emailView.getText().toString(), passwordView.getText().toString());
+                break;
+        }
+    }
+
     private void initializeViews() {
         titleView = (TextView) findViewById(R.id.title_view);
         emailView = (TextView) findViewById(R.id.email_input);
@@ -74,18 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         passwordView.setTypeface(Typeface.DEFAULT);
         signInButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.register_button) {
-            Intent myIntent = new Intent(MainActivity.this, RegisterActivity.class);
-            myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(myIntent);
-        } else if (id == R.id.login_button) {
-            signIn(emailView.getText().toString(), passwordView.getText().toString());
-        }
     }
 
     private void signIn(String email, String password) {

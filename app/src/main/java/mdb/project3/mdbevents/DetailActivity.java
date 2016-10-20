@@ -36,6 +36,8 @@ import java.util.Locale;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String INTENT_KEY = "DBKEY";
+
     ScrollView detailScrollView;
     FirebaseUser mUser;
     String dbKey;
@@ -74,13 +76,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                final Event event = snapshot.getValue(Event.class);
-                socialTitleView.setText(event.getName());
-                dateTextView.setText(event.date);
-                AsyncTask<Void, Void, Bitmap> getBitmap = createDownloadTask(event.imageUrl);
-                getBitmap.execute();
-                descriptionTextView.setText(event.description);
-                interestedButton.setText(String.format(Locale.getDefault(), "%d people interested", event.numInterested));
+                updateViewsWithEvent(snapshot.getValue(Event.class));
             }
 
             @Override
@@ -91,12 +87,28 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    public void bindViews() {
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.interestedToggleButton:
+                updateInterested();
+                break;
+            case R.id.interestedButton:
+                Intent myIntent = new Intent(DetailActivity.this, InterestedActivity.class);
+                myIntent.putExtra(INTENT_KEY, dbKey);
+                startActivity(myIntent);
+                break;
+        }
+    }
+
+    private void bindViews() {
         socialTitleView = (TextView) findViewById(R.id.socialTitleView);
         dateTextView = (TextView) findViewById(R.id.dateTextView);
         eventImageView = (ImageView) findViewById(R.id.eventImageView);
         descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
-        interestedButton = (Button) findViewById(R.id.InterestedButton);
+        interestedButton = (Button) findViewById(R.id.interestedButton);
         interestedToggleButton = (ToggleButton) findViewById(R.id.interestedToggleButton);
         detailScrollView = (ScrollView) findViewById(R.id.detail_scrollview);
 
@@ -104,73 +116,70 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         interestedToggleButton.setOnClickListener(this);
     }
 
-    private AsyncTask<Void, Void, Bitmap> createDownloadTask(final String imageUrl) {
-        return new AsyncTask<Void, Void, Bitmap>() {
-            @Override
-            protected Bitmap doInBackground(Void... params) {
-                try {
-                    URL url = new URL(imageUrl);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setDoInput(true);
-                    connection.connect();
-                    InputStream input = connection.getInputStream();
-                    return BitmapFactory.decodeStream(input);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return null;
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                if (bitmap != null) {
-                    eventImageView.setImageBitmap(bitmap);
-                    Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-                        @Override
-                        public void onGenerated(Palette palette) {
-                            interestedButton.setBackgroundColor(palette.getLightVibrantColor(0xFF3396DC));
-                            interestedToggleButton.setBackgroundColor(palette.getLightMutedColor(0xFF3396DC));
-                        }
-                    });
-                }
-                super.onPostExecute(bitmap);
-            }
-        };
+    private void updateViewsWithEvent(Event event) {
+        socialTitleView.setText(event.getName());
+        dateTextView.setText(event.date);
+        DownloadBitmapTask getBitmap = new DownloadBitmapTask();
+        getBitmap.execute(event.imageUrl);
+        descriptionTextView.setText(event.description);
+        interestedButton.setText(String.format(Locale.getDefault(), "%d people interested", event.numInterested));
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.interestedToggleButton:
-                dbRef.runTransaction(new Transaction.Handler() {
-                    @Override
-                    public Transaction.Result doTransaction(MutableData mutableData) {
-                        Event e = mutableData.getValue(Event.class);
-                        if (e == null)
-                            return Transaction.success(mutableData);
-                        if (e.peopleInterested.contains(mUser.getEmail())) {
-                            e.numInterested -= 1;
-                            e.peopleInterested.remove(mUser.getEmail());
-                        } else {
-                            e.numInterested += 1;
-                            e.peopleInterested.add(mUser.getEmail());
-                        }
-                        mutableData.setValue(e);
-                        return Transaction.success(mutableData);
-                    }
+    private void updateInterested() {
+        dbRef.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Event e = mutableData.getValue(Event.class);
+                if (e == null)
+                    return Transaction.success(mutableData);
+                if (e.peopleInterested.contains(mUser.getEmail())) {
+                    e.numInterested -= 1;
+                    e.peopleInterested.remove(mUser.getEmail());
+                } else {
+                    e.numInterested += 1;
+                    e.peopleInterested.add(mUser.getEmail());
+                }
+                mutableData.setValue(e);
+                return Transaction.success(mutableData);
+            }
 
-                    @Override
-                    public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
 
+            }
+        });
+    }
+
+    private class DownloadBitmapTask extends AsyncTask<String, Void, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                return BitmapFactory.decodeStream(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if (bitmap != null) {
+                eventImageView.setImageBitmap(bitmap);
+                Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
+                    @Override
+                    public void onGenerated(Palette palette) {
+                        interestedButton.setBackgroundColor(palette.getLightVibrantColor(0xFF3396DC));
+                        interestedToggleButton.setBackgroundColor(palette.getLightMutedColor(0xFF3396DC));
                     }
                 });
-                break;
-            case R.id.InterestedButton:
-                Intent myIntent = new Intent(DetailActivity.this, InterestedActivity.class);
-                myIntent.putExtra("DBKEY", dbKey);
-                startActivity(myIntent);
-                break;
+            }
+            super.onPostExecute(bitmap);
         }
     }
 }

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class InterestedActivity extends AppCompatActivity {
@@ -32,7 +30,7 @@ public class InterestedActivity extends AppCompatActivity {
 
         final List<String> interested = new ArrayList<>();
 
-        String eventId = getIntent().getStringExtra("DBKEY");
+        String eventId = getIntent().getStringExtra(DetailActivity.INTENT_KEY);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef = dbRef.child("Events").child(eventId);
@@ -47,6 +45,7 @@ public class InterestedActivity extends AppCompatActivity {
                 interestedAdapter.interestedList = event.peopleInterested;
                 interestedAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(DatabaseError firebaseError) {
                 Log.e("The read failed: " ,firebaseError.getMessage());
