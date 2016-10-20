@@ -30,7 +30,7 @@ public class InterestedActivity extends AppCompatActivity {
 
         final List<String> interested = new ArrayList<>();
 
-        String eventId = getIntent().getStringExtra("DBKEY");
+        String eventId = getIntent().getStringExtra(DetailActivity.INTENT_KEY);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
         dbRef = dbRef.child("Events").child(eventId);
@@ -45,6 +45,7 @@ public class InterestedActivity extends AppCompatActivity {
                 interestedAdapter.interestedList = event.peopleInterested;
                 interestedAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(DatabaseError firebaseError) {
                 Log.e("The read failed: " ,firebaseError.getMessage());

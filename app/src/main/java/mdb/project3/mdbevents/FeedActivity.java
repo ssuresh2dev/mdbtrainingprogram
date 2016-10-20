@@ -35,8 +35,6 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
 
     static List<String> databaseKeys;
 
-    Toolbar mToolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,17 +86,13 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         createSocialFab.setOnClickListener(this);
     }
 
-    public void startNewSocialActivity() {
-        Intent intent = new Intent(getApplicationContext(), CreateSocial.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
             case R.id.create_social_fab:
-                startNewSocialActivity();
+                Intent intent = new Intent(getApplicationContext(), CreateSocial.class);
+                startActivity(intent);
                 break;
         }
     }
