@@ -35,6 +35,7 @@ import java.util.Locale;
 
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
+
     ScrollView detailScrollView;
     FirebaseUser mUser;
     String dbKey;
@@ -60,11 +61,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         Toast.makeText(getApplicationContext(), "Loading event info...", Toast.LENGTH_SHORT).show();
 
+        // Initialize Firebase database, storage and auth instances
         dbRef = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        // Get the current user
         mUser = mAuth.getCurrentUser();
 
+        // Set the database reference to point to the 
         dbRef = dbRef.child("Events").child(dbKey);
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
