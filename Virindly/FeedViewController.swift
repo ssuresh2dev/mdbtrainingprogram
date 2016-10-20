@@ -48,7 +48,7 @@ class FeedViewController: UIViewController {
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle = UINavigationItem(title: "What's going on?")
         
-        let addEvent = UIBarButtonItem(barButtonSystemItem: .undo, target: nil, action: #selector(pressedAddButton))
+        let addEvent = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(pressedAddButton))
         navTitle.rightBarButtonItem = addEvent
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(pressedLogout))
