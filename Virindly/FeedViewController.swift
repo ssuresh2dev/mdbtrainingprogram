@@ -124,4 +124,11 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension FeedViewController: ImageTableViewCellDelegate {
+    func changeToInterested(forCell: ImageTableViewCell) {
+        //        forCell.button.backgroundColor = UIColor.green
+        //        forCell.button.title = "Interested!"
+    }
+}
+
 

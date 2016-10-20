@@ -8,6 +8,11 @@
 
 import UIKit
 
+// Protocol communicates between FeedViewController and ImageTableViewCell
+protocol ImageTableViewCellDelegate {
+    func changeToInterested(forCell: ImageTableViewCell)
+}
+
 class ImageTableViewCell: UITableViewCell {
 
     var eventImageView: UIImageView!
