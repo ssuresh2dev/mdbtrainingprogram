@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FeedViewController.swift
 //  Virindly
 //
 //  Created by Candice Ye on 10/7/16.
@@ -123,5 +123,13 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+extension FeedViewController: ImageTableViewCellDelegate {
+    func changeToInterested(forCell: ImageTableViewCell) {
+        //        forCell.button.backgroundColor = UIColor.green
+        //        forCell.button.title = "Interested!"
+    }
+}
+
 
 

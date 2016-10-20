@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		323D29561DB8C5170020CE7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323D29551DB8C5170020CE7B /* User.swift */; };
+		323D29581DB8C5400020CE7B /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323D29571DB8C5400020CE7B /* Social.swift */; };
+		323D295A1DB8C5600020CE7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323D29591DB8C5600020CE7B /* Constants.swift */; };
+		323D295C1DB8C57D0020CE7B /* MDBSocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323D295B1DB8C57D0020CE7B /* MDBSocialUtils.swift */; };
 		327F99DF1DA4BFE90042DF55 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F99DE1DA4BFE90042DF55 /* SignUpViewController.swift */; };
 		327F99E11DA4C0060042DF55 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F99E01DA4C0050042DF55 /* FeedViewController.swift */; };
 		327F99E31DA4C0120042DF55 /* NewSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327F99E21DA4C0120042DF55 /* NewSocialViewController.swift */; };
@@ -24,6 +28,10 @@
 /* Begin PBXFileReference section */
 		0B74379702CB8882239CBE98 /* Pods-Virindly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virindly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Virindly/Pods-Virindly.release.xcconfig"; sourceTree = "<group>"; };
 		3025217A477989DD8F144016 /* Pods_Virindly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Virindly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		323D29551DB8C5170020CE7B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		323D29571DB8C5400020CE7B /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
+		323D29591DB8C5600020CE7B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		323D295B1DB8C57D0020CE7B /* MDBSocialUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDBSocialUtils.swift; sourceTree = "<group>"; };
 		327F99DE1DA4BFE90042DF55 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		327F99E01DA4C0050042DF55 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		327F99E21DA4C0120042DF55 /* NewSocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSocialViewController.swift; sourceTree = "<group>"; };
@@ -84,11 +92,15 @@
 			children = (
 				B67C8DBA1DAF57290063EEF3 /* Virindly.entitlements */,
 				B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */,
+				323D29551DB8C5170020CE7B /* User.swift */,
+				323D29571DB8C5400020CE7B /* Social.swift */,
+				323D29591DB8C5600020CE7B /* Constants.swift */,
+				323D295B1DB8C57D0020CE7B /* MDBSocialUtils.swift */,
 				B64DE2FF1DA1909A0055FA01 /* LoginViewController.swift */,
 				327F99DE1DA4BFE90042DF55 /* SignUpViewController.swift */,
 				327F99E01DA4C0050042DF55 /* FeedViewController.swift */,
-				B67C8DBB1DB07A4A0063EEF3 /* AppState.swift */,
 				32AD66751DAF5514004F8BA5 /* ImageTableViewCell.swift */,
+				B67C8DBB1DB07A4A0063EEF3 /* AppState.swift */,
 				327F99E21DA4C0120042DF55 /* NewSocialViewController.swift */,
 				B64DE3011DA1909A0055FA01 /* Main.storyboard */,
 				B64DE3041DA1909A0055FA01 /* Assets.xcassets */,
@@ -242,9 +254,13 @@
 				327F99E31DA4C0120042DF55 /* NewSocialViewController.swift in Sources */,
 				B67C8DBC1DB07A4A0063EEF3 /* AppState.swift in Sources */,
 				B64DE3001DA1909A0055FA01 /* LoginViewController.swift in Sources */,
+				323D29561DB8C5170020CE7B /* User.swift in Sources */,
+				323D295A1DB8C5600020CE7B /* Constants.swift in Sources */,
+				323D295C1DB8C57D0020CE7B /* MDBSocialUtils.swift in Sources */,
 				32AD66761DAF5514004F8BA5 /* ImageTableViewCell.swift in Sources */,
 				327F99E11DA4C0060042DF55 /* FeedViewController.swift in Sources */,
 				B64DE2FE1DA1909A0055FA01 /* AppDelegate.swift in Sources */,
+				323D29581DB8C5400020CE7B /* Social.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
