@@ -10,13 +10,14 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class NewSocialViewController: UIViewController {
+class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var newSocialBackground: UIImageView!
     var virindlyMiniLogoView: UIImageView!
     var inputEventNameTextField: UITextField!
     var inputDescriptionTextField: UITextField!
     var inputDateTextField: UITextField!
+    var inputImageButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -96,6 +97,13 @@ class NewSocialViewController: UIViewController {
         self.view.addSubview(inputDateTextField)
         
         
+        // Input Image Button
+        inputImageButton = UIButton(frame: CGRect(x: view.frame.width * 0.3, y: view.frame.height / 1.6, width: view.frame.width * 0.4, height: view.frame.width * 0.4))
+        inputImageButton.contentMode = .scaleToFill
+        inputImageButton.addTarget(self, action: #selector(openCameraRoll), for: .touchUpInside)
+        inputImageButton.backgroundColor = UIColor.black
+        view.addSubview(inputImageButton)
+        
         
         
         
@@ -149,6 +157,23 @@ class NewSocialViewController: UIViewController {
         
             performSegue(withIdentifier: "segueBackToFeed", sender: self)
         }
+    }
+    
+    
+    func openCameraRoll() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        inputImageButton.setBackgroundImage(image, for: .normal)
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

@@ -155,7 +155,7 @@
 				TargetAttributes = {
 					B64DE2F91DA1909A0055FA01 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = TMP75YC8SE;
+						DevelopmentTeam = 98J9N2U3MZ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -385,7 +385,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Virindly/Virindly.entitlements;
-				DEVELOPMENT_TEAM = TMP75YC8SE;
+				DEVELOPMENT_TEAM = 98J9N2U3MZ;
 				INFOPLIST_FILE = Virindly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bengoldberg.Virindly;
@@ -400,7 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Virindly/Virindly.entitlements;
-				DEVELOPMENT_TEAM = TMP75YC8SE;
+				DEVELOPMENT_TEAM = 98J9N2U3MZ;
 				INFOPLIST_FILE = Virindly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bengoldberg.Virindly;
