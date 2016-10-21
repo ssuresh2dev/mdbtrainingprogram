@@ -41,31 +41,36 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_feed);
         setSupportActionBar((Toolbar) findViewById(R.id.feed_toolbar));
 
-        // Create a variable for the recycler view and set its layout manager to be linear
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Create a list of test events and bind the event adapter to this list
+        // Create a list to hold events and bind the event adapter to this list
         final ArrayList<Event> eventList = new ArrayList<>();
         eventAdapter = new EventAdapter(getApplicationContext(), eventList);
 
         Toast.makeText(getApplicationContext(), "Loading events...", Toast.LENGTH_SHORT).show();
 
         rootNode = FirebaseDatabase.getInstance().getReference();
+
         DatabaseReference eventNode = rootNode.child("Events");
+
         eventNode.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.e("Count ", "" + snapshot.getChildrenCount());
+
                 Map<Event, String> eventToKey = new HashMap<>();
+
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     Event event = postSnapshot.getValue(Event.class);
                     eventToKey.put(event, postSnapshot.getKey());
                     eventList.add(event);
                 }
 
+                // Sort the list of events by the timestamp associated with that event
                 Collections.sort(eventList);
 
+                // Populate an array list that holds the keys of each event
                 databaseKeys = new ArrayList<>();
                 for (Event e : eventList)
                     databaseKeys.add(eventToKey.get(e));

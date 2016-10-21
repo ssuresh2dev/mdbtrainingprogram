@@ -10,11 +10,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -67,7 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(myIntent);
                 break;
             case R.id.login_button:
-                signIn(emailView.getText().toString(), passwordView.getText().toString());
+                String email = emailView.getText().toString();
+                String password = passwordView.getText().toString();
+                if (validate(email, password))
+                    FirebaseUtils.signIn(getApplicationContext(), mAuth, email, password);
                 break;
         }
     }
@@ -84,19 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         passwordView.setTypeface(Typeface.DEFAULT);
         signInButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
-    }
-
-    private void signIn(String email, String password) {
-        if (!validate(email, password))
-            return;
-        Toast.makeText(getApplicationContext(), "Logging in...", Toast.LENGTH_SHORT).show();
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful())
-                    Toast.makeText(getApplicationContext(), R.string.auth_failed, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private boolean validate(String email, String password) {
