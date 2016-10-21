@@ -71,7 +71,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         // Get the current user
         mUser = mAuth.getCurrentUser();
 
-        // Set the database reference to point to the 
+        // Set the database reference to point to the event corresponding to the key passed in as an intent
         dbRef = dbRef.child("Events").child(dbKey);
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,7 +87,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
+    // Use a switch-case statement to select the action to take after a click based on the button clicked
     @Override
     public void onClick(View v) {
         int id = v.getId();
