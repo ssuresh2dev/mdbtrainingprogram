@@ -48,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private ArrayList<String> interestedUids;
     public int color;
     public Bitmap bitmap;
+    public android.app.ActionBar actionbar;
 
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
@@ -58,6 +59,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_details);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        actionbar = getActionBar();
 
         dbRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
