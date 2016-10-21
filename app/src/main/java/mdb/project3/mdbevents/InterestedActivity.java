@@ -30,6 +30,7 @@ public class InterestedActivity extends AppCompatActivity {
 
         final List<String> interested = new ArrayList<>();
 
+        // Get the ID of the event from the Intent used to start the InterestedActivity
         String eventId = getIntent().getStringExtra(DetailActivity.INTENT_KEY);
 
         dbRef = FirebaseDatabase.getInstance().getReference();
