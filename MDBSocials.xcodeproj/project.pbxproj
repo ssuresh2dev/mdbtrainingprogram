@@ -23,6 +23,8 @@
 		152F0B1F1DA4C07E00CB7D34 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */; };
 		1544CFBC1DB0939C0004C424 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544CFBB1DB0939C0004C424 /* Event.swift */; };
 		40B8662B4D846F5E0940E654 /* libPods-MDBSocials.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE170A06BEFCF6798623FF80 /* libPods-MDBSocials.a */; };
+		8B4351D31DB9E5690023F0FB /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4351D21DB9E5690023F0FB /* ModalViewController.swift */; };
+		8B4351D51DB9EEBE0023F0FB /* DisplayNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4351D41DB9EEBE0023F0FB /* DisplayNameTableViewCell.swift */; };
 		8BA986351DB09ABA00870C77 /* BEBAS___.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 1544CFBA1DB07C1D0004C424 /* BEBAS___.TTF */; };
 		8BE4B3DC1DAE249E00248437 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4B3DB1DAE249E00248437 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +70,8 @@
 		152F0B1E1DA4C07E00CB7D34 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		1544CFBA1DB07C1D0004C424 /* BEBAS___.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BEBAS___.TTF"; sourceTree = "<group>"; };
 		1544CFBB1DB0939C0004C424 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		8B4351D21DB9E5690023F0FB /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		8B4351D41DB9EEBE0023F0FB /* DisplayNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayNameTableViewCell.swift; sourceTree = "<group>"; };
 		8BE4B3DB1DAE249E00248437 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CE170A06BEFCF6798623FF80 /* libPods-MDBSocials.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MDBSocials.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA34923A6B3B759E79C98A89 /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				152F0AEA1DA2454C00CB7D34 /* LaunchScreen.storyboard */,
 				152F0B151DA3942C00CB7D34 /* SignupViewController.swift */,
 				8BE4B3DB1DAE249E00248437 /* DetailViewController.swift */,
+				8B4351D21DB9E5690023F0FB /* ModalViewController.swift */,
+				8B4351D41DB9EEBE0023F0FB /* DisplayNameTableViewCell.swift */,
 				152F0AED1DA2454C00CB7D34 /* Info.plist */,
 			);
 			path = MDBSocials;
@@ -380,9 +386,11 @@
 				8BE4B3DC1DAE249E00248437 /* DetailViewController.swift in Sources */,
 				151AEDF61DA5A41F006FD875 /* EventTableViewCell.swift in Sources */,
 				152F0B141DA393B700CB7D34 /* LoginViewController.swift in Sources */,
+				8B4351D31DB9E5690023F0FB /* ModalViewController.swift in Sources */,
 				152F0AE41DA2454C00CB7D34 /* ViewController.swift in Sources */,
 				1544CFBC1DB0939C0004C424 /* Event.swift in Sources */,
 				151AEDF81DA5AFA9006FD875 /* CreateEventViewController.swift in Sources */,
+				8B4351D51DB9EEBE0023F0FB /* DisplayNameTableViewCell.swift in Sources */,
 				152F0B1F1DA4C07E00CB7D34 /* FeedViewController.swift in Sources */,
 				152F0B161DA3942C00CB7D34 /* SignupViewController.swift in Sources */,
 				152F0AE21DA2454C00CB7D34 /* AppDelegate.swift in Sources */,

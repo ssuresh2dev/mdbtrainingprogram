@@ -19,11 +19,16 @@ class DetailViewController: UIViewController {
     
     var eventImage: UIImageView!
     var modalView: UIButton!
-    var numInterested: UILabel!
+    var numInterested: UIButton!
+    var numInterestText: UILabel!
     var addToRSVP: UIButton!
     var titleOfEvent: UILabel!
     var paragraphText: UILabel!
     var displayImg: UIImage!
+    
+    var namesToDisplay: [String] = []
+    
+    var allRsvp: [NSString] = []
 
     
     let currUser = FIRAuth.auth()?.currentUser?.uid
@@ -50,15 +55,22 @@ class DetailViewController: UIViewController {
         modalView.setImage(#imageLiteral(resourceName: "PeopleInterested"), for: .normal)
         view.addSubview(modalView)
         
-        numInterested = UILabel(frame: CGRect(x: 55, y: 510, width: 265, height: 21))
-        numInterested.font = UIFont(name: "AvenirNext-Regular", size: 15.0)
-        numInterested.textAlignment = NSTextAlignment.center
-        numInterested.text = "\(passedEvent.rsvp.count) people interested"
-        numInterested.textColor = UIColor.white
+
+//        numInterestText = UILabel(frame: CGRect(x: 55, y: 510, width: 265, height: 21))
+//        numInterestText.font = UIFont(name: "AvenirNext-Regular", size: 15.0)!
+//        numInterestText.textAlignment = NSTextAlignment.center
+//        numInterestText.text = "\(passedEvent.rsvp.count) people interested"
+//        numInterestText.textColor = UIColor.white
+        
+        numInterested = UIButton(frame: CGRect(x: 55, y: 510, width: 265, height: 21))
+        numInterested.setTitle("\(passedEvent.rsvp.count) people interested", for: .normal)
+        numInterested.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 15.0)!
+        numInterested.titleLabel?.textAlignment = NSTextAlignment.center
+        numInterested.titleLabel?.textColor = UIColor.white
+        numInterested.addTarget(self, action:#selector(pressedViewInterested), for: .touchUpInside)
         view.addSubview(numInterested)
         
         addToRSVP = UIButton(frame: CGRect(x: 55, y: 555, width: 264, height: 33))
-        print("this is what currrsvp has")
         let ref = FIRDatabase.database().reference().child("events").child(eventIds[indexPath] as String)
         ref.observe(.value, with: { (snapshot) in
             if snapshot.hasChild("userRsvp") {
@@ -94,13 +106,10 @@ class DetailViewController: UIViewController {
     
     func pressedCountMeIn() {
         if (addToRSVP.currentImage == #imageLiteral(resourceName: "NotYetRsvp")) {
-            print("this ran...")
             passedEvent.rsvp.append((currUser as NSString?)!)
             addToRSVP.setImage(#imageLiteral(resourceName: "Rsvped"), for: .normal)
         } else if (addToRSVP.currentImage == #imageLiteral(resourceName: "Rsvped")) {
             for (index, value) in passedEvent.rsvp.enumerated() {
-                print("this the value :")
-                print(value)
                 if value == (currUser as NSString?)! {
                     passedEvent.rsvp.remove(at: index)
                 }
@@ -128,6 +137,48 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    func pressedViewInterested() {
+        performSegue(withIdentifier: "aModal", sender: self)
+    }
+    
+    func getUsersName() {
+        let ref = FIRDatabase.database().reference().child("users")
+        ref.observe(.value, with: { (snapshot) in
+            let dict = snapshot.value as? [String : AnyObject]
+            for stringIds in self.allRsvp {
+                print("GETUSERTEST")
+                var userInfo = dict?[stringIds as String]
+                print(userInfo)
+                var nameString = "\(userInfo?["firstName"]) \(userInfo?["lastName"])"
+                print(nameString)
+                self.namesToDisplay.append(nameString)
+            }
+            
+        })
+        
+    }
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "aModal" {
+            let dest = segue.destination as? ModalViewController
+            let ref = FIRDatabase.database().reference().child("events").child(eventIds[indexPath] as String)
+            ref.observe(.value, with: { (snapshot) in
+                if snapshot.hasChild("userRsvp") {
+                    let dict = snapshot.value as? [String : AnyObject]
+                    self.allRsvp = dict?["userRsvp"] as! [NSString]
+                    self.getUsersName()
+                    dest?.displayNames = self.namesToDisplay
+                    dest?.usersRsvp = self.allRsvp
+                    dest?.allEvents = self.eventIds
+                }
+                
+            })
+
+        }
+    }
+
 
     /*
     // MARK: - Navigation

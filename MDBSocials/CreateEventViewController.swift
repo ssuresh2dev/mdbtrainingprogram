@@ -32,6 +32,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     
     var posterName: String?
+    var posterLastName: String?
     var userRsvp: [NSString] = []
     
     let rootRef = FIRDatabase.database().reference()
@@ -171,8 +172,8 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         ref.observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: String]{
                 //print(dictionary["username"])
-                self.posterName = dictionary["username"]
-                
+                self.posterName = dictionary["firstName"]
+                self.posterLastName = dictionary["lastName"]
             }
         })
 
@@ -195,6 +196,7 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
                                  "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!,
                                  "eventDescription": descriptionTextField.text as NSString? ?? "None",
                                  "eventDate": eventDateTextField.text as NSString? ?? "None",
+                                 "posterLastName" : self.posterLastName as NSString? ?? "None",
                                  "posterName": self.posterName as NSString? ?? "Nooone"]){ (error, snap) in
             print("Success")
             //print(error)
