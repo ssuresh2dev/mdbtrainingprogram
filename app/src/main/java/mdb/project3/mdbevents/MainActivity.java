@@ -10,11 +10,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -69,7 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.login_button:
                 String email = emailView.getText().toString();
                 String password = passwordView.getText().toString();
-                if (validate(email, password))
+
+                // Sign in if all the fields are filled, else display an error message
+                if (FirebaseUtils.validate(findViewById(R.id.activity_main), email, password))
                     FirebaseUtils.signIn(getApplicationContext(), mAuth, email, password);
                 break;
         }
@@ -89,14 +87,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         registerButton.setOnClickListener(this);
     }
 
-    private boolean validate(String email, String password) {
-        boolean valid = !(TextUtils.isEmpty(email) ||
-                TextUtils.isEmpty(password));
-        if (!valid) {
-            Snackbar.make(findViewById(R.id.activity_register),
-                    "Required fields are empty",
-                    Snackbar.LENGTH_SHORT).show();
-        }
-        return valid;
-    }
 }
