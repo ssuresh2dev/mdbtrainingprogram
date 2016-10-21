@@ -4,20 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +14,15 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -93,7 +90,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         int id = v.getId();
         switch (id) {
             case R.id.interestedToggleButton:
-                updateInterested();
+                FirebaseUtils.updateInterested(dbRef, mUser);
                 break;
             case R.id.interestedButton:
                 Intent myIntent = new Intent(DetailActivity.this, InterestedActivity.class);
@@ -123,31 +120,6 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         getBitmap.execute(event.imageUrl);
         descriptionTextView.setText(event.description);
         interestedButton.setText(String.format(Locale.getDefault(), "%d people interested", event.numInterested));
-    }
-
-    private void updateInterested() {
-        dbRef.runTransaction(new Transaction.Handler() {
-            @Override
-            public Transaction.Result doTransaction(MutableData mutableData) {
-                Event e = mutableData.getValue(Event.class);
-                if (e == null)
-                    return Transaction.success(mutableData);
-                if (e.peopleInterested.contains(mUser.getEmail())) {
-                    e.numInterested -= 1;
-                    e.peopleInterested.remove(mUser.getEmail());
-                } else {
-                    e.numInterested += 1;
-                    e.peopleInterested.add(mUser.getEmail());
-                }
-                mutableData.setValue(e);
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
-
-            }
-        });
     }
 
     private class DownloadBitmapTask extends AsyncTask<String, Void, Bitmap> {
