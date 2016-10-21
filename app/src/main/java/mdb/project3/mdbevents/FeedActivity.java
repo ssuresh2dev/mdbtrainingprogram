@@ -56,7 +56,6 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
         eventNode.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Log.e("Count ", "" + snapshot.getChildrenCount());
                 Map<Event, String> eventToKey = new HashMap<>();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     Event event = postSnapshot.getValue(Event.class);
