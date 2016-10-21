@@ -54,6 +54,9 @@ class FeedViewController: UIViewController {
     
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moreInfo" {
