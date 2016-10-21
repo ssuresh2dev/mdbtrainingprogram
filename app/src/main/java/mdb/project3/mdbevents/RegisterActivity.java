@@ -1,5 +1,6 @@
 package mdb.project3.mdbevents;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -21,9 +22,9 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView registerTitle;
-    private EditText fullNameInput,
-            registerEmailInput,
-            registerPasswordInput;
+    private EditText fullNameInput;
+    private EditText registerEmailInput;
+    private EditText registerPasswordInput;
     private AppCompatButton signUpButton;
 
     private FirebaseAuth mAuth;
@@ -43,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
+                    startActivity(new Intent(RegisterActivity.this, FeedActivity.class));
                 }
             }
         };
@@ -67,9 +68,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.sign_up_button) {
-            createAccount(fullNameInput.getText().toString(),
-                    registerEmailInput.getText().toString(),
-                    registerPasswordInput.getText().toString());
+            String fullName = fullNameInput.getText().toString();
+            String email = registerEmailInput.getText().toString();
+            String password = registerPasswordInput.getText().toString();
+            // Create a user if all the fields are filled, else display an error message
+            if (FirebaseUtils.validate(findViewById(R.id.activity_register), fullName, email, password))
+                FirebaseUtils.createUser(getApplicationContext(), mAuth, fullName, email, password);
         }
     }
 
@@ -84,41 +88,5 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerTitle.setTypeface(customFont);
         registerPasswordInput.setTypeface(Typeface.DEFAULT);
         signUpButton.setOnClickListener(this);
-    }
-
-
-    private void createAccount(final String fullName, String email, String password) {
-        if (!validate(fullName, email, password))
-            return;
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                // If registering fails
-                if (task.isSuccessful()) {
-                    updateUserInfo(fullName);
-                } else {
-                    Toast.makeText(getApplicationContext(), R.string.auth_failed, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private boolean validate(String fullName, String email, String password) {
-        boolean valid = !(TextUtils.isEmpty(fullName) ||
-                TextUtils.isEmpty(email) ||
-                TextUtils.isEmpty(password));
-        if (!valid) {
-            Snackbar.make(findViewById(R.id.activity_register),
-                    "Required fields are empty",
-                    Snackbar.LENGTH_SHORT).show();
-        }
-        return valid;
-    }
-
-    private void updateUserInfo(String fullName) {
-        user = mAuth.getCurrentUser();
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(fullName).build();
-        user.updateProfile(profileUpdates);
     }
 }
