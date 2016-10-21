@@ -11,6 +11,9 @@ import java.util.List;
 
 /**
  * Created by kedarthakkar on 10/13/16.
+ *
+ * This class is an adapter for the recycler view which holds the list of everyone interested
+ * in a particular event.
  */
 
 public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.CustomViewHolder> {

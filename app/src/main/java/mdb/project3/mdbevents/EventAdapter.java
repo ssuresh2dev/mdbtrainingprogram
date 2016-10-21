@@ -16,6 +16,8 @@ import java.util.Locale;
 
 /**
  * Created by Kedar on 10/4/2016.
+ *
+ * This class is an adapter for the list of events in a recycler view used in FeedActivity.
  */
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHolder> {
@@ -36,6 +38,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHo
 
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, int position) {
+
         Event currEvent = eventList.get(position);
 
         // Set holders for TextViews to values of the current Event
@@ -60,6 +63,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.CustomViewHo
         TextView eventInterested;
 
         public CustomViewHolder(View view) {
+
             super(view);
 
             // Set the views within the holder to the corresponding XML attributes
