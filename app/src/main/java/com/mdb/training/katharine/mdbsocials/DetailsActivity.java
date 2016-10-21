@@ -42,6 +42,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private TextView eventName, date, author, description;
     private Button numInterested;
+    private int numInt;
     private ImageView eventPic;
     private CheckBox interested;
     private String uid;
@@ -117,6 +118,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         });
 
+        /* Gets and sets data from intents passed from FeedActivity */
         eventName = (TextView) findViewById(R.id.eventName);
         eventName.setText(getIntent().getExtras().getString("title"));
 
@@ -130,7 +132,8 @@ public class DetailsActivity extends AppCompatActivity {
         description.setText(getIntent().getExtras().getString("description"));
 
         numInterested = (Button) findViewById(R.id.button);
-        numInterested.setText("Interested: " + getIntent().getExtras().getInt("interested"));
+        numInt = getIntent().getExtras().getInt("interested");
+        numInterested.setText("Interested: " + numInt);
         interested = (CheckBox) findViewById(R.id.interested);
 
         /* Gets all the interested users for an activity and passes their names and emails to
@@ -239,6 +242,8 @@ public class DetailsActivity extends AppCompatActivity {
                                 if (map.get("name").equals(eventName.getText().toString()) && !interestedList.contains(uid)) {
                                     interestedList.add(uid);
                                     dbRef.child("Socials").child(dsp.getKey()).child("interested").setValue(interestedList);
+                                    numInt += 1;
+                                    numInterested.setText("Interested: " + numInt);
                                 }
                             }
 
@@ -265,6 +270,8 @@ public class DetailsActivity extends AppCompatActivity {
                                 if (map.get("name").equals(eventName.getText().toString()) && interestedList.contains(uid)) {
                                     interestedList.remove(uid);
                                     dbRef.child("Socials").child(dsp.getKey()).child("interested").setValue(interestedList);
+                                    numInt -= 1;
+                                    numInterested.setText("Interested: " + numInt);
                                 }
                             }
                         }
