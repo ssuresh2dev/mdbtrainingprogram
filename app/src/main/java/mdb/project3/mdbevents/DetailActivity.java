@@ -82,7 +82,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
+    /**
+     * Handles button presses on event page: updating the list of interested people if interestedToggleButton is pressed or opening
+     * the interested activity class if interestedButton is pressed.
+     */
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -120,6 +123,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         interestedButton.setText(String.format(Locale.getDefault(), "%d people interested", event.numInterested));
     }
 
+    /**
+     * Updates the number of and list of interested people for an event.
+     */
     private void updateInterested() {
         dbRef.runTransaction(new Transaction.Handler() {
             @Override
@@ -145,6 +151,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+
+    /**
+     * DownloadBitmapTask is an AsyncTask that downloads the bitmap of the image while the detail activity is loading,
+     * it also assigns the Palette to the given colors.
+     */
     private class DownloadBitmapTask extends AsyncTask<String, Void, Bitmap> {
 
         @Override

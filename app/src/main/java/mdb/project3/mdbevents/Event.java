@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Kedar on 10/4/2016.
+ * Event implements a way to manage user-created events that have descriptions.
+ *
+ * @author Emaan Hariri, Sayan Paul, Kedar Thakkar
+ * @since 10-4-2016
  */
 
 @IgnoreExtraProperties
