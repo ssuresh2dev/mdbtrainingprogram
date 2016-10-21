@@ -9,9 +9,11 @@
 import Foundation
 import FirebaseAuth
 
-struct User {
+class User {
+    
     let uid : String
     let email : String
+    
     
     init(userData : FIRUser) {
         uid = userData.uid
@@ -19,8 +21,9 @@ struct User {
         if let mail = userData.providerData.first?.email {
             email = mail
         } else {
-            email = ""
+            email = "error"
         }
+        
     }
     
     init (uid : String, email : String) {

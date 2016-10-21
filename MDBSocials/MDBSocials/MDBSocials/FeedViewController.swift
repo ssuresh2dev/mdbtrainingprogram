@@ -28,18 +28,10 @@ class FeedViewController: UIViewController {
         let ref = FIRDatabase.database().reference()
         ref.child("events").queryOrderedByKey().observe(.childAdded, with: {
             snapshot in
-            
-            let snapshotValue = snapshot.value as? NSDictionary
-            
-            let date = snapshotValue?["date"] as? String
-            let user = snapshotValue?["user"] as? String
-            let name = snapshotValue?["name"] as? String
-            let description = snapshotValue?["description"] as? String
-            let end = snapshotValue?["end"] as? String
-            let start = snapshotValue?["start"] as? String
-            let numPeople = snapshotValue?["numPeople"] as? String
-            
-            self.events.insert(Event(user: user!, eventName: name!, description: description!, date: date!, startTime: start!, endTime: end!), at: 0)
+            let eventKey = snapshot.key
+            let eventDict = snapshot.value as? [String: AnyObject]
+            let event = Event(key: eventKey, eventDict: eventDict!)
+            self.events.insert(event, at: 0)
         })
 
         
@@ -133,7 +125,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(events.count)
         return events.count
     }
     
@@ -151,7 +142,8 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDelegate
         feedCell.dateLabel.text = events[indexPath.row].date
         feedCell.eventNameLabel.text = events[indexPath.row].eventName
         feedCell.hostLabel.text = events[indexPath.row].user
-        feedCell.attendanceLabel.text = (String)(events[indexPath.row].numAtendees)
+        feedCell.attendanceLabel.text = "Interested: "+(String)(events[indexPath.row].numPeople)
+        
         
     }
     

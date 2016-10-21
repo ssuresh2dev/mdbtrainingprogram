@@ -8,8 +8,11 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
-class NewSocialViewController: UIViewController {
+class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+{
     
     var navBarLabel : UILabel!
     var backButton : UIButton!
@@ -29,17 +32,35 @@ class NewSocialViewController: UIViewController {
     var eventDescLabel : UILabel!
     var eventDescTextField : UITextField!
     var eventPicLabel : UILabel!
-    var eventPicButton : UIButton! //not done
+    var eventPicButton : UIButton!
     var createEventButton : UIButton!
     var ref : FIRDatabaseReference!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 207/255, green: 229/255, blue: 250/255, alpha: 1)
         ref = FIRDatabase.database().reference().child("events")
+        imagePicker.delegate = self
         setUpUI()
         // Do any additional setup after loading the view.
     }
+    
+//Images Setup---------------------------------------
+    var imageView: UIImageView!
+    
+    let imagePicker = UIImagePickerController()
+    
+    func accessCameraRoll(sender:UIButton){
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    
+ //------------------------------------------------
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,18 +99,7 @@ class NewSocialViewController: UIViewController {
         eventNameTextField.layer.borderColor = UIColor.gray.cgColor
         eventNameTextField.layer.borderWidth = 1
         view.addSubview(eventNameTextField)
-        
-//        eventLocationLabel = UILabel(frame: CGRect(x: view.frame.width * 0.0375, y: 64 + view.frame.height * 0.225, width: view.frame.width * 0.2, height: view.frame.height * 0.05))
-//        eventLocationLabel.text = "Location: "
-//        eventLocationLabel.font = UIFont.boldSystemFont(ofSize: 19.0)
-//        view.addSubview(eventLocationLabel)
-//        
-//        eventLocationTextField = UITextField(frame: CGRect(x: view.frame.width * 0.25, y: 64 + view.frame.height * 0.225, width: view.frame.width * 0.7, height: view.frame.height * 0.05))
-//        eventLocationTextField.layer.masksToBounds = true
-//        eventLocationTextField.layer.cornerRadius = 5
-//        eventLocationTextField.layer.borderColor = UIColor.gray.cgColor
-//        eventLocationTextField.layer.borderWidth = 1
-//        view.addSubview(eventLocationTextField)
+
         
         eventDateLabel = UILabel(frame: CGRect(x: view.frame.width * 0.3250, y: 64 + view.frame.height * 0.3, width: view.frame.width * 0.12, height: view.frame.height * 0.05))
         eventDateLabel.text = "Date: "
@@ -166,32 +176,76 @@ class NewSocialViewController: UIViewController {
         view.addSubview(eventDescTextField)
         
         
-//        eventPicLabel = UILabel(frame: CGRect(x: view.frame.width * 0.0375, y: 64 + view.frame.height * 0.73, width: view.frame.width * 0.275, height: view.frame.height * 0.05))
-//        eventPicLabel.text = "Pick an Image!: "
-//        eventPicLabel.font = UIFont.boldSystemFont(ofSize: 19.0)
-//        view.addSubview(eventPicLabel)
+        eventPicLabel = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: 64 + view.frame.height * 0.73, width: view.frame.width * 0.5, height: view.frame.height * 0.05))
+        eventPicLabel.text = "Pick an Image: "
+        eventPicLabel.font = UIFont.boldSystemFont(ofSize: 19.0)
+        view.addSubview(eventPicLabel)
         
+        
+        eventPicButton = UIButton(frame: CGRect(x: view.frame.width * 0.4, y: 64 + view.frame.height * 0.71, width: view.frame.width * 0.275, height: view.frame.height * 0.1))
+        eventPicButton.setImage(#imageLiteral(resourceName: "photoImage"), for: .normal)
+        eventPicButton.addTarget(self, action: #selector(accessCameraRoll), for: .touchUpInside)
+        view.addSubview(eventPicButton)
+        
+       
         
         
     }
     
     func createEvent() {
-        let event : [String : String] = ["name":eventNameTextField.text!, "date":eventDateTextField.text!, "start":eventStartTimeTextField.text!, "end":eventEndTimeTextField.text!, "description":eventDescTextField.text!, "numPeople":"0", "user":nameTextField.text!]
         let ref = FIRDatabase.database().reference()
-        ref.child("events").childByAutoId().setValue(event)
+        ref.child("events").childByAutoId().setValue(["name":eventNameTextField.text!, "date":eventDateTextField.text!, "start":eventStartTimeTextField.text!, "end":eventEndTimeTextField.text!, "description":eventDescTextField.text!, "numPeople": 0, "user":nameTextField.text!, "peopleInterested": ["Mohit"], /*"imageURL": clickedURL*/])
         dismiss(animated: true, completion: nil)
+        
+        
+
     }
     
     func backPressed() {
         dismiss(animated: true, completion: nil)
     }
+
+
     
-    func selectImage(sender: UIButton)
-    {
-        
+    
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+//        if let setImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+//            imageView.contentMode = .scaleAspectFit
+//            imageView.image = setImage
+//        }
+//        
+//        var data = NSData()
+//        data = UIImageJPEGRepresentation(imageView.image!, 0.8)! as NSData
+//        
+//        var clickedURL: URL?
+//        let uploadTask = imageRef.put(data as Data, metadata: nil) { metadata, error in
+//            if (error != nil) {
+//                
+//            } else {
+//                
+//                clickedURL = metadata!.downloadURL()
+//            }
+//            
+//            uniqueEventRef.child("imageURL").setValue(imageURL?.absoluteString){ (error, snap) in
+//                
+//            }
+//            
+//        }
+//        
+//        dismiss(animated: true, completion: nil)
+//    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
-    
-    
+
+}
+
+
+
+
+
+
     /*
      // MARK: - Navigation
      // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -201,4 +255,4 @@ class NewSocialViewController: UIViewController {
      }
      */
     
-}
+

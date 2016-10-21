@@ -33,7 +33,7 @@ class SignUpViewController: UIViewController {
     //Should Create a new account
     func createAccountPressed(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+        FIRAuth.auth()?.createUser(withEmail: email, password: password,  completion: { (user, error) in
             if let error = error{
                 print(error)
                 return
@@ -75,7 +75,7 @@ class SignUpViewController: UIViewController {
         //add sign up labels
         signUpLabel = UILabel(frame: CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.1, width: view.frame.width * 0.8, height: view.frame.height * 0.15))
         signUpLabel.text = "Sign Up"
-        signUpLabel.textColor = UIColor.white
+        signUpLabel.textColor = Constants.textColor
         signUpLabel.textAlignment = .center
         signUpLabel.font = UIFont(name: signUpLabel.font.fontName, size: 50)
         signUpLabel.backgroundColor = UIColor(red: 41/255, green: 70/255, blue: 164/255, alpha: 0.9)
@@ -86,7 +86,7 @@ class SignUpViewController: UIViewController {
         //add "Full Name: " label
         nameLabel = UILabel(frame: CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.3, width: view.frame.width * 0.275, height: view.frame.height * 0.05))
         nameLabel.text = "Full Name: "
-        nameLabel.textColor = UIColor.white
+        nameLabel.textColor = Constants.textColor
         nameLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         nameLabel.font = UIFont(name: nameLabel.font.fontName, size: 20)
         view.addSubview(nameLabel)
@@ -102,7 +102,7 @@ class SignUpViewController: UIViewController {
         //add username label
         usernameLabel = UILabel(frame: CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.4, width: view.frame.width * 0.3, height: view.frame.height * 0.05))
         usernameLabel.text = "Username: "
-        usernameLabel.textColor = UIColor.white
+        usernameLabel.textColor = Constants.textColor
         usernameLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         usernameLabel.font = UIFont(name: usernameLabel.font.fontName, size: 20)
         view.addSubview(usernameLabel)
@@ -118,7 +118,7 @@ class SignUpViewController: UIViewController {
         //add email label
         emailLabel = UILabel(frame: CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.5, width: view.frame.width * 0.15, height: view.frame.height * 0.05))
         emailLabel.text = "Email: "
-        emailLabel.textColor = UIColor.white
+        emailLabel.textColor = Constants.textColor
         emailLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         emailLabel.font = UIFont(name: emailLabel.font.fontName, size: 20)
         view.addSubview(emailLabel)
@@ -134,7 +134,7 @@ class SignUpViewController: UIViewController {
         //add password label
         passwordLabel = UILabel(frame: CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.6, width: view.frame.width * 0.275, height: view.frame.height * 0.05))
         passwordLabel.text = "Password: "
-        passwordLabel.textColor = UIColor.white
+        passwordLabel.textColor = Constants.textColor
         passwordLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         passwordLabel.font = UIFont(name: passwordLabel.font.fontName, size: 20)
         view.addSubview(passwordLabel)
@@ -159,7 +159,7 @@ class SignUpViewController: UIViewController {
         //add create account button
         createAccountButton = UIButton(frame: CGRect(x: view.frame.width * 0.1, y: view.frame.height * 0.75, width: view.frame.width * 0.8, height: view.frame.height * 0.15))
         createAccountButton.setTitle("Create an Account!", for: .normal)
-        createAccountButton.backgroundColor = UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1)
+        createAccountButton.backgroundColor = Constants.goldBackground
         createAccountButton.setTitleColor(UIColor.white, for: .normal)
         createAccountButton.layer.cornerRadius = 10
         createAccountButton.addTarget(self, action: #selector(createAccountPressed), for: .touchUpInside)

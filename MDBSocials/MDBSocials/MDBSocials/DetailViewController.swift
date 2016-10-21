@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class DetailViewController: UIViewController {
     
@@ -20,6 +21,7 @@ class DetailViewController: UIViewController {
     var eventOrganizerAndNumPpl : UILabel!
     var eventDescription : UILabel!
     var event : Event!
+    var interestButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -50,32 +52,41 @@ class DetailViewController: UIViewController {
         eventName.clipsToBounds = true
         eventName.layer.cornerRadius = 10
         eventName.text = "Event: " + event.eventName
-//        eventName.backgroundColor = UIColor.black
         view.addSubview(eventName)
         
-        eventDate = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.525, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
-//        eventDate.backgroundColor = UIColor.black
-        eventDate.text = "Date: " + event.date
+        eventDate = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.45, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
+        eventDate.text = event.date
         eventDate.clipsToBounds = true
         eventDate.layer.cornerRadius = 10
         view.addSubview(eventDate)
         
-        eventOrganizerAndNumPpl = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.65, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
-//        eventOrganizerAndNumPpl.backgroundColor = UIColor.black
-        eventOrganizerAndNumPpl.text = "Organizer: " + event.user + "  RSVP'd: " + event.numAtendees
+        eventOrganizerAndNumPpl = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.50, width: view.frame.width * 0.9, height: view.frame.height * 0.1))
+        eventOrganizerAndNumPpl.text = event.user + "  RSVP'd: " + String(event.numPeople)
         eventOrganizerAndNumPpl.clipsToBounds = true
         eventOrganizerAndNumPpl.layer.cornerRadius = 10
         eventOrganizerAndNumPpl.lineBreakMode = NSLineBreakMode.byWordWrapping
         eventOrganizerAndNumPpl.numberOfLines = 0
         view.addSubview(eventOrganizerAndNumPpl)
         
-        eventDescription = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.725, width: view.frame.width * 0.9, height: view.frame.height * 0.225))
+        eventDescription = UILabel(frame: CGRect(x: view.frame.width * 0.05, y: view.frame.height * 0.55, width: view.frame.width * 0.9, height: view.frame.height * 0.225))
         eventDescription.text = event.description
         eventDescription.clipsToBounds = true
         eventDescription.layer.cornerRadius = 10
         eventDescription.lineBreakMode = NSLineBreakMode.byWordWrapping
         eventDescription.numberOfLines = 0
         view.addSubview(eventDescription)
+        
+        interestButton = UIButton(frame: CGRect(x: view.frame.width*0.2, y: view.frame.height*0.75, width: view.frame.width*0.6, height: view.frame.height*0.1))
+        interestButton.setTitle("Interested!", for: .normal)
+        interestButton.setTitleColor(UIColor.white, for: .normal)
+        interestButton.backgroundColor = Constants.goldBackground
+        interestButton.layer.masksToBounds = true
+        interestButton.layer.cornerRadius = 10
+        view.addSubview(interestButton)
+        //Sets button to the function addInterest
+       interestButton.addTarget(self, action: #selector(respond), for: UIControlEvents.touchUpInside)
+       //interestButton.addTarget(self, action: #selector(addInterestedUser), for: UIControlEvents.touchUpInside)
+
     }
     
     func backPressed() {
@@ -86,6 +97,33 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    enum GoingStatus{
+        case interested
+        case notResponded
+    }
+    
+    var response = GoingStatus.notResponded
+    
+    func respond(){
+        if response == .notResponded{
+            
+            response = .interested
+            event.numPeople+=1
+        }
+        else{
+            response = .notResponded
+            event.numPeople-=1
+        }
+        let ref = FIRDatabase.database().reference()
+        ref.child("events/"+event.eventID+"/numPeople").setValue(event.numPeople)
+    }
+            
+        
+
+        
+    
+    
     
     
     /*

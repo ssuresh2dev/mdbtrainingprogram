@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
         //Creates Title
         MDBLabel = UILabel(frame: CGRect(x: view.frame.width*0.1, y: view.frame.height*0.1, width: view.frame.width*0.8, height: view.frame.height*0.15))
         MDBLabel.text = "MDB Socials"
-        MDBLabel.textColor = UIColor.white
+        MDBLabel.textColor = Constants.textColor
         MDBLabel.textAlignment = .center
         MDBLabel.font = UIFont(name: MDBLabel.font.fontName, size: 45)
         MDBLabel.backgroundColor = UIColor(red: 41/255, green: 70/255, blue: 164/255, alpha: 0.9)
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
         //Creates UserName
         emailLabel = UILabel(frame: CGRect(x: view.frame.width*0.15, y: MDBLabel.frame.height+view.frame.height*0.2, width: view.frame.width*0.4, height: view.frame.height*0.1))
         emailLabel.text = "Email:"
-        emailLabel.textColor = UIColor.white
+        emailLabel.textColor = Constants.textColor
         emailLabel.font = UIFont(name: MDBLabel.font.fontName, size: 40)
         emailLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         view.addSubview(emailLabel)
@@ -58,21 +58,21 @@ class LoginViewController: UIViewController {
         //Creates Password
         passLabel = UILabel(frame: CGRect(x: view.frame.width*0.15, y: MDBLabel.frame.height+view.frame.height*0.3, width: view.frame.width*0.4, height: view.frame.height*0.1))
         passLabel.text = "Password:"
-        passLabel.textColor = UIColor.white
+        passLabel.textColor = Constants.textColor
         passLabel.font = UIFont(name: MDBLabel.font.fontName, size: 40)
         passLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         view.addSubview(passLabel)
         
         //Creates Username Text Field
         emailText = UITextField(frame: CGRect(x: view.frame.width*0.46, y: MDBLabel.frame.height+view.frame.height*0.23, width: view.frame.width*0.4, height: view.frame.height*0.04))
-        emailText.backgroundColor = UIColor.white
+        emailText.backgroundColor = Constants.textColor
         emailText.layer.masksToBounds = true
         emailText.layer.cornerRadius = 10
         view.addSubview(emailText)
         
         //Creates Password Text Field
         passText = UITextField(frame: CGRect(x: view.frame.width*0.46, y: MDBLabel.frame.height+view.frame.height*0.33, width: view.frame.width*0.4, height: view.frame.height*0.04))
-        passText.backgroundColor = UIColor.white
+        passText.backgroundColor = Constants.textColor
         passText.layer.masksToBounds = true
         passText.layer.cornerRadius = 10
         view.addSubview(passText)
@@ -80,8 +80,8 @@ class LoginViewController: UIViewController {
         //Creates Login Button
         logInButton = UIButton(frame: CGRect(x: view.frame.width*0.2, y: view.frame.height*0.6, width: view.frame.width*0.6, height: view.frame.height*0.1))
         logInButton.setTitle("Log In", for: .normal)
-        logInButton.setTitleColor(UIColor.white, for: .normal)
-        logInButton.backgroundColor = UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 0.9)
+        logInButton.setTitleColor(Constants.textColor, for: .normal)
+        logInButton.backgroundColor = Constants.goldBackground
         logInButton.layer.masksToBounds = true
         logInButton.layer.cornerRadius = 10
         view.addSubview(logInButton)
@@ -91,7 +91,7 @@ class LoginViewController: UIViewController {
         //Creates CreateAnAccount Button
         createButton = UIButton(frame: CGRect(x: view.frame.width*0.25, y: view.frame.height*0.7, width: view.frame.width*0.5, height: view.frame.height*0.1))
         createButton.setTitle("Create An Account", for: .normal)
-        createButton.setTitleColor(UIColor.white, for: .normal)
+        createButton.setTitleColor(Constants.textColor, for: .normal)
         view.addSubview(createButton)
         //Sets button to function createClicked
         createButton.addTarget(self, action:#selector(createClicked), for: UIControlEvents.touchUpInside)

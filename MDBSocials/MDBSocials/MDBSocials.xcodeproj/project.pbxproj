@@ -13,6 +13,7 @@
 		1476086D1DAF9F4400F02C71 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1476086C1DAF9F4400F02C71 /* AppState.swift */; };
 		149F8DA81DAF5ACE0015C9B8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 149F8DA71DAF5ACE0015C9B8 /* GoogleService-Info.plist */; };
 		8D1BC1991C6E09EFC055EA80 /* Pods_MDBSocials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB6E7D93FE289E996794B80 /* Pods_MDBSocials.framework */; };
+		E45771701DBA1FAA004E81DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457716F1DBA1FAA004E81DE /* Constants.swift */; };
 		E4EDAE351DA1E31300C4DC31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EDAE341DA1E31300C4DC31 /* AppDelegate.swift */; };
 		E4EDAE371DA1E31300C4DC31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EDAE361DA1E31300C4DC31 /* LoginViewController.swift */; };
 		E4EDAE3A1DA1E31300C4DC31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4EDAE381DA1E31300C4DC31 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		149F8DA71DAF5ACE0015C9B8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BB6E7D93FE289E996794B80 /* Pods_MDBSocials.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDBSocials.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE51ACC30EF39E0EE12DAFCD /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
+		E457716F1DBA1FAA004E81DE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E4EDAE311DA1E31300C4DC31 /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4EDAE341DA1E31300C4DC31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4EDAE361DA1E31300C4DC31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,42 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E457716E1DBA172D004E81DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				147361171DB04DB50058BE6D /* User.swift */,
+				1476086A1DAF8A9500F02C71 /* Event.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E45771711DBA9C08004E81DE /* Login/Signup */ = {
+			isa = PBXGroup;
+			children = (
+				E4EDAE361DA1E31300C4DC31 /* LoginViewController.swift */,
+				E4EDAE621DA1E6D800C4DC31 /* SignUpViewController.swift */,
+			);
+			name = Login/Signup;
+			sourceTree = "<group>";
+		};
+		E45771721DBA9C0E004E81DE /* FeedView/Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E4EDAE641DA1E71D00C4DC31 /* FeedViewController.swift */,
+				147608681DAF872800F02C71 /* FeedCollectionViewCell.swift */,
+			);
+			name = FeedView/Cell;
+			sourceTree = "<group>";
+		};
+		E45771731DBA9C12004E81DE /* Creating/Viewing Socials */ = {
+			isa = PBXGroup;
+			children = (
+				E4EDAE661DA1E72900C4DC31 /* DetailViewController.swift */,
+				E4EDAE681DA1E73700C4DC31 /* NewSocialViewController.swift */,
+			);
+			name = "Creating/Viewing Socials";
+			sourceTree = "<group>";
+		};
 		E4EDAE281DA1E31100C4DC31 = {
 			isa = PBXGroup;
 			children = (
@@ -147,15 +185,12 @@
 				E4EDAE3D1DA1E31300C4DC31 /* LaunchScreen.storyboard */,
 				E4EDAE3B1DA1E31300C4DC31 /* Assets.xcassets */,
 				E4EDAE341DA1E31300C4DC31 /* AppDelegate.swift */,
-				E4EDAE361DA1E31300C4DC31 /* LoginViewController.swift */,
-				E4EDAE641DA1E71D00C4DC31 /* FeedViewController.swift */,
-				147608681DAF872800F02C71 /* FeedCollectionViewCell.swift */,
-				E4EDAE661DA1E72900C4DC31 /* DetailViewController.swift */,
-				E4EDAE681DA1E73700C4DC31 /* NewSocialViewController.swift */,
-				E4EDAE621DA1E6D800C4DC31 /* SignUpViewController.swift */,
 				1476086C1DAF9F4400F02C71 /* AppState.swift */,
-				147361171DB04DB50058BE6D /* User.swift */,
-				1476086A1DAF8A9500F02C71 /* Event.swift */,
+				E457716E1DBA172D004E81DE /* Model */,
+				E45771711DBA9C08004E81DE /* Login/Signup */,
+				E45771731DBA9C12004E81DE /* Creating/Viewing Socials */,
+				E45771721DBA9C0E004E81DE /* FeedView/Cell */,
+				E457716F1DBA1FAA004E81DE /* Constants.swift */,
 			);
 			path = MDBSocials;
 			sourceTree = "<group>";
@@ -373,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1476086B1DAF8A9500F02C71 /* Event.swift in Sources */,
+				E45771701DBA1FAA004E81DE /* Constants.swift in Sources */,
 				E4EDAE631DA1E6D800C4DC31 /* SignUpViewController.swift in Sources */,
 				E4EDAE371DA1E31300C4DC31 /* LoginViewController.swift in Sources */,
 				1476086D1DAF9F4400F02C71 /* AppState.swift in Sources */,
