@@ -21,7 +21,8 @@ class FeedViewController: UIViewController {
     var selectedEvent: Event?
     var currIndexPath: Int?
 
-    
+    let currUser = FIRAuth.auth()?.currentUser?.uid
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDatabase()
@@ -135,6 +136,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         for subview in cell.contentView.subviews{
             subview.removeFromSuperview()
         }
+        cell.delegate = self
         cell.awakeFromNib()
         return cell
 
@@ -167,7 +169,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                     eventCell.titleLabel.text = event.eventTitle
                     eventCell.rsvpLabel.text = "+\(event.rsvp.count)"
                     eventCell.posterLabel.text = event.posterName
-
+                    eventCell.event = event
                 }
                
                 //eventCell.backgroundColor = self.colorAtIndex(currIndex: indexPath.row)
@@ -233,4 +235,16 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
 //}
 
 
+}
+
+
+
+extension FeedViewController: EventTableViewCellDelegate{
+    
+    func rsvp(cell: EventTableViewCell){
+        cell.event?.rsvp.append((currUser as? NSString)!)
+        let count = (Int(cell.rsvpLabel.text!))! + 1
+        print(count)
+        cell.rsvpLabel.text = "+\(count)"
+    }
 }

@@ -17,21 +17,26 @@ class EventTableViewCell: UITableViewCell {
     var posterLabel: UILabel!
     var backgroundImage: UIImage!
     
+    
+    var rsvpButton: UIButton!
+    var delegate: EventTableViewCellDelegate? = nil
+    
+    
+    var event: Event?
+    
     override func awakeFromNib() {        
         backgroundClear = UIImageView(frame: CGRect(x: 38, y: 12.5, width: 300, height: 57))
         backgroundClear.image = #imageLiteral(resourceName: "ClearBacking")
         backgroundClear.contentMode = UIViewContentMode.scaleAspectFit
         contentView.addSubview(backgroundClear)
         
-
+        
         defaultPostLabel = UIImageView(frame: CGRect(x: 47, y: 48.5, width: 60, height: 17))
         defaultPostLabel.image = #imageLiteral(resourceName: "PostedBy")
         defaultPostLabel.contentMode = UIViewContentMode.scaleAspectFit
         contentView.addSubview(defaultPostLabel)
         
-
-        titleLabel = UILabel(frame: CGRect(x: 48, y: 17.5, width: 225, height: 29))
-        titleLabel.textAlignment = NSTextAlignment.left
+        titleLabel = MDBSocialsUtils.makeLabel(frame: CGRect(x: 48, y: 17.5, width: 225, height: 29))
         titleLabel.font = UIFont(name: "Bebas", size: 22)
         contentView.addSubview(titleLabel)
         
@@ -40,6 +45,10 @@ class EventTableViewCell: UITableViewCell {
         rsvpLabel.font = UIFont(name: "Avenir-Book", size: 28)
         contentView.addSubview(rsvpLabel)
         
+        
+        rsvpButton = UIButton(frame: CGRect(x: 281, y: 17.5, width: 100, height: 38))
+        rsvpButton.addTarget(self, action:#selector(rsvp), for: .touchUpInside)
+        contentView.addSubview(rsvpButton)
 
         posterLabel = UILabel(frame:CGRect(x: 112, y: 48, width: 167, height: 16))
         posterLabel.textAlignment = NSTextAlignment.left
@@ -49,6 +58,10 @@ class EventTableViewCell: UITableViewCell {
         
         super.awakeFromNib()
         // Initialization code
+    }
+    func rsvp(){
+        print("buttonclicked")
+        delegate?.rsvp(cell : self)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -10,6 +10,8 @@
 		151AEDF61DA5A41F006FD875 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AEDF51DA5A41F006FD875 /* EventTableViewCell.swift */; };
 		151AEDF81DA5AFA9006FD875 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AEDF71DA5AFA9006FD875 /* CreateEventViewController.swift */; };
 		152094A61DBAB0F700991C5E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152094A51DBAB0F700991C5E /* User.swift */; };
+		152094A81DBACA4700991C5E /* EventTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152094A71DBACA4700991C5E /* EventTableViewCellDelegate.swift */; };
+		152094AA1DBACBF400991C5E /* MDBSocialsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152094A91DBACBF400991C5E /* MDBSocialsUtils.swift */; };
 		1526B3101DAF62A200C153C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1526B30F1DAF62A200C153C0 /* GoogleService-Info.plist */; };
 		1528DC211DADD327000BE7D7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1528DC201DADD327000BE7D7 /* Constants.swift */; };
 		152F0AE21DA2454C00CB7D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F0AE11DA2454C00CB7D34 /* AppDelegate.swift */; };
@@ -51,6 +53,8 @@
 		151AEDF51DA5A41F006FD875 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		151AEDF71DA5AFA9006FD875 /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		152094A51DBAB0F700991C5E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		152094A71DBACA4700991C5E /* EventTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		152094A91DBACBF400991C5E /* MDBSocialsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDBSocialsUtils.swift; sourceTree = "<group>"; };
 		1526B30F1DAF62A200C153C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1528DC201DADD327000BE7D7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		152F0ADE1DA2454C00CB7D34 /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,10 +147,12 @@
 				1528DC201DADD327000BE7D7 /* Constants.swift */,
 				1544CFBB1DB0939C0004C424 /* Event.swift */,
 				151AEDF51DA5A41F006FD875 /* EventTableViewCell.swift */,
+				152094A71DBACA4700991C5E /* EventTableViewCellDelegate.swift */,
 				1526B30F1DAF62A200C153C0 /* GoogleService-Info.plist */,
 				152F0AEA1DA2454C00CB7D34 /* LaunchScreen.storyboard */,
 				152F0B151DA3942C00CB7D34 /* SignupViewController.swift */,
 				8BE4B3DB1DAE249E00248437 /* DetailViewController.swift */,
+				152094A91DBACBF400991C5E /* MDBSocialsUtils.swift */,
 				152094A51DBAB0F700991C5E /* User.swift */,
 				8B4351D21DB9E5690023F0FB /* ModalViewController.swift */,
 				8B4351D41DB9EEBE0023F0FB /* DisplayNameTableViewCell.swift */,
@@ -387,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BE4B3DC1DAE249E00248437 /* DetailViewController.swift in Sources */,
+				152094AA1DBACBF400991C5E /* MDBSocialsUtils.swift in Sources */,
 				151AEDF61DA5A41F006FD875 /* EventTableViewCell.swift in Sources */,
 				152F0B141DA393B700CB7D34 /* LoginViewController.swift in Sources */,
 				8B4351D31DB9E5690023F0FB /* ModalViewController.swift in Sources */,
@@ -398,6 +405,7 @@
 				152094A61DBAB0F700991C5E /* User.swift in Sources */,
 				152F0B161DA3942C00CB7D34 /* SignupViewController.swift in Sources */,
 				152F0AE21DA2454C00CB7D34 /* AppDelegate.swift in Sources */,
+				152094A81DBACA4700991C5E /* EventTableViewCellDelegate.swift in Sources */,
 				1528DC211DADD327000BE7D7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
