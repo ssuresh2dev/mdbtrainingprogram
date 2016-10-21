@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "473A0E2D13E9B7E3DE38220C909BBA333020FA26",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "473A0E2D13E9B7E3DE38220C909BBA333020FA26" : 9223372036854775807,
+    "20E9E037F06F7043CFA9FDAE7777590D3E0B7D9A" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9F09DD92-A04A-4719-8EC1-4C07E6EF0B72",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "473A0E2D13E9B7E3DE38220C909BBA333020FA26" : "MDBSocials\/",
+    "20E9E037F06F7043CFA9FDAE7777590D3E0B7D9A" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MDBSocials",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MDBSocials.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jessxcachen\/MobileDevs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "20E9E037F06F7043CFA9FDAE7777590D3E0B7D9A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jessxcachen\/MDBSocials.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "473A0E2D13E9B7E3DE38220C909BBA333020FA26"
+    }
+  ]
+}
