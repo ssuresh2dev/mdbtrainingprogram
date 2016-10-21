@@ -23,8 +23,12 @@ import com.google.firebase.database.Transaction;
  * Created by Sayan on 10/19/2016.
  */
 
+/**
+ *FirebaseUtils manages all Firebase related activity for the application.
+ */
 public class FirebaseUtils {
 
+    //sign in user to application
     public static void signIn(final Context context, FirebaseAuth mAuth, String email, String password) {
         Toast.makeText(context, "Logging in...", Toast.LENGTH_SHORT).show();
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -36,6 +40,7 @@ public class FirebaseUtils {
         });
     }
 
+    //registers a user in firebaseAuth
     public static void createUser(final Context context, final FirebaseAuth mAuth, final String fullName,
                                   String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -51,6 +56,7 @@ public class FirebaseUtils {
         });
     }
 
+    //validates all input fields are filled before completing a form
     public static boolean validate(View v, String... inputs) {
         boolean valid = true;
         for (String i : inputs) {
@@ -66,6 +72,7 @@ public class FirebaseUtils {
         return valid;
     }
 
+    //handles updating the list and number of interested people for an event
     public static void updateInterested(DatabaseReference dbRef, final FirebaseUser mUser) {
         dbRef.runTransaction(new Transaction.Handler() {
             @Override
@@ -91,6 +98,7 @@ public class FirebaseUtils {
         });
     }
 
+    //adds a full name for a user
     private static void updateUserInfo(FirebaseAuth mAuth, String fullName) {
         FirebaseUser user = mAuth.getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
