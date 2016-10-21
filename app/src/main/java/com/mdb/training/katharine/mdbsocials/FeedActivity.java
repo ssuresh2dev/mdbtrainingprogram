@@ -104,7 +104,8 @@ public class FeedActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout:
-                mAuth.signOut();
+                FirebaseUtils fb = new FirebaseUtils(mAuth);
+                fb.signOut();
                 startActivity(new Intent(this, MainActivity.class));
                 break;
         }

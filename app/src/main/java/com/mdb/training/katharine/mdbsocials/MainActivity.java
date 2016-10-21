@@ -81,18 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void signIn() {
         String em = email.getText().toString();
         String pass = password.getText().toString();
-        if(em.length()==0 || pass.length()==0){
-            Toast.makeText(MainActivity.this, "Sign in problem", Toast.LENGTH_LONG).show();
-            return;
-        }
-        mAuth.signInWithEmailAndPassword(em, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Sign in problem", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        FirebaseUtils fb = new FirebaseUtils(mAuth);
+        fb.signIn(this, em, pass);
     }
 
 }

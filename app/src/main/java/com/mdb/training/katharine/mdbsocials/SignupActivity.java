@@ -57,11 +57,13 @@ public class SignupActivity extends AppCompatActivity {
         String pass = password.getText().toString();
 
         if(n.length()==0 || em.length()==0 || password.length()==0){
-            Toast.makeText(SignupActivity.this, "Sign up failed, please fill in all blanks.", Toast.LENGTH_LONG).show();
+            Toast.makeText(SignupActivity.this, "Sign up failed, please fill in all blanks.",
+                    Toast.LENGTH_LONG).show();
             return;
         }
         final User user = new User(n, em);
-        mAuth.createUserWithEmailAndPassword(em, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(em, pass)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
@@ -73,7 +75,8 @@ public class SignupActivity extends AppCompatActivity {
                     mDatabase.child("Users").push().setValue(post);
                     startActivity(new Intent(SignupActivity.this, FeedActivity.class));
                 } else if (!(task.isSuccessful())) {
-                    Toast.makeText(SignupActivity.this, "Sign up problem", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignupActivity.this, "Sign up problem",
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });

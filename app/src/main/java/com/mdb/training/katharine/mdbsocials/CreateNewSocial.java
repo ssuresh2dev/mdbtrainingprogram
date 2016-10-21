@@ -62,7 +62,6 @@ public class CreateNewSocial extends AppCompatActivity implements View.OnClickLi
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto, 0);
-                Toast.makeText(this, "Photo uploaded", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

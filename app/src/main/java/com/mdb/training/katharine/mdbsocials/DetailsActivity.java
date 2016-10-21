@@ -117,7 +117,12 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
         });
 
-        /* Gets and sets data from intents passed from FeedActivity */
+        setData();
+        checkInterestedBox();
+    }
+
+    /* Gets and sets data from intents passed from FeedActivity */
+    public void setData() {
         eventName = (TextView) findViewById(R.id.eventName);
         eventName.setText(getIntent().getExtras().getString("title"));
 
@@ -137,8 +142,12 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
         interested = (CheckBox) findViewById(R.id.interested);
 
-        /*  * checks interested box if the user is interested
-         *  * sets interestedUids to the initial list of interested uids */
+    }
+
+    /*  * Checks if current user is interested in current social
+        * Sets interestedUids to initial list of interested users
+     */
+    public void checkInterestedBox() {
         dbRef.child("Socials").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -162,9 +171,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
-
     }
 
+    /* Handles pressing the Interested people button */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -183,7 +192,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                                 interestedEmails.add((String) map.get("email"));
                             }
                         }
-                        Intent intent = new Intent(getApplicationContext(),InterestedActivity.class);
+                        Intent intent = new Intent(DetailsActivity.this, InterestedActivity.class);
                         intent.putExtra("interestedName", interestedNames);
                         intent.putExtra("interestedEmail", interestedEmails);
                         startActivity(intent);
@@ -203,80 +212,85 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
-
         // Check which checkbox was clicked
         switch(view.getId()) {
             case R.id.interested:
                 if (checked) {
-                    dbRef.child("Socials").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot dsp: dataSnapshot.getChildren()) {
-                                HashMap<String, Object> map =
-                                        (HashMap<String, Object>) dsp.getValue();
-                                // list of interested people for the current social
-                                ArrayList<String> interestedList =
-                                        (ArrayList<String>) map.get("interested");
-                                if (interestedList == null) {
-                                    interestedList = new ArrayList<String>();
-                                }
-                                /* If the social's name matches the current social's name and the
-                                    current user is not already included in interestedList,
-                                    add the current user's uid to the social's list of
-                                    interested users */
-                                if (map.get("name").equals(eventName.getText().toString()) &&
-                                        !interestedList.contains(uid)) {
-                                    interestedList.add(uid);
-                                    dbRef.child("Socials").child(dsp.getKey()).child("interested")
-                                            .setValue(interestedList);
-                                    numInt += 1;
-                                    numInterested.setText("Interested: " + numInt);
-                                }
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
+                    checkInterested();
                 } else {
-                    dbRef.child("Socials").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for (DataSnapshot dsp: dataSnapshot.getChildren()) {
-                                HashMap<String, Object> map =
-                                        (HashMap<String, Object>) dsp.getValue();
-                                ArrayList<String> interestedList =
-                                        (ArrayList<String>) map.get("interested");
-                                if (interestedList == null) {
-                                    interestedList = new ArrayList<String>();
-                                }
-                                /* If the social's name == current social's name and
-                                    current user is in interestedList,
-                                    remove the current user's uid from interestedList */
-                                if (map.get("name").equals(eventName.getText().toString()) &&
-                                        interestedList.contains(uid)) {
-                                    interestedList.remove(uid);
-                                    dbRef.child("Socials").child(dsp.getKey()).child("interested")
-                                            .setValue(interestedList);
-                                    numInt -= 1;
-                                    numInterested.setText("Interested: " + numInt);
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
+                    uncheckInterested();
                 }
                 break;
         }
     }
 
+    /* Helper function for when a user checks the interested box */
+    public void checkInterested() {
+        dbRef.child("Socials").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dsp: dataSnapshot.getChildren()) {
+                    HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                    // list of interested people for the current social
+                    ArrayList<String> interestedList = (ArrayList<String>) map.get("interested");
+                    if (interestedList == null) {
+                        interestedList = new ArrayList<String>();
+                    }
+                    /* If the social's name matches the current social's name and the
+                        current user is not already included in interestedList,
+                        add the current user's uid to the social's list of interested users */
+                    if (map.get("name").equals(eventName.getText().toString()) &&
+                            !interestedList.contains(uid)) {
+                        interestedList.add(uid);
+                        dbRef.child("Socials").child(dsp.getKey()).child("interested")
+                                .setValue(interestedList);
+                        numInt += 1;
+                        numInterested.setText("Interested: " + numInt);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    /* Helper function for when a user unchecks the interested box */
+    public void uncheckInterested() {
+        dbRef.child("Socials").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dsp: dataSnapshot.getChildren()) {
+                    HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                    ArrayList<String> interestedList = (ArrayList<String>) map.get("interested");
+                    if (interestedList == null) {
+                        interestedList = new ArrayList<String>();
+                    }
+                    /* If the social's name == current social's name and
+                        current user is in interestedList,
+                        remove the current user's uid from interestedList */
+                    if (map.get("name").equals(eventName.getText().toString()) &&
+                            interestedList.contains(uid)) {
+                        interestedList.remove(uid);
+                        dbRef.child("Socials").child(dsp.getKey()).child("interested")
+                                .setValue(interestedList);
+                        numInt -= 1;
+                        numInterested.setText("Interested: " + numInt);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    /* When a user presses back, recycle to fix memory issues */
     public void onBackPressed(){
         bitmap.recycle();
         bitmap=null;
@@ -295,7 +309,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout:
-                mAuth.signOut();
+                FirebaseUtils fb = new FirebaseUtils(mAuth);
+                fb.signOut();
                 startActivity(new Intent(this, MainActivity.class));
         }
         return super.onOptionsItemSelected(item);

@@ -46,7 +46,8 @@ public class InterestedActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.logout:
-                mAuth.signOut();
+                FirebaseUtils fb = new FirebaseUtils(mAuth);
+                fb.signOut();
                 startActivity(new Intent(this, MainActivity.class));
         }
         return super.onOptionsItemSelected(item);
