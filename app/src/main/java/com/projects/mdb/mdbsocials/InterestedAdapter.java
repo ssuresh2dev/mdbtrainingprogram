@@ -16,6 +16,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 /**
  * Created by Aayush on 10/12/2016.
+ * A simple adapter to list the email addresses of those who have said they are interested
  */
 
 public class InterestedAdapter extends RecyclerView.Adapter<InterestedAdapter.CustomViewHolder> {

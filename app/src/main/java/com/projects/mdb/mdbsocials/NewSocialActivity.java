@@ -20,6 +20,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
+/**
+ * Creates a new social given the image and other information
+ */
 public class NewSocialActivity extends AppCompatActivity {
 
     private Uri file;
@@ -41,37 +44,36 @@ public class NewSocialActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+        //TODO this looks messy tho
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                String key = ref.child("socials").push().getKey();
+                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                final String key = ref.child("socials").push().getKey();
                 StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://mdbsocials-700a9.appspot.com");
                 StorageReference riversRef = storageRef.child(key + ".png");
                 riversRef.putFile(file).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
+                        Toast.makeText(NewSocialActivity.this, "need an image!", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        String name = nameEditText.getText().toString();
+                        String date = dateEditText.getText().toString();
+                        String description = descriptionEditText.getText().toString();
+                        String creator = hostEditText.getText().toString();
+                        Intent intent = new Intent(getApplicationContext(), ListActivity.class);
+                        ref.child("socials").child(key).child("name").setValue(name);
+                        ref.child("socials").child(key).child("date").setValue(date);
+                        ref.child("socials").child(key).child("description").setValue(description);
+                        ref.child("socials").child(key).child("creator").setValue(creator);
+                        ref.child("socials").child(key).child("interested").setValue(0);
+                        ref.child("socials").child(key).child("interestedPeople").setValue(new ArrayList<String>());
+                        startActivity(intent);
                     }
                 });
-                String name = nameEditText.getText().toString();
-                String date = dateEditText.getText().toString();
-                String description = descriptionEditText.getText().toString();
-                String creator = hostEditText.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), ListActivity.class);
-                ref.child("socials").child(key).child("name").setValue(name);
-                ref.child("socials").child(key).child("date").setValue(date);
-                ref.child("socials").child(key).child("description").setValue(description);
-                ref.child("socials").child(key).child("creator").setValue(creator);
-                ref.child("socials").child(key).child("interested").setValue(0);
-                ref.child("socials").child(key).child("interestedPeople").setValue(new ArrayList<String>());
-                startActivity(intent);
             }
         });
 
@@ -79,10 +81,8 @@ public class NewSocialActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {
-                file = data.getData();
-            }
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            file = data.getData();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

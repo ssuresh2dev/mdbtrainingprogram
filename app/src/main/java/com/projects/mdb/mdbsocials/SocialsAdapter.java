@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -39,9 +38,9 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomViewHolder> {
 
     private Context context;
-    private ArrayList<Socialist.Social> socialist;
+    private ArrayList<Utils.Social> socialist;
 
-    public SocialsAdapter(Context context, ArrayList<Socialist.Social> socialist) {
+    public SocialsAdapter(Context context, ArrayList<Utils.Social> socialist) {
         this.context = context;
         this.socialist = socialist;
     }
@@ -56,52 +55,12 @@ public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomVi
 
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, int position) {
-        Socialist.Social social = socialist.get(position);
+        Utils.Social social = socialist.get(position);
         holder.eventNameTextView.setText(social.getName());
         holder.numberTextView.setText("" + social.getInterested() + " people are interested");
         if (social.getInterested() == 1) {holder.numberTextView.setText("1 person is interested");}
         holder.creatorTextView.setText("Created by " + social.getCreator() + " on " + social.getDate());
-
-        class DownloadFilesTask extends AsyncTask<String, Void, Bitmap> {
-            protected Bitmap doInBackground(String... strings) {
-                try {return Glide.
-                        with(context).
-                        load(strings[0]).
-                        asBitmap().
-                        into(100, 100). // Width and height
-                        get();}
-                catch (Exception e) {return null;}
-            }
-
-            protected void onProgressUpdate(Void... progress) {}
-
-            protected void onPostExecute(Bitmap result) {
-                Palette.PaletteAsyncListener paletteListener = new Palette.PaletteAsyncListener() {
-                    public void onGenerated(Palette palette) {
-                        int defaulto = 0x000000;
-                        holder.cardView.setCardBackgroundColor(palette.getDominantColor(defaulto));
-                    }
-                };
-                if (result != null && !result.isRecycled()) {
-                    Palette.from(result).generate(paletteListener);
-                }
-                holder.imageView.setImageBitmap(result);
-            }
-        }
-
-        FirebaseStorage.getInstance().getReferenceFromUrl("gs://mdbsocials-700a9.appspot.com").child(social.getID() + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Log.d("ye", uri.toString());
-                new DownloadFilesTask().execute(uri.toString());
-                //Glide.with(context).load(uri.toString()).thumbnail(0.5f).crossFade().diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.imageView);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.d("sad", exception.toString());
-            }
-        });
+        Utils.setBitmap(context, holder.cardView, holder.imageView.getId(), social.getID());
     }
 
 
@@ -110,7 +69,10 @@ public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomVi
         return socialist.size();
     }
 
-    class CustomViewHolder extends RecyclerView.ViewHolder {
+    /**
+     * A card displayed in the RecyclerView
+     */
+    class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView eventNameTextView;
         ImageView imageView;
         TextView numberTextView;
@@ -124,43 +86,24 @@ public class SocialsAdapter extends RecyclerView.Adapter<SocialsAdapter.CustomVi
             this.numberTextView = (TextView) view.findViewById(R.id.numberTextView);
             this.creatorTextView = (TextView) view.findViewById(R.id.creatorTextView);
             this.cardView = (CardView) view.findViewById(R.id.card);
+            view.setOnClickListener(this);
+        }
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    /*Get adapter position is getting the number of the row that was clicked,
+        @Override
+        public void onClick(View v) {
+            /*Get adapter position is getting the number of the row that was clicked,
                     starting at 0
                     */
-                    Toast.makeText(context, "yooooooo", Toast.LENGTH_SHORT).show();
-                    Socialist.Social s = socialist.get(getAdapterPosition());
-                    Intent intent = new Intent(context, ScrollingActivity.class);
-                    String[] info = {(String)creatorTextView.getText(),
-                            s.getDescription(),
-                            (String)numberTextView.getText(),
-                            (String)eventNameTextView.getText()};
-                    intent.putExtra("id", s.getID());
-                    intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                }
-            });
-        }
-    }
-
-    private class DownloadFilesTask extends AsyncTask<String, Void, Bitmap> {
-        protected Bitmap doInBackground(String... strings) {
-            try {return Glide.
-                    with(context).
-                    load(strings[0]).
-                    asBitmap().
-                    into(100, 100). // Width and height
-                    get();}
-            catch (Exception e) {return null;}
-        }
-
-        protected void onProgressUpdate(Void... progress) {}
-
-        protected void onPostExecute(Bitmap result) {
-
+            Toast.makeText(context, "yooooooo", Toast.LENGTH_SHORT).show();
+            Utils.Social s = socialist.get(getAdapterPosition());
+            Intent intent = new Intent(context, ScrollingActivity.class);
+            String[] info = {(String)creatorTextView.getText(),
+                    s.getDescription(),
+                    (String)numberTextView.getText(),
+                    (String)eventNameTextView.getText()};
+            intent.putExtra("id", s.getID());
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 }

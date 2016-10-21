@@ -1,9 +1,19 @@
 package com.projects.mdb.mdbsocials;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.v7.graphics.Palette;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -11,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -19,11 +30,14 @@ import java.util.ArrayList;
  */
 
 //long live the revolution
-public class Socialist {
+public class Utils {
     private DatabaseReference ref;
     private ArrayList<Social> socialist;
 
-    public Socialist() {
+    /**
+     * initializes list of socials Socialist
+     */
+    public Utils() {
         socialist = new ArrayList<Social>();
         ref = FirebaseDatabase.getInstance().getReference("/socials");
         ref.orderByChild("date").addChildEventListener(new ChildEventListener() {
@@ -72,22 +86,23 @@ public class Socialist {
 
     }
 
+    /**
+     * @return the list of socials
+     */
     public ArrayList<Social> getSocialist() {
         return socialist;
     }
 
+    /**
+     * A class to represent a social
+     */
     public class Social{
         private String creator;
         private String date;
         private String description;
         private int interested = 0;
         private String id;
-        private ArrayList<String> interestedPeople = new ArrayList<String>();
-        //private Bitmap image;
         private String name;
-        private String photoURL;
-
-        public Social() {}
 
         public Social(String id, String creator, String date, String description, String name) {
             this.name = name;
@@ -104,37 +119,65 @@ public class Socialist {
             this.creator = creator;
             this.date = date;
             this.id = id;
-            this.interestedPeople = interestedPeople;
         }
 
+        //TODO get rid of unused functions
         public String getCreator() {return creator;}
         public void setCreator(String creator) {this.creator = creator;}
         public String getDate() {return date;}
-        public void setDate(String date) {this.date = date;}
         public String getDescription() {return description;}
-        public void setDescription(String desc) {this.description = desc;}
         public int getInterested() {return interested;}
-        public void setInterested(int n) {this.interested = n;}
-        public String[] getInterestedPeople() {
-            String[] s = new String[interestedPeople.size()];
-            for(int i = 0; i < s.length; i++) {
-                s[i] = interestedPeople.get(i);
-            }
-            return s;
-        }
-        public void setInterestedPeople(ArrayList<String> s) {
-            interestedPeople = new ArrayList<String>();
-            if (s != null) {
-                for(int i = 0; i < s.size(); ++i) {
-                    interestedPeople.add(s.get(i));
-                }
-            }
-        }
         public String getName() {return name;}
         public void setName(String name) {this.name = name;}
         public String getID() {return id;}
-        public void setID(String id) {this.id = id;}
+    }
 
-        public void setPhotoURL(String url) {photoURL = url;}
+    /**
+     * sets the bitmap of the image view and the background color using Palette
+     * @param context
+     * @param view containing view of imageViewId
+     * @param imageViewId
+     * @param id
+     */
+    public static void setBitmap(final Context context, final View view, final int imageViewId, String id) {
+        class DownloadFilesTask extends AsyncTask<String, Void, Bitmap> {
+            protected Bitmap doInBackground(String... strings) {
+                try {return Glide.
+                        with(context).
+                        load(strings[0]).
+                        asBitmap().
+                        into(100, 100). // Width and height
+                        get();}
+                catch (Exception e) {return null;}
+            }
+
+            protected void onProgressUpdate(Void... progress) {}
+
+            protected void onPostExecute(Bitmap result) {
+                ((ImageView)view.findViewById(imageViewId)).setImageBitmap(result);
+                Palette.PaletteAsyncListener paletteListener = new Palette.PaletteAsyncListener() {
+                    public void onGenerated(Palette palette) {
+                        int defaulto = 0x000000;
+                        view.setBackgroundColor(palette.getDominantColor(defaulto));
+                    }
+                };
+                if (result != null && !result.isRecycled()) {
+                    Palette.from(result).generate(paletteListener);
+                }
+            }
+        }
+
+        FirebaseStorage.getInstance().getReferenceFromUrl("gs://mdbsocials-700a9.appspot.com").child(id + ".png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Log.d("ye", uri.toString());
+                new DownloadFilesTask().execute(uri.toString());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.d("sad", exception.toString());
+            }
+        });
     }
 }

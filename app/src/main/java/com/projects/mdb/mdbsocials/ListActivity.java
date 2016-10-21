@@ -10,27 +10,29 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+/**
+ * Created by Aayush on 10/11/2016.
+ * The main list of Socials screen
+ */
 public class ListActivity extends AppCompatActivity {
 
-    private Socialist s;
+    private Utils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        RecyclerView recycleman = (RecyclerView)findViewById(R.id.recycleman);
-        recycleman.setLayoutManager(new LinearLayoutManager(this));
-        s = new Socialist();
-        SocialsAdapter adapter = new SocialsAdapter(getApplicationContext(), s.getSocialist());
-        recycleman.setAdapter(adapter);
+        RecyclerView recyclerAdapter = (RecyclerView)findViewById(R.id.recycleman);
+        recyclerAdapter.setLayoutManager(new LinearLayoutManager(this));
+        utils = new Utils();
+        SocialsAdapter adapter = new SocialsAdapter(getApplicationContext(), utils.getSocialist());
+        recyclerAdapter.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NewSocialActivity.class);
-
                 startActivity(intent);
             }
         });
@@ -43,6 +45,10 @@ public class ListActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * Signs the user out and returns to the login screen
+     * @param item the signout menu item
+     */
     public void signout(MenuItem item) {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         LoginActivity.getmAuth().signOut();

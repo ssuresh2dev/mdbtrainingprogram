@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Aayush on 10/15/2016.
+ *
+ * A simple Splash Activity that displays a blue screen with the app icon in the middle
  */
 
 public class SplashActivity extends AppCompatActivity {
