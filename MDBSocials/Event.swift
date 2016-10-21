@@ -14,6 +14,6 @@ class Event: NSObject {
     var eventDescription: String?
     var downloadURL: String?
     var poster: String?
-    var rsvp: String?
+    var rsvp: [NSString] = []
     var posterName: String?
 }

@@ -19,6 +19,7 @@ class FeedViewController: UIViewController {
     var tableView: UITableView!
     var eventsArray: [Event] = []
     var selectedEvent: Event?
+    var currIndexPath: Int?
 
     
     override func viewDidLoad() {
@@ -39,10 +40,13 @@ class FeedViewController: UIViewController {
             for event in snapshot.children.allObjects as! [FIRDataSnapshot] {
         
                 newEvents.append(event.key as NSString)
+                self.events.append(event.key as NSString)
             }
            
             
             self.events = newEvents
+            print("events :")
+            print(self.events)
             
             self.tableView.reloadData()
         })
@@ -54,6 +58,8 @@ class FeedViewController: UIViewController {
         if segue.identifier == "moreInfo" {
             let dest = segue.destination as? DetailViewController
             dest?.passedEvent = selectedEvent
+            dest?.eventIds = events
+            dest?.indexPath = currIndexPath
         }
     }
     
@@ -99,6 +105,7 @@ class FeedViewController: UIViewController {
         do {
             try FIRAuth.auth()?.signOut()
             performSegue(withIdentifier: "afterSignOut", sender: self)
+            self.navigationController?.isNavigationBarHidden = true
         } catch let error as NSError {
             print(error)
         }
@@ -137,11 +144,6 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let eventCell = cell as! EventTableViewCell
 
-//        ref.child("users").child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-//            // Get user value
-//            let username = snapshot.value!["username"] as! String
-//            let user = User.init(username: username)
-        //        })
         let ref = rootRef.child("events").child("\(events[indexPath.row])")
         ref.observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
@@ -149,31 +151,66 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 event.eventTitle = dictionary["eventTitle"] as! String?
                 event.eventDate = dictionary["eventDate"] as! String?
                 event.eventDescription = dictionary["eventDescription"] as! String?
-                event.rsvp = dictionary["rsvp"] as! String?
                 event.downloadURL = dictionary["downloadURL"] as! String?
                 event.poster = dictionary["poster"] as! String?
                 event.posterName = dictionary["posterName"] as! String?
+                
+                if  snapshot.hasChild("userRsvp") {
+                    event.rsvp = dictionary["userRsvp"] as! [NSString]
+                }
                 
                 self.eventsArray.append(event)
                 print(event.eventDate)
                 print(event.eventTitle)
                 print(self.eventsArray)
                 eventCell.titleName.text = event.eventTitle
-                eventCell.rsvpLabel.text = event.rsvp
+                eventCell.rsvpLabel.text = "+\(event.rsvp.count)"
                 eventCell.posterLabel.text = event.posterName
+                
+                print(event.downloadURL)
+                //eventCell.backgroundColor = self.colorAtIndex(currIndex: indexPath.row)
+//                if event.downloadURL != nil {
+//                    let obtainURL = NSURL(string: event.downloadURL!)
+//                    // this URL convert into Data
+//                    let picChosen = NSData(contentsOf: obtainURL as! URL)
+//                    
+//                    if picChosen != nil {
+//                        eventCell.backgroundImage = UIImage(data: picChosen as! Data)
+//                        let imgView = UIImageView(image: eventCell.backgroundImage)
+//                        imgView.contentMode = UIViewContentMode.scaleAspectFill
+//                        
+//                        
+//                    } else {
+//                        print("An error occured while retrieving your uploaded picture")
+//                    }
+//                }
+            
             }
         })
-        
-    
-        
-    
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedEvent = eventsArray[indexPath.row]
+        currIndexPath = indexPath.row
         performSegue(withIdentifier: "moreInfo", sender: self)
         tableView.deselectRow(at: indexPath, animated: false)
     }
+    
+//    func colorAtIndex(currIndex: Int) -> UIColor {
+//        var thisOne = eventsArray[currIndex]
+//        var currRsvp = Int(thisOne.rsvp)
+//        if currRsvp == 0 {
+//            return UIColor(red:0.83, green:0.38, blue:0.38, alpha:1.0)
+//        } else if currRsvp! >= 5 {
+//            return UIColor(red:0.91, green:0.66, blue:0.34, alpha:1.0)
+//        } else if currRsvp! >= 10 {
+//            return UIColor(red:0.94, green:0.90, blue:0.44, alpha:1.0)
+//        } else {
+//            return UIColor(red:0.67, green:0.87, blue:0.36, alpha:1.0)
+//        }
+//    }
+
+
     
     
 //    eventsRef.observe(.value, with: { snapshot in
