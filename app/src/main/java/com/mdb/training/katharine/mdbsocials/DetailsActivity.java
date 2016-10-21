@@ -275,6 +275,12 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    public void onBackPressed(){
+        bitmap.recycle();
+        bitmap=null;
+        super.onBackPressed();
+    }
+
     /* Inflates menu bar */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
