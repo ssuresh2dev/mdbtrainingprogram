@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +30,32 @@ public class FeedActivity extends AppCompatActivity {
     ArrayList<EventList.Event> eventArrayList;
     FirebaseAuth mAuth;
 
+    //eventlistener to retrieve firebase data about event
+    ValueEventListener eventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            eventArrayList = new ArrayList<>();
+            for (DataSnapshot eventSnapshot: dataSnapshot.getChildren()) {
+                HashMap<String,Object> map = (HashMap<String,Object>) eventSnapshot.getValue();
+                String email = (String) map.get("user");
+                String name = (String) map.get("name");
+                String pushId = (String) map.get("pushId");
+                String description = (String) map.get("description");
+                String date = (String) map.get("date");
+                ArrayList<String> interestedPeople = (ArrayList<String>) map.get("interestedPeople");
+                EventList.Event event = new EventList.Event(email, name, pushId, description, date, interestedPeople);
+                eventArrayList.add(0, event);
+            }
+            listViewAdapter.eventArrayList = eventArrayList;
+            listViewAdapter.notifyItemInserted(0);
+            listViewAdapter.notifyDataSetChanged();
+            recyclerView.setAdapter(listViewAdapter);
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {}
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,31 +70,6 @@ public class FeedActivity extends AppCompatActivity {
         listViewAdapter = new ListViewAdapter(getApplicationContext(), eventArrayList);
         recyclerView.setAdapter(listViewAdapter);
 
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                eventArrayList = new ArrayList<>();
-                for (DataSnapshot eventSnapshot: dataSnapshot.getChildren()) {
-                    HashMap<String,Object> map = (HashMap<String,Object>) eventSnapshot.getValue();
-                    String email = (String) map.get("user");
-                    String name = (String) map.get("name");
-                    String pictureURL = (String) map.get("pictureURL");
-                    String description = (String) map.get("description");
-                    String date = (String) map.get("date");
-                    ArrayList<String> interestedPeople = (ArrayList<String>) map.get("interestedPeople");
-                    EventList.Event event = new EventList.Event(email, name, pictureURL, description, date, interestedPeople);
-                    //Log.d("SOS", email + name + pictureURL + description + date + interestedPeople);
-                    eventArrayList.add(0, event);
-                }
-                listViewAdapter.eventArrayList = eventArrayList;
-                listViewAdapter.notifyItemInserted(0);
-                recyclerView.setAdapter(listViewAdapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        };
-
         ref.child("Events").addValueEventListener(eventListener);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -81,6 +80,14 @@ public class FeedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        listViewAdapter.notifyDataSetChanged();
+        listViewAdapter.eventArrayList = eventArrayList;
+        recyclerView.setAdapter(listViewAdapter);
     }
 
     @Override

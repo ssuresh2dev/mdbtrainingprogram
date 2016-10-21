@@ -1,34 +1,19 @@
 package com.demo.mdb.mdbsocials;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -40,12 +25,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewSocial extends AppCompatActivity {
+public class NewSocial extends AppCompatActivity implements View.OnClickListener{
     ImageView eventImg;
     EditText nameEditText;
     EditText desEditText;
     EditText dateEditText;
-    String picURL;
+    String pushId;
     DatabaseReference ref;
     FirebaseAuth mAuth;
 
@@ -54,11 +39,12 @@ public class NewSocial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_social);
 
-        nameEditText = (EditText)findViewById(R.id.eventName);
         eventImg = (ImageView)findViewById(R.id.eventImg);
+        nameEditText = (EditText)findViewById(R.id.eventName);
         desEditText = (EditText)findViewById(R.id.des);
         dateEditText = (EditText)findViewById(R.id.date);
 
+        //for picking photo from camera roll
         eventImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,9 +55,13 @@ public class NewSocial extends AppCompatActivity {
         });
 
         Button done = (Button)findViewById(R.id.done);
-        done.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        done.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.done:
                 ref = FirebaseDatabase.getInstance().getReference();
                 mAuth = FirebaseAuth.getInstance();
 
@@ -80,16 +70,21 @@ public class NewSocial extends AppCompatActivity {
                 String description = desEditText.getText().toString();
                 String eventDate = dateEditText.getText().toString();
                 ArrayList<String> interestedPeople = new ArrayList<>();
+                interestedPeople.add(0, "no one");
 
+                //pushing event data to firebase
                 Map<String, Object> event = new HashMap<String, Object>();
                 event.put("user", email);
                 event.put("name", eventName);
-                event.put("pictureURL", picURL);
                 event.put("description", description);
                 event.put("date", eventDate);
                 event.put("interestedPeople", interestedPeople);
-                ref.child("Events").push().setValue(event);
+                DatabaseReference pushedRef = ref.child("Events").push();
+                pushId = pushedRef.getKey();
+                event.put("pushId", pushId);
+                ref.child("Events").child(pushId).setValue(event);
 
+                //storing image to firebase
                 eventImg.setDrawingCacheEnabled(true);
                 eventImg.buildDrawingCache();
                 Bitmap image = eventImg.getDrawingCache();
@@ -102,10 +97,13 @@ public class NewSocial extends AppCompatActivity {
 
                 Intent intent = new Intent(NewSocial.this, FeedActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+            default:
+                break;
+        }
     }
 
+    //for retrieving picked image from camera roll
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
@@ -121,9 +119,6 @@ public class NewSocial extends AppCompatActivity {
                     }
                     Bitmap myImg = BitmapFactory.decodeStream(imageStream);
                     eventImg.setImageBitmap(myImg);
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    myImg.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                    picURL = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
                 }
         }
     }
