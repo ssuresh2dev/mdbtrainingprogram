@@ -14,11 +14,11 @@
 		EF32948D1DA4BD7C008CCFBA /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32948C1DA4BD7C008CCFBA /* MeasurementHelper.swift */; };
 		EF32948F1DA4BD94008CCFBA /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32948E1DA4BD94008CCFBA /* AppState.swift */; };
 		EF3294911DA4BEEB008CCFBA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3294901DA4BEEB008CCFBA /* Constants.swift */; };
+		EF3A0C991DBACBE000403545 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3A0C981DBACBE000403545 /* MemberCell.swift */; };
 		EF4503341DAF50BD00850EEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF4503331DAF50BD00850EEA /* Main.storyboard */; };
 		EF4503361DAF627000850EEA /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4503351DAF627000850EEA /* FeedTableViewCell.swift */; };
 		EF4503381DB0A1B200850EEA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4503371DB0A1B200850EEA /* Event.swift */; };
 		EF64F7641DA1F2F100A4C1C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */; };
-		EF64F7661DA1F2F100A4C1C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */; };
 		EF64F76B1DA1F2F100A4C1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF64F76A1DA1F2F100A4C1C6 /* Assets.xcassets */; };
 		EF64F76E1DA1F2F100A4C1C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF64F76C1DA1F2F100A4C1C6 /* LaunchScreen.storyboard */; };
 		EFC53C771DB8C93300A25845 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFC53C761DB8C93300A25845 /* Info.plist */; };
@@ -38,12 +38,12 @@
 		EF32948C1DA4BD7C008CCFBA /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
 		EF32948E1DA4BD94008CCFBA /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		EF3294901DA4BEEB008CCFBA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EF3A0C981DBACBE000403545 /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		EF4503331DAF50BD00850EEA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EF4503351DAF627000850EEA /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		EF4503371DB0A1B200850EEA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		EF64F7601DA1F2F100A4C1C6 /* MDBSocials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDBSocials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EF64F76A1DA1F2F100A4C1C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF64F76D1DA1F2F100A4C1C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFC53C761DB8C93300A25845 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +84,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EF3A0C971DBAC66700403545 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF3294901DA4BEEB008CCFBA /* Constants.swift */,
+				513AAD521DB88ED80040EF47 /* User.swift */,
+				EF4503371DB0A1B200850EEA /* Event.swift */,
+				EF32948E1DA4BD94008CCFBA /* AppState.swift */,
+				EF3A0C981DBACBE000403545 /* MemberCell.swift */,
+				EF4503351DAF627000850EEA /* FeedTableViewCell.swift */,
+				EF32948C1DA4BD7C008CCFBA /* MeasurementHelper.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EF64F7571DA1F2F100A4C1C6 = {
 			isa = PBXGroup;
 			children = (
@@ -105,19 +119,13 @@
 		EF64F7621DA1F2F100A4C1C6 /* MDBSocials */ = {
 			isa = PBXGroup;
 			children = (
+				EF3A0C971DBAC66700403545 /* Supporting Files */,
 				EF64F7631DA1F2F100A4C1C6 /* AppDelegate.swift */,
-				EF32948E1DA4BD94008CCFBA /* AppState.swift */,
-				EF3294901DA4BEEB008CCFBA /* Constants.swift */,
-				513AAD521DB88ED80040EF47 /* User.swift */,
-				EF4503371DB0A1B200850EEA /* Event.swift */,
-				EF64F7651DA1F2F100A4C1C6 /* ViewController.swift */,
 				EFFEE6261DA219D100BF2A82 /* LoginViewController.swift */,
-				EFFEE62C1DA21A3C00BF2A82 /* DetailViewController.swift */,
-				EFFEE62A1DA21A0F00BF2A82 /* FeedViewController.swift */,
-				EF4503351DAF627000850EEA /* FeedTableViewCell.swift */,
 				EFFEE6281DA219FA00BF2A82 /* SignupViewController.swift */,
-				EF32948C1DA4BD7C008CCFBA /* MeasurementHelper.swift */,
+				EFFEE62A1DA21A0F00BF2A82 /* FeedViewController.swift */,
 				EFFEE62E1DA21A8100BF2A82 /* NewSocialViewController.swift */,
+				EFFEE62C1DA21A3C00BF2A82 /* DetailViewController.swift */,
 				513DB3A41DB82AAB00202F16 /* RSVPViewController.swift */,
 				EF4503331DAF50BD00850EEA /* Main.storyboard */,
 				EFC53C761DB8C93300A25845 /* Info.plist */,
@@ -255,8 +263,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF32948D1DA4BD7C008CCFBA /* MeasurementHelper.swift in Sources */,
+				EF3A0C991DBACBE000403545 /* MemberCell.swift in Sources */,
 				EFFEE6271DA219D100BF2A82 /* LoginViewController.swift in Sources */,
-				EF64F7661DA1F2F100A4C1C6 /* ViewController.swift in Sources */,
 				EF32948F1DA4BD94008CCFBA /* AppState.swift in Sources */,
 				EF4503381DB0A1B200850EEA /* Event.swift in Sources */,
 				513DB3A51DB82AAB00202F16 /* RSVPViewController.swift in Sources */,

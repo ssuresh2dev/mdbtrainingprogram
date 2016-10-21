@@ -9,23 +9,29 @@
 import UIKit
 import Firebase
 
+
 class DetailViewController: UIViewController {
+    let user = FIRAuth.auth()?.currentUser
     var event: Event!
     var titleToBeSet: String!
     var whoPostedName: String!
-    var usersInterested: [FIRUser]!
-    var dateLabel: UILabel!
+    var usersInterested: [String: String]!
+    var dateTimeLabel: UITextView!
     var RSVPButton: UIButton!
     var interestedButton: UIButton!
     var backButton: UIButton!
-    var descriptionLabel: UILabel!
+    var descriptionLabel: UITextView!
     var descriptionText: String!
-
+    var status: GoingStatus = GoingStatus.notResponded
+    var date: String!
+    var time: String!
     
     override func viewDidLoad() {
         titleToBeSet = event.name
-        whoPostedName = "Jessica Chen"
-        usersInterested = event.usersInterested
+        whoPostedName = event.poster
+        date = event.date
+        time = event.time
+        usersInterested = event.getUsersInterested()
         descriptionText = event.description
         
         super.viewDidLoad()
@@ -82,7 +88,6 @@ class DetailViewController: UIViewController {
         interestedButton = UIButton(frame: CGRect(x: (view.frame.width - view.frame.height * 0.3)/2, y: view.frame.height * 0.4 + 90, width: view.frame.height * 0.3, height: 30))
         //interestedButton.setTitle("\(usersInterested.count) people interested", for: UIControlState.normal)
         interestedButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
-        interestedButton.titleLabel!.adjustsFontSizeToFitWidth = true
         interestedButton.setTitleColor(UIColor.white, for: UIControlState.normal)
         interestedButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
         interestedButton.backgroundColor = themeColor
@@ -90,10 +95,10 @@ class DetailViewController: UIViewController {
         interestedButton.layer.cornerRadius = 5
         view.addSubview(interestedButton)
         
-        RSVPButton = UIButton(frame: CGRect(x: view.frame.width * 0.45, y: view.frame.height * 0.4 + 130, width: view.frame.width * 0.1, height: 30))
-        RSVPButton.setTitle("Not interested", for: UIControlState.normal)
+        RSVPButton = UIButton(frame: CGRect(x: view.frame.width * 0.45, y: view.frame.height * 0.4 + 130, width: view.frame.width * 1/4, height: 30))
+        RSVPButton.setTitle("Interested", for: UIControlState.normal)
         RSVPButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
-        RSVPButton.titleLabel!.adjustsFontSizeToFitWidth = true
+        RSVPButton.titleLabel!.adjustsFontSizeToFitWidth = false
         RSVPButton.setTitleColor(UIColor.white, for: UIControlState.normal)
         RSVPButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
         RSVPButton.backgroundColor = themeColor
@@ -101,13 +106,24 @@ class DetailViewController: UIViewController {
         RSVPButton.layer.cornerRadius = 5
         view.addSubview(RSVPButton)
 
-        descriptionLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.4 + 160, width: view.frame.width * 0.7, height: view.frame.height * 0.6 - 190))
+        descriptionLabel = UITextView(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.4 + 160, width: view.frame.width * 0.7, height: view.frame.height * 0.6 - 190))
         descriptionLabel.text = descriptionText
-        descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 14.0)
+        descriptionLabel.font = UIFont(name: "HelveticaNeue", size: 18.0)
         descriptionLabel.textColor = UIColor.black
         descriptionLabel.textAlignment = NSTextAlignment.justified
         descriptionLabel.clipsToBounds = true
+        descriptionLabel.textAlignment = NSTextAlignment.center
+        
+        dateTimeLabel = UITextView(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.4 + 250, width: view.frame.width * 0.7, height: view.frame.height * 0.6 - 190))
+        dateTimeLabel.text = "\(time!)\n\(date!)"
+        dateTimeLabel.font = UIFont(name: "HelveticaNeue", size: 18.0)
+        dateTimeLabel.textColor = UIColor.black
+        dateTimeLabel.textAlignment = NSTextAlignment.justified
+        dateTimeLabel.clipsToBounds = true
+        dateTimeLabel.textAlignment = NSTextAlignment.center
+        
         view.addSubview(descriptionLabel)
+        view.addSubview(dateTimeLabel)
         
     }
     
@@ -120,17 +136,34 @@ class DetailViewController: UIViewController {
     }
     
     func modifyPeople(_ sender: UIButton!) {
-        let user = FIRAuth.auth()?.currentUser
-        if sender.titleLabel?.text == "Not interested" {
-            usersInterested.append((user)!)
-            sender.setTitle("Interested", for: .normal)
-        } else {
-//            let i = usersInterested.index(of: user?.displayName)
-//            usersInterested.remove(at: i)
-            sender.setTitle("Not interested", for: .normal)
+        switch event.status {
+        case .notResponded:
+                event.status = .interested
+                RSVPButton.backgroundColor = UIColor.green
+                event.usersInterested[user!.uid] = user!.displayName
+                event.updateInterestedUser(user: user!)
+                dismiss(animated: false, completion: nil)
+            
+        case .interested:
+                event.status = .notResponded
+                RSVPButton.backgroundColor = themeColor
+                event.usersInterested.removeValue(forKey: user!.uid)
+                event.updateInterestedUser(user: user!)
+                dismiss(animated: false, completion: nil)
+            
         }
-        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRSVP"{
+            let next = segue.destination as! RSVPViewController
+            next.event = self.event
+        }
+    }
+
+    
+    
+    
     
     
     /*

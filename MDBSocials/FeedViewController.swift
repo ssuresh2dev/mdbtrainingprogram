@@ -19,7 +19,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFeedTableView()
-        setUI()
+        
         
         let ref = FIRDatabase.database().reference()
         ref.child("events").queryOrderedByKey().observe(.childAdded, with: {
@@ -29,8 +29,10 @@ class FeedViewController: UIViewController {
             let name = snapshotValue?["name"] as? String
             let time = snapshotValue?["time"] as? String
             let description = snapshotValue?["description"] as? String
+            let eventid = snapshot.key
+            let poster = snapshotValue?["poster"] as? String
             
-            self.feedEvents.insert(Event(name: name!, date: date!, time: time!, description: description!), at: 0)
+            self.feedEvents.insert(Event(name: name!, date: date!, time: time!, description: description!, id: eventid, poster: poster!), at: 0)
             self.feedTableView.reloadData()
             
             
@@ -40,6 +42,7 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        setUI()
         feedTableView.reloadData()
     }
     
@@ -82,7 +85,8 @@ class FeedViewController: UIViewController {
             try firebaseAuth?.signOut()
             AppState.sharedInstance.signedIn = false
             dismiss(animated: true, completion: nil)
-            performSegue(withIdentifier: "backToHome", sender: self)
+            let newLogin = LoginViewController()
+            self.present(newLogin, animated: true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: \(signOutError.localizedDescription)")
         }
@@ -154,11 +158,13 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         eventSelected = feedEvents[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "toDetail", sender: self)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height/4
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetail"{

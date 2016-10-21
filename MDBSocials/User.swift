@@ -11,23 +11,15 @@ import UIKit
 import Firebase
 
 class User {
-    
+    let user = FIRAuth.auth()?.currentUser!
     var name: String!
-    var userPhoto: UIImage!
+    var profileImageUrl: String!
     //var currentUser: FIRUser!
-
-    init(uName: String, photo: UIImage) {
-        name = uName
-        userPhoto = photo
+    
+    func getProfPic(name: String!){
         
-        //currentUser = (FIRAuth.auth()?.currentUser)!
     }
     
-//    func getName() -> String {
-//        if currentUser != nil:
-//            return currentUser.displayName!
-//
-//    }
     
     
 }

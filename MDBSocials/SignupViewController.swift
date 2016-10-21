@@ -194,6 +194,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
     }
     
     func clickedSignup(_ sender: UIButton!) {
+        let storageRef = FIRStorage.storage().reference()
+        let databaseRef = FIRDatabase.database().reference()
         if(passwordTextField.text != confirmTextField.text) {
             let alert = UIAlertController(title: "Error:", message: "Passwords do not match.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil))
@@ -211,33 +213,29 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
             else{
                 self.setDisplayName(user!)
                 self.setProfPic(user!)
+                var data = NSData()
+                data = UIImageJPEGRepresentation(self.selectButton.backgroundImage(for: .normal)!, 0.8)! as NSData
+                // set upload path
+                let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\("userPhoto")"
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/jpg"
+                storageRef.child(filePath).put(data as Data, metadata: metaData){(metaData,error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }else{
+                        //store downloadURL
+                        let downloadURL = metaData!.downloadURL()!.absoluteString
+                        //store downloadURL at database
+                        let user = FIRAuth.auth()!.currentUser!
+                        databaseRef.child("members").child(user.uid).updateChildValues(["userPhoto": downloadURL, "name" : user.displayName, "uid": user.uid])
+                    }
+                }
+                self.dismiss(animated: true, completion: nil)
             }
         }
-        //        let storageRef = FIRStorage.storage().reference()
-        //        let databaseRef = FIRDatabase.database().reference()
-        //        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-        //            selectButton.contentMode = .scaleAspectFit
-        //            selectButton.setBackgroundImage(image, for: .normal)
-        //        }
-        //        dismiss(animated: true, completion: nil)
-        //        var data = NSData()
-        //        data = UIImageJPEGRepresentation(selectButton.backgroundImage(for: .normal)!, 0.8)! as NSData
-        //        // set upload path
-        //        let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\("userPhoto")"
-        //        let metaData = FIRStorageMetadata()
-        //        metaData.contentType = "image/jpg"
-        //        storageRef.child(filePath).put(data as Data, metadata: metaData){(metaData,error) in
-        //            if let error = error {
-        //                print(error.localizedDescription)
-        //                return
-        //            }else{
-        //                //store downloadURL
-        //                let downloadURL = metaData!.downloadURL()!.absoluteString
-        //                //store downloadURL at database
-        //            databaseRef.child("users").child(FIRAuth.auth()!.currentUser!.uid).updateChildValues(["userPhoto": downloadURL])
-        //            }
-        //            }
-        //            dismiss(animated: true, completion: nil)
+        
+        
         
     }
     

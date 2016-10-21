@@ -35,7 +35,8 @@ class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     func newSocial(){
-        let social: [String: String] = ["name": nameTextField.text!, "date": dateTextField.text!, "time" : timeTextField.text!, "description": descTextField.text!]
+        let user = FIRAuth.auth()?.currentUser!
+        let social: [String: String] = ["name": nameTextField.text!, "date": dateTextField.text!, "time" : timeTextField.text!, "description": descTextField.text!, "usersInterested": "", "poster": user!.displayName!]
         let dbRef = FIRDatabase.database().reference()
         dbRef.child("events").childByAutoId().setValue(social)
         dismiss(animated: false, completion: nil)

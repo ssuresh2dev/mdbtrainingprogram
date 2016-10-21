@@ -9,15 +9,22 @@
 import UIKit
 
 class FeedTableViewCell: UITableViewCell {
-
+    
     var eventPictureImageView: UIImageView!
     var eventName: UILabel!
     var numRSVP: UILabel!
     var date: UILabel!
+    var interestedButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        interestedButton = UIButton(frame: CGRect(x: contentView.frame.width/3 + 20, y: 115, width: contentView.frame.width * 2/3 - 40, height: 20))
+        interestedButton.backgroundColor = themeColor
+        interestedButton.setTitle("Interested", for: .normal)
+//        interestedButton.addTarget(self, action: #selector(modifyPeople), for: .touchUpInside)
+        contentView.addSubview(interestedButton)
         
         eventName = UILabel(frame: CGRect(x: contentView.frame.width/3 + 20, y: 30, width: contentView.frame.width * 2/3 - 40, height: 20))
         eventName.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
@@ -51,7 +58,7 @@ class FeedTableViewCell: UITableViewCell {
         contentView.addSubview(eventPictureImageView)
 
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

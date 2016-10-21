@@ -14,8 +14,10 @@
 //  limitations under the License.
 //
 import UIKit
-struct Constants {
 
+struct Constants {
+    
+  let themeColor = UIColor(colorLiteralRed: 51/255, green: 153/255, blue: 255/255, alpha: 1)
   struct NotificationKeys {
     static let SignedIn = "onSignInCompleted"
   }
