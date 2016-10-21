@@ -13,7 +13,7 @@ class DisplayNameTableViewCell: UITableViewCell {
     var displayName: UILabel!
 
     override func awakeFromNib() {
-        displayName = UILabel(frame: CGRect(x: 30, y: 17.5, width: 225, height: 29))
+        displayName = UILabel(frame: CGRect(x: 30, y: contentView.frame.height/2.2, width: 225, height: 29))
         displayName.textAlignment = NSTextAlignment.left
         displayName.font = UIFont(name: "Avenir-Book", size: 28)
         displayName.textColor = UIColor(red:0.60, green:0.83, blue:0.82, alpha:1.0)

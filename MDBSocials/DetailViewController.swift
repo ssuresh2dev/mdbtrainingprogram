@@ -30,11 +30,14 @@ class DetailViewController: UIViewController {
     
     var allRsvp: [NSString] = []
 
+    var users: [User] = []
+    
     
     let currUser = FIRAuth.auth()?.currentUser?.uid
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUsers()
         setUpUI()
         displayImage()
         // Do any additional setup after loading the view.
@@ -120,6 +123,10 @@ class DetailViewController: UIViewController {
         let eventsRef = FIRDatabase.database().reference().child("events")
         let uniqueEventRef = eventsRef.child(eventIds[indexPath] as String)
         uniqueEventRef.child("userRsvp").setValue(passedEvent.rsvp)
+        
+        
+        numInterested.setTitle("\(passedEvent.rsvp.count) people interested", for: .normal)
+
     }
     
     func displayImage() {
@@ -142,52 +149,70 @@ class DetailViewController: UIViewController {
         performSegue(withIdentifier: "aModal", sender: self)
     }
     
-    func getUsersName() {
-        let ref = FIRDatabase.database().reference().child("users")
-        ref.observe(.value, with: { (snapshot) in
-            let dict = snapshot.value as? [String : AnyObject]
-            for stringIds in self.allRsvp {
-                print("GETUSERTEST")
-                var userInfo = dict?[stringIds as String]
-                print(userInfo)
-                var nameString = "\(userInfo?["firstName"]) \(userInfo?["lastName"])"
-                print(nameString)
-                self.namesToDisplay.append(nameString)
+    func getUsers() {
+        let usersRef = FIRDatabase.database().reference().child("users")
+        let eventRef = FIRDatabase.database().reference().child("events").child(eventIds[indexPath] as String)
+
+        eventRef.observe(.value, with: { (snapshot) in
+            if snapshot.hasChild("userRsvp") {
+                let dict = snapshot.value as? [String : AnyObject]
+                self.allRsvp = dict?["userRsvp"] as! [NSString]
+                
+                usersRef.observe(.value, with: { (snapshot) in
+                    let dictionary = snapshot.value as? [String : AnyObject]
+                    for stringIds in self.allRsvp {
+                        let user = User()
+                        let userInfo = dictionary?[stringIds as String]
+                        let firstName = (userInfo?["firstName"])!
+                        let lastName = (userInfo?["lastName"])!
+
+                        user.name = "\(firstName!) \(lastName!)"
+                        self.users.append(user)
+                    }
+                    
+                })
+            
             }
             
         })
-        
     }
 
+
+
+//        
+//        let ref = rootRef.child("events").child("\(events[indexPath.row])")
+//        ref.observe(.value, with: { (snapshot) in
+//            if let dictionary = snapshot.value as? [String: AnyObject]{
+//                let event = Event()
+//                event.eventTitle = dictionary["eventTitle"] as! String?
+//                event.eventDate = dictionary["eventDate"] as! String?
+//                event.eventDescription = dictionary["eventDescription"] as! String?
+//                event.downloadURL = dictionary["downloadURL"] as! String?
+//                event.poster = dictionary["poster"] as! String?
+//                event.posterName = dictionary["posterName"] as! String?
+//                
+//                if  snapshot.hasChild("userRsvp") {
+//                    event.rsvp = dictionary["userRsvp"] as! [NSString]
+//                }
+//                
+//                self.eventsArray.append(event)
+//        
+        
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+   
         if segue.identifier == "aModal" {
             let dest = segue.destination as? ModalViewController
-            let ref = FIRDatabase.database().reference().child("events").child(eventIds[indexPath] as String)
-            ref.observe(.value, with: { (snapshot) in
-                if snapshot.hasChild("userRsvp") {
-                    let dict = snapshot.value as? [String : AnyObject]
-                    self.allRsvp = dict?["userRsvp"] as! [NSString]
-                    self.getUsersName()
-                    dest?.displayNames = self.namesToDisplay
-                    dest?.usersRsvp = self.allRsvp
-                    dest?.allEvents = self.eventIds
-                }
-                
-            })
-
+            
+            dest?.users = self.users
         }
+        
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+    
+ 
 }

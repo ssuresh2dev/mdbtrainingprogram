@@ -35,7 +35,7 @@ class EventTableViewCell: UITableViewCell {
         titleLabel.font = UIFont(name: "Bebas", size: 22)
         contentView.addSubview(titleLabel)
         
-        rsvpLabel = UILabel(frame: CGRect(x: 281, y: 105.5, width: 100, height: 38))
+        rsvpLabel = UILabel(frame: CGRect(x: 281, y: 17.5, width: 100, height: 38))
         rsvpLabel.textAlignment = NSTextAlignment.right
         rsvpLabel.font = UIFont(name: "Avenir-Book", size: 28)
         contentView.addSubview(rsvpLabel)

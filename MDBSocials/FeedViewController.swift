@@ -154,7 +154,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 event.poster = dictionary["poster"] as! String?
                 event.posterName = dictionary["posterName"] as! String?
                 
-                if  snapshot.hasChild("userRsvp") {
+                if snapshot.hasChild("userRsvp") {
                     event.rsvp = dictionary["userRsvp"] as! [NSString]
                 }
                 
@@ -162,16 +162,14 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 print(event.eventDate)
                 print(event.eventTitle)
                 print(self.eventsArray)
-<<<<<<< HEAD
-                eventCell.titleLabel.text = event.eventTitle
-                eventCell.rsvpLabel.text = event.rsvp
-=======
-                eventCell.titleName.text = event.eventTitle
-                eventCell.rsvpLabel.text = "+\(event.rsvp.count)"
->>>>>>> b9d76bd46ccba3b9c54f5de799de74ec5a0944a4
-                eventCell.posterLabel.text = event.posterName
-                
-                print(event.downloadURL)
+
+                DispatchQueue.main.async {
+                    eventCell.titleLabel.text = event.eventTitle
+                    eventCell.rsvpLabel.text = "+\(event.rsvp.count)"
+                    eventCell.posterLabel.text = event.posterName
+
+                }
+               
                 //eventCell.backgroundColor = self.colorAtIndex(currIndex: indexPath.row)
 //                if event.downloadURL != nil {
 //                    let obtainURL = NSURL(string: event.downloadURL!)
