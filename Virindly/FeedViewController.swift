@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 
 struct postStruct {
+    let fullname: String!
     let event: String!
     let details: String!
     let date: String!
@@ -33,22 +34,22 @@ class FeedViewController: UIViewController {
             
             let snapshotValue = snapshot.value as? NSDictionary
             
+            let fullname = snapshotValue!["fullname"]
             let event = snapshotValue!["event"]
             let details = snapshotValue!["details"]
             let date = snapshotValue!["date"]
             
-            self.posts.insert(postStruct(event: event as! String!, details: details as! String, date: date as! String), at: 0)
+            self.posts.insert(postStruct(fullname: fullname as! String, event: event as! String!, details: details as! String, date: date as! String), at: 0)
             self.tableView.reloadData()
         })
         
         setupTableView()
-    
-
+        
         // Navigation Bar 
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 80))
         let navTitle = UINavigationItem(title: "What's going on?")
         
-        let addEvent = UIBarButtonItem(barButtonSystemItem: .undo, target: nil, action: #selector(pressedAddButton))
+        let addEvent = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(pressedAddButton))
         navTitle.rightBarButtonItem = addEvent
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(pressedLogout))
@@ -56,7 +57,6 @@ class FeedViewController: UIViewController {
         
         navBar.setItems([navTitle], animated: false)
         self.view.addSubview(navBar)
- 
     }
     
     // Initializing a TableView and additing it to VC's current screen
@@ -87,9 +87,6 @@ class FeedViewController: UIViewController {
             print(error)
         }
     }
-
-    
-    
 }
 
 
@@ -100,7 +97,6 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as! ImageTableViewCell
         for subview in cell.contentView.subviews {
@@ -114,13 +110,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let imageCell = cell as! ImageTableViewCell
         imageCell.eventLabel.text = posts[indexPath.row].event
-        imageCell.eventDescription.text = posts[indexPath.row].details
         imageCell.eventImageView.image = images[indexPath.row]
         cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
-
-    
-    
     
 }
 

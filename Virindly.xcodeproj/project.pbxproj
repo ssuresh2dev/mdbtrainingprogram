@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321B46A51DB9D22D0033EDD7 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321B46A41DB9D22D0033EDD7 /* DetailsViewController.swift */; };
 		323D29561DB8C5170020CE7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323D29551DB8C5170020CE7B /* User.swift */; };
 		323D29581DB8C5400020CE7B /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323D29571DB8C5400020CE7B /* Social.swift */; };
 		323D295A1DB8C5600020CE7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323D29591DB8C5600020CE7B /* Constants.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		0B74379702CB8882239CBE98 /* Pods-Virindly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Virindly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Virindly/Pods-Virindly.release.xcconfig"; sourceTree = "<group>"; };
 		3025217A477989DD8F144016 /* Pods_Virindly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Virindly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		321B46A41DB9D22D0033EDD7 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		323D29551DB8C5170020CE7B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		323D29571DB8C5400020CE7B /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		323D29591DB8C5600020CE7B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -91,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				B67C8DBA1DAF57290063EEF3 /* Virindly.entitlements */,
-				B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */,
 				323D29551DB8C5170020CE7B /* User.swift */,
 				323D29571DB8C5400020CE7B /* Social.swift */,
 				323D29591DB8C5600020CE7B /* Constants.swift */,
@@ -100,8 +101,10 @@
 				327F99DE1DA4BFE90042DF55 /* SignUpViewController.swift */,
 				327F99E01DA4C0050042DF55 /* FeedViewController.swift */,
 				32AD66751DAF5514004F8BA5 /* ImageTableViewCell.swift */,
-				B67C8DBB1DB07A4A0063EEF3 /* AppState.swift */,
+				321B46A41DB9D22D0033EDD7 /* DetailsViewController.swift */,
 				327F99E21DA4C0120042DF55 /* NewSocialViewController.swift */,
+				B67C8DBB1DB07A4A0063EEF3 /* AppState.swift */,
+				B64DE2FD1DA1909A0055FA01 /* AppDelegate.swift */,
 				B64DE3011DA1909A0055FA01 /* Main.storyboard */,
 				B64DE3041DA1909A0055FA01 /* Assets.xcassets */,
 				B64DE3111DA19DA50055FA01 /* GoogleService-Info.plist */,
@@ -261,6 +264,7 @@
 				327F99E11DA4C0060042DF55 /* FeedViewController.swift in Sources */,
 				B64DE2FE1DA1909A0055FA01 /* AppDelegate.swift in Sources */,
 				323D29581DB8C5400020CE7B /* Social.swift in Sources */,
+				321B46A51DB9D22D0033EDD7 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

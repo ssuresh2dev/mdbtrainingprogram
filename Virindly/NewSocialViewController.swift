@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var inputFullNameTextField: UITextField!
     var newSocialBackground: UIImageView!
     var virindlyMiniLogoView: UIImageView!
     var inputEventNameTextField: UITextField!
@@ -22,8 +23,21 @@ class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNewSocial()
 
         // Do any additional setup after loading the view.
+            }
+    
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // ACTION
+    
+    func setUpNewSocial() {
         
         // Background
         newSocialBackground = UIImageView(image: #imageLiteral(resourceName: "orangeGradient"))
@@ -47,6 +61,23 @@ class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate
         
         
         // Input Full Name Textfield
+        inputFullNameTextField = UITextField()
+        
+        let inputFullNameTextFieldPlaceholder = NSAttributedString(string: "Your full name", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        inputFullNameTextField.attributedPlaceholder = inputFullNameTextFieldPlaceholder
+        
+        inputFullNameTextField.frame = CGRect(x: UIScreen.main.bounds.width/16, y: UIScreen.main.bounds.height/5, width: UIScreen.main.bounds.width/1.2, height: UIScreen.main.bounds.height/12)
+        inputFullNameTextField.font = UIFont.systemFont(ofSize: 15)
+        inputFullNameTextField.borderStyle = UITextBorderStyle.roundedRect
+        
+        inputFullNameTextField.autocorrectionType = UITextAutocorrectionType.no
+        inputFullNameTextField.keyboardType = UIKeyboardType.default
+        inputFullNameTextField.returnKeyType = UIReturnKeyType.done
+        
+        self.view.addSubview(inputFullNameTextField)
+
+        
+        // Input Event Name Textfield
         inputEventNameTextField = UITextField()
         
         let inputEventNamePlaceholder = NSAttributedString(string: "Event name", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
@@ -96,7 +127,6 @@ class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate
         
         self.view.addSubview(inputDateTextField)
         
-        
         // Input Image Button
         inputImageButton = UIButton(frame: CGRect(x: view.frame.width * 0.3, y: view.frame.height / 1.6, width: view.frame.width * 0.4, height: view.frame.width * 0.4))
         inputImageButton.contentMode = .scaleToFill
@@ -104,53 +134,24 @@ class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate
         inputImageButton.backgroundColor = UIColor.black
         view.addSubview(inputImageButton)
         
-        
-        
-        
-        
-        
         // Mini VIRINDLY Logo
         virindlyMiniLogoView = UIImageView(image: #imageLiteral(resourceName: "VIRINDLYLogoOrange"))
-        virindlyMiniLogoView.frame = CGRect(x: 15, y: 100, width: 100, height: 25)
+        virindlyMiniLogoView.frame = CGRect(x: view.frame.width/2 - 50, y: 100, width: 100, height: 25)
         self.view.addSubview(virindlyMiniLogoView)
-        
-        
-        
-        
-
-        
-        
-        
-        
-
-        
-        
         
         
         let addEvent = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.undo, target: nil, action: #selector(getter: UIAccessibilityCustomAction.selector))
         self.navigationItem.rightBarButtonItem = addEvent
-        
-        
-        
-
-    
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
-    // ACTION
     func pressedBackButton(sender: UIButton!) {
         dismiss(animated: true, completion: nil)
     }
     
     func pressedCompleteEventButton(sender: UIButton!) {
-        if let event = inputEventNameTextField.text, let details = inputDescriptionTextField.text, let date = inputDescriptionTextField.text {
-            let post: [String: String] = ["event": event, "details": details, "date": date]
+        if let fullname = inputFullNameTextField.text, let event = inputEventNameTextField.text, let details = inputDescriptionTextField.text, let date = inputDescriptionTextField.text {
+            let post: [String: String] = ["fullname": fullname, "event": event, "details": details, "date": date]
         
             let db = FIRDatabase.database().reference()
             db.child("posts").childByAutoId().setValue(post)
@@ -169,6 +170,7 @@ class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage

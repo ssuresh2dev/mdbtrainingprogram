@@ -28,7 +28,7 @@ class User {
     func getProfPic(withBlock: @escaping (UIImage) -> Void) {
         let storageRef = FIRStorage.storage().reference()
         let imageRef = storageRef.child(imageUrl)
-        imageRef.data(withMaxSize: 1*500*500) {(data, error) -> Void in
+        imageRef.data(withMaxSize: 1*1024*1024) {(data, error) -> Void in
             if (error != nil) {
                 print("Sorry, couldn't retrieve image. Error occurred: \(error)")
             } else {
