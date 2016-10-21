@@ -32,7 +32,8 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
 
     
     var posterName: String?
-
+    var userRsvp: [NSString] = []
+    
     let rootRef = FIRDatabase.database().reference()
 
     
@@ -186,13 +187,15 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         let imagesRef = storageRef.child("images")
         let eventImageRef = imagesRef.child("\(uniqueEventRef.key)")
        
-       
-        
         //Event Information
-        let eventData: [String : NSString] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "rsvp": "0", "posterName": self.posterName as NSString? ?? "Nooone"]
+        //let eventData: [String : AnyObject] = ["eventTitle": eventNameTextField.text as NSString? ?? "None", "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!, "eventDescription": descriptionTextField.text as NSString? ?? "None", "eventDate": eventDateTextField.text as NSString? ?? "None", "posterName": self.posterName as NSString? ?? "Nooone", "userRsvp" : userRsvp as [NSString]]
 
         //Set Event Information
-        uniqueEventRef.setValue(eventData){ (error, snap) in
+        uniqueEventRef.setValue(["eventTitle": eventNameTextField.text as NSString? ?? "None",
+                                 "poster": (FIRAuth.auth()?.currentUser?.uid as NSString?)!,
+                                 "eventDescription": descriptionTextField.text as NSString? ?? "None",
+                                 "eventDate": eventDateTextField.text as NSString? ?? "None",
+                                 "posterName": self.posterName as NSString? ?? "Nooone"]){ (error, snap) in
             print("Success")
             //print(error)
             
@@ -217,8 +220,6 @@ class CreateEventViewController: UIViewController, UINavigationControllerDelegat
         }
 
         }
-        
-        
         
         
         performSegue(withIdentifier: "unwindToFeed", sender: self)
