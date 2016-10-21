@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FeedActivity extends AppCompatActivity {
+public class FeedActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     private RecyclerView rv;
     public  FeedAdapter adapter;
-    public  ArrayList<SocialsList.Social> socials = new ArrayList<SocialsList.Social>();
+    public  ArrayList<SocialsList.Social> socials; // list of total socials
     private FloatingActionButton createSocial;
     private DatabaseReference mDatabase;
 
@@ -35,21 +36,21 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-        SocialsList socialsList = new SocialsList();
-        socials = socialsList.getSocials();
-        createSocial = (FloatingActionButton) findViewById(R.id.createNew);
+        socials = new ArrayList<SocialsList.Social>();
+        createSocial = (FloatingActionButton) findViewById(R.id.createSocial);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
 
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FeedAdapter(getApplicationContext(), socials);
         rv.setAdapter(adapter);
 
-        ValueEventListener postListener = new ValueEventListener() {
+        /* Render the list of socials on the screen */
+        mDatabase.child("Socials").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 socials = new ArrayList<SocialsList.Social>();
-
                 for(DataSnapshot dsp: dataSnapshot.getChildren()){
                     HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
                     String name = (String) map.get("name");
@@ -61,39 +62,38 @@ public class FeedActivity extends AppCompatActivity {
                     if(interested == null){
                         interested = new ArrayList<String>();
                     }
-                    SocialsList.Social social = new SocialsList.Social(name, author, description, date, firebasePath);
+                    SocialsList.Social social = new SocialsList.Social(name, author, description,
+                            date, firebasePath);
                     social.setInterested(interested);
                     socials.add(social);
                 }
-                adapter.socials = socials;
-                adapter.notifyDataSetChanged();
+                adapter.setSocials(socials);
                 rv.setAdapter(adapter);
             }
-
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
             }
 
-        };
-        mDatabase.child("Socials").addValueEventListener(postListener);
-
-
-        mAuth = FirebaseAuth.getInstance();
-
-
-        createSocial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FeedActivity.this, CreateNewSocial.class);
-                intent.putExtra("numSocials", socials.size());
-                startActivity(intent);
-            }
         });
+
+        createSocial.setOnClickListener(this);
 
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.createSocial:
+                Intent intent = new Intent(FeedActivity.this, CreateNewSocial.class);
+                intent.putExtra("numSocials", socials.size());
+                startActivity(intent);
+                break;
+        }
+    }
+
+    /* Sets menu bar with logout */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_details, menu);
@@ -106,12 +106,9 @@ public class FeedActivity extends AppCompatActivity {
             case R.id.logout:
                 mAuth.signOut();
                 startActivity(new Intent(this, MainActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 
 }

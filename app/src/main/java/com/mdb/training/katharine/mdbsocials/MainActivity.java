@@ -57,12 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.login:
-                Toast.makeText(this, "pressed login", Toast.LENGTH_LONG).show();
-                signIn();
+            case R.id.login: signIn();
                 break;
             case R.id.signup: startActivity(new Intent(MainActivity.this, SignupActivity.class));
-                Toast.makeText(this, "pressed signup", Toast.LENGTH_LONG).show();
                 break;
         }
     }

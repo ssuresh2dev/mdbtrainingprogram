@@ -13,8 +13,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 public class InterestedActivity extends AppCompatActivity {
-    private ArrayList<String> interestedName;
-    private ArrayList<String> interestedEmail;
+    private ArrayList<String> interestedNames;
+    private ArrayList<String> interestedEmails;
     private FirebaseAuth mAuth;
 
     @Override
@@ -25,17 +25,15 @@ public class InterestedActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        interestedNames = getIntent().getStringArrayListExtra("interestedName");
+        interestedEmails = getIntent().getStringArrayListExtra("interestedEmail");
 
-        interestedName = getIntent().getStringArrayListExtra("interestedName");
-        interestedEmail = getIntent().getStringArrayListExtra("interestedEmail");
-
-        InterestedAdapter interestedAdapter = new InterestedAdapter(getApplicationContext(), interestedName, interestedEmail);
+        InterestedAdapter interestedAdapter = new InterestedAdapter(getApplicationContext(),
+                interestedNames, interestedEmails);
 
         recyclerView.setAdapter(interestedAdapter);
 
         mAuth = FirebaseAuth.getInstance();
-
-
     }
 
     @Override

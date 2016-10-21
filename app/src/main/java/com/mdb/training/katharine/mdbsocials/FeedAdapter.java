@@ -33,7 +33,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHolder> {
 
     private Context context;
-    public ArrayList<SocialsList.Social> socials = new ArrayList<>();
+    private ArrayList<SocialsList.Social> socials = new ArrayList<>();
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();;
 
 
@@ -42,29 +42,22 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
         this.socials = socials;
     }
 
+    public void setSocials(ArrayList<SocialsList.Social> socials) {
+        this.socials = socials;
+    }
+
     @Override
     public int getItemCount() {
         return socials.size();
     }
 
-    /* In simplified terms, a ViewHolder is an object that holds the pointers to the views in each
-    each row. What does that mean? Every row has a TextView, ImageView, and CheckBox. Each row has
-    a ViewHolder, and that ViewHolder holder these 3 views in it (hence "view holder").
-    This function returns a single ViewHolder; it is called once for every row.
-    */
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        This "inflates" the views, using the layout R.layout.row_view
         View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_view, parent, false);
         return new CustomViewHolder(view);
     }
 
-    /* This function takes the previously made ViewHolder and uses it to actually display the
-    data on the screen. Remember how the holder contains (pointers to) the 3 views? By doing, for
-    example, "holder.imageView" we are accessing the imageView for that row and setting the
-    ImageResource to be the corresponding image for that subject.
-     */
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, int position) {
         SocialsList.Social social = socials.get(position);
@@ -76,7 +69,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
 
         holder.numinterestedView.setText(Integer.toString(social.interested.size()));
 
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(socials.get(position).firebasePath);
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference()
+                .child(socials.get(position).firebasePath);
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
         {
             @Override
@@ -87,11 +81,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
 
         });
 
-
-
-
     }
-
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
         TextView titleView;
@@ -116,26 +106,22 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.CustomViewHold
                     starting at 0
                     */
                     final SocialsList.Social s = socials.get(getAdapterPosition());
-
-
                     Intent intent = new Intent(context, DetailsActivity.class);
 
                     ValueEventListener postListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             ArrayList<String> interested = s.getInterested();
-                            for(DataSnapshot dsp: dataSnapshot.getChildren()){
-                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                            for (DataSnapshot dsp: dataSnapshot.getChildren()) {
+                                HashMap<String, Object> map =
+                                        (HashMap<String, Object>) dsp.getValue();
                                 if (interested.contains(map.get("uid"))) {
                                     String name = (String) map.get("name");
                                     String email = (String) map.get("email");
                                     interestedName.add(name);
                                     interestedEmail.add(email);
-
                                 }
-
                             }
-
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
