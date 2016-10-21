@@ -27,10 +27,10 @@ class FeedViewController: UIViewController {
             let snapshotValue = snapshot.value as? NSDictionary
             let date = snapshotValue?["date"] as? String
             let name = snapshotValue?["name"] as? String
-            let usersInterested = snapshotValue?["usersInterested"] as? [String]
             let time = snapshotValue?["time"] as? String
+            let description = snapshotValue?["description"] as? String
             
-            self.feedEvents.insert(Event(name: name!, date: date!, time: time!, usersInterested: usersInterested!), at: 0)
+            self.feedEvents.insert(Event(name: name!, date: date!, time: time!, description: description!), at: 0)
             self.feedTableView.reloadData()
             
             
@@ -149,12 +149,12 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         feedCell.eventPictureImageView.image = UIImage(named: "event")
         feedCell.date.text = "When: \(feedEvents[indexPath.row].date!)"
         feedCell.eventName.text = "Event: \(feedEvents[indexPath.row].name!)"
-        feedCell.numRSVP.text = "Number of people interested: \(feedEvents[indexPath.row].usersInterested.count)"
+        //feedCell.numRSVP.text = "Number of people interested: \(feedEvents[indexPath.row].usersInterested.count)"
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         eventSelected = feedEvents[indexPath.row]
-       performSegue(withIdentifier: "toDetail", sender: self)
+        performSegue(withIdentifier: "toDetail", sender: self)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height/4

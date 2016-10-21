@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     var event: Event!
     var titleToBeSet: String!
     var whoPostedName: String!
-    var usersInterested: [String]!
+    var usersInterested: [FIRUser]!
     var dateLabel: UILabel!
     var RSVPButton: UIButton!
     var interestedButton: UIButton!
@@ -80,7 +80,7 @@ class DetailViewController: UIViewController {
         view.addSubview(whoPostedLabel)
         
         interestedButton = UIButton(frame: CGRect(x: (view.frame.width - view.frame.height * 0.3)/2, y: view.frame.height * 0.4 + 90, width: view.frame.height * 0.3, height: 30))
-        interestedButton.setTitle("\(usersInterested.count) people interested", for: UIControlState.normal)
+        //interestedButton.setTitle("\(usersInterested.count) people interested", for: UIControlState.normal)
         interestedButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)
         interestedButton.titleLabel!.adjustsFontSizeToFitWidth = true
         interestedButton.setTitleColor(UIColor.white, for: UIControlState.normal)
@@ -122,7 +122,7 @@ class DetailViewController: UIViewController {
     func modifyPeople(_ sender: UIButton!) {
         let user = FIRAuth.auth()?.currentUser
         if sender.titleLabel?.text == "Not interested" {
-            usersInterested.append((user?.displayName)!)
+            usersInterested.append((user)!)
             sender.setTitle("Interested", for: .normal)
         } else {
 //            let i = usersInterested.index(of: user?.displayName)

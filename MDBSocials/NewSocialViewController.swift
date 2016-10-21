@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class NewSocialViewController: UIViewController {
+class NewSocialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var nameTextField: UITextField!
     var pic: UILabel!
@@ -20,7 +20,7 @@ class NewSocialViewController: UIViewController {
     var dateTextField: UITextField!
     var timeTextField: UITextField!
     var createEventButton: UIButton!
-
+    var errorAlert: UIAlertController!
     
     override func viewDidLoad() {
         setUI()
@@ -35,9 +35,10 @@ class NewSocialViewController: UIViewController {
     
     
     func newSocial(){
-        let social: [String: String] = ["name": nameTextField.text!, "date": dateTextField.text!, "time" : timeTextField.text!, "description": descTextField.text!, "numRSVPs": "0"]
+        let social: [String: String] = ["name": nameTextField.text!, "date": dateTextField.text!, "time" : timeTextField.text!, "description": descTextField.text!]
         let dbRef = FIRDatabase.database().reference()
         dbRef.child("events").childByAutoId().setValue(social)
+        dismiss(animated: false, completion: nil)
     }
     
     
@@ -45,7 +46,7 @@ class NewSocialViewController: UIViewController {
         
         let margin = view.frame.width * 0.125
         
-        let backButton = UIButton(frame: CGRect(x: view.frame.width * 0, y: 0, width: view.frame.width * 0.2, height: view.frame.height * 0.1 ))
+        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.frame.width * 0.2, height: view.frame.height * 0.1 ))
         backButton.setTitle("Back", for: .normal)
         backButton.backgroundColor = themeColor
         backButton.setTitleColor(UIColor.white, for: UIControlState.normal)
@@ -77,14 +78,13 @@ class NewSocialViewController: UIViewController {
         nameTextField.font = UIFont(name: "Helvetica-Bold", size: 16.0)
         view.addSubview(nameTextField)
         
-        picUploadButton = UIButton(frame: CGRect(x: margin, y: view.frame.height * 0.1 + 100, width: view.frame.width * 0.25, height: view.frame.height * 0.25))
-        picUploadButton.setBackgroundImage(UIImage(named: "uploading"), for: .normal)
-        picUploadButton.imageView!.contentMode = .scaleAspectFit
-        picUploadButton.clipsToBounds = true
-        picUploadButton.layer.cornerRadius = 5
+        picUploadButton = UIButton(frame: CGRect(x: margin, y: view.frame.height * 0.1 + 100, width: view.frame.width * 0.25, height: view.frame.width * 0.25))
+        picUploadButton.setBackgroundImage(#imageLiteral(resourceName: "uploadimg"), for: .normal)
+        picUploadButton.imageView?.contentMode = .scaleAspectFit
+        picUploadButton.addTarget(self, action: #selector(selectImage), for: .touchUpInside)
         view.addSubview(picUploadButton)
         
-        descTextField = UITextField(frame: CGRect(x: margin, y: view.frame.height * 0.35 + 120, width: view.frame.width - 2 * margin, height: view.frame.height * 0.3))
+        descTextField = UITextField(frame: CGRect(x: margin, y: view.frame.height * 0.1 + view.frame.width * 0.25 + 130, width: view.frame.width - 2 * margin, height: view.frame.height * 0.3))
         descTextField.placeholder = "Event description"
         descTextField.font = UIFont(name: "HelveticaNeue", size: 14.0)
         descTextField.textRect(forBounds: CGRect(x: 5, y: 5, width: descTextField.frame.width - 10, height: descTextField.frame.height - 10))
@@ -93,7 +93,7 @@ class NewSocialViewController: UIViewController {
         descTextField.clipsToBounds = true
         view.addSubview(descTextField)
         
-        dateTextField = UITextField(frame: CGRect(x: view.frame.width * 0.5, y: view.frame.height * 0.35 + 30, width: view.frame.width * 0.5 - margin, height: 30))
+        dateTextField = UITextField(frame: CGRect(x: view.frame.width * 0.5, y: view.frame.height * 0.1 + view.frame.width * 0.25 + 35, width: view.frame.width * 0.5 - margin, height: 30))
         dateTextField.placeholder = "Date"
         dateTextField.font = UIFont(name: "Helvetica-Bold", size: 16.0)
         dateTextField.textAlignment = NSTextAlignment.left
@@ -101,7 +101,7 @@ class NewSocialViewController: UIViewController {
         dateTextField.clipsToBounds = true
         view.addSubview(dateTextField)
         
-        timeTextField = UITextField(frame: CGRect(x: view.frame.width * 0.5, y: view.frame.height * 0.35 + 70, width: view.frame.width * 0.5 - margin, height: 30))
+        timeTextField = UITextField(frame: CGRect(x: view.frame.width * 0.5, y: view.frame.height * 0.1 + view.frame.width * 0.25 + 70, width: view.frame.width * 0.5 - margin, height: 30))
         timeTextField.placeholder = "Time"
         timeTextField.font = UIFont(name: "Helvetica-Bold", size: 16.0)
         timeTextField.textAlignment = NSTextAlignment.left
@@ -109,7 +109,7 @@ class NewSocialViewController: UIViewController {
         timeTextField.clipsToBounds = true
         view.addSubview(timeTextField)
         
-        createEventButton = UIButton(frame: CGRect(x: view.frame.width * 0.4, y: view.frame.height * 0.65 + 150, width: view.frame.width * 0.2, height: 30))
+        createEventButton = UIButton(frame: CGRect(x: view.frame.width * 0.4, y: view.frame.height * 0.4 + view.frame.width * 0.25 + 150, width: view.frame.width * 0.2, height: 30))
         createEventButton.setTitle("Create Event", for: .normal)
         createEventButton.backgroundColor = themeColor
         createEventButton.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16.0)
@@ -125,6 +125,26 @@ class NewSocialViewController: UIViewController {
     func backPressed(){
         performSegue(withIdentifier: "back2Feed", sender: self)
     }
+    
+    func selectImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.dismiss(animated: true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            picUploadButton.setBackgroundImage(image, for: .normal)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

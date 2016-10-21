@@ -12,7 +12,7 @@ import Firebase
 
 let themeColor = UIColor(colorLiteralRed: 51/255, green: 153/255, blue: 255/255, alpha: 1)
 
-class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     var appLabel: UILabel!
     var fullNameLabel: UILabel!
@@ -25,8 +25,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
     var confirmTextField: UITextField!
     var signupButton: UIButton!
     var backToLoginButton: UIButton!
-    var imageView: UIImageView!
-    var uploadButton: UIButton!
+    var selectButton: UIButton!
+    var uploadLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +50,11 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         //add Signup Button Target Action
         signupButton.addTarget(self, action: #selector(clickedSignup), for: .touchUpInside)
         
-        uploadButton.addTarget(self, action: #selector(upload), for: .touchUpInside)
+        selectButton.addTarget(self, action: #selector(selectImage), for: .touchUpInside)
     }
-    func upload(){
+    
+    
+    func selectImage() {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
@@ -63,53 +65,29 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = image
+            selectButton.contentMode = .scaleAspectFit
+            selectButton.setBackgroundImage(image, for: .normal)
         }
-        let storageRef = FIRStorage.storage().reference()
-        let databaseRef = FIRDatabase.database().reference()
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = image
-        }
-        dismiss(animated: true, completion: nil)
-        var data = NSData()
-        data = UIImageJPEGRepresentation(imageView.image!, 0.8)! as NSData
-        // set upload path
-        let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\("userPhoto")"
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/jpg"
-        storageRef.child(filePath).put(data as Data, metadata: metaData){(metaData,error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }else{
-                //store downloadURL
-                let downloadURL = metaData!.downloadURL()!.absoluteString
-                //store downloadURL at database
-            databaseRef.child("users").child(FIRAuth.auth()!.currentUser!.uid).updateChildValues(["userPhoto": downloadURL])
-            }
-            }
-            dismiss(animated: true, completion: nil)
-        }
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
           dismiss(animated: true, completion: nil)
     }
     
+    
     func setUI() {
         
         view.backgroundColor = themeColor
         
-        uploadButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.frame.width/5, height: view.frame.height/5))
-        uploadButton.backgroundColor = UIColor.green
-        view.addSubview(uploadButton)
+        backToLoginButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.frame.width * 0.2, height: view.frame.height * 0.1))
+        backToLoginButton.setTitle("Back", for: UIControlState.normal)
+        backToLoginButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        backToLoginButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
+        backToLoginButton.addTarget(self, action: #selector(self.clickedBackToLogin(_:)), for: UIControlEvents.touchUpInside)
+        backToLoginButton.clipsToBounds = true
+        view.addSubview(backToLoginButton)
         
-        
-        
-        imageView = UIImageView(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: view.frame.width/4, height: view.frame.height/4))
-        
-        appLabel = UILabel(frame: CGRect(x: view.frame.width * 0.2, y: view.frame.height * 0.13, width: view.frame.width * 0.6, height: 50))
+        appLabel = UILabel(frame: CGRect(x: view.frame.width * 0.2, y: view.frame.height * 0.13 - 18, width: view.frame.width * 0.6, height: 50))
         appLabel.text = "MDB Socials"
         appLabel.numberOfLines = 1
         appLabel.adjustsFontSizeToFitWidth = true
@@ -119,7 +97,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         view.addSubview(appLabel)
         
         
-        fullNameLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27, width: view.frame.width * 0.5, height: 30))
+        fullNameLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 - 35, width: view.frame.width * 0.5, height: 30))
         fullNameLabel.text = "Full Name:"
         fullNameLabel.numberOfLines = 1
         fullNameLabel.adjustsFontSizeToFitWidth = true
@@ -128,7 +106,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         fullNameLabel.textColor = UIColor.white
         view.addSubview(fullNameLabel)
         
-        fullNameTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 33, width: view.frame.width * 0.7, height: 30))
+        fullNameTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 - 2, width: view.frame.width * 0.7, height: 30))
         fullNameTextField.adjustsFontSizeToFitWidth = true
         fullNameTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         fullNameTextField.textAlignment = NSTextAlignment.left
@@ -136,7 +114,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         view.addSubview(fullNameTextField)
         
         
-        emailLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 75, width: view.frame.width * 0.5, height: 30))
+        emailLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 40, width: view.frame.width * 0.5, height: 30))
         emailLabel.text = "Email:"
         emailLabel.numberOfLines = 1
         emailLabel.adjustsFontSizeToFitWidth = true
@@ -145,7 +123,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         emailLabel.textColor = UIColor.white
         view.addSubview(emailLabel)
         
-        emailTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 108, width: view.frame.width * 0.7, height: 30))
+        emailTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 73, width: view.frame.width * 0.7, height: 30))
         emailTextField.adjustsFontSizeToFitWidth = true
         emailTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         emailTextField.textAlignment = NSTextAlignment.left
@@ -153,7 +131,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         view.addSubview(emailTextField)
         
         
-        passwordLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 150, width: view.frame.width * 0.5, height: 30))
+        passwordLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 115, width: view.frame.width * 0.5, height: 30))
         passwordLabel.text = "Password:"
         passwordLabel.numberOfLines = 1
         passwordLabel.adjustsFontSizeToFitWidth = true
@@ -162,7 +140,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         passwordLabel.textColor = UIColor.white
         view.addSubview(passwordLabel)
         
-        passwordTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 183, width: view.frame.width * 0.7, height: 30))
+        passwordTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 148, width: view.frame.width * 0.7, height: 30))
         passwordTextField.adjustsFontSizeToFitWidth = true
         passwordTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         passwordTextField.textAlignment = NSTextAlignment.left
@@ -171,7 +149,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         view.addSubview(passwordTextField)
         
         
-        confirmLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 225, width: view.frame.width * 0.5, height: 30))
+        confirmLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 190, width: view.frame.width * 0.5, height: 30))
         confirmLabel.text = "Confirm Password:"
         confirmLabel.numberOfLines = 1
         confirmLabel.adjustsFontSizeToFitWidth = true
@@ -180,7 +158,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         confirmLabel.textColor = UIColor.white
         view.addSubview(confirmLabel)
         
-        confirmTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 257, width: view.frame.width * 0.7, height: 30))
+        confirmTextField = UITextField(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 222, width: view.frame.width * 0.7, height: 30))
         confirmTextField.adjustsFontSizeToFitWidth = true
         confirmTextField.font = UIFont(name: "HelveticaNeue", size: 18.0)
         confirmTextField.textAlignment = NSTextAlignment.left
@@ -189,27 +167,30 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
         view.addSubview(confirmTextField)
         
         
-        signupButton = UIButton(frame: CGRect(x: view.frame.width * 0.25, y: view.frame.height * 0.27 + 330, width: view.frame.width * 0.5, height: 40))
-        signupButton.setTitle("Sign Up", for: UIControlState.normal)
+        uploadLabel = UILabel(frame: CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.27 + 269, width: view.frame.width * 0.7, height: 30))
+        uploadLabel.text = "Select Profile Image:"
+        uploadLabel.numberOfLines = 1
+        uploadLabel.adjustsFontSizeToFitWidth = true
+        uploadLabel.font = UIFont(name: "HelveticaNeue-SemiBold", size: 24.0)
+        uploadLabel.textAlignment = NSTextAlignment.left
+        uploadLabel.textColor = UIColor.white
+        view.addSubview(uploadLabel)
+        
+        selectButton = UIButton(frame: CGRect(x: view.frame.width * 0.35, y: view.frame.height * 0.27 + 316, width: view.frame.width * 0.3, height: view.frame.width * 0.3))
+        selectButton.setBackgroundImage(#imageLiteral(resourceName: "uploadimg"), for: .normal)
+        view.addSubview(selectButton)
+        
+        signupButton = UIButton(frame: CGRect(x: view.frame.width * 0.25, y: view.frame.height * 0.27 + view.frame.width * 0.3 + 338, width: view.frame.width * 0.5, height: 40))
+        signupButton.setTitle("Sign Up", for: .normal)
         signupButton.titleLabel?.font = UIFont(name: "HelveticaNeue-SemiBold", size: 24.0)
+        signupButton.backgroundColor = UIColor.white
         signupButton.setTitleColor(themeColor, for: UIControlState.normal)
         signupButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
         signupButton.addTarget(self, action: #selector(self.clickedSignup(_:)), for: UIControlEvents.touchUpInside)
-        signupButton.backgroundColor = UIColor.white
         signupButton.layer.cornerRadius = 5
         signupButton.clipsToBounds = true
         view.addSubview(signupButton)
         
-        backToLoginButton = UIButton(frame: CGRect(x: view.frame.width * 0.25, y: view.frame.height * 0.27 + 390, width: view.frame.width * 0.5, height: 40))
-        backToLoginButton.setTitle("Back To Login", for: UIControlState.normal)
-        backToLoginButton.titleLabel?.font = UIFont(name: "HelveticaNeue-SemiBold", size: 24.0)
-        backToLoginButton.setTitleColor(themeColor, for: UIControlState.normal)
-        backToLoginButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
-        backToLoginButton.addTarget(self, action: #selector(self.clickedBackToLogin(_:)), for: UIControlEvents.touchUpInside)
-        backToLoginButton.backgroundColor = UIColor.white
-        backToLoginButton.layer.cornerRadius = 5
-        backToLoginButton.clipsToBounds = true
-        view.addSubview(backToLoginButton)
     }
     
     func clickedSignup(_ sender: UIButton!) {
@@ -232,6 +213,31 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
                 self.setProfPic(user!)
             }
         }
+        //        let storageRef = FIRStorage.storage().reference()
+        //        let databaseRef = FIRDatabase.database().reference()
+        //        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        //            selectButton.contentMode = .scaleAspectFit
+        //            selectButton.setBackgroundImage(image, for: .normal)
+        //        }
+        //        dismiss(animated: true, completion: nil)
+        //        var data = NSData()
+        //        data = UIImageJPEGRepresentation(selectButton.backgroundImage(for: .normal)!, 0.8)! as NSData
+        //        // set upload path
+        //        let filePath = "\(FIRAuth.auth()!.currentUser!.uid)/\("userPhoto")"
+        //        let metaData = FIRStorageMetadata()
+        //        metaData.contentType = "image/jpg"
+        //        storageRef.child(filePath).put(data as Data, metadata: metaData){(metaData,error) in
+        //            if let error = error {
+        //                print(error.localizedDescription)
+        //                return
+        //            }else{
+        //                //store downloadURL
+        //                let downloadURL = metaData!.downloadURL()!.absoluteString
+        //                //store downloadURL at database
+        //            databaseRef.child("users").child(FIRAuth.auth()!.currentUser!.uid).updateChildValues(["userPhoto": downloadURL])
+        //            }
+        //            }
+        //            dismiss(animated: true, completion: nil)
         
     }
     
@@ -258,10 +264,8 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate,UI
             self.signedIn(FIRAuth.auth()?.currentUser)
         }
     }
-
     
     func clickedBackToLogin(_ sender: UIButton!) {
-        
         performSegue(withIdentifier: "backToLogin", sender: self)
     }
     
