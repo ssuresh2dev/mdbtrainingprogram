@@ -18,6 +18,7 @@ public class SplashScreen extends Activity {
 
         super.onCreate(savedInstanceState);
 
+        // Start an intent to the next activity from the splash screen depending on the login state of the user
         FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mUser == null)
             startActivity(new Intent(SplashScreen.this, MainActivity.class));

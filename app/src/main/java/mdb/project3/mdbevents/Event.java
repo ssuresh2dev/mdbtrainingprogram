@@ -25,7 +25,7 @@ public class Event implements Comparable<Event>{
     public List<String> peopleInterested = new ArrayList<>();
 
     public Event() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+        // Default constructor required for calls to DataSnapshot.getValue(Event.class)
     }
 
     public Event(String aName, String aEmailAddress, int aNumInterested, String aImageUrl, String aTimestamp, String aDescription, String aDate, List<String> aPeopleInterested){
@@ -38,6 +38,8 @@ public class Event implements Comparable<Event>{
         peopleInterested = aPeopleInterested;
         description = aDescription;
     }
+
+    // Getter methods for class attributes
     public String getName(){
         return name;
     }
@@ -58,6 +60,7 @@ public class Event implements Comparable<Event>{
         return timestamp;
     }
 
+    // Implement the compareTo method such that the timestamps of the event and the other event passed in are compared
     public int compareTo(Event other){
         return other.timestamp.compareTo(timestamp);
     }
