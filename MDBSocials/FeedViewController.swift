@@ -158,7 +158,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 print(event.eventDate)
                 print(event.eventTitle)
                 print(self.eventsArray)
-                eventCell.titleName.text = event.eventTitle
+                eventCell.titleLabel.text = event.eventTitle
                 eventCell.rsvpLabel.text = event.rsvp
                 eventCell.posterLabel.text = event.posterName
             }

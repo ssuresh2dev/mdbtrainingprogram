@@ -12,7 +12,7 @@ class EventTableViewCell: UITableViewCell {
 
     var backgroundClear: UIImageView!
     var defaultPostLabel: UIImageView!
-    var titleName: UILabel!
+    var titleLabel: UILabel!
     var rsvpLabel: UILabel!
     var posterLabel: UILabel!
     
@@ -29,14 +29,14 @@ class EventTableViewCell: UITableViewCell {
         contentView.addSubview(defaultPostLabel)
         
 
-        titleName = UILabel(frame: CGRect(x: 25, y: 20, width: 225, height: 29))
-        //titleName = UILabel(frame: CGRect(x: 25, y: 20, width: 225, height: 29))
+        titleLabel = UILabel(frame: CGRect(x: 25, y: 20, width: 225, height: 29))
+        //titleLabel = UILabel(frame: CGRect(x: 25, y: 20, width: 225, height: 29))
 
         
-        titleName.textAlignment = NSTextAlignment.left
-        titleName.font = UIFont(name: "Bebas", size: 22)
-        //titleName.font = UIFont(name: "AvenirNext-Regular", size: 22)
-        contentView.addSubview(titleName)
+        titleLabel.textAlignment = NSTextAlignment.left
+        titleLabel.font = UIFont(name: "Bebas", size: 22)
+        //titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 22)
+        contentView.addSubview(titleLabel)
         
         rsvpLabel = UILabel(frame: CGRect(x: contentView.frame.width - 30, y: 28.5, width: 50, height: 38))
         contentView.addSubview(rsvpLabel)
