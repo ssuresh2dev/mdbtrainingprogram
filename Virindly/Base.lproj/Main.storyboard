@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QHG-Cb-h8f">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Virindly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="WXL-9x-0lW" kind="show" identifier="segueToSignUp" id="qTb-gS-vyM"/>
+                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueLoginToFeed" id="uhP-Mk-hbX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="70"/>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="20h-Pl-wGE">
+            <objects>
+                <viewController id="WXL-9x-0lW" customClass="SignUpViewController" customModule="Virindly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mer-sV-oTE"/>
+                        <viewControllerLayoutGuide type="bottom" id="h1P-sG-05l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XFh-94-Pci">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueSignUpToFeed" id="CSD-7M-hVY"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueSignupToLogin" id="hcw-Vr-sap"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ba5-MQ-iIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="70"/>
+        </scene>
+        <!--Feed View Controller-->
+        <scene sceneID="MeP-4I-1sW">
+            <objects>
+                <viewController id="vVs-MB-bxw" customClass="FeedViewController" customModule="Virindly" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qBH-pZ-9Iu"/>
+                        <viewControllerLayoutGuide type="bottom" id="UhC-5r-zlS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v6n-CY-aiK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="JgY-vY-RIx" kind="presentation" identifier="segueToNewSocial" id="6fT-US-9Xm"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueFeedToLogin" id="c5s-w2-T4d"/>
+                        <segue destination="QHG-Cb-h8f" kind="show" identifier="segueToDetails" id="VX1-cy-EA9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EPN-T8-FI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="527" y="900"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="muy-Zg-2Tz">
+            <objects>
+                <viewController id="QHG-Cb-h8f" customClass="DetailsViewController" customModule="Virindly" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Daf-3p-lFe"/>
+                        <viewControllerLayoutGuide type="bottom" id="06h-Mo-lVa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F9n-bg-alg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueDetailsToFeed" id="PqE-eh-l6u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ERm-XK-vRt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="526" y="1680"/>
+        </scene>
+        <!--New Social View Controller-->
+        <scene sceneID="QgN-OE-zW4">
+            <objects>
+                <viewController id="JgY-vY-RIx" customClass="NewSocialViewController" customModule="Virindly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b19-tO-s2n"/>
+                        <viewControllerLayoutGuide type="bottom" id="gHm-Da-ivn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nIP-vs-FO6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="vVs-MB-bxw" kind="show" identifier="segueBackToFeed" id="WGH-Gd-67g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dcK-dB-eNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="899"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="c5s-w2-T4d"/>
+        <segue reference="PqE-eh-l6u"/>
+    </inferredMetricsTieBreakers>
+</document>
