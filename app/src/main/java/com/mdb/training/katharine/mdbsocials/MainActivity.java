@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private TextView signup;
-
-    // private String TAG =
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,24 +46,25 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     startActivity(new Intent(MainActivity.this, FeedActivity.class));
                 }
-
             }
         };
-        //logout();
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+        login.setOnClickListener(this);
+        signup.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.login:
+                Toast.makeText(this, "pressed login", Toast.LENGTH_LONG).show();
                 signIn();
-            }
-        });
-
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SignupActivity.class));
-            }
-        });
-
+                break;
+            case R.id.signup: startActivity(new Intent(MainActivity.this, SignupActivity.class));
+                Toast.makeText(this, "pressed signup", Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 
     @Override
@@ -97,10 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void logout() {
-        mAuth.signOut();
     }
 
 }

@@ -46,7 +46,7 @@ public class DetailsActivity extends AppCompatActivity {
     private CheckBox interested;
     private String uid;
     private Toolbar toolbar;
-    FloatingActionButton fab;
+    // FloatingActionButton fab;
     private ArrayList<String> interestedName = new ArrayList<>();
     private ArrayList<String> interestedEmail = new ArrayList<>();
     private ArrayList<String> interestedUid = new ArrayList<>();
@@ -70,12 +70,9 @@ public class DetailsActivity extends AppCompatActivity {
         eventPic = (ImageView) findViewById(R.id.picture);
 
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(getIntent().getExtras().getString("firebasePath"));
-        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
-        {
+        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onSuccess(final Uri downloadUrl)
-            {
-
+            public void onSuccess(final Uri downloadUrl) {
 
                 AsyncTask<Void, Void, Bitmap> asyncTask = new AsyncTask<Void, Void, Bitmap>() {
 
@@ -99,7 +96,6 @@ public class DetailsActivity extends AppCompatActivity {
                         }
                     }
 
-
                     @Override
                     protected void onPostExecute(Bitmap result) {
                         eventPic.setImageBitmap(result);
@@ -109,7 +105,6 @@ public class DetailsActivity extends AppCompatActivity {
                                 if (vibrant != null) {
                                     // Set the background color of a layout based on the vibrant color
                                     getWindow().getDecorView().setBackgroundColor(vibrant.getRgb());
-
                                 }
                             }
                         });
@@ -121,10 +116,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
 
         eventName = (TextView) findViewById(R.id.eventName);
         eventName.setText(getIntent().getExtras().getString("title"));
@@ -140,39 +131,43 @@ public class DetailsActivity extends AppCompatActivity {
 
         numInterested = (Button) findViewById(R.id.button);
         numInterested.setText("Interested: " + getIntent().getExtras().getInt("interested"));
+        interested = (CheckBox) findViewById(R.id.interested);
 
-
-            numInterested.setOnClickListener(new View.OnClickListener() {
+        /* Gets all the interested users for an activity and passes their names and emails to
+            InterestedActivity
+         */
+        numInterested.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                dbRef.child("Users").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        interestedName = new ArrayList<String>();
-                        interestedEmail = new ArrayList<String>();
-                        for(DataSnapshot dsp: dataSnapshot.getChildren()) {
-                            HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
-                            if(interestedUid.contains(map.get("uid"))){
-                                interestedName.add((String) map.get("name"));
-                                interestedEmail.add((String) map.get("email"));
-                            }
+            dbRef.child("Users").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    interestedName = new ArrayList<String>();
+                    interestedEmail = new ArrayList<String>();
+                    for(DataSnapshot dsp: dataSnapshot.getChildren()) {
+                        HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                        if(interestedUid.contains(map.get("uid"))){
+                            interestedName.add((String) map.get("name"));
+                            interestedEmail.add((String) map.get("email"));
                         }
                     }
+                }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
-
-                Intent intent = new Intent(getApplicationContext(),InterestedActivity.class);
-                intent.putExtra("interestedName", interestedName);
-                intent.putExtra("interestedEmail", interestedEmail);
-                startActivity(intent);
+                }
+            });
+            Intent intent = new Intent(getApplicationContext(),InterestedActivity.class);
+            intent.putExtra("interestedName", interestedName);
+            intent.putExtra("interestedEmail", interestedEmail);
+            startActivity(intent);
             }
         });
-        interested = (CheckBox) findViewById(R.id.interested);
+
+
+
+        /* checks interested box if the user is interested */
         dbRef.child("Socials").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -219,98 +214,72 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        interested.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    ValueEventListener postListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for(DataSnapshot dsp: dataSnapshot.getChildren()){
-                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
-                                ArrayList<String> listInterested = (ArrayList<String>) map.get("interested");
-                                if(listInterested == null){
-                                    listInterested = new ArrayList<String>();
-                                }
-
-                                if (map.get("name").equals(eventName.getText().toString()) && !listInterested.contains(uid)) {
-                                    listInterested.add(uid);
-                                    Map<String, Object> newMap = new HashMap<String, Object>();
-                                    newMap.put("name", map.get("name"));
-                                    newMap.put("author", map.get("author"));
-                                    newMap.put("date", map.get("date"));
-                                    newMap.put("description", map.get("description"));
-                                    newMap.put("path", map.get("path"));
-                                    newMap.put("interested", listInterested);
-                                    dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
-
-                                }
-
-                            }
-
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
-                        }
-
-                    };
-                    dbRef.child("Socials").addValueEventListener(postListener);
-                }
-                else {
-                    Log.d("test", "unchecked");
-                    ValueEventListener postListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            for(DataSnapshot dsp: dataSnapshot.getChildren()){
-                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
-                                if (map.get("name").equals(eventName.getText().toString())) {
-                                    Log.d("test", "inside social");
-                                    ArrayList<String> listInterested = (ArrayList<String>) map.get("interested");
-                                    if(listInterested==null){
-                                        listInterested = new ArrayList<String>();
-                                    }
-                                    for (int i = 0; i < listInterested.size(); i++) {
-                                        Log.d("test", "inside forloop");
-                                        if (listInterested.get(i).equals(uid)) {
-                                            listInterested.remove(i);
-                                            Log.d("test", "removed from interested");
-                                            break;
-                                        }
-                                    }
-                                    if(listInterested==null){
-                                        listInterested = new ArrayList<String>();
-                                    }
-                                    Map<String, Object> newMap = new HashMap<String, Object>();
-                                    newMap.put("name", map.get("name"));
-                                    newMap.put("author", map.get("author"));
-                                    newMap.put("date", map.get("date"));
-                                    newMap.put("description", map.get("description"));
-                                    newMap.put("path", map.get("path"));
-                                    newMap.put("interested", listInterested);
-                                    dbRef.child("Socials").child(dsp.getKey()).setValue(newMap);
-                                    Log.d("test", "database changed");
-                                    break;
-                                }
-
-                            }
-
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            Log.w("TAG", "loadPost:onCancelled", databaseError.toException());
-                        }
-
-                    };
-                    dbRef.child("Socials").addValueEventListener(postListener);
-
-                }
-
-
-            }
-        });
-
     }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        // Check which checkbox was clicked
+        switch(view.getId()) {
+            case R.id.interested:
+                if (checked) {
+                    dbRef.child("Socials").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot dsp: dataSnapshot.getChildren()) {
+                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                                ArrayList<String> interestedList = (ArrayList<String>) map.get("interested"); // list of interested people for the current social
+                                if (interestedList == null) {
+                                    interestedList = new ArrayList<String>();
+                                }
+                                /*  * If the social's name matches the current social's name and the current user is not already included in interestedList,
+                                      add the current user's uid to the social's list of interested users
+                                 */
+                                if (map.get("name").equals(eventName.getText().toString()) && !interestedList.contains(uid)) {
+                                    interestedList.add(uid);
+                                    dbRef.child("Socials").child(dsp.getKey()).child("interested").setValue(interestedList);
+                                }
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                } else {
+                    dbRef.child("Socials").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot dsp: dataSnapshot.getChildren()) {
+                                HashMap<String, Object> map = (HashMap<String, Object>) dsp.getValue();
+                                ArrayList<String> interestedList = (ArrayList<String>) map.get("interested");
+                                if (interestedList == null) {
+                                    interestedList = new ArrayList<String>();
+                                }
+                                /*  * If the social's name == current social's name and current user is in interestedList,
+                                        remove the current user's uid from interestedList
+                                 */
+                                if (map.get("name").equals(eventName.getText().toString()) && interestedList.contains(uid)) {
+                                    interestedList.remove(uid);
+                                    dbRef.child("Socials").child(dsp.getKey()).child("interested").setValue(interestedList);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+                break;
+        }
+    }
+
+
     /**protected void onStop(){
         super.onStop();
         bitmap.recycle();

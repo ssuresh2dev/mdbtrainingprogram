@@ -27,10 +27,8 @@ public class FeedActivity extends AppCompatActivity {
     private RecyclerView rv;
     public  FeedAdapter adapter;
     public  ArrayList<SocialsList.Social> socials = new ArrayList<SocialsList.Social>();
-    //private FloatingActionButton logout;
     private FloatingActionButton createSocial;
     private DatabaseReference mDatabase;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +37,8 @@ public class FeedActivity extends AppCompatActivity {
 
         SocialsList socialsList = new SocialsList();
         socials = socialsList.getSocials();
-        //logout = (FloatingActionButton) findViewById(R.id.logout);
         createSocial = (FloatingActionButton) findViewById(R.id.createNew);
-
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
 
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -70,7 +64,6 @@ public class FeedActivity extends AppCompatActivity {
                     SocialsList.Social social = new SocialsList.Social(name, author, description, date, firebasePath);
                     social.setInterested(interested);
                     socials.add(social);
-                    //issue is that were getting string values instead of social classes, also how do i new socials, using set value in create new social just replaces values
                 }
                 adapter.socials = socials;
                 adapter.notifyDataSetChanged();
@@ -87,15 +80,8 @@ public class FeedActivity extends AppCompatActivity {
         mDatabase.child("Socials").addValueEventListener(postListener);
 
 
-
         mAuth = FirebaseAuth.getInstance();
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mAuth.signOut();
-//                startActivity(new Intent(FeedActivity.this, MainActivity.class));
-//            }
-//        });
+
 
         createSocial.setOnClickListener(new View.OnClickListener() {
             @Override
