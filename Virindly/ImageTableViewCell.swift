@@ -47,9 +47,8 @@ class ImageTableViewCell: UITableViewCell {
         eventPoster.numberOfLines = 0
         eventPoster.minimumScaleFactor = 0.5
         eventPoster.font = UIFont(name: "AvenirNext", size: 11)
-        eventPoster.textColor = UIColor.darkGray
+        // eventPoster.textColor = UIColor.darkGray
         eventPoster.adjustsFontSizeToFitWidth = true
-        //eventPoster.text = "Hosted by \("Candice Ye")" // Temporary data
         
         
         // Event Date
@@ -61,7 +60,7 @@ class ImageTableViewCell: UITableViewCell {
         eventDate.font = UIFont(name: "AvenirNext", size: 11)
         eventDate.textColor = UIColor.darkGray
         eventDate.adjustsFontSizeToFitWidth = true
-        eventDate.text = "02/05/16" // Temporary data
+        
         
         
         // RSVP Button

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import Social
 
 struct postStruct {
     let fullname: String!
@@ -21,6 +22,7 @@ class FeedViewController: UIViewController {
     
     var posts = [postStruct]()
     var user: FIRUser!
+    
     var tableView: UITableView!
     var images = [UIImage(named: "event1"), UIImage(named: "event2"), UIImage(named: "event3"),  UIImage(named: "event4"), UIImage(named: "event5"), UIImage(named: "event6"), UIImage(named: "event7")]
     
@@ -110,6 +112,8 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let imageCell = cell as! ImageTableViewCell
         imageCell.eventLabel.text = posts[indexPath.row].event
+        imageCell.eventPoster.text = posts[indexPath.row].fullname
+        imageCell.eventDate.text = posts[indexPath.row].date
         imageCell.eventImageView.image = images[indexPath.row]
         cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
@@ -118,8 +122,8 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension FeedViewController: ImageTableViewCellDelegate {
     func changeToInterested(forCell: ImageTableViewCell) {
-        //        forCell.button.backgroundColor = UIColor.green
-        //        forCell.button.title = "Interested!"
+//        forCell.rsvpButtonbackgroundColor = UIColor.green
+//        forCell.rsvpButton.title = "Interested!"
     }
 }
 

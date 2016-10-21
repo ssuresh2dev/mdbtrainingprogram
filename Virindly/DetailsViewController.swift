@@ -52,7 +52,7 @@ class DetailsViewController: UIViewController {
         
         // Event Image
         eventImage = UIImageView(frame: CGRect(x: 0, y: 85, width: view.frame.width, height: view.frame.height/2 - 40))
-        eventImage.backgroundColor = UIColor.green.withAlphaComponent(0.4)
+        eventImage.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         
         // Event Name Label
         eventName = UILabel(frame: CGRect(x: 20, y: view.frame.height/2 + 40, width: view.frame.width - 40, height: 80))
@@ -62,12 +62,12 @@ class DetailsViewController: UIViewController {
         
         // Event Date
         eventDate = UILabel(frame: CGRect(x: 20, y: view.frame.height/2 + 70, width: view.frame.width - 40, height: 80))
-        eventDate.text = "07/11/2016" // temporary data
+        eventDate.text = "11/11/2016" // temporary data
         eventDate.font = UIFont(name: "AvenirNext", size: 15)
         
         // Event Poster
         eventPoster = UILabel(frame: CGRect(x: 20, y: view.frame.height/2 + 100, width: view.frame.width - 40, height: 80))
-        eventPoster.text = "Hosted by: \("Candice Ye")" // temporary data
+        eventPoster.text = "Hosted by: \("John Doe")" // temporary data
         eventPoster.font = UIFont(name: "AvenirNext", size: 15)
         
          // Event Description
@@ -78,7 +78,7 @@ class DetailsViewController: UIViewController {
         eventDescription.minimumScaleFactor = 0.5
         eventDescription.font = UIFont(name: "AvenirNext", size: 12)
         eventDescription.adjustsFontSizeToFitWidth = true
-        eventDescription.text = "Really cool event please come! I hope this works. I want to sleep! :)"
+        eventDescription.text = "Please attend this event! Begins at 5pm."
         
         // RSVP Button
         rsvpButton = UIButton(frame: CGRect(x: 30, y: view.frame.height/2 + 230, width: view.frame.width/4, height: 25))
@@ -96,6 +96,8 @@ class DetailsViewController: UIViewController {
         numAttendees.text = "\(10) people are interested" // temporary data
         numAttendees.font = UIFont(name: "AvenirNext", size: 15)
 
+
+        
         // Add Subviews
         self.view.addSubview(detailsBackground)
         self.view.addSubview(eventImage)
