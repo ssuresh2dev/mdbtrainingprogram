@@ -13,8 +13,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-
-import org.w3c.dom.Text;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 
 /**
  * Created by Sayan on 10/19/2016.
@@ -61,6 +64,31 @@ public class FirebaseUtils {
         }
 
         return valid;
+    }
+
+    public static void updateInterested(DatabaseReference dbRef, final FirebaseUser mUser) {
+        dbRef.runTransaction(new Transaction.Handler() {
+            @Override
+            public Transaction.Result doTransaction(MutableData mutableData) {
+                Event e = mutableData.getValue(Event.class);
+                if (e == null)
+                    return Transaction.success(mutableData);
+                if (e.peopleInterested.contains(mUser.getEmail())) {
+                    e.numInterested -= 1;
+                    e.peopleInterested.remove(mUser.getEmail());
+                } else {
+                    e.numInterested += 1;
+                    e.peopleInterested.add(mUser.getEmail());
+                }
+                mutableData.setValue(e);
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(DatabaseError databaseError, boolean b, DataSnapshot dataSnapshot) {
+
+            }
+        });
     }
 
     private static void updateUserInfo(FirebaseAuth mAuth, String fullName) {
