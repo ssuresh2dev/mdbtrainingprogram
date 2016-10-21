@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1082602066966",
+    "firebase_url": "https://mdbsocials-700a9.firebaseio.com",
+    "project_id": "mdbsocials-700a9",
+    "storage_bucket": "mdbsocials-700a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082602066966:android:e9cc6be388f1b08f",
+        "android_client_info": {
+          "package_name": "com.projects.mdb.mdbsocials"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082602066966-029arvecm878lbmc07aq41uefnov6p46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzxt2y8QKqJ1_5GzDGeOsirnceXq8_C2s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
